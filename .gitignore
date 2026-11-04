@@ -31,3 +31,5 @@ node_modules/
 
 # Unreviewed raw design exports with profile/payment specimen data
 /research/figma/private/
+
+/user-data/

@@ -4,7 +4,7 @@ Ricostruzione del progetto LOCO: una web app per computer e telefono che combina
 
 ## Stato attuale
 
-Sono stati raccolti e analizzati i materiali originali, preparati un catalogo visivo e una prima specifica funzionale. L'applicazione in `app/` è ancora uno scaffold: il prodotto non è ancora implementato o pubblicato come versione funzionante.
+Sono stati raccolti e analizzati i materiali originali, preparati un catalogo visivo e una prima specifica funzionale. È disponibile una prima prova locale gratuita in `app/prototype/`: stanza schematica, loci, contenuti, richiamo, lezioni e carte. Non è ancora il prodotto completo e non è pubblicata online. Avvio e limiti in [app/prototype/README.md](app/prototype/README.md).
 
 Il riferimento definitivo di design è [loco nuovo su Figma](https://www.figma.com/design/FeZKyO6xCZtjmQ1uEef4kx/loco-nuovo?node-id=310-887). Il file include le pagine `sito`, `Portale / Area riservata`, `App mobile` e le librerie/materiali del progetto. L'analisi dettagliata dei frame è in corso.
 
