@@ -1,0 +1,29 @@
+{
+  "canonicalDesign": {
+    "title": "loco-nuovo",
+    "url": "https://www.figma.com/design/FeZKyO6xCZtjmQ1uEef4kx/loco-nuovo?node-id=310-887",
+    "fileKey": "FeZKyO6xCZtjmQ1uEef4kx",
+    "startingNode": "310:887",
+    "status": "user_confirmed_final",
+    "contentAccess": "browser_accessible_view_only",
+    "inspectedFrames": [],
+    "verifiedPages": [
+      "Libreria Visual",
+      "ADV",
+      "Gadget",
+      "sito",
+      "Portale / Area riservata",
+      "App mobile",
+      "presentazione esame",
+      "book"
+    ],
+    "portalPageNode": "3:3"
+  },
+  "supersededDesign": {
+    "title": "gruppoSEDICI",
+    "fileKey": "vcnvsrrBCEIt3SQYuuvT1a",
+    "status": "historical_reference_only"
+  },
+  "confirmedByUser": "2026-11-04",
+  "note": "Il nuovo file è il riferimento definitivo indicato dall’utente. Nessuna schermata interna è stata ancora verificata: il browser mostra il gate di accesso."
+}

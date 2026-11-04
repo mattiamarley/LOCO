@@ -1,0 +1,26 @@
+CLOCO
+SERVIZI SITO + UI
+• HOME
+• ABOUT
+• PIANI
+• DOMANDE
+HOME
+La home ha una struttura a scrolling e si propone di
+presentare, una dopo l'altra, tutte le intormazioni
+salienti contenute nel sito web. L'obiettivo di questa
+sezione è di fornire all'utente brevi informazioni che
+possono essere approfondite successivamente
+attraverso le altre sezioni del sito.
+Per guidare alla visita del sito sono state pensate
+delle call to action, così da poter far muovere in
+modo fluido ed intuitivo l'utente attraverso i vari
+concetti.
+ABOUT
+All'interno di questa sezione vengono forniti alcuni
+elementi essenziali per conoscere le tecniche
+mnemoniche e saperle poi sfruttare all'interno della
+piattaforma. Inoltre viene anche inserito un test della
+Al generativa di Loco per capire il funzionamento dei
+prompt all'interno della piattaforma su Google Street
+View.
+81

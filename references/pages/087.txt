@@ -1,0 +1,36 @@
+07. BRANDING
+SUBTITLE, PARAGRAPH AND
+OTHERS FONT: INTER TIGHT
+La scelta del font è motivata dalla sua elevata
+leggibilità e chiarezza anche in dimensioni ridotte. Il
+suo design moderno e pulito garantisce una facile
+lettura, essenziale per mantenere l'attenzione
+dell'utente su contenuti informativi. Inoltre, la sua
+versatilità si adatta perfettamente a diverse
+applicazioni, assicurando coerenza visiva e
+un'esperienza utente fluida su tutta la piattaforma.
+Subtitle1 28px
+Subtitle2 24px
+weight: medium
+weight: medium
+line height: 42px
+line height: 36px
+Body1 | 18px
+Body2 | 16px
+Body3 | 14px
+weight: light
+weight: light
+weight: light
+line height: 27px
+line height: 24px
+line height: 21px
+Caption | 12px
+Button1 | 16px
+Button2 | 16px
+weight: regular
+weight: semi-bold
+weight: regular
+line height: 18px
+line height: 24px
+line height: 24px
+70

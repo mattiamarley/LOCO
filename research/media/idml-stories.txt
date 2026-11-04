@@ -1,0 +1,2005 @@
+Stories/Story_ubdde.xml
+Gruppo Sedici
+
+Stories/Story_ubaca.xml
+- Risultati raggiunti
+- Opportunità di sviluppo del servizio 
+- Riflessioni parallele
+ 
+
+Stories/Story_ubab3.xml
+14. Conclusioni
+
+Stories/Story_uba9c.xml
+- Servizi satellite
+- API 
+
+Stories/Story_uba85.xml
+13. 
+Informatica
+
+Stories/Story_uba6e.xml
+- Transumanesimo
+- Economia di conusmo 
+- Human centered design
+- Neuromarketing 
+
+Stories/Story_uba57.xml
+12. 
+Psicologia dei consumi
+
+Stories/Story_uba40.xml
+- Canali e modus di comunicazione
+- Fasi di lancio 
+- Rubriche e calendario editoriale
+- Contingency plan 
+
+Stories/Story_uba29.xml
+11. 
+Comunicazione
+
+Stories/Story_uba10.xml
+10. Descrizione di dettaglio del servizio
+
+Stories/Story_ub9f9.xml
+- Loco
+- E-commerce
+- Portale
+- Applicazione mobile
+- Vr 
+
+Stories/Story_ub9e2.xml
+- Logotipo
+- Tone of voice
+- Palette
+- Tipografia
+- Design system 
+
+Stories/Story_ub9cb.xml
+09. Branding
+
+Stories/Story_ub9b4.xml
+- Prototipazione di massima - AR/VR per l’apprednimento - Identificazione dei bisogni - Analisi UX e UI - App testing
+- Input method
+- Reverse engineering
+- Immersività ed efficacia
+
+Stories/Story_ub99d.xml
+- Panoramica del servizio - Touchpoint
+
+Stories/Story_ub985.xml
+-
+ Concept
+- Vision
+- Mission
+- Modus operandi
+
+Stories/Story_ub96e.xml
+08. Progettazione           integrata
+
+Stories/Story_ub957.xml
+07. Service design 
+
+Stories/Story_ub940.xml
+06.
+ Idea di progetto
+
+Stories/Story_ub929.xml
+- Maria di Stefano - Luca Gurrieri - Andrea Zumi 
+
+Stories/Story_ub912.xml
+05. 
+Personas, 
+        costumer journey          ed empathy map
+
+Stories/Story_ub8fb.xml
+- I casi studio - Matrice di comparazione e driver - Spazio progettuale 
+
+Stories/Story_ub8e4.xml
+04. Analisi dei          competitor
+
+Stories/Story_ub8cd.xml
+- Il problema - Didattica tradizionale - Gamification - Piattaforme di E-learning - Realtà aumentata
+
+Stories/Story_ub8b6.xml
+- Brief - Analisi di scenario - Fase zero - Fase zero.1
+
+Stories/Story_ub89f.xml
+- 
+Introduzione
+- Il team
+- Metodo di progetto
+
+Stories/Story_ub888.xml
+03. 
+Ricerca e 
+        identificazione 
+        del problema
+
+Stories/Story_ub871.xml
+02. Contesto 
+
+Stories/Story_ub85a.xml
+01. Introduzione 
+
+Stories/Story_ub843.xml
+CONTENUTI
+
+Stories/Story_ub414.xml
+115
+
+Stories/Story_uaf93.xml
+131
+
+Stories/Story_uaf7a.xml
+Gruppo Sedici
+
+Stories/Story_uaf4c.xml
+130
+
+Stories/Story_uaf34.xml
+Gruppo Sedici
+
+Stories/Story_uaf06.xml
+128
+
+Stories/Story_uaeef.xml
+127
+
+Stories/Story_uaed7.xml
+Gruppo Sedici
+
+Stories/Story_uaea8.xml
+126
+
+Stories/Story_uae91.xml
+125
+
+Stories/Story_uae79.xml
+Gruppo Sedici
+
+Stories/Story_uae4b.xml
+124
+
+Stories/Story_uae34.xml
+123
+
+Stories/Story_uae1c.xml
+Gruppo Sedici
+
+Stories/Story_uaded.xml
+122
+
+Stories/Story_uadd6.xml
+121
+
+Stories/Story_uadbe.xml
+Gruppo Sedici
+
+Stories/Story_uad90.xml
+120
+
+Stories/Story_uad78.xml
+119
+
+Stories/Story_uad60.xml
+Gruppo Sedici
+
+Stories/Story_uad32.xml
+118
+
+Stories/Story_uad1b.xml
+117
+
+Stories/Story_uad03.xml
+Gruppo Sedici
+
+Stories/Story_uacd5.xml
+116
+
+Stories/Story_uacbe.xml
+115
+
+Stories/Story_uaca6.xml
+Gruppo Sedici
+
+Stories/Story_uac77.xml
+114
+
+Stories/Story_uac60.xml
+113
+
+Stories/Story_uac48.xml
+Gruppo Sedici
+
+Stories/Story_uac1a.xml
+112
+
+Stories/Story_uac03.xml
+111
+
+Stories/Story_uabeb.xml
+Gruppo Sedici
+
+Stories/Story_uabbd.xml
+  110
+
+Stories/Story_uaba6.xml
+109
+
+Stories/Story_uab8e.xml
+Gruppo Sedici
+
+Stories/Story_uab60.xml
+108
+
+Stories/Story_uab48.xml
+107
+
+Stories/Story_uab30.xml
+Gruppo Sedici
+
+Stories/Story_uab01.xml
+104
+
+Stories/Story_uaaea.xml
+103
+
+Stories/Story_uaad2.xml
+Gruppo Sedici
+
+Stories/Story_uaaa4.xml
+102
+
+Stories/Story_uaa8d.xml
+101
+
+Stories/Story_uaa75.xml
+Gruppo Sedici
+
+Stories/Story_uaa47.xml
+100
+
+Stories/Story_uaa30.xml
+99
+
+Stories/Story_uaa17.xml
+Gruppo Sedici
+
+Stories/Story_ua9e9.xml
+98
+
+Stories/Story_ua9d2.xml
+97
+
+Stories/Story_ua9ba.xml
+Gruppo Sedici
+
+Stories/Story_ua98b.xml
+96
+
+Stories/Story_ua974.xml
+95
+
+Stories/Story_ua95c.xml
+Gruppo Sedici
+
+Stories/Story_ua92e.xml
+94
+
+Stories/Story_ua917.xml
+93
+
+Stories/Story_ua8ff.xml
+Gruppo Sedici
+
+Stories/Story_ua8d1.xml
+92
+
+Stories/Story_ua8ba.xml
+91
+
+Stories/Story_ua8a2.xml
+Gruppo Sedici
+
+Stories/Story_ua874.xml
+90
+
+Stories/Story_ua85d.xml
+89
+
+Stories/Story_ua845.xml
+Gruppo Sedici
+
+Stories/Story_ua816.xml
+88
+
+Stories/Story_ua7ff.xml
+87
+
+Stories/Story_ua7e7.xml
+Gruppo Sedici
+
+Stories/Story_ua7b8.xml
+86
+
+Stories/Story_ua7a1.xml
+85
+
+Stories/Story_ua789.xml
+Gruppo Sedici
+
+Stories/Story_ua75b.xml
+84
+
+Stories/Story_ua744.xml
+83
+
+Stories/Story_ua72c.xml
+Gruppo Sedici
+
+Stories/Story_ua6fd.xml
+82
+
+Stories/Story_ua6e6.xml
+81
+
+Stories/Story_ua6ce.xml
+Gruppo Sedici
+
+Stories/Story_ua69f.xml
+80
+
+Stories/Story_ua688.xml
+79
+
+Stories/Story_ua670.xml
+Gruppo Sedici
+
+Stories/Story_ua642.xml
+78
+
+Stories/Story_ua62b.xml
+77
+
+Stories/Story_ua613.xml
+Gruppo Sedici
+
+Stories/Story_ua5e5.xml
+76
+
+Stories/Story_ua5ce.xml
+75
+
+Stories/Story_ua5b6.xml
+Gruppo Sedici
+
+Stories/Story_ua587.xml
+74
+
+Stories/Story_ua570.xml
+73
+
+Stories/Story_ua558.xml
+Gruppo Sedici
+
+Stories/Story_ua529.xml
+72
+
+Stories/Story_ua512.xml
+71
+
+Stories/Story_ua4fa.xml
+Gruppo Sedici
+
+Stories/Story_ua4cc.xml
+70
+
+Stories/Story_ua4b5.xml
+69
+
+Stories/Story_ua49d.xml
+Gruppo Sedici
+
+Stories/Story_ua46f.xml
+68
+
+Stories/Story_ua458.xml
+67
+
+Stories/Story_ua43f.xml
+Gruppo Sedici
+
+Stories/Story_ua411.xml
+66
+
+Stories/Story_ua3fa.xml
+65
+
+Stories/Story_ua3e2.xml
+Gruppo Sedici
+
+Stories/Story_ua3b3.xml
+64
+
+Stories/Story_ua39c.xml
+63
+
+Stories/Story_ua384.xml
+Gruppo Sedici
+
+Stories/Story_ua356.xml
+62
+
+Stories/Story_ua33f.xml
+61
+
+Stories/Story_ua327.xml
+Gruppo Sedici
+
+Stories/Story_ua2f9.xml
+60
+
+Stories/Story_ua2e2.xml
+59
+
+Stories/Story_ua2ca.xml
+Gruppo Sedici
+
+Stories/Story_ua29c.xml
+58
+
+Stories/Story_ua285.xml
+57
+
+Stories/Story_ua26d.xml
+Gruppo Sedici
+
+Stories/Story_ua23e.xml
+56
+
+Stories/Story_ua227.xml
+55
+
+Stories/Story_ua20e.xml
+Gruppo Sedici
+
+Stories/Story_ua1e0.xml
+54
+
+Stories/Story_ua1c9.xml
+53
+
+Stories/Story_ua1b1.xml
+Gruppo Sedici
+
+Stories/Story_ua183.xml
+52
+
+Stories/Story_ua16c.xml
+51
+
+Stories/Story_ua154.xml
+Gruppo Sedici
+
+Stories/Story_ua126.xml
+50
+
+Stories/Story_ua10f.xml
+49
+
+Stories/Story_ua0f7.xml
+Gruppo Sedici
+
+Stories/Story_ua0c7.xml
+48
+
+Stories/Story_ua0b0.xml
+47
+
+Stories/Story_ua098.xml
+Gruppo Sedici
+
+Stories/Story_ua06a.xml
+46
+
+Stories/Story_ua053.xml
+45
+
+Stories/Story_ua03b.xml
+Gruppo Sedici
+
+Stories/Story_ua00d.xml
+44
+
+Stories/Story_u9ff6.xml
+43
+
+Stories/Story_u9fde.xml
+Gruppo Sedici
+
+Stories/Story_u9fb0.xml
+42
+
+Stories/Story_u9f99.xml
+41
+
+Stories/Story_u9f81.xml
+Gruppo Sedici
+
+Stories/Story_u9f52.xml
+40
+
+Stories/Story_u9f3b.xml
+39
+
+Stories/Story_u9f23.xml
+Gruppo Sedici
+
+Stories/Story_u9ef5.xml
+38
+
+Stories/Story_u9ede.xml
+37
+
+Stories/Story_u9ec6.xml
+Gruppo Sedici
+
+Stories/Story_u9e97.xml
+36
+
+Stories/Story_u9e80.xml
+35
+
+Stories/Story_u9e68.xml
+Gruppo Sedici
+
+Stories/Story_u9e3a.xml
+34
+
+Stories/Story_u9e23.xml
+33
+
+Stories/Story_u9e0b.xml
+Gruppo Sedici
+
+Stories/Story_u9ddd.xml
+32
+
+Stories/Story_u9dc4.xml
+31
+
+Stories/Story_u9dac.xml
+Gruppo Sedici
+
+Stories/Story_u9d7e.xml
+30
+
+Stories/Story_u9d67.xml
+29
+
+Stories/Story_u9d4f.xml
+Gruppo Sedici
+
+Stories/Story_u9d21.xml
+28
+
+Stories/Story_u9d0a.xml
+27
+
+Stories/Story_u9cf2.xml
+Gruppo Sedici
+
+Stories/Story_u9cc4.xml
+26
+
+Stories/Story_u9cad.xml
+25
+
+Stories/Story_u9c95.xml
+Gruppo Sedici
+
+Stories/Story_u9c67.xml
+24
+
+Stories/Story_u9c4e.xml
+23
+
+Stories/Story_u9c36.xml
+Gruppo Sedici
+
+Stories/Story_u9c08.xml
+22
+
+Stories/Story_u9bf1.xml
+21
+
+Stories/Story_u9bd9.xml
+Gruppo Sedici
+
+Stories/Story_u9bab.xml
+20
+
+Stories/Story_u9b94.xml
+19
+
+Stories/Story_u9b7c.xml
+Gruppo Sedici
+
+Stories/Story_u9b63.xml
+Gruppo Sedici
+
+Stories/Story_u9b34.xml
+129
+
+Stories/Story_u99ec.xml
+Grazie di essere stato LOCO con noi
+
+Stories/Story_u993a.xml
+Non tutte le ciambelle riescono col buco e di sicuro il gruppo SeDici non ce l’ha. Oltre
+all’inopinabile complessità del progetto siamo stati umanamente travolti da una serie di sfortunati eventi, che, integrati alla nostra scarsa responsabilità individuale si è risolto il binomio in tre tentativi di esame, revisioni fastfood dove vendevamo aria fritta e in una disorganizzazione generale da premio nobel. Tuttavia siamo comunque soddisfatti e felici di aver sviluppato, a nostro avviso, uno dei progetti più sfidanti e complessi che la triennale ci abbia mai permesso di sviluppare. L’integrazione tra corsi, nello specifico quello tra psicologia dei consumi e di ux design, ha generato in noi una forte capacità critica e di analisi che è risultata determinante nello sviluppo del progetto, e per questo motivo, siamo tutto sommato
+entusiasti di presentare e dare vita a Loco; un’innovativa piattaforma per l’apprendimento, che
+in realtà non centra nulla con le papere
+
+Stories/Story_u9921.xml
+Riflessioni parallele
+
+Stories/Story_u98f1.xml
+Loco ha le basi per nascere e svilupparsi in un mercato reale al di fuori dell’accademicità del progetto. Oltre a funzionare egregiamente a livello di concept, sono in realtà moltissime le opportunità di sviluppo del servizio che non sono state realizzate. La piattaforma ad esempio 
+ad oggi è essenziale e verticale sui servizi che deve offrire; tuttavia può essere implementata 
+allineandola alle applicazioni e giochi già esistenti sul mercato in direzione di sviluppare una vera e propria community intorno al progetto. Plurimi sono gli esempi in cui classifiche ed interazioni inter utenti implementano non solo la status e l’affidabilità della piattaforma ma inducono gli utenti a sviluppare una dipendenza legata al bisogno di confronto, di omologazione e di sfida nei confronti dei propri amici o degli altri lochi. 
+
+Stories/Story_u98da.xml
+Opportunità di sviluppo del servizio
+
+Stories/Story_u9820.xml
+Loco è un progetto complesso, un sistema integrato che mette a dialogo diverse discipline in un integrale complessivo di forte innovazione e sfida. La complessità e la varietà degli ambiti di cui ne è composto tuttavia, hanno resolo lo sviluppo del progetto complicato e acerbo.  Con il poco tempo e le scarse risorse a disposizione era impensabile poter completare la progettazione al dettaglio ma nonostante ciò il risultato finale garantisce comunque la omprensione del progetto e la valorizzazione dello stesso.
+Visto l’acerbo risultato di prototipazione e sviluppo del progetto è impossibile predire
+efficacemente obiettivi misurabili e definiti, tuttavia alcuni risultati raggiunti possono essere sintetizzati.
+Apprendimento e valore
+L’integrale complessivo di Loco risulta 
+essere un sistema innovativo e rivoluzionario perché per la prima volta vengono sviluppati dei veri e propri tool a servizio dell’apprendimento, integrando e garantendo un’esperienza utente costruita
+intorno all’utente stesso, in ordine di massimizzare l’efficacia del servizio.
+Immaginazione e creatività
+Loco per la prima volta rende possibile un processo mentale millenario e lo mette nero su bianco. La virtualizzazione dei percorsi e le libere associazioni infatti, seppur da sempre note nella tecnica dei loci, mai prima d’ora sono state sviluppate
+al servizio dell’utente in maniera pratica.
+L’utente al centro
+Loco da subito ha dimostrato la sua netta vicinanza all’uomo mettendo in chiaro la necessità di dover progettare intorno all’utente. Loco è infatti in ultima istanza la
+digitalizzazione di percorsi mentali ed euristiche preesistenti e dunque tutta la prototipazione è stata gestita con la massima attenzione al bisogno dell’utente.
+Innovazione tecnica
+Per quanto Loco non si sera di tecnologie particolarmente innovative, il progetto mette a dialogo diverse tecnologie integrandole e raggiungendo così un risultato di efficienza elevato ed economicamente sostenibile. 
+Non vi è innovazione tecnica nello sviluppo 
+di tecnologie, ma il suo valore è riconoscibile nell’integrazione di strumenti preesistenti. 
+
+Stories/Story_u9809.xml
+Risultati raggiunti
+
+Stories/Story_u9628.xml
+- Risultati raggiunti 
+ 
+
+Stories/Story_u95fa.xml
+- Riflessioni parallele 
+ 
+
+Stories/Story_u95e3.xml
+- Opportunità di sviluppo del servizio 
+ 
+
+Stories/Story_u95cc.xml
+CONCLUSIONI
+
+Stories/Story_u95b5.xml
+14
+
+Stories/Story_u929c.xml
+All’interno dI Loco, Google Street View viene utilizzato per creare percorsi personalizzabili dall’utente, offrendo un’esperienza interattiva unica. Grazie all’integrazione delle API di Google Street View, gli utenti possono esplorare virtualmente un ambiente urbano e, tramite i prompt per l’intelligenza artificiale, generare e posizionare oggetti digitali direttamente all’interno della visualizzazione Street View.
+Un’API (Application Programming Interface) è un insieme di regole e protocolli che permette a diverse applicazioni software di comunicare tra loro. Le API definiscono i metodi e i dati che le applicazioni possono utilizzare per interagire con un servizio o un sistema, senza che sia necessario conoscere i dettagli interni del suo funzionamento. In pratica, un’API agisce come un intermediario che consente a un’applicazione di inviare richieste e ricevere risposte da un’altra applicazione o servizio, facilitando l’integrazione e l’automazione di funzionalità complesse in modo semplice e standardizzato.
+Le API di Google Street View consentono 
+di incorporare facilmente le immagini a 
+360 gradi di Google Street View in una pagina web. Per implementare questa funzionalità, Google offre un API che permette agli sviluppatori di richiedere immagini specifiche di Street View, gestire l’orientamento della visuale e personalizzare l’interazione con l’utente.
+
+Stories/Story_u9285.xml
+Integrazione Google Street view
+
+Stories/Story_u9208.xml
+- integrazione Google Street view
+ 
+
+Stories/Story_u91ac.xml
+INFORMATICA PER L’E-COMMERCE
+
+Stories/Story_u9195.xml
+13
+
+Stories/Story_u8e3e.xml
+Neuromarketing
+
+Stories/Story_u8e27.xml
+Il neuromarketing è un campo interdisciplinare che combina neuroscienze, psicologia e marketing per comprendere come il cervello umano reagisce agli stimoli di marketing e pubblicità. Utilizzando tecniche scientifiche, analizza le risposte neurologiche e psicologiche dei consumatori a vari messaggi, prodotti e campagne pubblicitarie. Il neuromarketing se applicato alla società di consumo e al design sfrutta le scoperte delle neuroscienze per migliorare le strategie di marketing e le pratiche di design, ottimizzando l’efficacia delle
+campagne pubblicitarie, dei prodotti e dei sistemi in genere. Alcune teorie sul neuromarketing, estromesse da recenti ed approfonditi studi, suggeriscono alcune pratiche di consumo che possono implementare il sistema o la sua percezione.  
+Deficit effect
+Il Deficit Effect si basa sulla tendenza umana a reagire in modo più intenso alla possibilità di perdere qualcosa piuttosto che alla possibilità di guadagnare qualcosa di equivalente. In altre parole, le persone sono più motivate dalla paura di perdere opportunità o beni che dalla prospettiva di ottenere qualcosa di nuovo. Questo principio viene sfruttato nel marketing creando un senso di urgenza e scarsità intorno a prodotti o offerte e in egual misura Loco integra il deficit effect per deviare l’utenza sui diversi piani di abbonamento.
+Evitare i multiple pain points
+Evitare i multiple pain points, ovvero minimizzare le difficoltà o i disagi che i consumatori possono incontrare durante il processo di acquisto.  Un esempio comune è quello di ridurre il “dolore” associato al pagamento, che può essere un ostacolo significativo per completare una transazione. Loco, mette in pratica il corollario offrendo opzioni di pagamento frazionati e gestibili invece di richiedere un pagamento unico e anticipato per una serie di articoli o servizi annuali.
+Decoy effect
+L’esca, conosciuto anche come decoy effect, è una tecnica di marketing e
+psicologia dei consumi che sfrutta la presenza di una terza opzione meno attraente per influenzare la scelta tra due opzioni principali. Questa strategia si basa sul principio che le persone tendono a valutare le opzioni relative piuttosto che assolute, e la presenza di un’opzione meno desiderabile può far sembrare una delle due opzioni principali più vantaggiosa. In egual direzione Loco presenta un’opzione di abbonamento intermedio decisamente inferiore all’abbonamento premium e poco 
+maggiore rispetto al piano gratuito, sfruttando la valutazione economica 
+relativa, degli utenti. 
+
+Stories/Story_u8e10.xml
+Alcune teorie della psicologia dei consumi governano il service design e la progettazione di sistemi, servizi ed interfacce. Diverse sono le teorie che possono implementare un progetto; i
+comportamenti di consumo mettono in luce come queste possano avere un impatto
+significativo.
+   La nudge theory, sviluppata da Richard Thaler e Cass Sunstein, è un concetto
+fondamentale nella psicologia dei consumi e nel design, che si basa sull’idea che piccole
+modifiche nel modo in cui le opzioni sono presentate possano influenzare le decisioni delle persone senza limitare la loro libertà di scelta. Applicata al design, questa teoria propone che l’architettura delle scelte possa essere ottimizzata per indirizzare gli utenti verso comportamenti più desiderabili o risultati migliori. 
+La piattaforma utilizza infatti interventi delicati e sottili per guidare gli utenti verso comportamenti desiderati, come l’apprendimento attivo e la prevenzione degli errori. Grazie all’assistenza comportamentale latente, Loco facilita l’acquisizione di nuove informazioni, prevenendo distrazioni e migliorando l’efficacia della memorizzazione. L’interfaccia è progettata per ridurre gli ostacoli cognitivi e minimizzare gli errori, offrendo suggerimenti e supporto continuo nel corso dell’apprendimento.
+   La Fun Theory esplora come l’introduzione di elementi ludici possa rendere attività
+quotidiane più attraenti e motivare comportamenti positivi. Ideata da Volkswagen nel 2009, la teoria dimostra che trasformare compiti noiosi in esperienze divertenti. La piattaforma per questo motivo adotta i principi della Fun Theory, riconoscendo che l’apprendimento è più
+Copiare pag 15-16 book ridefinendo visual
+Copiare pagina 17-18 ridefinendo visual
+efficace quando è coinvolgente e divertente. Trasformando l’assimilazione di informazioni in un’esperienza ludica, Loco rende la pratica delle tecniche mnemoniche un’attività piacevole, incentivando gli utenti a impegnarsi di più e a migliorare le proprie capacità mentali attraverso il gioco, l’esplorazione interattiva ed un visual adeguato. 
+
+Stories/Story_u8df9.xml
+Human centered 
+design
+
+Stories/Story_u8b07.xml
+Bisogno di sicurezza
+L’interfaccia strutturata guida gli utenti attraverso processi di apprendimento complessi, riducendo l’ansia associata alla memorizzazione e alla gestione delle informazioni. 
+Bisogni fisiologici
+Il miglioramento delle capacità cognitive può indirettamente contribuire a una gestione più efficace di aspetti pratici della vita quotidiana, riducendo lo stress e migliorando il benessere generale, che a sua volta può avere un impatto positivo sui bisogni fisici di base.
+
+Stories/Story_u8aef.xml
+Bisogno di autorealizzazione
+Gli utenti possono raggiungere il loro pieno potenziale cognitivo attraverso l’apprendimento avanzato e l’esplorazione di percorsi virtuali, al fine di soddisfare il bisogno di crescita personale  e di autorealizzazione.
+Bisogno di stima
+Il successo nel memorizzare informazioni complesse e nel superare sfide cognitive accresce il senso di competenza e autostima, poiché gli utenti possono dimostrare le loro capacità in contesti sociali o professionali.
+Bisogno di appartenenza
+Gli utenti possono condividere le loro esperienze di apprendimento per confrontare i progressi e rafforzare il senso di appartenenza e connessione sociale.
+
+Stories/Story_u8ac1.xml
+Teoria dei bisogni di Murray
+Loco si allinea profondamente con i bisogni psicologici fondamentali identificati da Murray, offrendo un’esperienza che va oltre il semplice apprendimento mnemonico, toccando diversi aspetti della realizzazione personale e del benessere psicologico.
+
+Stories/Story_u8a9e.xml
+Valore emotivo
+La combinazione di apprendimento e interattività in un contesto divertente e ludico stimola emozioni positive.  Gli utenti possono provare soddisfazione e piacere nel migliorare le proprie capacità cognitive, rendendo l’apprendimento un’esperienza gratificante.
+Valore condizionale
+Loco può rispondere a esigenze specifiche e temporanee, come la preparazione per esami o presentazioni importanti, offrendo strumenti per ottimizzare la memoria in momenti cruciali.
+
+Stories/Story_u8972.xml
+Teoria dei valori di Sheth
+Loco basa i suoi valori sulla teoria di Sheth, identificando i motivi principali che guidano le decisioni dei consumatori. 
+
+Stories/Story_u888a.xml
+Valore funzionale
+Loco offre un beneficio funzionale, facilitando l’apprendimento e il potenziamento della memoria attraverso tecniche mnemoniche avanzate.  La combinazione di intelligenza artificiale e realtà virtuale consente agli utenti di acquisire e ricordare informazioni in modo più efficace ed efficiente.
+Valore epistemico
+La piattaforma risponde al desiderio degli utenti di acquisire nuove conoscenze e soddisfare la loro curiosità. Esplorando ambienti virtuali e utilizzando tecniche come il palazzo della memoria, gli utenti sperimentano nuovi modi di apprendere, stimolando la loro mente in maniera innovativa.
+Valore sociale
+Sebbene Loco sia principalmente un’esperienza individuale, il suo utilizzo può essere condiviso in contesti educativi o sociali, creando una comunità di utenti che scambiano tecniche, percorsi e scoperte. Questo può generare un senso di appartenenza e identità condivisa, legato all’apprendimento avanzato e al miglioramento personale.
+
+Stories/Story_u886e.xml
+Loco si configura come un ponte innovativo tra le frontiere della tecnologia e l’evoluzione delle capacità cognitive umane, incarnando appieno i principi del transumanesimo. Questa piattaforma sfrutta i più recenti avanzamenti nel campo digitale, come l’intelligenza artificiale e la realtà virtuale, per trascendere i limiti convenzionali dell’apprendimento. 
+Loco offre agli utenti l’opportunità di potenziare significativamente la loro memoria e conoscenza, applicando tecniche mnemoniche storicamente consolidate e adattandole a un contesto moderno e dinamico.
+In tal modo, Loco si allinea con la visione transumanista di superare i vincoli biologici innati, trasformando la mente umana in un’entità capace di apprendere e ricordare con una precisione e un’efficienza senza precedenti. La piattaforma non solo integra Google Street View per offrire esplorazioni visive immersive, ma utilizza anche percorsi virtuali avanzati che consentono agli utenti di navigare attraverso ambienti simulati, arricchendo l’esperienza di apprendimento. Questo approccio innovativo permette di esplorare nuovi orizzonti cognitivi e di ampliare notevolmente i confini dell’apprendimento tradizionale, fornendo strumenti che Da rifare icon il nuovo visual
+Da rifare icon il nuovo visual migliorano la comprensione e la memorizzazione in modi profondamente coinvolgenti e interattivi. 
+
+Stories/Story_u8857.xml
+Economia di consumo
+
+Stories/Story_u8840.xml
+Transumanesimo
+
+Stories/Story_u880d.xml
+- Transumanesimo
+ 
+
+Stories/Story_u87df.xml
+- Neuromarketing   
+ 
+
+Stories/Story_u87c8.xml
+- Human centered design 
+ 
+
+Stories/Story_u87b1.xml
+- Economia di consumo 
+ 
+
+Stories/Story_u879a.xml
+PSICOLOGIA DEI 
+CONSUMI
+
+Stories/Story_u8782.xml
+12
+
+Stories/Story_u8362.xml
+Piano editoriale
+
+Stories/Story_u80e8.xml
+Su Facebook, l’engagement è più elevato durante la settimana, con picchi evidenti dalla mattina presto allʼora di pranzo, soprattutto il martedì, giorno in cui per sei ore consecutive lʼengagement sulla piattaforma è massimo.
+
+Stories/Story_u80c8.xml
+TikTok, mostra un’omogeneità maggiore durante la settimana, con un picco di engagement
+nelle fasce orarie pomeridiane.
+
+Stories/Story_u7f65.xml
+L’analisi dei grafici dell’engagement per fasce orarie sui social media rivela interessanti tendenze e implicazioni per le strategie di marketing online. Esaminando le tre principali piattaforme social (Facebook, TikTok e Instagram), emergono diverse considerazioni da poter includere nella diversificazione di piattaforma e di pubblicazione oraria per il piano editoriale.
+
+Stories/Story_u7ed1.xml
+nstagram, registra un aumento dell’engagement nei primi giorni della settimana e al venerdì, evidenziando le prime ore della mattina come momenti di maggiore interazione, specialmente
+il martedì.
+
+Stories/Story_u7e87.xml
+Analisi di engagement
+
+Stories/Story_u7e04.xml
+LOCOspot
+La campagna di Loco comprende una serie di spot (pensati ma non tutti girati) che possono essere diffusi in fasi successivi al lancio della piattaforma, con il fine ultimo di mantenere un interesse attivo alla campagna anche nelle settimane successive al lancio stesso.Lo spot de
+“L’esame orale”, in quest’ottica si discosta dai modus operandi tradizionali della pubblicità e per questo motivo il volume della musica è molto alto, rispetto al contenuto verbale dello spot, rivelando solo alla fine, la natura ironica del progetto.
+Memeoria:
+La rubrica si sviluppa sui canali digitali e riprende i meme ed i trend attuali, e non,
+evidenziando i punti di forza del servizio, della piattaforma e del metodo di apprendimento mnemonico proposto da Loco. Questo tipo di contenuti si colloca nella fase 04 di mantenimento audience, per garantire una UGC consistente, in una fase in cui la popolarità dell’applicazione è già diffusa. La natura intrinseca dei meme, basata su trend attuali e al passo con i tempi, garantisce il perfetto grado di innovazione per poter garantire all’audience
+un intrattenimento dinamico e giovane.
+
+Stories/Story_u7d89.xml
+Come Duolingo:
+Come Duolingo è una rassegna di output fisici e digitali che sfruttano la già nota celebrità di Duolingo, applicazione che si basa su principi di apprendimento come Loco, per diffondere ed attribuire affidabilità al progetto. Lo spazio grafico di tutti gli output è costituito da un headtline “Come Duolingo” seguita da diverse subline relative ai casi specifici di apprendimento di Loco. Attraverso un equilibrio ponderato tra didascalicità ed ironia, la rubrica “Come Duolingo” si colloca principalmente nella fase 01 e 02, dalla fase di lancio a quella di crescita, con l’obiettivo ultimo di diffondere un messaggio di autorità ed affidabilità della
+piattaforma LOCO.
+
+Stories/Story_u7bda.xml
+LOCOnosci
+LOCOnosci è la campagna centrale della fase di lancio. Preventivata da due campagne fortemente provocatorie e decisamente poco didascaliche ed esaustive, LOCOnosci mira a supplire a tutte le lacune provocate dalle rubriche precedenti. Per necessità dunque il tone of
+voice di LOCOnosci perde necessariamente il tassello ironico provocatorio in virtù di 
+una didascalicità funzionale e mira in 
+ultimo grado a sviluppare consapevolezza negli utenti. Tuttavia esistono degli altrettanto necessari denominatori comuni tra le rubriche precedente a LOCOnosci e quest’ultima. Il visual e alcuni elementi archetipici del progetto vengono infatti
+ripresi per poter garantire agli utenti di individuare in LOCO, l’autore delle campagne precedenti. 
+
+Stories/Story_u7bbf.xml
+Loco è…
+La campagna è concepita per essere quanto più provocatoria e disruptive possibile. L’idea centrale intorno alla stesa infatti, è di cercare di attribuire al visual pre-diffuso dalla rubrica “Che è sta papera” una sorgente ed un nome, spiegandone l’origine e la natura. Tuttavia gli output sono disturbati e corrotti in modalità differenti: il denominatore comune è che l’utente
+nuovamente non riesce ad accedere alle informazioni in modo completo, suscitando in lui curiosità e agitazione dall’incompletezza delle informazioni. La natura disruptive della campagna evidenzia il tone of voice del progetto e mira, attraverso modalità paradossali e mai
+sperimentate prima, ad attirare gli utenti allontanandoli. 
+
+Stories/Story_u7b46.xml
+Che è sta papera
+Che è sta papera è una rubrica che si esercita durante la primissima fase, quella di prelancio. Disposta su diversi touchpoint e canali, si compone di grafiche e advertising statici sia su touchpoint digitali che fisici con l’obiettivo principale di compiere una inspiegabile invasione.
+   Gli output infatti si esercitano in grafiche semplici e senza dati, ma riprendendo l’anonimo (per il momento) visual del progetto. L’obiettivo di questa prima fase di diffusione dell’immagine è quella di instillare curiosità diffusa e far conoscere il design System ed il visual di Loco così da poter riconoscerne l’autorità nelle fasi successive del lancio. Le informazioni mancanti ed i
+riferimenti al progetto, mancano volontariamente nello spazio grafico, proprio per generare
+dubbio e successiva curiosità. 
+
+Stories/Story_u7b12.xml
+Rubriche
+
+Stories/Story_u7aaa.xml
+Gruppo Sedici
+
+Stories/Story_u7a7c.xml
+106
+
+Stories/Story_u7a64.xml
+105
+
+Stories/Story_u7a2f.xml
+01 Fase di lancio:
+La fase di lancio si esercita nel momento in cui LOCO viene finalmente presentato sul
+mercato ed è caratterizzata da una marcata correlazione tra advertising e piattaforma.
+   L’obiettivo di questa campagna è poter permettere agli utenti di riconoscere la “sorgente” della campagna infestante precedente e di identificarla nel progetto di Loco. Simultaneamente, oltre al riconoscimento della fase di pre-lancio, questa seconda fase deve raccontare e far conoscere il progetto e la piattaforma. Per questo motivo, il tone of voice perde necessariamente il tassello provocatorio in virtù di una didascalicità funzionale.
+ 
+02 Fase di crescita:
+La fase di crescita è concepita come fase di re-delirio. La didascalicità della fase precedente viene abbandonata (o mediata) dall’irrompere del tone of voice provocatorio ed ironico, che, attraverso il verbo e la grafica mira ad attirare i nuovi utenti e a fidelizzare quelli già gravitanti intorno al servizio. Noto il fatto che Loco è già stato spiegato e raccontato attraverso la fase
+precedente (01) e che le informazioni sono recuperabili dall’attività social e dal web, viene meno la necessità di dover trasmettere informazioni dettagliate all’utente.
+03 Fase di mantenimento:
+L’ultima fase, quella di mantenimento, ha il fine ultimo di aggiornare gli utenti e di tenere attiva la community sviluppatasi intorno al progetto. Gli obiettivi di quest’ultima fase sono nuovamente diversi dalle fasi precedenti e possono essere riassunti nel dover garantire una personalità costante nel tempo; per questo motivo non è fissata una data di termine della fase. 
+   Gli obiettivi principali sono due: Sviluppare UGC in grado di auto-alimentare il seguito del progetto e garantire la fidelizzazione degli utenti nel corso del tempo.
+   Nonostante la campagna, nel suo integrale complessivo, si eserciti in quattro fasi a compartimenti stagni, in realtà le diverse rubriche si posizionano nelle diverse fasi non rispettando necessariamente l’inizio e la fine delle stesse. Alcune rubriche infatti, per garantire l’integrazione tra loro stesse e le successive, sono volutamente posizionate simultaneamente nella timeline con piccoli periodi di intersezione tra di esse, mirando a garantire l’integrazione
+del sistema comunicativo complessivo.
+
+Stories/Story_u7838.xml
+La campagna è suddivisa in quattro fasi principali, che si esercitano lungo la timeline
+comprendendo la fase pre-lancio, la fase di lancio, la fase di crescita e per ultima, la fase di mantenimento ed aggiornamento. Ognuna di queste ha obiettivi radicalmente differenti e per questo motivo il modus è diversificato volontariamente.
+00 Fase pre-lancio:
+La fase di pre-lancio è concepita come periodo antecedente alla diffusione di loco sul mercato ed è progettata con il fine ultimo di diffondere un visual provocatorio per infondere curiosità e dubbi negli utenti. Infatti, la campagna di pre-lancio si sviluppa irrompendo nella quotidianità degli utenti con un visual inedito e provocatorio, senza però collegarsi ad un servizio tangibile. 
+   Loco non essendo ancora noto al pubblico non sarà infatti collegabile alla fonte di questa provocazione fisica e digitale, che invade gli utenti. Gli obiettivi di tale fase sono dunque principalmente due. Oltre a dover generare curiosità e sollevare dubbi sull’origine ed il motivo della campagna deve altresì garantire la percezione da parte degli utenti di una sola ed inequivocabile “sorgente”.
+
+Stories/Story_u781d.xml
+La comunicazione, in senso lato, ha una rilevanza fondamentale nel lancio e nello sviluppo del progetto. Per questo motivo è stato sviluppato un dettagliato progetto di lancio, suddiviso in fasi, che possa risolvere gli obiettivi diversificati per ogni fase. Il grande obiettivo comune è quello di diffondere, fidelizzare e aggiornare gli utenti attorno a Loco, e a seconda della fase,
+vengono impiegati differenti approcci e tone of voice: dal didascalico al provocatorio. 
+
+Stories/Story_u7806.xml
+Fasi di lancio
+
+Stories/Story_u77ef.xml
+Introduzione
+
+Stories/Story_u77b9.xml
+- Piano editoriale  
+ 
+
+Stories/Story_u77a2.xml
+- Analisi di engagement   
+ 
+
+Stories/Story_u778b.xml
+- Rubriche 
+ 
+
+Stories/Story_u76e0.xml
+- Introduzione
+ 
+
+Stories/Story_u76c8.xml
+- Fasi di lancio  
+ 
+
+Stories/Story_u76b1.xml
+COMUNICAZIONE
+
+Stories/Story_u769a.xml
+11
+
+Stories/Story_u75cb.xml
+Mockup sito web
+
+Stories/Story_u735a.xml
+Panoramica del
+servizio
+
+Stories/Story_u65bf.xml
+L’integrale complessivo del servizio di Loco si esplicita su due touchpoint: sito e-commerce e applicazione mobile + VR. Entrambi i touchpoint si sviluppano senza soluzioni di continuità grafiche e di pattern d’interazione, tuttavia svolgono attività diversificate e per questo l’architettura dell’informazione è gestita in modalità separate.
+   Il sito e-commerce funge prioritariamente da piattaforma satellitare e di contesto al servizio e mira a presentare il valore della piattaforma, incoraggiarne l’iscrizione, fornire supporto e sviluppare un senso di fiducia ed autorevolezza.
+- Presentare il valore della piattaforma: Il 
+sito deve comunicare in modo efficace il vantaggio principale di Loco, ovvero l’uso delle tecniche mnemoniche per migliorare l’apprendimento e la memorizzazione.
+Incoraggiare l’iscrizione: Deve includere call to action ben visibili per rimandare facilmente alla pagina di registrazione.
+- Fornire supporto e aiuto: Deve offrire 
+una sezione di supporto con FAQ, tutorial e guide per aiutare gli utenti a utilizzare l’app in modo ottimale e risolvere eventuali problemi.
+- Sviluppare fiducia e autorevolezza: Il 
+sito deve trasmettere affidabilità, con testimonianze di utenti soddisfatti, storie di successo e certificazioni o partnership che convalidano l’utilità della piattaforma.
+L’applicazione mobile invece, deve prioritariamente garantire all’utente un’esperienza quanto più efficace ed immersiva possibile, veicolando informazioni e nozioni tecniche in ordine di apprendere ed assimilare le tecniche mnemoniche.
+- Immersività: L’applicazione, sia in modalità
+ mobile che in visualizzazione VR deve garantire prioritariamente l’immersività dei percorsi virtuali..
+- Efficacia: La user experience
+ dell’applicazione deve essere funzionale ad assimilare le nozioni e garantire all’utente un elevato livello di apprendimento e memorizzazione.
+- Semplificare l’utilizzo: Attraverso
+ un’userflow sviluppata ad hoc, l’applicazione mobile deve intercedere quanto meno possibile tra l’apprendimento e l’utente, garantendo una semplicità di utilizzo naturale e familiare.
+- Garantire l’integrazione VR: Sebbene 
+l’applicazione mobile sia in primis utilizzata in visualizzazione mobile, deve garantire un’integrazione con la visualizzazione in VR senza soluzioni di continuità così da permettere un utilizzo continuo e lineare.
+
+Stories/Story_u65a8.xml
+Obiettivi del 
+touchpoint
+
+Stories/Story_u6583.xml
+Loco ridefinisce l’apprendimento visivo e spaziale combinando tecnologie all’avanguardia come l’intelligenza artificiale e le mappe interattive. Grazie all’integrazione con Google Maps, l’app permette di personalizzare percorsi reali e associarli a concetti o nozioni da memorizzare, creando collegamenti unici e altamente personalizzati.
+Un aspetto distintivo di Loco è l’approccio basato sull’immersione totale: gli utenti infatti potranno sviluppare percorsi di memorizzazione, arricchendoli con annotazioni, immagini e animazioni, portando l’apprendimento ad un livello superiore. Così ogni luogo virtuale diventa un punto di riferimento visivo che aiuta a strutturare e ricordare informazioni complesse.
+Loco non si limita a riproporre le tecniche mnemoniche tradizionali, ma le potenzia attraverso strumenti di apprendimento adattivo, permettendo a ogni utente di seguire un metodo personalizzato.
+
+Stories/Story_u656c.xml
+Descrizione del 
+servizio
+
+Stories/Story_u6535.xml
+- Descrizione del servizio 
+ 
+
+Stories/Story_u6507.xml
+- Obiettivi dei touchpoint 
+ 
+
+Stories/Story_u64ec.xml
+DESCRIZIONE DI 
+DETTAGLIO DEL 
+SERVIZIO
+
+Stories/Story_u64d4.xml
+10
+
+Stories/Story_u6477.xml
+Vengono utilizzate all’interno di tutti i supporti illustrazioni esplicative.
+ 
+
+Stories/Story_u6413.xml
+Design system
+
+Stories/Story_u63d7.xml
+SUBTITLE, PARAGRAPH AND OTHERS FONT:
+ INTER TIGHT
+La scelta del font è motivata dalla sua elevata leggibilità e chiarezza anche in dimensioni ridotte. Il suo design moderno e pulito garantisce una facile lettura, essenziale per mantenere l’attenzione dell’utente su contenuti informativi. Inoltre, la sua versatilità si adatta perfettamente a diverse applicazioni, assicurando coerenza visiva e un’esperienza utente fluida su tutta la piattaforma.
+
+Stories/Story_u62cc.xml
+Title font:
+ 
+Baloo.
+La scelta per Loco non è solo estetica, ma strategica. Il font supporta la missione della piattaforma di combinare apprendimento efficace con un’esperienza utente piacevole e coinvolgente
+
+Stories/Story_u62b5.xml
+Tipografia
+
+Stories/Story_u6291.xml
+#ffd114
+
+Stories/Story_u6279.xml
+#bcb0d7
+
+Stories/Story_u6262.xml
+#4e4a99
+
+Stories/Story_u624b.xml
+#d9d9d9
+
+Stories/Story_u6231.xml
+#ffffff
+
+Stories/Story_u6218.xml
+#000000
+
+Stories/Story_u6202.xml
+La palette colori del progetto vuole evidenziare un equilibrio tra elementi accattivanti e colori neutri. L’uso del nero e del grigio garantisce leggibilità e chiarezza, mentre i colori più vivaci come il giallo fluo, l’arancione e il viola introducono dinamismo, focalizzando l’attenzione sugli elementi cruciali. Il beige chiaro fornisce un contrasto morbido, aiutando a mantenere il design armonioso e ben bilanciato.
+
+Stories/Story_u61da.xml
+Palette
+
+Stories/Story_u619b.xml
+Il tone of voice riprende la ludicizzazione della piattaforma in un linguaggio ironico e socievole in modo da porsi sul livello di educatore e guida nei confronti dell’utente, discostandosi dal didascalico ruolo di professore.                 
+   Questo ToV da una parte è accogliente, ironico e amichevole e crea un ponte tra l’utente e la piattaforma. Loco parla direttamente agli utenti come farebbe un amico o un mentore, per far sentire gli utenti a proprio agio e per incoraggiarli a esplorare e apprendere senza il timore di sbagliare.
+Inoltre, c’è anche un aspetto colorato nel ToV di Loco. È vivace e ricco di sfumature: gioca con l’ironia e l’umorismo per mantenere alto l’interesse e l’entusiasmo degli utenti. 
+   Questa combinazione rende ogni interazione con la piattaforma non solo utile, ma anche divertente, trasformando l’apprendimento in un gioco in cui l’utente è costantemente coinvolto e complessivamente fa sì che Loco non sia percepito come un semplice strumento educativo, ma come un compagno di viaggio nel percorso di apprendimento, capace di rendere ogni passo 
+interessante e stimolante.
+
+Stories/Story_u6184.xml
+Tone of voice
+
+Stories/Story_u60f2.xml
+Il logo riprende lo stile dell’obiettivo di Loco di rendere l’apprendimento accessibile e divertente. Le forme arrotondate delle lettere suggeriscono un ambiente amichevole e poco intimidatorio, ideale per coinvolgere gli utenti di tutte le età.
+L’elemento distintivo è la lettera “C”, che è stata trasformata nell’oca, mascotte del progetto, che rappresenta la guida e il supporto che Loco offre ai suoi utenti. Inoltre, l’oca interagisce con le lettere circostanti, suggerendo movimento e dinamismo, in linea con l’esperienza interattiva e immersiva che Loco promette.
+
+Stories/Story_u60db.xml
+Logotipo
+
+Stories/Story_u60b0.xml
+- Design system 
+ 
+
+Stories/Story_u6097.xml
+- Tipografia 
+ 
+
+Stories/Story_u6080.xml
+- Palette 
+ 
+
+Stories/Story_u6066.xml
+- Logotipo 
+ 
+
+Stories/Story_u604f.xml
+- Tone of voice 
+ 
+
+Stories/Story_u6034.xml
+Branding
+
+Stories/Story_u601d.xml
+09
+
+Stories/Story_u5b8e.xml
+Pagine di 
+caricamento
+
+Stories/Story_u5b08.xml
+Pagine di 
+caricamento
+
+Stories/Story_u593b.xml
+Loco, nel suo integrale complessivo, funziona tanto quanto l’esperienza utente è immersiva e libera da filtri che possono frapporsi tra utente e percorsi virtuali. Per questo motivo ogni artificio grafico, elemento funzionale ed input devono essere minimizzati e ridotti all’osso.  
+   Necessaria è dunque la categorizzazione di ogni elemento estetico e funzionale in preferenziale o necessario. Questa operazione, oltre ad essere sofisticata e complessa, ha un impatto significativo sul risultato finale d’interfaccia e spesso sono stati necessari tagli ai prototipi funzionali per garantire la massima immersività. 
+   Tuttavia, come per ogni cosa, est modus in rebus; Per quanto sia, in linea di massima, corretto affermare che a minor interferenza grafica corrisponde maggior immersività, è necessario ponderare l’eliminazione o la riduzione degli elementi. Alcuni elementi funzionali e grafici sono stati categorizzati come preferenziali e quindi di facile rimozione, altri invece, è stato necessario modificarli o mantenerli, per poter garantire un esperienza utente chiara negli obiettivi. 
+   Nonostante ciò, alcuni elementi disturbanti ma necessari sono stati modificati o dislocati anziché eliminarli ed estrometterli dall’interfaccia. Per massimizzare lo spazio di apprendimento verticale senza fare esplicitamente apprendimento verticale, ad esempio, sono stati sviluppati una serie di interfacce e pagine di caricamento che includono quelle nozioni o informazioni che sono necessarie da conoscere e che sono necessariamente trasmissibili con la sola didattica verticale. Attraverso le pagine di caricamento statiche infatti, l’utente è inconsapevolmente portato ad assimilare, studiare o a ripassare le nozioni che potrebbe assimilare solo con la didascalicità dell’apprendimento verticale.
+
+Stories/Story_u5924.xml
+Immersività ed 
+efficacia
+
+Stories/Story_u590d.xml
+I limiti progettuali imposti dallo sviluppo di interfacce per VR sono lapalissianamente più coercitivi rispetto ai limiti progettuali di interfacce tradizionali quali Web o App mobile. Posta la necessità di avere un service design, composto da visual ma soprattutto da pattern di interazione, ricorrente e parallelo tra i touchpoint l’ordine di sviluppo e prototipazione dei touchpoint non era arbitrario.     Per quanto potesse risultare più facile ed intuitivo sviluppare da prima i touchpoint legati all’e-commerce e all’app mobile, è necessario mettere a fuoco come lo sviluppo del VR debba in realtà essere antecedente. Il capitolo circa gli input metod, ad esempio, mette in luce quali difficoltà e limiti sono legati all’interazione utente - dispositivo nel caso di interfacce per VR; e dunque, per prototipare i touchpoint senza soluzione di continuità fra gli stessi ripercorrendo i pattern di interazione, risulta necessario sviluppare da prima l’interfaccia più limitata per poter poi applicare i pattern agli ulteriori touchpoint.
+
+Stories/Story_u58f6.xml
+Reverse engineering
+
+Stories/Story_u58b4.xml
+Loco, nel suo integrale complessivo, funziona tanto quanto l’esperienza utente è immersiva e libera da filtri che possono frapporsi tra utente e percorsi virtuali. Per questo motivo ogni artificio grafico, elemento funzionale ed input devono essere minimizzati e ridotti all’osso.  
+   Necessaria è dunque la categorizzazione di ogni elemento estetico e funzionale in preferenziale o necessario. Questa operazione, oltre ad essere sofisticata e complessa, ha un impatto significativo sul risultato finale d’interfaccia e spesso sono stati necessari tagli ai prototipi funzionali per garantire la massima immersività. 
+   Tuttavia, come per ogni cosa, est modus in rebus; Per quanto sia, in linea di massima, corretto affermare che a minor interferenza grafica corrisponde maggior immersività, è necessario ponderare l’eliminazione o la riduzione degli elementi. Alcuni elementi funzionali e grafici sono stati categorizzati come preferenziali e quindi di facile rimozione, altri invece, è stato necessario modificarli o mantenerli, per poter garantire un esperienza utente chiara negli obiettivi. 
+   Nonostante ciò, alcuni elementi disturbanti ma necessari sono stati modificati o dislocati anziché eliminarli ed estrometterli dall’interfaccia. Per massimizzare lo spazio di apprendimento verticale senza fare esplicitamente apprendimento verticale, ad esempio, sono stati sviluppati una serie di interfacce e pagine di caricamento che includono quelle nozioni o informazioni che sono necessarie da conoscere e che sono necessariamente trasmissibili con la sola didattica verticale. Attraverso le pagine di caricamento statiche infatti, l’utente è inconsapevolmente portato ad assimilare, studiare o a ripassare le nozioni che potrebbe assimilare solo con la didascalicità dell’apprendimento verticale.
+
+Stories/Story_u589d.xml
+Immersività ed 
+efficacia
+
+Stories/Story_u5837.xml
+I limiti progettuali imposti dallo sviluppo di interfacce per VR sono lapalissianamente più coercitivi rispetto ai limiti progettuali di interfacce tradizionali quali Web o App mobile. Posta la necessità di avere un service design, composto da visual ma soprattutto da pattern di interazione, ricorrente e parallelo tra i touchpoint l’ordine di sviluppo e prototipazione dei touchpoint non era arbitrario.     Per quanto potesse risultare più facile ed intuitivo sviluppare da prima i touchpoint legati all’e-commerce e all’app mobile, è necessario mettere a fuoco come lo sviluppo del VR debba in realtà essere antecedente. Il capitolo circa gli input metod, ad esempio, mette in luce quali difficoltà e limiti sono legati all’interazione utente - dispositivo nel caso di interfacce per VR; e dunque, per prototipare i touchpoint senza soluzione di continuità fra gli stessi ripercorrendo i pattern di interazione, risulta necessario sviluppare da prima l’interfaccia più limitata per poter poi applicare i pattern agli ulteriori touchpoint.
+
+Stories/Story_u57d6.xml
+Reverse engineering
+
+Stories/Story_u5793.xml
+Un ultimo filone di interazioni è relativo a tutti gli input generati dall’uso del 
+giroscopio dei dispositivi mobili. CardboardApp, rudimentale applicazione mobile di Google per l’uso del dispositivo mobile su visore ad esempio, inserisce nei suoi input metod i comandi per tornare indietro o per accettare una selezione attraverso la semplice gesture di ruotare la testa verso destra o verso sinistra. Nonostante a primo impatto possano sembrare rivoluzionarie, le interazioni giroscopiche possono essere un arma a doppio taglio ed è necessaria una mirata progettazione per sfruttarle al meglio.  
+   Ci sono infatti diversi rischi nell’integrazione di questi input, primo fra tutti quello di snaturare l’esperienza utente e far diventare una qualsiasi applicazione una sessione intensiva di Just dance. Le interazioni giroscopiche, dovendo 
+muovere, ruotare o spostare la testa, sono molto invasive perché richiedono la perdita del sistema di riferimento visivo e per
+questo motivo non possono essere i soli input metod di una piattaforma 
+VR ma devono essere integrati ad 
+altri metodi di interazione.   
+   Tuttavia bisogna segnalare anche che alcune interazioni giroscopiche, come quella utilizzata per confermare o tornare indietro ruotando la testa rispettivamente verso dx e verso sx, sono in realtà specchio di processi mentali preesistenti. Nella percezione umana infatti l’avanti è sempre percepito verso dx e l’indietro verso sx; non a caso un’altro esempio di tale euristica sono tutte le applicazioni mobili che replicano il medesimo schema avanti/indietro - Dx/Sx.
+
+Stories/Story_u577c.xml
+Gyroscopic 
+interaction
+Il bisogno primario a cui Loco aspira è il supporto all’apprendimento. Loco infatti non si propone di essere l’ennesima applicazione per imparare una materia o al massimo un ambito, Loco è in ultima istanza un tool a supporto dell’utente, per memorizzare quello di cui l’utente stesso ha bisogno. Essendo che dunque non viene presentato all’utente il materiale da memorizzare ma gli viene mostrato il modo con cui farlo, questo bisogno impone alla progettazione una particolare attenzione per quanto riguarda la percezione della piattaforma secondo l’utenza. È imprescindibile sviluppare interfacce che possano essere quanto più familiari possibili (per non rendere complesso l’utilizzo) e quanto meno invasive 
+
+Stories/Story_u573f.xml
+Gaze 
+interaction
+Nonostante il forte limite degli input metods tradizionali i visori, in quanto tali, si prestano ad una visualizzazione completa e a 360°. Una delle particolarità che rende affascinanti ed immersive le esperienze VR infatti è la possibilità di potersi muovere ed 
+rientrare nello spazio attraverso l’orientamento dello sguardo. 
+   Alcune applicazioni hanno dimostrato un uso del gaze (sguardo) attraverso il quale è possibile selezionare elementi sullo schermo con un puntatore centrale direttamente muovendo lo sguardo, o la testa, in direzione dell’elemento da selezionare. 
+   Questo input metod garantisce un’esperienza utente senza soluzioni di continuità e permette di avere allo stesso tempo una precisione nella selezione addirittura maggiore al touch. 
+Una volta “indicato” l’elemento da selezionare, per poter poi selezionarlo effettivamente, la gaze interaction 
+prevede un breve countdown da 
+completare con il puntatore fisso sull’elemento. Quest’ultima modalità di selezione risulta necessaria come prevenzione dell’errore poichè altrimenti navigando nell’interfaccia si selezionerebbero elementi di continuo. Alcune applicazioni come VREscapeGame hanno introdotto questo metodo di interazione ma abbiamo esempi in realtà molto meno recenti, come ad 
+esempio i controller della Wii 
+(già commercializzata nel 2006).
+
+Stories/Story_u571d.xml
+Limited physical 
+interaction
+I
+Essendo che lo schermo coerce le interazioni touch le uniche interazioni fisiche che l’utente può intraprendere sul dispositivo mobile sono quelle dei tasti fisici “scoperti” dal supporto VR. Molti VR infatti, lasciano a disposizione spazi nella parte superiore, o quella inferiore, per poter permettere agli utenti di interagire con i 
+tasti volume o il tasto standby. 
+   La progettazione dell’applicazione mobile dunque dovrebbe includere un sistema che possa bypassare il sistema operativo e deviare (eventualmente) gli input pre associati ai tasti fisici, come il volume su o il volume giu.immersiva e l’utilizzatore).
+
+Stories/Story_u56e6.xml
+Limited physical interaction - Gaze interaction - Gyroscopic interaction
+
+Stories/Story_u56a2.xml
+Uno dei grandi limiti emersi nella fase di App testing riguarda l’interazione utente-applicazione. Dal momento che il dispositivo è inserito nel visore, tutti gli input metod tradizionali legati all’utilizzo dello schermo touch sono inaccessibili e le applicazioni già esistenti sul mercato hanno dovuto trovare un nuovo ordine di interazione. Quest’ultimo si triseca in tre 
+metodologie di input.
+
+Stories/Story_u568b.xml
+Input method
+
+Stories/Story_u559a.xml
+Lo sviluppo di un’applicazione per VR o una parte di applicazione mobile deputata all’uso con quest’ultimo, necessita di alcuni accorgimenti al di fuori della normale sfera di progettazione web ed app. Consci di ciò, un primissimo approccio al mondo del VR lo abbiamo avuto iniziando una vera e propria sessione di App testing per prepararci ed avere una prima infarinatura circa lo sviluppo, i sistemi, la userflow ed i metodi di interazione utente - device. 
+   Quando il telefono è inserito in un Cardboard VR, seppur sembra banale, tutti i comandi touch del dispositivo mobile sono bloccati ed inaccessibili a causa della posizione stessa del telefono. Ogni applicazione testata, da giochi a tool, subito hanno dimostrato che i comandi di interazione tradizionali per applicazioni mobili erano per l’appunto inaccessibili. In generale, le applicazioni che sfruttano la modalità VR hanno da subito dimostrato dei grandi limiti. La progettazione nel suo insieme complessivo è radicalmente differente: a partire dagli input metod, ma non solo. 
+   Lo spazio di visualizzazione, ad esempio, è in genere molto più ampio rispetto alle applicazioni mobili; spariscono i pulsanti in virtù di menu o bottoni a comparsa e per ultimo spesso viene implementato l’utilizzo di tasti fisici come volume e spegnimento: unici tasti (seppur limitatamente) accessibili con il dispositivo inserito nel visore. 
+
+Stories/Story_u5583.xml
+App testing
+
+Stories/Story_u5549.xml
+Abbiamo identificato in alcune di queste una rilevanza preponderante per il progetto, per una serie di motivi legati ai bisogni a cui il progetto stesso deve rispondere.
+   La legge di Jacob, ad esempio, si integra particolarmente bene nel discorso circa l’immersività dell’esperienza e l’eliminazione del “filtro esperienziale” tra utente e nozioni da imparare. Loco infatti, garantisce all’utente un esperienza in cui la piattaforma non intercede nello sviluppo dei percorsi mentali e dunque la necessaria intercessione tra utente e piattaforma deve essere percepita come nulla o intangibile, nei limiti del possibile. 
+   Per questo motivo l’utilizzo di pattern di interazione (a livello fisico, meccanico e di ux) e dei modelli mentali preesistenti (lato user interface) deve essere prioritario in ordine di rendere familiare e naturale la userflow e l’esperienza utente in genere. In egual misura la legge di Hick, deve essere significativamente tenuta in considerazione. 
+   Per permettere all’utente di evitare il “cognitive overload”, inteso come stato di ansia generato dalla potenzialità di intraprendere troppe scelte in un percorso utente, è imprescindibile dover condensare le scelte fondamentali, non solo a livello grafico e di interfaccia. Semplificare, spostare l’attenzione e usufruire della nudge theory è il modo migliore per poter deviare il percorso utente senza che quest’ultimo si renda conto di essere in realtà vincolato.
+
+Stories/Story_u54cc.xml
+Purtroppo o per fortuna nessuno di noi è un perito in User Experience o User Interface design, ma complice la sofisticata piattaforma da sviluppare, è stato necessario avere uno spaccato reale 
+delle leggi che governano le discipline.     La UX & UI, a metà tra estetica e 
+funzione, è infatti un tassello 
+imprescindibile da conoscere prima di entrare nella fase di progettazione e prototipazione vera e propria.  Per questo motivo abbiamo riassunto 
+schematicamente le massime per poterle assimilare e consultare quando necessario.  
+
+Stories/Story_u5439.xml
+Analisi UX/UI
+
+Stories/Story_u5410.xml
+Il miglioramento delle capacità mnemoniche degli utenti è di certo un’altro dei bisogni primari a cui Loco deve rispondere. Oltre alla prima fase di sviluppo e associazione delle nozioni ai percorsi virtuali è dunque necessario sviluppare e progettare una declinazione del sistema che possa radicare tali nozioni nell’utente. Uno dei punti cruciali di Loco infatti, oltre alla rapidità di memorizzazione, è la qualità dell’informazione appresa.     Per massimizzare questo obiettivo è quindi prioritario sviluppare interfacce ed una userflow che possa essere facilmente ripercorsa dall’utente in ordine di capire e assimilare le proprie capacità mnemonico-cognitive.
+
+Stories/Story_u53f9.xml
+Miglioramento della  memoria
+Il bisogno primario a cui Loco aspira è il supporto all’apprendimento. Loco infatti non si propone di essere l’ennesima applicazione per imparare una materia o al massimo un ambito, Loco è in ultima istanza un tool a supporto dell’utente, per memorizzare quello di cui l’utente stesso ha bisogno. Essendo che dunque non viene presentato all’utente il materiale da memorizzare ma gli viene mostrato il modo con cui farlo, questo bisogno impone alla progettazione una particolare attenzione per quanto riguarda la percezione della piattaforma secondo l’utenza. È imprescindibile sviluppare interfacce che possano essere quanto più familiari possibili (per non rendere complesso l’utilizzo) e quanto meno invasive 
+
+Stories/Story_u53de.xml
+Gamification e  ludicizzazione
+Nonostante la gamification più che un reale bisogno sia un requisito progettuale, posta l’importanza di tale requisito va ponderato e analizzato insieme ai bisogni.
+   La ludicizzazione dei servizi infatti, se ben progettata, permette un significativo miglioramento delle prestazioni dell’utente ma come anche gli altri bisogno e sub-bisogni va ponderata per non far si che sovrasti il vero fine ultimo del servizio.  Se la gamification supera o inizia ad incidere negativamente, sviando o deconcentrando, sull’utente e sui suoi obiettivi, a quel punto risulterebbe controproducente.
+
+Stories/Story_u53bf.xml
+Per poter garantire la più efficace padronanza delle tecniche mnemoniche è necessario che queste siano spiegate o illustrate all’utente in maniera completamente esaustiva. Per quanto Loco mira a scardinare la didattica verticale e tradizionale, alcuni argomenti è necessario trattarli con queste modalità. 
+   Tuttavia è importante mettere a fuoco che l’apprendimento e la padronanza delle tecniche di memoria è un sub-bisogno in contrasto dunque con il supporto all’apprendimento e per questo motivo la progettazione di entrambi andrà ponderata per far si che il binomio funzioni per entrambe le variabili.
+
+Stories/Story_u53a0.xml
+Apprendimento e padronanza delle tecniche di memoria
+Il bisogno primario a cui Loco aspira è il supporto all’apprendimento. Loco infatti non si propone di essere l’ennesima applicazione per imparare una materia o al massimo un ambito, Loco è in ultima istanza un tool a supporto dell’utente, per memorizzare quello di cui l’utente stesso ha bisogno. Essendo che dunque non viene presentato all’utente il materiale da memorizzare ma gli viene mostrato il modo con cui farlo, questo bisogno impone alla progettazione una particolare attenzione per quanto riguarda la percezione della piattaforma secondo l’utenza. È imprescindibile sviluppare interfacce che possano essere quanto più familiari possibili (per non rendere complesso l’utilizzo) e quanto meno invasive 
+
+Stories/Story_u5372.xml
+Supporto  all’apprendimento
+Il bisogno primario a cui Loco aspira è il supporto all’apprendimento. Loco infatti non si propone di essere l’ennesima applicazione per imparare una materia o al massimo un ambito, Loco è in ultima istanza un tool a supporto dell’utente, per memorizzare quello di cui l’utente stesso ha bisogno. 
+   Essendo che dunque non viene presentato all’utente il materiale da memorizzare ma gli viene mostrato il modo con cui farlo, questo bisogno impone alla progettazione una particolare attenzione per quanto riguarda la percezione della piattaforma secondo l’utenza. È imprescindibile sviluppare interfacce che possano essere quanto più familiari possibili (per non rendere complesso l’utilizzo) e quanto meno invasive possibili (in maniera tale che le interfacce stesse non agiscono da filtro tra l’esperienza immersiva e l’utilizzatore).
+
+Stories/Story_u533e.xml
+- Supporto all’apprendimento
+- Apprendimento e padronanza delle
+   tecniche di memoria
+- Gamification e ludicizzazione
+- Apprendimento interattivo
+- Miglioramento della memoria
+- Esperienza d’uso personalizzata
+
+Stories/Story_u52e5.xml
+Loco nasce da un’idea plausibile e non da uno studio. Nonostante l’efficacia e le potenzialità del servizio nel suo integrale complessivo fossero intuibili, per poter sviluppare efficacemente il servizio stesso è necessario individuare i bisogni, e i sub-bisogni, a cui bisogna rispondere. Una delle prime fasi progettuali dunque, a metà tra lo studio e la messa in pratica del progetto, è proprio l’identificazione dei bisogni primari e secondari (sub-bisogni). L’identificazione di questi permettere di sviluppare soluzioni tecniche o implementi della piattaforma.
+
+Stories/Story_u52ce.xml
+Identificazione 
+dei bisogni
+
+Stories/Story_u528c.xml
+L’apprendimento attraverso la realtà aumentata (AR) e la realtà virtuale (VR) segna un avanzamento sostanziale 
+rispetto ai metodi tradizionali di istruzione.  
+   Queste tecnologie offrono opportunità senza precedenti per un’esperienza educativa profondamente coinvolgente e immersiva, creando ambienti e scenari che permettono agli utenti di interagire in modo diretto con contenuti virtuali. Con la realtà virtuale, gli utenti possono esplorare mondi completamente simulati, mentre la realtà aumentata sovrappone elementi digitali al mondo reale, arricchendo la loro 
+percezione dell’ambiente circostante.
+L’approccio immersivo delle tecnologie AR e VR consente una comprensione più profonda dei concetti e delle competenze attraverso simulazioni e interazioni pratiche che replicano situazioni reali o astratte. 
+   Questo metodo di apprendimento esperienziale è particolarmente efficace perché permette agli utenti di apprendere attraverso la pratica diretta, esplorare scenari complessi e sperimentare situazioni che potrebbero essere difficili o impossibili da ricreare nel contesto tradizionale.
+Numerosi studi hanno dimostrato che l’elemento ludico e interattivo delle esperienze AR e VR può incrementare significativamente la motivazione e l’impegno degli studenti. L’interazione attiva con ambienti virtuali e la possibilità di risolvere problemi in tempo reale rendono l’apprendimento più stimolante e gratificante. Inoltre, la natura immersiva di queste tecnologie aiuta a mantenere alta l’attenzione e a favorire una partecipazione più attiva, elementi cruciali per un apprendimento efficace.
+
+Stories/Story_u5275.xml
+AR e VR per 
+l’approfondimento
+
+Stories/Story_u525e.xml
+La progettazione di massima fornisce una panoramica iniziale essenziale per valutare le opportunità e le criticità di un e-commerce, di un’app mobile e una piattaforma complessa in genere. 
+   In questa fase, si delineano le 
+caratteristiche principali e le funzionalità generali del progetto, offrendo un’idea chiara dell’esperienza utente e delle potenziali aree di innovazione. Questo approccio permette per l’appunto di identificare i punti di forza e le sfide principali, come le esigenze di interfaccia e le principali interazioni richieste.   
+   Tuttavia, la progettazione di massima non approfondisce tutti i dettagli tecnici e pratici, come la scalabilità del sistema, la compatibilità con diverse piattaforme e le specificità d’interfaccia. Pertanto, mentre offre una base solida per lo sviluppo, richiede ulteriori analisi e aggiustamenti 
+per affrontare le criticità specifiche e 
+ottimizzare le soluzioni proposte.
+
+Stories/Story_u5245.xml
+Prototipazione di 
+massima
+
+Stories/Story_u521d.xml
+- Immersività ed efficacia
+ 
+
+Stories/Story_u5204.xml
+- Reverse engineering
+ 
+
+Stories/Story_u51ed.xml
+- Input method
+ 
+
+Stories/Story_u51d5.xml
+- App testing 
+ 
+
+Stories/Story_u51be.xml
+- Analisi UX/UI 
+ 
+
+Stories/Story_u5106.xml
+- Prototipazione di massima 
+ 
+
+Stories/Story_u50ef.xml
+- Identificazione dei bisogni 
+ 
+
+Stories/Story_u50d8.xml
+- AR e VR per l’apprendimento 
+ 
+
+Stories/Story_u50be.xml
+Progettazione  integrata
+
+Stories/Story_u50a6.xml
+08
+
+Stories/Story_u4bf3.xml
+Panoramica del
+servizio
+
+Stories/Story_u49f5.xml
+Il service design di Loco si esercita in due touchpoint principali: computer e mobile.
+L’obiettivo comune di entrambi è quello di poter sviluppare e ripercorre percorsi in autonomia e garantire un accessibilità realistica all’utenza. Nonostante il servizio si componga di una visualizzazione statica (nel caso dell’area riservata-portale del computer) e di una visualizzazione dinamica (nel caso dell’applicazione mobile), il servizio include una terza modalità centrale al progetto: la visualizzazione VR. Quest’ultima visualizzazione non è considerata tra i touchpoint perché in realtà si esercita come declinazione dell’applicazione mobile, in cui è possibile accedere ad una sezione dedicata all’utilizzo immerso tramite cardboard VR. La scelta di non sviluppare un applicazione per visori e dunque di un terzo touchpoint risiede nel mercato limitato e ancora acerbo, tuttavia attraverso una progettazione integrata è possibile garantire l’immersività dell’esperienza anche con un sistema a bassa tecnologia come i cardboard VR. L’immersione esperienziale di quest’ultima modalità di visualizzazione tuttavia non è necessaria all’apprendimento ma ne trae diversi benefici secondo la psicologia dei consumi. In una visualizzazione a 360° infatti vengono implementate la fun theory, l’immersività e l’embodiment, garantendo un’efficacia esperienziale più forte.
+
+Stories/Story_u49dd.xml
+Touchpoint
+
+Stories/Story_u49c6.xml
+Loco è una piattaforma per l’autodidattica e l’apprendimento che sfrutta il rapporto di sussistenza tra utente e se stessa per mantenere un aggiornamento e un utilizzo continuo. Non essendo una piattaforma, o non solo, di apprendimento verticale in cui l’utente attraverso l’uso assimila le tecniche di memorizzazione, Loco diventa un inseparabile tool di memorizzazione da cui l’utente difficilmente si può estromettere. Il service design dietro alla piattaforma infatti, impone all’utente tool e servizi personalizzati che non sono sostituibili con nessun altro dispositivo (fisico o virtuale) attualmente sul mercato; e questo rende Loco un sistema ad accesso libero ma ad uscita limitata. 
+   Provando su noi stessi le potenzialità delle tecniche infatti, ci siamo resi conto di quanto queste, se assunte ad un livello adeguato, sono quasi assimilabili a superpoteri o a skills che non avremmo mai creduto di poter sbloccare. Loco dunque esercita sull’utente un potere di dominanza, instaurando una dipendenza necessaria dai tool che mette a disposizione nei confronti dell’utenza media.
+
+Stories/Story_u494f.xml
+Panoramica del
+servizio
+
+Stories/Story_u4897.xml
+- Panoramica del servizio 
+ 
+
+Stories/Story_u4869.xml
+- Touchpoint 
+ 
+
+Stories/Story_u4852.xml
+Service design
+
+Stories/Story_u483b.xml
+07
+
+Stories/Story_u47e9.xml
+Conversione fonetica
+Processo di trasformazione di parole o testi scritti in sequenze di suoni o fonemi corrispondenti. Utilizzando regole di trasformazione, le parole vengono convertite in rappresentazioni fonetiche che riflettono la loro pronuncia, facilitando la comprensione e l’analisi fonologica.
+
+Stories/Story_u476c.xml
+Linked method
+Strumento che si basa sull’associazione di concetti o informazioni attraverso collegamenti mentali o visivi. Piuttosto che memorizzare le informazioni in modo isolato, si crea una rete di connessioni tra i vari elementi da ricordare.
+
+Stories/Story_u4745.xml
+Tecnica dei Loci
+Strumento noto anche come “Palazzo della Memoria, coinvolge l’associazione di informazioni da memorizzare con luoghi familiari. Si cammina mentalmente attraverso questi luoghi, collegando ciascun concetto a un punto specifico lungo il percorso per facilitare il recupero delle informazioni. È una tecnica applicabile a una vasta gamma di contesti educativi e formativi nei quali devono essere memorizzate informazioni complesse.
+
+Stories/Story_u470c.xml
+Le tecniche mnemoniche sono strumenti utilizzati per migliorare la memoria e facilitare il recupero delle informazioni. Funzionano sfruttando principi cognitivi come l’associazione, la visualizzazione e la strutturazione dell’informazione attraverso la naturale capacità del cervello di ricordare immagini e connessioni significative, migliorando così la capacità di memorizzazione degli utenti. Possono essere applicate a una vasta gamma di argomenti e discipline, rendendole adatte a diversi contesti di apprendimento.
+
+Stories/Story_u46db.xml
+Modus operandi 
+
+Stories/Story_u4696.xml
+Rivitalizzare le tecniche mnemoniche tradizionali nel contesto digitale, offrendo agli utenti un’esperienza di apprendimento coinvolgente per facilitare l’acquisizione e la memorizzazione delle informazioni in modo divertente ed efficace.
+
+Stories/Story_u467f.xml
+Mission
+
+Stories/Story_u4666.xml
+Diventare la principale piattaforma globale per il potenziamento della memoria e dell’apprendimento, trasformando il modo in cui le persone acquisiscono e conservano conoscenze attraverso un’esperienza educativa immersiva e interattiva. 
+Ma soprattutto passare l’esame di Design per il digital retail.
+
+Stories/Story_u464b.xml
+Vision
+ 
+
+Stories/Story_u45b5.xml
+Loco è una piattaforma innovativa che riporta in auge le millenarie tecniche mnemoniche, come la tecnica dei loci, nel contesto digitale, integrando percorsi virtuali avanzati con l’intelligenza artificiale e Google Street View. Attraverso l’uso di tecniche come il palazzo della memoria, il linking method e la conversione fonetica, Loco mira a facilitare l’assimilazione degli argomenti da memorizzare. 
+   Gli utenti esplorano liberamente luoghi fisici trasformati in spazi di apprendimento virtuale, guidati da un’esperienza interattiva che potenzia la visualizzazione e l’immaginazione. Il nodo enucleato dal concept di Loco tuttavia, non è insegnare 
+ad utilizzare le tecniche mnemoniche per 
+poi poterle sfruttare in ogni campo, ma è dare gli strumenti necessari a poter 
+costruire veri e propri palazzi mentali fin da subito (senza conoscenze pregresse), 
+attraverso la piattaforma. 
+   Questo, non solo coll’oca Loco in un mercato nuovo e ancora inesistente, ma instaura nell’utente una relazione di sussistenza reciproca con il servizio di Loco. 
+In due parole? Loco unisce tradizione e innovazione, offrendo agli utenti uno strumento divertente e efficace per potenziare la memoria e l’apprendimento attraverso l’esplorazione di scenari virtuali.
+
+Stories/Story_u4595.xml
+Concept
+
+Stories/Story_u457d.xml
+- Modus operandi 
+ 
+
+Stories/Story_u4559.xml
+- Concept 
+ 
+
+Stories/Story_u4542.xml
+- Mission 
+ 
+
+Stories/Story_u452b.xml
+- Vision 
+ 
+
+Stories/Story_u44c2.xml
+IDEA DI PROGETTO
+
+Stories/Story_u44ab.xml
+06
+
+Stories/Story_u4485.xml
+Costumer
+journey 2
+
+Stories/Story_u4412.xml
+Soluzione
+La piattaforma  gli permette di creare continui percorsi di qualsiasi genere per allenare la sua memoria, permettondigli così di superare i suoi limiti. L’accessibilità e la velocità con cui può allenarsi tramite la piattaforma è insuperabile e per questo per lui diventa fondamentale durante i suoi allenamenti giornalieri. 
+
+Stories/Story_u43f7.xml
+Sfide
+ 
+future
+Luca desidera raggiungere una posizione Vuole aumentare sempre più il suo livello con l’avanzare del tempo per puntare a vincere tutti i campionati a cui partecipa, diventando così il primo al mondomigliorare le sue tecniche di memoria. 
+
+Stories/Story_u43dc.xml
+Bisogno
+Andrea si rende conto che trovare ogni giorno il tipo di allenamento da adottare per aumentare le sue tecniche di memoria diventa complesso e per questo cerca qualcosa di intuitivo e rapido con cui creare delle schede di allenamento giornaliere, tracciando così via via i suoi progressi.
+
+Stories/Story_u43c1.xml
+Interessi
+- Medicina 
+- Palestra 
+- Mnemonica
+
+Stories/Story_u43a6.xml
+Biografia
+Concorrente di sfide di memoria nei maggiori campionati europei, oltre che content creator e divulgatore sulla 
+memoria e i benefici che  l’allenamento di questa può portare all’interno della vita di tutti i giorni alle persone.
+
+Stories/Story_u438a.xml
+Personas 3
+24 anni, performer
+
+Stories/Story_u4373.xml
+Andrea Zumi
+ 
+
+Stories/Story_u433c.xml
+Costumer
+journey 2
+
+Stories/Story_u42fb.xml
+Soluzione
+La piattaforma offre a Luca una vasta gamma di strumenti e risorse per apprendere le tecniche di memorizzazione in modo approfondito e gli fornisce anche percorsi personalizzati e guidati per massimizzare il suo apprendimento. Luca ha la possibilità così di esplorare diverse percorsi di memorizzazione e di trovare quello che meglio si adatta alle sue esigenze e al suo stile di apprendimento.
+
+Stories/Story_u42e0.xml
+Sfide future
+Luca desidera raggiungere una posizione lavorativa più alta per garantire una maggiore stabilità economica alla sua famiglia e per questo ha bisogno di migliorare le sue tecniche di memoria. 
+
+Stories/Story_u42c5.xml
+Bisogno
+Luca si rende conto che per raggiungere i suoi obiettivi professionali e massimizzare la sua produttività sul lavoro, ha bisogno di migliorare la sua memoria e la sua capacità di gestione del tempo. Deve essere in grado di ricordare con precisione i dettagli critici di ogni progetto, dalle scadenze agli obiettivi, dalle risorse allocate ai piani di azione, e deve essere in grado di farlo in modo rapido ed efficiente.
+
+Stories/Story_u42aa.xml
+Interessi
+- Sport 
+- Finanza personale 
+- Scacchi
+
+Stories/Story_u428f.xml
+Biografia
+Lavora in un’azienda di consulenza dove si occupa di gestire una vasta gamma di progetti complessi e multidimensionali. Si trova costantemente a dover bilanciare molteplici progetti contemporaneamente e a garantire che ogni iniziativa venga portata a termine puntualmente e con successo.. 
+
+Stories/Story_u4273.xml
+Personas 2
+32 anni, project manager
+
+Stories/Story_u425c.xml
+Luca Gurrieri
+ 
+
+Stories/Story_u4103.xml
+Costumer
+journey 1
+
+Stories/Story_u40bb.xml
+Soluzione
+Maria ha bisogno di una piattaforma intuitiva e accessibile che non solo le fornisca una conoscenza approfondita delle tecniche di memoria, ma che le permetta anche di metterle in pratica in modo efficace durante le sue sessioni di studio quotidiane. Desidera una soluzione che sia in grado di velocizzare il suo apprendimento e di ampliare le sue competenze nel campo della memorizzazione, fornendole strumenti pratici e esercizi mirati.
+
+Stories/Story_u3cf1.xml
+Sfide
+ 
+future
+Maria desidera trovare un modo più efficace per memorizzare i concetti medici complessi e le informazioni anatomiche.
+
+Stories/Story_u3cbd.xml
+Bisogno
+Sente l’urgenza di migliorare le sue capacità di memorizzazione per affrontare con successo gli esami finali e prepararsi per la sua futura carriera nel campo della medicina. Consapevole dell’importanza di avere una memoria efficiente per assimilare e ricordare una vasta gamma di concetti complessi, Maria cerca una soluzione che possa supportarla nel suo percorso 
+di apprendimento. 
+
+Stories/Story_u3c9d.xml
+Interessi
+- Medicina 
+- Viaggi turistici 
+- Musica e concerti 
+
+Stories/Story_u3c7f.xml
+Biografia
+Laureata in biologia, Maria ha sempre avuto una passione per la medicina e ha deciso di intraprendere gli studi di medicina per diventare un medico. 
+
+Stories/Story_u3c48.xml
+Personas 1
+24 anni, studentessa
+
+Stories/Story_u3c26.xml
+Maria di Stefano
+ 
+
+Stories/Story_u3c0a.xml
+- Maria di Stefano 
+ 
+
+Stories/Story_u3bf3.xml
+- Andrea Zumi 
+ 
+
+Stories/Story_u3bdc.xml
+- Luca Guerriri 
+ 
+
+Stories/Story_u3bc5.xml
+PERSONAS, 
+COSTUMER JOURNEY ED EMPATHY MAP
+
+Stories/Story_u3bae.xml
+05
+
+Stories/Story_u3b2a.xml
+Per identificare uno spazio progettuale reale torna nuovamente a supporto lo studio delle matrici. Lapalissianamente è necessario stabilire dei driver specifici che possano garantire un risultato efficace per il brief. Per Loco i driver che sono stati presi in considerazione sono quelli che permeano la sfera dell’apprendimento e della didattica, lasciando estromessi fattori come pricing e design in modo tale da includere nell’analisi solo dati relativi alla fattibilità e alla necessarietà del sistema. Mettendo a confronto i diversi casi studio che in un certo senso possono essere considerati come analoghi a loco, è possibile identificare uno spazio progettuale ancora vuoto, per capire come e se vale la pena inserirsi.
+Nella matrice di comparazione sono stati presi in analisi 4 driver.
+Monodisciplinare vs multidisciplinare, riferito alla quantità di argomenti che vengono affrontati dal prodotto/servizio.
+Individuale vs collettivo: legato alla esperienza dell’utente all’interno del prodotto/servizio che si rivela “collettiva” quando si ha un’interazione tra i vari utenti - come ad esempio avviene nelle classifiche di comparazione del livello; individuale invece è l’esperienza di apprendimento personale - senza alcun tipo di confronto.
+
+Stories/Story_u3b0c.xml
+Spazio progettuale
+
+Stories/Story_u3a78.xml
+Matrice complessiva
+
+Stories/Story_u3a61.xml
+Matrici: economia - grafica - contenuto
+
+Stories/Story_u3563.xml
+Alcuni di questi driver possono includere, l’economia, la gestione del contenuto, il design system etc ma nonostante l’analisi possa portare a dati numerici o comunque, in una certa misura, tangibili e definiti è importante riconoscere l’empiricità dell’analisi stessa, essendo governata da parametri soggettivi e non sempre numerici.
+
+Stories/Story_u3518.xml
+I casi studio sono realtà già radicate nel panorama digitale e nel mercato e questo presuppone che esistano degli studi preesistenti sulla fattibilità economica e tecnica delle piattaforme stesse. Prenderle in esame come metro di paragone, seguendo differenti driver, permette 
+dunque di poter assimilare uno spaccato reale della fattibilità tecnica e progettuale senza dover necessariamente entrare nel merito di questi studi. 
+Tuttavia, per poter raggiungere un risultato approfondito e significativo è necessario associare alle più appropriate realtà in esame (casi studio) ai driver di riferimento e aver, in linea tendenziale, una visione d’insieme della realtà in esame, eventualmente sviluppando Costumer Journey, Empathy map e analizzando lato utente il servizio.
+
+Stories/Story_u34e7.xml
+Matrici di comparazione e driver
+
+Stories/Story_u34a6.xml
+Volenti e nolenti ci siamo iscritti al laboratorio di Design per il digital retail del Politecnico di Torino. 12 CFU di competenze trasversali tra il design, la psicologia e l’informatica che risolvono il trinomio in un corso impegnativo il cui obiettivo è quello di fornire competenze culturali, tecniche e di progetto per lo studio e la realizzazione di un servizio digital-based di e-commerce.
+
+Stories/Story_u348a.xml
+Blender studio
+Blender Studio è un’attività di Blender Institute BV, fondato nei Paesi Bassi nel 2007 da Ton Roosendaal e finanziato dai membri del Team Studio. È una piattaforma di e-commerce che offre ai membri registrati l’accesso ad una serie di pubblicazioni di film e di elementi di formazione come corsi, workshop e lezioni di produzione con file .blend inclusi. 
+
+Stories/Story_u346e.xml
+W3School
+W3Schools è un sito di e-learning per esercitazioni, sviluppo web e web design. Nasce nel 1998, e raccoglie via via nel tempo una vasta gamma di esempi di codice sorgente di vari linguaggi con tutorial gratuiti in inglese. La piattaforma offre la possibilità di imparare la maggior parte dei linguaggi di programmazione attualmente utilizzati offrendo così un apprendimento specifico nell’ambito dell’informatica.
+
+Stories/Story_u3431.xml
+MasterClass
+MasterClass, fondata nel 2015, è diventata in breve tempo una delle principali destinazioni online per l’apprendimento di alto livello da parte di esperti in vari settori.  Offre una vasta gamma di corsi condotti da istruttori rinomati, tra cui chef, scrittori, musicisti, attori, imprenditori, sportivi e altro ancora. Gli utenti possono iscriversi alla piattaforma e acquistare accesso a corsi individuali o ad un abbonamento che consente l’accesso illimitato a tutti i 
+corsi disponibili.
+
+Stories/Story_u33e7.xml
+Reddit
+Reddit è una piattaforma di social news e aggregazione di contenuti fondata nel 2005. Gli utenti possono pubblicare link, testi, immagini e video, che vengono poi votati positivamente o negativamente dalla comunità. I contenuti vengono organizzati in “subreddit,” che sono sezioni tematiche dedicate a specifici argomenti di interesse, come notizie, hobby, tecnologia, scienza, intrattenimento e molto altro. Ogni subreddit è gestito da moderatori che applicano le regole della comunità e mantengono  l’ordine nelle discussioni.
+
+Stories/Story_u335e.xml
+Praktika
+è un’app innovativa che utilizza l’intelligenza artificiale per rendere l’apprendimento 
+delle lingue, in particolare l’inglese, 
+un’esperienza immersiva e personalizzata. Grazie a conversazioni simulate con avatar virtuali dotati di personalità e accenti 
+diversi, Praktika offre un modo divertente 
+e efficace per migliorare le proprie competenze linguistiche. 
+L’app adatta i contenuti e le conversazioni ai progressi individuali, fornendo un feedback in tempo reale e incoraggiando l’apprendimento attivo.
+
+Stories/Story_u333f.xml
+LinkedIn Learning
+È una piattaforma e-learning integrata con LinkedIn che offre migliaia di corsi video su vari argomenti. Gli utenti possono personalizzare il percorso di apprendimento, accedere ai corsi da qualsiasi dispositivo, ottenere certificazioni e convalidare
+ 
+competenze per migliorare la visibilità professionale.
+
+Stories/Story_u3244.xml
+Uxcel
+Piattaforma che offre corsi interattivi sul design dell’esperienza utente (UX) per tutti i livelli. Include risorse per migliorare le competenze, classifiche per confrontarsi con altri partecipanti, feedback da professionisti e monitoraggio dei progressi tramite grafici.
+
+Stories/Story_u3225.xml
+Astronauti Nasa
+La NASA usa la realtà virtuale al Johnson Space Center per addestrare gli astronauti, immergendoli in simulazioni spaziali realistiche. Si allenano in ambienti virtuali come la ISS o la superficie di altri pianeti, eseguendo procedure di routine,
+ 
+manovre d’emergenza e usando attrezzature specifiche.
+
+Stories/Story_u3202.xml
+Labster
+È una piattaforma educativa che offre laboratori virtuali per esplorare concetti scientifici complessi tramite simulazioni realistiche, permettendo di acquisire competenze pratiche senza attrezzature costose. Include esperimenti, analisi dati, sviluppo di ipotesi e risorse aggiuntive come quiz interattivi e discussioni guidate.
+
+Stories/Story_u31c6.xml
+Minecraft Education Edition è una versione del popolare videogioco Minecraft progettata specificamente per l’ambito educativo. Questa piattaforma offre agli insegnanti e agli studenti un ambiente virtuale altamente interattivo e creativo, dove è possibile esplorare, costruire e collaborare in mondi 3D ricchi di contenuti didattici. Attraverso Minecraft Education Edition, gli utenti possono affrontare sfide e progetti che stimolano il pensiero critico, la risoluzione di problemi e la collaborazione, il tutto in un contesto ludico e coinvolgente. La piattaforma include strumenti di gestione dell’aula e risorse educative che facilitano l’integrazione dei contenuti curriculari con 
+esperienze pratiche e interattive, rendendo l’apprendimento più stimolante e dinamico.
+
+Stories/Story_u31ad.xml
+Minecraft education
+
+Stories/Story_u316a.xml
+Kaho
+è una piattaforma di apprendimento basata su giochi che utilizza quiz interattivi per coinvolgere gli utenti e facilitare l’apprendimento in modo dinamico e divertente. Fondata nel 2013, Kahoot! consente agli insegnanti, agli studenti e ai professionisti di creare e partecipare a quiz live o autogestiti, che possono essere utilizzati per testare le conoscenze, stimolare la partecipazione e rafforzare i concetti appresi. La sua interfaccia intuitiva e il formato di gioco competitivo promuovono un ambiente di apprendimento stimolante e altamente coinvolgente, favorendo una maggiore motivazione e interazione tra i partecipanti. Kahoot! è ampiamente adottata in ambito scolastico e aziendale per supportare la formazione e il recupero delle conoscenze, rappresentando uno strumento efficace per rendere l’apprendimento più interattivo e partecipativo.
+
+Stories/Story_u314c.xml
+Al giorno d’oggi sono diverse le realtà che utilizzano a proprio vantaggio le tecnologie digitali per “fare” didattica in senso lato. La digitalizzazione dell’apprendimento permette infatti di poter intercedere con l’utente in svariati modi, che possono essere più o meno efficaci e vantaggiosi a seconda del servizio o l’obiettivo finale. 
+
+Stories/Story_u30be.xml
+Casi studio
+
+Stories/Story_u3086.xml
+- Casi studio 
+ 
+
+Stories/Story_u3041.xml
+- Spazio progettuale 
+ 
+
+Stories/Story_u302a.xml
+- Matrice di comparazione e driver 
+ 
+
+Stories/Story_u3013.xml
+ANALISI DEI
+COMPETITOR
+
+Stories/Story_u2ffc.xml
+04
+
+Stories/Story_u2fc4.xml
+La realtà virtuale offre un’esperienza immersiva che consente di esplorare ambienti simulati e interagire con scenari complessi, rendendo possibile un apprendimento esperienziale attraverso simulazioni di situazioni reali o astratte.
+   Questa tecnologia permette agli utenti di vivere e sperimentare contesti educativi in modo altamente coinvolgente e pratico, migliorando la comprensione e la memorizzazione dei contenuti. 
+   La flessibilità offerta dalla realtà virtuale è cruciale per arricchire e supportare l’educazione, creando opportunità di apprendimento che superano le limitazioni dei metodi tradizionali. 
+Inoltre, la combinazione della realtà virtuale con altre tecnologie educative può dar vita a ambienti di apprendimento ibridi che sfruttano i punti di forza di ciascun approccio, ottimizzando l’efficacia e la personalizzazione dell’istruzione.
+
+Stories/Story_u2fa8.xml
+Le piattaforme di e-learning sono strumenti digitali che offrono corsi e risorse educative attraverso internet, computer o dispositivi elettronici in genere. Queste piattaforme consentono a studenti di accedere a contenuti didattici, partecipare a lezioni virtuali e interagire con insegnanti e compagni di corso da qualsiasi luogo e in qualsiasi momento, slegandosi dalla convenzionale didattica frontale. 
+   Grazie alla flessibilità che offrono, le piattaforme di e-learning sono particolarmente utili per l’apprendimento autodiretto e per la formazione continua, rendendo possibile l’acquisizione di nuove competenze senza le restrizioni di orario e luogo imposte dalle modalità tradizionali. Inoltre, molte piattaforme integrano strumenti interattivi come quiz, forum 
+di discussione e video conferenze, 
+che migliorano l’engagement e la 
+collaborazione tra gli utenti. 
+   Tuttavia, è importante considerare che la qualità dell’apprendimento dipende ùdalla progettazione dei corsi e dalla capacità degli utenti di gestire il proprio tempo e motivazione in un ambiente virtuale.
+
+Stories/Story_u2f91.xml
+Realtà virtuale
+
+Stories/Story_u2f7a.xml
+Piattaforme 
+E-learning
+
+Stories/Story_u2f5a.xml
+Nell’apprendimento, la gamification, rappresenta un approccio innovativo che applica elementi di gioco e dinamiche ludiche per rendere il processo educativo più coinvolgente e motivante.
+   Incorporando meccaniche come punti, livelli, badge e classifiche, la gamification mira a trasformare l’apprendimento in un’esperienza più interattiva e 
+stimolante. Questo metodo sfrutta la naturale predisposizione degli individui a competere e a raggiungere obiettivi, rendendo lo studio e la pratica più attrattivi. Inoltre, la gamification può migliorare la partecipazione e l’impegno degli studenti, facilitare l’acquisizione di competenze e conoscenze attraverso esperienze pratiche e scenari simulati. La progressione continua e il feedback immediato, tipici dei giochi, possono anche aiutare a mantenere alta la motivazione e a promuovere una maggiore autoregolazione nell’apprendimento. 
+   Tuttavia, è essenziale implementare la gamification in modo strategico e bilanciato, per evitare che l’aspetto ludico sovrasti il contenuto educativo e garantire che le attività siano rilevanti e significative per gli obiettivi didattici.
+
+Stories/Story_u2f3f.xml
+Uno dei metodi che negli ultimi anni ha dimostrato una crescente efficacia, sia per necessità sia per l’avanzamento tecnologico, è l’interazione digitale  per l’apprendimento.
+   Questo approccio educativo, che sfrutta le moderne tecnologie digitali, ha rivoluzionato il modo in cui si acquisiscono le conoscenze e le competenze, offrendo un’alternativa dinamica e coinvolgente rispetto ai metodi tradizionali. 
+   La flessibilità che offrono questi nuovi metodi è fondamentale per incrementare e supportare l’educazione e l’apprendimento. 
+   Inoltre, la combinazione di queste tecnologie può creare un ambiente di apprendimento ibrido che sfrutta                    i punti di forza di ciascun metodo. 
+La digitalizzazione dell’apprendimento 
+apre inoltre ad una serie di nuovi 
+strumenti ed interfacce che se studiate 
+e messe in pratica correttamente, 
+possono implementare e supplire a 
+molte delle criticità individuate nella didattica tradizionale.
+
+Stories/Story_u2f22.xml
+Gamification
+
+Stories/Story_u2f0b.xml
+Digitalizzazione  dell’apprendimento
+
+Stories/Story_u2eeb.xml
+La didattica tradizionale, pur avendo 
+svolto un ruolo fondamentale nella formazione educativa, presenta diverse criticità nel contesto odierno. 
+   Innanzitutto, l’adattamento ai cambiamenti tecnologici risulta complesso, poiché i metodi tradizionali spesso faticano a integrare efficacemente le nuove tecnologie, limitando così l’uso di strumenti digitali che potrebbero arricchire l’esperienza educativa. Inoltre, la didattica tradizionale affronta difficoltà nella risposta alle sfide del secolo corrente, come la necessità di sviluppare competenze moderne e adattabili per un mercato del lavoro in rapido cambiamento. I modelli educativi tradizionali, basati su metodi rigidi e uniformi, non sempre riescono a 
+preparare adeguatamente gli 
+studenti alle competenze richieste dalla società contemporanea.     Anche riguardo l’accessibilità e l’inclusione, i metodi tradizionali spesso non considerano pienamente le esigenze di tutti gli studenti e questo può portare a limitare le opportunità di apprendimento, generando disparità significative.     Nella didattica convenzionale inoltre, la personalizzazione dell’apprendimento rappresenta un’altra area critica. I modelli didattici tradizionali tendono a seguire un approccio uniforme e standardizzato, che non sempre tiene conto dei diversi ritmi e stili di apprendimento degli studenti. 
+
+Stories/Story_u2ebd.xml
+Didattica tradizionale
+
+Stories/Story_u2ea1.xml
+- Introduzione 
+ 
+
+Stories/Story_u2e5c.xml
+- Metodo di progetto 
+ 
+
+Stories/Story_u2e45.xml
+- Il team 
+ 
+
+Stories/Story_u2dfa.xml
+- Il contesto 
+ 
+
+Stories/Story_u2de3.xml
+- Fase zero.1 
+ 
+
+Stories/Story_u2dcc.xml
+- Fase zero 
+ 
+
+Stories/Story_u2db5.xml
+- Analisi di scenario 
+ 
+
+Stories/Story_u2d9e.xml
+- Brief 
+ 
+
+Stories/Story_u2cc6.xml
+Il metodo nell’educazione e nell’apprendimento è fondamentale 
+poiché rappresenta il quadro attraverso 
+cui vengono strutturati e impartiti 
+i contenuti formativi.     Esso comprende le tecniche, i principi 
+e le pratiche che guidano il processo educativo, influenzando profondamente la qualità e l’efficacia dell’apprendimento. Ecco perché il team ritiene che la metodologia sia cruciale e perché risulta interessante innovare i metodi educativi. Memorizzare nozioni di qualsivoglia genere, inoltre, può sembrare un’abilità invariabile nelle prestazioni o che può essere leggermente implementata ai soli soggetti già inclini e predisposti ad una forte memoria. Niente di più sbagliato ad affermare ciò. La memoria, per quanto possano intercedere fattori intrinseci al soggetto in esame, segue degli schemi mentali per essere rafforzata e dunque, a prescindere del soggetto, se vengono seguiti questi schemi è è possibile sbloccare un nuovo livello di consapevolezza. La tecnica dei loci ed il linked metod, ad esempio, sono entrambi metodi che seguono l’antropologica capacità umana di ambientarsi nel tempo  e nello spazio, per apprendere e  memorizzare nozioni.     Indipendentemente dalla capacità di un utente dunque, tali metodologie risultano familiari e facili da utilizzare ma anche stabili ed efficaci nel risultato.
+
+Stories/Story_u2c3a.xml
+Il problema
+
+Stories/Story_u2c21.xml
+- Realtà virtuale 
+ 
+
+Stories/Story_u2c02.xml
+- Il problema 
+ 
+
+Stories/Story_u2beb.xml
+- Piattaforme E-learning 
+ 
+
+Stories/Story_u2bd4.xml
+- Gamification 
+ 
+
+Stories/Story_u2bbd.xml
+- Digitalizzazione dell’apprendimento 
+ 
+
+Stories/Story_u2ba6.xml
+- Didattica tradizionale 
+ 
+
+Stories/Story_u2b8f.xml
+RICERCA E  IDENTIFICAZIONE DEL PROBLEMA
+
+Stories/Story_u2b78.xml
+03
+
+Stories/Story_u29ad.xml
+Scuola? l’università? il lavoro? la falegnameria? gli scacchi? i giochi? la cucina? l’ortobotanica? l’arte? la musica? la danza? lo sport? le lingue straniere? l’informatica? la medicina? la psicologia? la sociologia? la filosofia? la storia? la geografia? l’economia? l’architettura? il design? la fotografia? il cinema? il teatro? la scrittura creativa? le scienze naturali? l’astronomia? l’elettronica? la robotica? la cucina internazionale? il giardinaggio? la moda? la politica? la legge? lo yoga? la meditazione? le arti marziali? il fitness? la pesca? l’escursionismo? l’alpinismo? la nautica? la sostenibilità ambientale? l’economia domestica? la fotografia naturalistica? il bricolage? l’artigianato? la ceramica? la scultura? il ricamo? il cucito? il restauro? la pittura? le scienze sociali? la comunicazione? il marketing? le vendite? le risorse umane? la finanza? l’amministrazione? l’imprenditoria? l’educazione infantile? la psicopedagogia? il diritto penale? il diritto civile? il diritto internazionale? le terapie alternative? la nutrizione? la medicina veterinaria? la tecnologia dell’informazione? i big data? l’intelligenza artificiale? l’ingegneria? l’astronautica? le biotecnologie? la farmacia? la teoria musicale? Scuola? l’università? il lavoro? la falegnameria? gli scacchi? i giochi? la cucina? l’ortobotanica? l’arte? la musica? la danza? lo sport? le lingue straniere? l’informatica? la medicina? la psicologia? la sociologia? la filosofia? la storia? la geografia? l’economia? l’architettura? il design? la fotografia? il cinema? il teatro? la scrittura creativa? le scienze naturali? l’astronomia? l’elettronica? la robotica? la cucina internazionale? il giardinaggio? la moda? la politica? la legge? lo yoga? la meditazione? le arti marziali? il fitness? la pesca? l’escursionismo? l’alpinismo? la nautica? la sostenibilità ambientale? l’economia domestica? la fotografia naturalistica? il bricolage? l’artigianato? la ceramica? la scultura? il ricamo? il cucito? il restauro? la pittura? le scienze sociali? la comunicazione? il marketing? le vendite? le risorse umane? la finanza? l’amministrazione? l’imprenditoria? l’educazione infantile? la psicopedagogia? il diritto penale? il diritto civile? il diritto internazionale? le terapie alternative? la nutrizione? la medicina veterinaria? la tecnologia dell’informazione? i big data? l’intelligenza artificiale? l’ingegneria? l’astronautica? le biotecnologie? la farmacia? la teoria musicale? le tecniche di meditazione? la cosmetica? l’estetica? la sociologia della comunicazione? l’analisi dei dati? la statistica? la filosofia della scienza? l’etnografia? l’antropologia? la criminologia? la logistica? le scienze della salute? la terapia fisica? l’educazione alla cittadinanza? i diritti umani? la giurisprudenza? l’etica? la filosofia politica? la cultura popolare? il teatro di improvvisazione? la linguistica? la scienza dei materiali? la bioetica? l’ingegneria ambientale? l’economia comportamentale? la medicina alternativa? la botanica? la zoologia? la filosofia dell’arte? la geologia? l’oceanografia? la meteorologia? la lingua dei segni? le tecniche di negoziazione? il management? il pronto soccorso? la criminalistica? il design del prodotto? organizzativo? la ristorazione? il volo? il pilotaggio? la traduzione? l’interpretariato? la storia dell’arte? la patologia? la biologia molecolare? l’immunologia? l’endocrinologia? la cardiologia? le neuroscienze? l’epidemiologia? la psicologia clinica? l’ergonomia? la biofisica? la chimica? l’astronomia osservativa? l’ingegneria civile? la tecnologia alimentare? l’eco-design? l’antropologia culturale? la storia della musica? l’archiviazione digitale? la conservazione dei beni culturali? la cybersecurity? le tecniche di scrittura professionale? la progettazione grafica? il video editing? l’animazione? il game design?
+
+Stories/Story_u2968.xml
+Tanto l’educazione quanto l’apprendimento, sono ovunque. È possibile “fare” educazione o “fare” apprendimento su qualsiasi campo o declinazione di questo. Nella fase zero era quindi fondamentale capire su quale campo volevamo giocare la nostra partita, ed è stato facile perché potevamo, viste le premesse sull’ubiquità dell’educazione e dell’apprendimento, scegliere qualunque cosa: 
+
+Stories/Story_u204b.xml
+Gruppo Sedici
+
+Stories/Story_u201d.xml
+18
+
+Stories/Story_u2006.xml
+17
+
+Stories/Story_u1f4a.xml
+Fase zero 
+
+Stories/Story_u1f23.xml
+Mentre l’educazione fornisce una base strutturata di conoscenze e competenze, l’apprendimento rappresenta il percorso continuo e auto-diretto attraverso il quale gli individui espandono e approfondiscono la loro comprensione del mondo.     Entrambi sono essenziali per il progresso individuale e collettivo
+
+Stories/Story_u1e77.xml
+L’educazione e l’apprendimento sono due pilastri fondamentali dello sviluppo umano. L’educazione rappresenta il processo strutturato attraverso cui vengono trasmessi conoscenze, valori  e competenze, spesso in contesti  formali come scuole e università.    Guida la crescita intellettuale e sociale degli individui, preparando le persone ad affrontare le sfide della vita e a 
+contribuire positivamente alla società. 
+   L’apprendimento, invece, è un 
+processo continuo e dinamico che va  oltre i confini dell’educazione formale. Include tutte le esperienze attraverso  cui gli individui acquisiscono nuove 
+conoscenze e abilità, sia in contesti  formali che informali. 
+   L’apprendimento può avvenire  attraverso la pratica quotidiana, le esperienze personali e l’interazione  con il mondo circostante, e riveste un  ruolo cruciale nello sviluppo personale 
+e professionale.
+
+Stories/Story_u1e5b.xml
+Secondo il dizionarioTreccani
+atto dell’apprendere, dell’acquistare cognizione [...] processo di acquisizione di nuovi modelli di comportamento, o di modificazione di quelli precedenti, 
+per un migliore adattamento 
+dell’individuo all’ambiente”
+
+Stories/Story_u1e44.xml
+Apprendimento
+
+Stories/Story_u1e14.xml
+Educazione
+
+Stories/Story_u1df6.xml
+Educazione e  apprendimento
+
+Stories/Story_u1ddf.xml
+Secondo il dizionario Treccani.
+“processo di trasmissione culturale, diverso per ogni situazione storicamente e culturalmente determinata, mediante il quale, all’interno di determinate istituzioni sociali [...], viene strutturata la personalità umana e integrata nella società”
+
+Stories/Story_u1d99.xml
+Gruppo Sedici
+
+Stories/Story_u1d6b.xml
+16
+
+Stories/Story_u1d54.xml
+15
+
+Stories/Story_u1cc8.xml
+Analisi di scenario 
+
+Stories/Story_u1bd1.xml
+l brief prevedeva di sviluppare un potenziale nuovo servizio di vendita di un prodotto, servizio o esperienza che ancora manca ma che potrebbe essere utile, intorno al settore dell’educazione e dell’apprendimento. Un progetto che sia al tempo stesso comunicativo, interattivo, esperienziale, ed in grado di rispondere a specifiche esigenze, adottando un approccio human centered alla progettazione, che mette le persone al primo posto, e solo al secondo 
+la tecnologia. Studiamo i comportamenti 
+delle persone e i loro modelli mentali, e quindi progettiamo touch point modellati 
+sulle loro esigenze.
+
+Stories/Story_u1bb8.xml
+Il brief
+
+Stories/Story_u1931.xml
+Design per l’e-commerce:
+Il corso mira ad esplorare nuove forme e 
+modalità di esperienze digitali d’acquisto seguendo i principi del service design e della progettazione UX/UI, dalla definizione del bisogno alla fase di testing.
+Informatica per l’e-commerce:
+Lato informatica, il corso offre un’immersione nel mondo dell’e-commerce dal punto di vista informatico, coprendo l’organizzazione di un negozio virtuale, le sfide tecniche e organizzative, e la scelta delle migliori piattaforme software.
+Psicologia dei consumi:
+Il corso mira a fornire le basi circa la psicologia dei consumi, adottando una prospettiva fenomenologica qualitativa che pone il consumatore al centro delle strategie di design e Marketing, per poter assimilare le leggi che governano il comportamento dei consumatori ed applicarle in fase progettuale.
+
+Stories/Story_u1919.xml
+Il contesto
+
+Stories/Story_u18fe.xml
+Gruppo Sedici
+
+Stories/Story_u18cf.xml
+14
+
+Stories/Story_u18b8.xml
+13
+
+Stories/Story_u1839.xml
+CONTESTO
+
+Stories/Story_u1822.xml
+02
+
+Stories/Story_u17f8.xml
+Abbiamo condotto un’analisi dei competitor per comprendere le forze e le debolezze dei servizi esistenti sul mercato. Questo processo ci ha fornito uno spaccato reale del panorama competitivo, mettendo in luce le aree in cui i concorrenti sono particolarmente forti e quelle in cui presentano lacune. Grazie a queste intuizioni, siamo stati in grado di sviluppare nuove idee e strategie, che hanno contribuito alla creazione di un vantaggio competitivo distintivo per il nostro progetto.
+
+Stories/Story_u17aa.xml
+Gruppo Sedici
+
+Stories/Story_u177c.xml
+10
+
+Stories/Story_u1765.xml
+09
+
+Stories/Story_u174c.xml
+Durante la fase iniziale di definizione del progetto, abbiamo avviato un’esplorazione approfondita dei concetti di apprendimento ed educazione mediante una sessione di brainstorming di gruppo. 
+   In questa fase, ogni membro del team ha avuto l’opportunità di condividere liberamente idee e associazioni legate a questi due concetti. Questo scambio aperto ha permesso di chiarire e delineare in dettaglio le molteplici sfaccettature di questi temi ampi e complessi, offrendoci una visione più articolata e completa.
+Successivamente, ci siamo concentrati sull’analisi delle tendenze correnti relative a educazione e apprendimento, ponendo particolare attenzione ai punti di forza e di debolezza dei metodi tradizionali.     Per fare ciò, abbiamo creato tabelle comparative che ci hanno aiutato a identificare chiaramente le aree in cui  questi metodi eccellono e quelle in cui mostrano carenze. Questo ci ha permesso di definire meglio la nostra posizione e di individuare nuovi bisogni da soddisfare.
+
+Stories/Story_u16cd.xml
+La fase iniziale del progetto ha visto un’intensa e dettagliata ricerca focalizzata sui concetti di educazione e apprendimento. Il team si è dedicato a un’analisi approfondita di questi due temi, esplorandoli sia in termini individuali sia nelle loro interrelazioni, con l’intento di scomporre il problema nelle sue varie componenti e comprendere meglio  le loro dinamiche.
+L’attività di ricerca iniziale ha avuto come centro l’analisi delle piattaforme online specializzate nell’apprendimento digitale. Abbiamo esaminato in dettaglio come gli utenti, definiti attraverso la creazione di protopersonas, interagiscono con queste risorse. Utilizzando strumenti come la mappa dell’empatia e il percorso dell’utente, il team ha identificato i punti di forza e le criticità di ciascuna piattaforma.  Questa fase di esplorazione ha permesso di ottenere una visione chiara e dettagliata del panorama del digital retail, arricchendo la nostra comprensione del settore e delle  sue peculiarità.
+Conclusa la fase di ricerca, siamo giunti alla conclusione che educazione e apprendimento sono concetti profondamente intrecciati e costituiscono i pilastri essenziali per lo sviluppo individuale e collettivo. Questa consapevolezza ci ha spinti a riflettere su come gli strumenti di apprendimento possano essere utilizzati in modo innovativo per favorire non solo la comprensione intellettuale, ma anche la crescita personale. Abbiamo quindi deciso di esplorare come tali strumenti possano essere applicati per favorire la scoperta di sé e la comprensione del mondo circostante, andando oltre la mera acquisizione di conoscenze e puntando a un arricchimento globale dell’individuo.
+
+Stories/Story_u165e.xml
+Digital retail 
+
+Stories/Story_u1630.xml
+08
+
+Stories/Story_u1618.xml
+07
+
+Stories/Story_u14cd.xml
+Metodo di progetto
+
+Stories/Story_u149c.xml
+Gruppo Sedici
+
+Stories/Story_u146e.xml
+04
+
+Stories/Story_u142d.xml
+Gruppo Sedici
+
+Stories/Story_u13ff.xml
+06
+
+Stories/Story_u13e8.xml
+05
+
+Stories/Story_u13c8.xml
+03
+
+Stories/Story_u137c.xml
+Mattia - Developer
+
+Stories/Story_u1365.xml
+Scrive codici per trasformare progetti in prodotti funzionali e accessibili. Traduce  le specifiche tecniche in soluzioni pratiche, sviluppando applicazioni, siti web o software che soddisfano le esigenze  degli utenti e rispettano gli standard di  qualità e sicurezza.
+
+Stories/Story_u134d.xml
+Chiara - Service Designer
+
+Stories/Story_u1336.xml
+Progetta e ottimizza i servizi per soddisfare i bisogni degli utenti, garantendo un’esperienza uniforme e senza intoppi attraverso tutti i punti di contatto.  Esamina e migliora ogni fase del percorso del cliente, dalla prima interazione alla conclusione del servizio.
+
+Stories/Story_u12c0.xml
+Eva - UI Designer
+
+Stories/Story_u12a9.xml
+Si occupa della progettazione degli elementi visivi e interattivi con cui l’utente interagisce nel prodotto. Questo include la scelta  dei colori, dei font, dei pulsanti e altri  componenti grafici per rendere l’interfaccia attraente e funzionale.
+
+Stories/Story_u128b.xml
+Giovanni - Storyteller
+
+Stories/Story_u1274.xml
+È un esperto nel raccontare storie, capace di usare le parole più adatte per descrivere un prodotto, un servizio o un’azienda. Mira a sviluppare una connessione emotiva con il pubblico, rendendo il messaggio avvincente e memorabile attraverso narrazioni coinvolgenti e persuasive.
+
+Stories/Story_u125c.xml
+Federico - Social media manager
+
+Stories/Story_u1245.xml
+Si occupa della gestione dei canali social, sviluppando strategie e piani editoriali per aumentare la visibilità e l’engagement. Gestisce la pubblicazione dei contenuti, monitora le performance delle campagne e interagisce con la community per costruire una presenza online forte e coerente.
+
+Stories/Story_u1226.xml
+Elisabel - UX Designer
+
+Stories/Story_u120e.xml
+Si dedica a migliorare l’esperienza  dell’utente nei prodotti digitali, assicurando che siano semplici da usare, accessibili e piacevoli. Analizza i bisogni e i comportamenti degli utenti per creare percorsi di navigazione fluidi e interfacce  che soddisfino le loro aspettative.
+
+Stories/Story_u11f7.xml
+Siamo sei, siamo designer e tutti quanti studiamo al Politecnico di Torino, tuttavia anche se sulla base di questi dati sembriamo tutti uguali, siamo in realtà tutti diversi, vari ed eventuali.
+   Ognuno è competente in ambiti diversi, lo siamo anche a livelli differenti e per altro alcuni di noi sono anche antipatici quindi ogni tanto litighiamo tra di noi ma nonostante ciò nulla ci vieta di sviluppare un progetto tangibile e che funzioni non solo nell’accademicità dello stesso.
+
+Stories/Story_u1191.xml
+Il team
+
+Stories/Story_u111f.xml
+A chi non  serve ricordare?
+
+Stories/Story_ub77.xml
+La memoria è una delle abilità innate dell’uomo necessaria allo sviluppo delle capacità dello stesso. Ricordare il proprio nome, la tabellina del due o il proprio colore preferito è facile e scontato, ma poter conoscere allo stesso modo informazioni molto più dettagliate (ed esterne al nostro vivere) come una serie randomica di 
+numeri, migliaia di nozioni, date o liste, pare essere tanto difficile da non poterla confrontare con il “conoscere il proprio nome”. E invece è la stessa cosa.     La memoria può essere allenata e 
+ampliata non solo con tempo e risorse, ma anche con il solo implemento di un modo corretto con cui si memorizza. Le euristiche del pensiero infatti suggeriscono alcuni pattern cognitivi per cui non è necessario impiegare ore per studiare ed altrettante per ripassare. Esistono alcune tecniche millenarie, come la tecnica dei loci di Cicerone, atte proprio alla facilitazione 
+dei percorsi cognitivi.
+   Loco è un rivoluzionario sistema 
+integrato tra computer, mobile e VR, in grado di rendere alla portata di tutti, 
+queste tecniche. Una fra tante app si potrebbe pensare, tuttavia la rivoluzione prende posizione proprio grazie al metodo con cui Loco si propone di interfacciarsi all’utente. L’apprendimento è implicito e  non servono training o conoscenze pregresse per iniziare a ricordare all’infinito.     
+É come se ti iscrivessi al programma Fidaty di Esselunga e hai già 1000000 punti sulla tessera spendibili in set di coltelli e teiere colorate; in egual misura su Loco, potresti iscriverti e metterti subito ad imparare, ad esempio, le 100 cifre del pigreco in 10 minuti, i 478 nomi dei parenti del tuo fidanzato Pugliese o tutto il discorso del tuo 
+esame di domani.
+
+Stories/Story_ub32.xml
+Introduzione
+
+Stories/Story_u9f8.xml
+INTRODUZIONE
+
+Stories/Story_u9e1.xml
+01
+
+Stories/Story_u831.xml
+Gruppo Sedici
+
+Stories/Story_u803.xml
+01
+
+Stories/Story_u7ec.xml
+01
+
+Stories/Story_u397.xml
+Gruppo Sedici
+
+Stories/Story_u307.xml
+01
+
+Stories/Story_u2eb.xml
+01
+
+Stories/Story_u4629.xml
+uno spazio progettuale ancora vuoto, per capire come e se vale la pena inserirsi.
+Nella matrice di comparazione sono stati presi in analisi 4 driver.
+Monodisciplinare vs multidisciplinare, riferito alla quantità di argomenti che vengono affrontati dal prodotto/servizio.
+Individuale vs collettivo: legato alla esperienza dell’utente all’interno del prodotto/servizio che si rivela “collettiva” quando si ha un’interazione tra i vari utenti - come ad esempio avviene nelle classifiche di comparazione del livello; individuale invece è l’esperienza di apprendimento personale - senza alcun tipo di confronto.

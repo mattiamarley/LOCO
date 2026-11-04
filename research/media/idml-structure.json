@@ -1,0 +1,737 @@
+{
+  "pages": 142,
+  "linkedReferences": 67,
+  "uniqueLinkedFilenames": [
+    "05babed1-92a4-4ce6-96b0-e69b193c352c.png",
+    "About.png",
+    "ComeDuolingo01.png",
+    "ComeDuolingo02.png",
+    "ComeDuolingo03.png",
+    "ComeDuolingo04.png",
+    "Ellipse%20567.svg",
+    "Faq.png",
+    "Frame%2046.png",
+    "Frame%2050.png",
+    "Frame%2051.png",
+    "Frame%2052.png",
+    "Frame%2053.png",
+    "Frame%2054.png",
+    "Frame%2055.png",
+    "Frame%2056.png",
+    "Group%20%281%29.svg",
+    "Group%201000007356.png",
+    "Group%201000007548.svg",
+    "Group%201000007549.svg",
+    "Group%201000007550.svg",
+    "Group%201000007551.svg",
+    "Group%201000007782.svg",
+    "Group%201000007783.svg",
+    "Group%201000007784.svg",
+    "Group%201201.png",
+    "Group%206.svg",
+    "Group%207.svg",
+    "Group.svg",
+    "IMG_1376.png",
+    "IMG_1377.png",
+    "IMG_1379%201.png",
+    "IMG_5160.png",
+    "Loconosci01.png",
+    "Loconosci02.png",
+    "Loconosci03.png",
+    "Loconosci04.png",
+    "PHOTO-2024-09-26-02-03-11%202.jpg",
+    "PHOTO-2024-09-26-02-03-11.jpg",
+    "PHOTO-2024-09-26-02-03-22.jpg",
+    "PHOTO-2024-09-26-02-05-10.jpg",
+    "PHOTO-2024-09-26-02-05-11.jpg",
+    "PHOTO-2024-09-26-02-05-52.jpg",
+    "PHOTO-2024-09-26-02-05-54.jpg",
+    "Risorsa%201.svg",
+    "Risorsa%201svdaefb.png",
+    "Risorsa%202.svg",
+    "Risorsa%203.png",
+    "Risorsa%203.svg",
+    "Risorsa%204.svg",
+    "Risorsa%205.svg",
+    "_DSC0091%201.png",
+    "dhtjykr.png",
+    "fullview.png",
+    "home.png",
+    "locoe%E2%95%A0%C3%8701.png",
+    "locoe%E2%95%A0%C3%8702.png",
+    "papera01.png",
+    "papera02.png",
+    "papera03.png",
+    "papera05.png",
+    "piani.png"
+  ],
+  "colors": [
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 0 0 100",
+      "Name": "Black"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 0 100 0",
+      "Name": "C=0 M=0 Y=100 K=0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 100 0 0",
+      "Name": "C=0 M=100 Y=0 K=0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "100 0 0 0",
+      "Name": "C=100 M=0 Y=0 K=0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "100 90 10 0",
+      "Name": "C=100 M=90 Y=10 K=0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "15 100 100 0",
+      "Name": "C=15 M=100 Y=100 K=0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "30 33 0 0",
+      "Name": "C=30 M=33 Y=0 K=0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "75 5 100 0",
+      "Name": "C=75 M=5 Y=100 K=0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "100 0 0 0",
+      "Name": "Cyan"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 100 0 0",
+      "Name": "Magenta"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 0 0 0",
+      "Name": "Paper"
+    },
+    {
+      "Model": "Registration",
+      "Space": "CMYK",
+      "ColorValue": "100 100 100 100",
+      "Name": "Registration"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 0 100 0",
+      "Name": "Yellow"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 0 0 5.000000074505806",
+      "Name": "c0m0y0k5"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 100 100 0",
+      "Name": "c0m100y100k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 18.000000715255737 89.99999761581421 0",
+      "Name": "c0m18y90k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 18.000000715255737 91.00000262260437 0",
+      "Name": "c0m18y91k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 55.000001192092896 91.00000262260437 0",
+      "Name": "c0m55y91k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 60.00000238418579 80.0000011920929 0",
+      "Name": "c0m60y80k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "11.999999731779099 10.999999940395355 0 0",
+      "Name": "c12m11y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "15.999999642372131 15.000000596046448 0 0",
+      "Name": "c16m15y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0.9999999776482582 10.999999940395355 55.000001192092896 0",
+      "Name": "c1m11y55k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "21.99999988079071 25.999999046325684 0 0",
+      "Name": "c22m26y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "30.000001192092896 33.000001311302185 0 0",
+      "Name": "c30m33y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "33.000001311302185 31.00000023841858 0 0",
+      "Name": "c33m31y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "37.99999952316284 77.99999713897705 0 0",
+      "Name": "c38m78y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "40.00000059604645 37.99999952316284 0 0",
+      "Name": "c40m38y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "49.000000953674316 46.00000083446503 0 0",
+      "Name": "c49m46y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "49.000000953674316 76.99999809265137 0 0",
+      "Name": "c49m77y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "3.999999910593033 28.999999165534973 49.000000953674316 0",
+      "Name": "c4m29y49k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "3.999999910593033 38.999998569488525 67.00000166893005 0",
+      "Name": "c4m39y67k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "3.999999910593033 57.999998331069946 97.00000286102295 0",
+      "Name": "c4m58y97k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "3.999999910593033 58.99999737739563 98.00000190734863 0",
+      "Name": "c4m59y98k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "58.99999737739563 77.99999713897705 0 0",
+      "Name": "c59m78y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "60.00000238418579 77.99999713897705 0 0",
+      "Name": "c60m78y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "62.99999952316284 77.99999713897705 0 0",
+      "Name": "c63m78y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "64.99999761581421 61.000001430511475 0 0",
+      "Name": "c65m61y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "68.00000071525574 79.00000214576721 0 0",
+      "Name": "c68m79y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "5.999999865889549 5.000000074505806 0 0",
+      "Name": "c6m5y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "73.00000190734863 77.99999713897705 0 0",
+      "Name": "c73m78y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "75.99999904632568 67.00000166893005 60.00000238418579 83.99999737739563",
+      "Name": "c76m67y60k84"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "76.99999809265137 67.00000166893005 61.000001430511475 83.99999737739563",
+      "Name": "c77m67y61k84"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "76.99999809265137 77.99999713897705 0 0",
+      "Name": "c77m78y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "81.99999928474426 76.99999809265137 0 0",
+      "Name": "c82m77y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "87.00000047683716 75 0 0",
+      "Name": "c87m75y0k0"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "89.99999761581421 77.99999713897705 61.000001430511475 95.99999785423279",
+      "Name": "c90m78y61k96"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "89.99999761581421 77.99999713897705 62.00000047683716 95.99999785423279",
+      "Name": "c90m78y62k96"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "91.00000262260437 77.99999713897705 62.00000047683716 97.00000286102295",
+      "Name": "c91m78y62k97"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "91.00000262260437 79.00000214576721 62.00000047683716 97.00000286102295",
+      "Name": "c91m79y62k97"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "0 0 0",
+      "Name": "r0g0b0"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "191.25 175.94999939203262 242.24999696016312",
+      "Name": "r192g177b243"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "0 0 0",
+      "Name": "r1g1b1"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "229.49999392032623 224.39999878406525 249.900004863739",
+      "Name": "r230g224b250"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "244.7999945282936 127.5 56.09999969601631",
+      "Name": "r244g127b57"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "244.7999945282936 137.7000054717064 28.049999848008156",
+      "Name": "r245g137b29"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "22.950000911951065 22.950000911951065 22.950000911951065",
+      "Name": "r24g24b24"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "255 209.09999817609787 20.399999544024467",
+      "Name": "r255g208b20"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "255 255 255",
+      "Name": "r255g255b254"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "255 255 255",
+      "Name": "r255g255b255"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "68.8500027358532 45.90000182390213 30.5999993160367",
+      "Name": "r70g45b31"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "71.40000030398369 61.1999986320734 22.950000911951065",
+      "Name": "r72g62b23"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "71.40000030398369 71.40000030398369 71.40000030398369",
+      "Name": "r72g72b72"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 0 0 100",
+      "Name": "$ID/"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 0 0 0",
+      "Name": "$ID/"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "18 12 14.000000000000002 0",
+      "Name": "$ID/"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "82 77 0 0",
+      "Name": "$ID/"
+    },
+    {
+      "Model": "Process",
+      "Space": "CMYK",
+      "ColorValue": "0 18 91 0",
+      "Name": "$ID/"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "255 255 255",
+      "Name": "$ID/"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "255 255 255",
+      "Name": "$ID/"
+    },
+    {
+      "Model": "Process",
+      "Space": "RGB",
+      "ColorValue": "255 255 255",
+      "Name": "$ID/"
+    }
+  ],
+  "fonts": [
+    {
+      "FontFamily": "Minion Pro",
+      "Name": "Minion Pro Regular",
+      "Status": "Installed",
+      "FontStyleName": "Regular"
+    },
+    {
+      "FontFamily": "Myriad Pro",
+      "Name": "Myriad Pro Regular",
+      "Status": "Installed",
+      "FontStyleName": "Regular"
+    },
+    {
+      "FontFamily": "Myriad Pro",
+      "Name": "Myriad Pro Italic",
+      "Status": "Installed",
+      "FontStyleName": "Italic"
+    },
+    {
+      "FontFamily": "Myriad Pro",
+      "Name": "Myriad Pro Semibold",
+      "Status": "Substituted",
+      "FontStyleName": "Semibold"
+    },
+    {
+      "FontFamily": "Myriad Pro",
+      "Name": "Myriad Pro Semibold Italic",
+      "Status": "Substituted",
+      "FontStyleName": "Semibold Italic"
+    },
+    {
+      "FontFamily": "Myriad Pro",
+      "Name": "Myriad Pro Bold",
+      "Status": "Installed",
+      "FontStyleName": "Bold"
+    },
+    {
+      "FontFamily": "Myriad Pro",
+      "Name": "Myriad Pro Bold Italic",
+      "Status": "Installed",
+      "FontStyleName": "Bold Italic"
+    },
+    {
+      "FontFamily": "Kozuka Mincho Pr6N",
+      "Name": "Kozuka Mincho Pr6N R",
+      "Status": "Installed",
+      "FontStyleName": "R"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight ExtraLight",
+      "Status": "Installed",
+      "FontStyleName": "ExtraLight"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Thin",
+      "Status": "Installed",
+      "FontStyleName": "Thin"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight ExtraLight Italic",
+      "Status": "Installed",
+      "FontStyleName": "ExtraLight Italic"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Thin Italic",
+      "Status": "Installed",
+      "FontStyleName": "Thin Italic"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Light",
+      "Status": "Installed",
+      "FontStyleName": "Light"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Light Italic",
+      "Status": "Installed",
+      "FontStyleName": "Light Italic"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Regular",
+      "Status": "Installed",
+      "FontStyleName": "Regular"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Medium",
+      "Status": "Installed",
+      "FontStyleName": "Medium"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight SemiBold",
+      "Status": "Installed",
+      "FontStyleName": "SemiBold"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Bold",
+      "Status": "Installed",
+      "FontStyleName": "Bold"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight ExtraBold",
+      "Status": "Installed",
+      "FontStyleName": "ExtraBold"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Black",
+      "Status": "Installed",
+      "FontStyleName": "Black"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Italic",
+      "Status": "Installed",
+      "FontStyleName": "Italic"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Medium Italic",
+      "Status": "Installed",
+      "FontStyleName": "Medium Italic"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight SemiBold Italic",
+      "Status": "Installed",
+      "FontStyleName": "SemiBold Italic"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Bold Italic",
+      "Status": "Installed",
+      "FontStyleName": "Bold Italic"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight ExtraBold Italic",
+      "Status": "Installed",
+      "FontStyleName": "ExtraBold Italic"
+    },
+    {
+      "FontFamily": "Inter Tight",
+      "Name": "Inter Tight Black Italic",
+      "Status": "Installed",
+      "FontStyleName": "Black Italic"
+    },
+    {
+      "FontFamily": "Baloo 2",
+      "Name": "Baloo 2 Regular",
+      "Status": "Installed",
+      "FontStyleName": "Regular"
+    },
+    {
+      "FontFamily": "Baloo 2",
+      "Name": "Baloo 2 Medium",
+      "Status": "Installed",
+      "FontStyleName": "Medium"
+    },
+    {
+      "FontFamily": "Baloo 2",
+      "Name": "Baloo 2 SemiBold",
+      "Status": "Installed",
+      "FontStyleName": "SemiBold"
+    },
+    {
+      "FontFamily": "Baloo 2",
+      "Name": "Baloo 2 Bold",
+      "Status": "Installed",
+      "FontStyleName": "Bold"
+    },
+    {
+      "FontFamily": "Baloo 2",
+      "Name": "Baloo 2 ExtraBold",
+      "Status": "Installed",
+      "FontStyleName": "ExtraBold"
+    },
+    {
+      "FontFamily": "Baloo",
+      "Name": "Baloo Regular",
+      "Status": "Installed",
+      "FontStyleName": "Regular"
+    }
+  ],
+  "linkedFilenamesAbsentFromPackage": [
+    "05babed1-92a4-4ce6-96b0-e69b193c352c.png",
+    "About.png",
+    "ComeDuolingo02.png",
+    "Ellipse%20567.svg",
+    "Faq.png",
+    "Frame%2046.png",
+    "Frame%2052.png",
+    "Frame%2053.png",
+    "Frame%2055.png",
+    "Frame%2056.png",
+    "Group%20%281%29.svg",
+    "Group%201000007356.png",
+    "Group%201000007548.svg",
+    "Group%201000007549.svg",
+    "Group%201000007550.svg",
+    "Group%201000007551.svg",
+    "Group%201000007782.svg",
+    "Group%201000007783.svg",
+    "Group%201000007784.svg",
+    "Group%201201.png",
+    "Group%206.svg",
+    "Group%207.svg",
+    "Group.svg",
+    "IMG_1376.png",
+    "IMG_1377.png",
+    "IMG_1379%201.png",
+    "IMG_5160.png",
+    "Loconosci01.png",
+    "Loconosci03.png",
+    "PHOTO-2024-09-26-02-03-11%202.jpg",
+    "PHOTO-2024-09-26-02-03-11.jpg",
+    "PHOTO-2024-09-26-02-03-22.jpg",
+    "PHOTO-2024-09-26-02-05-10.jpg",
+    "PHOTO-2024-09-26-02-05-11.jpg",
+    "PHOTO-2024-09-26-02-05-52.jpg",
+    "PHOTO-2024-09-26-02-05-54.jpg",
+    "Risorsa%201.svg",
+    "Risorsa%201svdaefb.png",
+    "Risorsa%202.svg",
+    "Risorsa%203.png",
+    "Risorsa%203.svg",
+    "Risorsa%204.svg",
+    "Risorsa%205.svg",
+    "_DSC0091%201.png",
+    "dhtjykr.png",
+    "fullview.png",
+    "home.png",
+    "locoe%E2%95%A0%C3%8701.png",
+    "locoe%E2%95%A0%C3%8702.png",
+    "papera02.png",
+    "papera03.png"
+  ]
+}

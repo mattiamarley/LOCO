@@ -1,0 +1,25 @@
+01. INTRODUZIONE
+EVA (Evita)
+Ul Designer
+Si occupa della progettazione degli elementi visivi e
+interattivi con cui l'utente interagisce nel prodotto.
+Questo include la scelta dei colori, dei font, dei
+pulsanti e altri componenti grafici per rendere
+l'interfaccia attraente e funzionale.
+CHIARA (Chiart)
+Service Designer
+Progetta e ottimizza i servizi per soddisfare i bisogni
+degli utenti, garantendo un'esperienza uniforme e
+senza intoppi attraverso tutti i punti di contatto.
+Esamina e migliora ogni fase del percorso del cliente,
+dalla prima interazione alla conclusione del servizio,
+per assicurare efficienza e soddisfazione totale.
+MATTIA (Ttima)
+Developer
+Scrive codici per trasformare progetti in prodotti
+funzionali e accessibili. Traduce le specifiche
+tecniche in soluzioni pratiche, sviluppando
+applicazioni, siti web o software che soddisfano le
+esigenze degli utenti e rispettano gli standard di
+qualita e sicurezza.
+2

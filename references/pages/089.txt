@@ -1,0 +1,23 @@
+FAST COMPILATION
+Default
+Nickname
+Disabilitato
+Nickname
+Attivo
+Nickn...
+Errore
+Nichnmae
+Il nickname deve contenere almeno un numero
+e un simbolo speciale
+07. BRANDING
+TEXT BOX
+Text box
+Text box
+Text box
+Text box
+VALUE
+Text box
+Text box
+Text box
+Text box
+72

@@ -1,0 +1,30 @@
+# Secrets and local configuration
+.env
+.env.*
+**/.env
+**/.env.*
+.dev.vars*
+**/.dev.vars*
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Dependencies and build/runtime state
+node_modules/
+**/node_modules/
+**/.next/
+**/.vinext/
+**/.wrangler/
+**/.sites-runtime/
+**/dist/
+**/coverage/
+**/outputs/
+*.tsbuildinfo
+*.log
+
+# Local agent and OS state
+.agents/
+.codex/
+.DS_Store
+**/.DS_Store

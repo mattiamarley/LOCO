@@ -1,0 +1,17 @@
+© LOCO
+CERCA
+All'interno della sezione "Cerca" vengono elencati
+tutti i percorsi salvati dall'utente. In questo modo
+l'utente può accedere facilmente ai suoi percorsi
+preferiti, per poter ripassare le nozioni che gli ha
+collegato all'interno.
+SCAN
+.................... . . .
+Infine la sezione "Scan" è importante per gli utenti
+con un abbonamento, in quanto permette loro di
+poter effettuare uno scan tramite il loro smartphone
+e importarlo come modello AR all'interno
+dell'applicazione. In questo modo potranno in
+seguito utilizzare la stanza scelta come percorso
+dove collegare nozioni.
+93

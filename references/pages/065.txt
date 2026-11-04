@@ -1,0 +1,15 @@
+COME FUNZIONANO LE API DI
+GOOGLE STREET VIEW?
+Le API di Google Street View consentono di
+incorporare facilmente le immagini a 360
+gradi di Google Street View in una pagina
+web. Per implementare questa funzionalita,
+Google offre un'interfaccia di
+programmazione (API) che permette agli
+sviluppatori di richiedere immagini specifiche
+di Street View, gestire l'orientamento della
+visuale e personalizzare l'interazione con
+l'utente.
+06. SERVICE DESIGN
+G
+50

@@ -1,0 +1,15 @@
+CLOCO
+DETTAGLI DEL SERVIZIG
+SERVIZI APP + UI
+• LOGIN/REGISTRATI
+• HOME
+• CORSI
+• CERCA
+• SCAN
+LOGIN/REGISTRATI
+La prima schermata è quella di "Login" o "Registrati"
+(nel caso in cui l'utente non fosse ancora registrato
+alla piattaforma di Loco). Niente di più, email e
+password ed entri dentro la vera e propria
+applicazione.
+89
