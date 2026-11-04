@@ -28,3 +28,6 @@ node_modules/
 .codex/
 .DS_Store
 **/.DS_Store
+
+# Unreviewed raw design exports with profile/payment specimen data
+/research/figma/private/

@@ -165,3 +165,13 @@ Questi criteri verificano il prodotto, non ancora l’efficacia educativa di Loc
 Mappare i frame a Home, biblioteca/Recapape, editor, studio, richiamo, lezioni e profilo. Identificare specificamente l’area riservata desktop, separandola da Home/About/Piani/FAQ pubbliche. Annotare stati vuoti, bozze, errori, salvataggio, uscita e ritorno: i frame mancanti sono requisiti da progettare, non funzioni già documentate.
 
 Restano da verificare sui prototipi: percorso desktop completo, comportamento del + centrale, comandi contestuali esatti, creazione vs sola visita VR, acquisizione stanza, pairing e differenze fra piani. La costruzione del nucleo non dipende dall’attivazione immediata delle API.
+
+## 11. Conferma dal Figma definitivo — portale desktop
+
+La pagina Portale / Area riservata è stata esportata e letta. I frame coerenti con la famiglia visiva locale mostrano dashboard, wizard su Maps, bozze, Recapete, corsi e profilo. Il wizard segue **Posizione → Tracciato → Anagrafica → Fine**: scelta modalità, ricerca posizione, conferma zona, tracciamento, titolo/descrizione/argomento, salvataggio e avvio. Esiste anche l’uscita con proposta di salvare la bozza.
+
+Questi passaggi sono ora requisiti documentati, non solo proposte della ricostruzione. Il file contiene inoltre varianti precedenti e riferimenti esterni: l’esportazione di 129 frame non equivale a 129 schermate definitive. Per l’indice delle evidenze vedere `figma/FINAL-DESIGN-AUDIT.md`.
+
+### Selezione della versione definitiva confermata dall’autore
+
+Usare esclusivamente il gruppo **in basso a destra di Portale / Area riservata** per la web app finale e i caricamenti **in alto a sinistra** della stessa pagina. Le altre soluzioni sono prove. La mappatura dei flussi estratti dal PDF va confermata rispetto a questi gruppi; la posizione nel PDF e lo stile visivo non sono criteri sufficienti per dichiarare un frame definitivo.

@@ -17,7 +17,27 @@
       "presentazione esame",
       "book"
     ],
-    "portalPageNode": "3:3"
+    "portalPageNode": "3:3",
+    "userConfirmedRegions": {
+      "page": "Portale / Area riservata",
+      "finalWebApp": "bottom-right",
+      "loadingScreens": "top-left",
+      "otherGroups": "experiments_not_final"
+    },
+    "verifiedFinalNodes": [
+      {
+        "id": "473:1088",
+        "name": "Home",
+        "region": "bottom-right",
+        "url": "https://www.figma.com/design/FeZKyO6xCZtjmQ1uEef4kx/loco-nuovo?node-id=473-1088"
+      },
+      {
+        "id": "774:750",
+        "name": "Profilo",
+        "region": "bottom-right",
+        "url": "https://www.figma.com/design/FeZKyO6xCZtjmQ1uEef4kx/loco-nuovo?node-id=774-750"
+      }
+    ]
   },
   "supersededDesign": {
     "title": "gruppoSEDICI",
