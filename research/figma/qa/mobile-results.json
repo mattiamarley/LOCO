@@ -1,0 +1,92 @@
+[
+  {
+    "view": "home",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "create",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "courses",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "course",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "recap",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "position",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "position-filled",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "confirm",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "trace",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "details",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "finish",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "draft",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "login",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "profile",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  },
+  {
+    "view": "loading",
+    "broken": [],
+    "scroll": 419,
+    "width": 419
+  }
+]

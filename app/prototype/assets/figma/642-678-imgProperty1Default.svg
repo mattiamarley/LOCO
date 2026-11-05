@@ -1,0 +1,15 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="49.6" height="49" viewBox="0 0 49.6 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Component 20">
+<g id="Ellipse 573">
+<path d="M44.6 24.5C44.6 35.2696 35.7352 44 24.8 44C13.8648 44 5 35.2696 5 24.5C5 13.7304 13.8648 5 24.8 5C35.7352 5 44.6 13.7304 44.6 24.5Z" fill="#613BE0"/>
+<mask id="stroke0_0_230" maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="49" fill="black">
+<rect fill="white" width="50" height="49"/>
+<path d="M44.6 24.5C44.6 35.2696 35.7352 44 24.8 44C13.8648 44 5 35.2696 5 24.5C5 13.7304 13.8648 5 24.8 5C35.7352 5 44.6 13.7304 44.6 24.5Z"/>
+</mask>
+<path d="M44.6 24.5C44.6 35.2696 35.7352 44 24.8 44C13.8648 44 5 35.2696 5 24.5C5 13.7304 13.8648 5 24.8 5C35.7352 5 44.6 13.7304 44.6 24.5Z" stroke-width="10" stroke="#090901" stroke-opacity="0.4" mask="url(#stroke0_0_230)"/>
+</g>
+<g id="Play">
+<path id="Path 2" d="M32.1254 25.2837C32.4828 25.0603 32.4828 24.5398 32.1254 24.3164L22.5719 18.3454C22.192 18.108 21.6992 18.3811 21.6992 18.8291V30.7709C21.6992 31.2189 22.192 31.492 22.5719 31.2546L32.1254 25.2837Z" fill="white"/>
+</g>
+</g>
+</svg>

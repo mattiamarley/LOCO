@@ -1,0 +1,343 @@
+const imgProperty1Default = "https://www.figma.com/api/mcp/asset/e779364a-6ebe-4d5b-9e4f-2def47389298.svg";
+const imgGroup1000007442 = "https://www.figma.com/api/mcp/asset/130680d3-7c9a-44e5-8a45-535615763e14.svg";
+const imgEllipse545 = "https://www.figma.com/api/mcp/asset/ab36d5da-c75c-4bb6-9c3a-fe8d5d6efa56.svg";
+const imgHome01 = "https://www.figma.com/api/mcp/asset/2b959734-d22b-454a-b3f6-99d87db1a152.svg";
+const imgGroup1000007775 = "https://www.figma.com/api/mcp/asset/8a54b8fd-5f1e-49e8-8687-c66fa07cd7f5.svg";
+const imgBookOpen01 = "https://www.figma.com/api/mcp/asset/7adc0769-2162-4ecb-8023-23e68be4b844.svg";
+const imgGroup1000007792 = "https://www.figma.com/api/mcp/asset/a44c6116-6c3d-453f-bbed-410144835a1f.svg";
+const imgVector = "https://www.figma.com/api/mcp/asset/e987cd80-5b5b-42c8-a7ba-dab71e8bfcae.svg";
+const imgEllipse1 = "https://www.figma.com/api/mcp/asset/acff9fc3-8dbf-4a7c-85f9-7c69f2e6d6c9.svg";
+const imgGroup1000007778 = "https://www.figma.com/api/mcp/asset/423b6faa-02f0-42ee-954c-985623cc6bfc.svg";
+const imgEllipse586 = "https://www.figma.com/api/mcp/asset/64a82edf-583f-42d2-974c-fd2da2791930.svg";
+const imgGroup = "https://www.figma.com/api/mcp/asset/bd77149c-1b45-4d6a-8980-3e6c31a669a7.svg";
+const imgGroup1 = "https://www.figma.com/api/mcp/asset/2f3e00d5-8b7f-43bc-9ef1-e99b195b537f.svg";
+const imgGroup1000007823 = "https://www.figma.com/api/mcp/asset/95bf43f1-c404-4d92-a0a0-4de061f1b982.svg";
+
+type Component27Props = {
+  className?: string;
+  property1?: "Default";
+};
+
+function Component27({ className, property1 = "Default" }: Component27Props) {
+  return (
+    <div className={className || "relative size-[36px]"} data-node-id="800:1084">
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgProperty1Default} />
+    </div>
+  );
+}
+
+export default function Profilo() {
+  return (
+    <div className="bg-white relative size-full" data-node-id="774:750" data-name="Profilo">
+      <div className="absolute h-[832px] left-0 top-0 w-[75px]" data-node-id="774:752">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007442} />
+      </div>
+      <a className="absolute contents cursor-pointer left-[22px] top-[239px]" data-node-id="972:1070">
+        <div className="absolute flex items-center justify-center left-[22px] size-[36px] top-[239px]" data-node-id="774:756">
+          <div className="-scale-y-100 flex-none">
+            <div className="relative size-[36px]">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse545} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-[29.57%_96.09%_68.03%_2.34%]" data-node-id="774:757" data-name="home-01">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgHome01} />
+        </div>
+      </a>
+      <a className="absolute block cursor-pointer left-[22px] size-[36px] top-[312px]" data-node-id="972:1069">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007775} />
+      </a>
+      <a className="absolute contents cursor-pointer left-[22px] top-[458px]" data-node-id="972:1071">
+        <div className="absolute flex items-center justify-center left-[22px] size-[36px] top-[458px]" data-node-id="774:754">
+          <div className="-scale-y-100 flex-none">
+            <div className="relative size-[36px]">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse545} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-[56.37%_96.25%_41.71%_2.5%]" data-node-id="774:759" data-name="book-open-01">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgBookOpen01} />
+        </div>
+      </a>
+      <a className="absolute block cursor-pointer left-[28px] size-[60px] top-[373px]" data-node-id="972:1104">
+        <div className="absolute inset-[-16.67%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup1000007792} />
+        </div>
+      </a>
+      <div className="absolute contents inset-[1.8%_94.84%_93.31%_0.86%]" data-node-id="774:767">
+        <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[3.36%_94.84%_93.31%_1.23%] justify-center leading-[0] not-italic text-[39.964px] text-black text-center tracking-[-1.5619px] whitespace-pre-wrap" data-node-id="774:768">
+          <p className="leading-[26.776px] mb-0">{`   O`}</p>
+          <p className="leading-[26.776px]">CO</p>
+        </div>
+        <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[1.8%_96.43%_94.86%_0.86%] justify-center leading-[0] not-italic text-[36.634px] text-center text-white tracking-[0.0033px]" data-node-id="774:769">
+          <p className="leading-[0.933px]">L</p>
+        </div>
+        <div className="absolute flex inset-[2%_98.18%_96.65%_0.86%] items-center justify-center" data-node-id="774:770" style={{ containerType: "size" }}>
+          <div className="-scale-x-100 flex-none h-[hypot(27.271cqw,60.7909cqh)] rotate-[-26.19deg] w-[hypot(-72.729cqw,39.2091cqh)]">
+            <div className="relative size-full" data-name="Vector">
+              <div className="absolute inset-[-5.49%_-4.2%_-5.48%_-4.18%]">
+                <img alt="" className="block max-w-none size-full" src={imgVector} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-[2.12%_98.11%_97.64%_1.81%]" data-node-id="774:771">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse1} />
+        </div>
+      </div>
+      <div className="absolute left-[22px] size-[36px] top-[531px]" data-node-id="972:1072">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007778} />
+      </div>
+      <div className="[word-break:break-word] absolute contents font-['Inter_Tight:Regular'] leading-[0] left-[179px] not-italic text-[#181818] text-[16px] top-[348px]" data-node-id="788:951">
+        <div className="-translate-y-1/2 absolute flex flex-col h-[25px] justify-center left-[179px] top-[360.5px] w-[158px]" data-node-id="788:952">
+          <p className="leading-[20px]">Nome</p>
+        </div>
+        <div className="-translate-y-1/2 absolute flex flex-col h-[25px] justify-center left-[179px] top-[436.5px] w-[158px]" data-node-id="788:953">
+          <p className="leading-[20px]">Cognome</p>
+        </div>
+        <div className="-translate-y-1/2 absolute flex flex-col h-[25px] justify-center left-[179px] top-[512.5px] w-[158px]" data-node-id="788:954">
+          <p className="leading-[20px]">Loconame (nickname)</p>
+        </div>
+        <div className="-translate-y-1/2 absolute flex flex-col h-[25px] justify-center left-[179px] top-[587.5px] w-[158px]" data-node-id="788:955">
+          <p className="leading-[20px]">E-mail</p>
+        </div>
+        <div className="-translate-y-1/2 absolute flex flex-col h-[25px] justify-center left-[179px] top-[660.5px] w-[158px]" data-node-id="788:956">
+          <p className="leading-[20px]">Posizione</p>
+        </div>
+      </div>
+      <div className="absolute contents left-[165px] top-[373px]" data-node-id="788:958">
+        <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[165px] px-[15px] py-[40px] rounded-[40px] top-[373px] w-[263px]" data-node-id="788:959">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I788:959;76:112">
+            <p className="leading-[20px]">Utente</p>
+          </div>
+        </div>
+        <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[165px] px-[15px] py-[40px] rounded-[40px] top-[449px] w-[263px]" data-node-id="788:960">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I788:960;76:112">
+            <p className="leading-[20px]">Demo</p>
+          </div>
+        </div>
+        <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[165px] px-[15px] py-[40px] rounded-[40px] top-[524px] w-[263px]" data-node-id="788:961">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I788:961;76:112">
+            <p className="leading-[20px]">loco-demo</p>
+          </div>
+        </div>
+        <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[32px] items-center justify-between left-[165px] px-[15px] py-[40px] rounded-[40px] top-[600px] w-[263px]" data-node-id="788:962">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I788:962;76:112">
+            <p className="leading-[20px]">demo@example.com</p>
+          </div>
+        </div>
+        <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[165px] px-[15px] py-[40px] rounded-[40px] top-[673px] w-[263px]" data-node-id="788:963">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I788:963;76:112">
+            <p className="leading-[20px]">Torino, IT</p>
+          </div>
+        </div>
+      </div>
+      <div className="absolute contents left-[600px] top-[503px]" data-node-id="791:1055">
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[25px] justify-center leading-[0] left-[614px] not-italic text-[#181818] text-[16px] top-[515.5px] w-[158px]" data-node-id="791:1056">
+          <p className="leading-[20px]">{`Via / Corso `}</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[25px] justify-center leading-[0] left-[614px] not-italic text-[#181818] text-[16px] top-[591.5px] w-[158px]" data-node-id="791:1057">
+          <p className="leading-[20px]">Città</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] left-[614px] not-italic text-[#181818] text-[16px] top-[667px] whitespace-nowrap" data-node-id="791:1058">
+          <p className="leading-[20px]">Cap</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] left-[753px] not-italic text-[#181818] text-[16px] top-[667px] whitespace-nowrap" data-node-id="791:1059">
+          <p className="leading-[20px]">Interno</p>
+        </div>
+        <div className="absolute contents left-[600px] top-[528px]" data-node-id="791:1061">
+          <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[600px] px-[15px] py-[40px] rounded-[40px] top-[528px] w-[263px]" data-node-id="791:1062">
+            <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I791:1062;76:112">
+              <p className="leading-[20px]">—</p>
+            </div>
+          </div>
+          <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[600px] px-[15px] py-[40px] rounded-[40px] top-[604px] w-[263px]" data-node-id="791:1063">
+            <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I791:1063;76:112">
+              <p className="leading-[20px]">Torino</p>
+            </div>
+          </div>
+          <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[600px] px-[15px] py-[40px] rounded-[40px] top-[679px] w-[125px]" data-node-id="791:1064">
+            <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I791:1064;76:112">
+              <p className="leading-[20px]">—</p>
+            </div>
+          </div>
+          <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[738px] px-[15px] py-[40px] rounded-[40px] top-[679px] w-[125px]" data-node-id="791:1065">
+            <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I791:1065;76:112">
+              <p className="leading-[20px]">—</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold leading-[24px] left-[calc(50%-33px)] text-[25px] text-black top-[438px] tracking-[-0.75px] whitespace-nowrap" data-node-id="791:1066">
+        Inidirizzo di spedizione
+      </p>
+      <div className="absolute flex h-[153.098px] items-center justify-center left-[190px] top-[161px] w-[209.89px]" data-node-id="788:1005">
+        <div className="flex-none rotate-[88.63deg]">
+          <div className="h-[206.399px] relative w-[148.195px]">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse586} />
+          </div>
+        </div>
+      </div>
+      <div className="absolute contents inset-[21.93%_72.36%_64.99%_19.25%]" data-node-id="788:1006" data-name="Group">
+        <div className="absolute inset-[21.93%_72.36%_64.99%_19.25%]" data-node-id="788:1007" data-name="Group">
+          <div className="absolute inset-[-1.05%_-1.07%]">
+            <img alt="" className="block max-w-none size-full" src={imgGroup} />
+          </div>
+        </div>
+      </div>
+      <p className="[word-break:break-word] absolute font-['Baloo_2:Medium'] font-medium h-[40px] leading-[40px] left-[144px] text-[#181818] text-[75px] top-[78px] tracking-[-3.75px] w-[451px]" data-node-id="788:1099">
+        Il mio profilo
+      </p>
+      <div className="absolute contents left-[947px] top-[503px]" data-node-id="788:964">
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[25px] justify-center leading-[0] left-[961px] not-italic text-[#181818] text-[16px] top-[515.5px] w-[158px]" data-node-id="788:965">
+          <p className="leading-[20px]">Titolare carta</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[25px] justify-center leading-[0] left-[961px] not-italic text-[#181818] text-[16px] top-[591.5px] w-[158px]" data-node-id="788:966">
+          <p className="leading-[20px]">Numero carta</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] left-[961px] not-italic text-[#181818] text-[16px] top-[667px] whitespace-nowrap" data-node-id="788:967">
+          <p className="leading-[20px]">MM/AA</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] left-[1100px] not-italic text-[#181818] text-[16px] top-[667px] whitespace-nowrap" data-node-id="788:968">
+          <p className="leading-[20px]">CVV</p>
+        </div>
+        <div className="absolute contents left-[947px] top-[528px]" data-node-id="788:970">
+          <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[947px] px-[15px] py-[40px] rounded-[40px] top-[528px] w-[263px]" data-node-id="788:971">
+            <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I788:971;76:112">
+              <p className="leading-[20px]">Utente demo</p>
+            </div>
+          </div>
+          <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[947px] px-[15px] py-[40px] rounded-[40px] top-[604px] w-[263px]" data-node-id="788:972">
+            <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I788:972;76:112">
+              <p className="leading-[20px]">•••• •••• •••• ••••</p>
+            </div>
+          </div>
+          <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[947px] px-[15px] py-[40px] rounded-[40px] top-[679px] w-[125px]" data-node-id="788:973">
+            <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I788:973;76:112">
+              <p className="leading-[20px]">—</p>
+            </div>
+          </div>
+          <div className="absolute bg-[rgba(190,190,190,0.3)] border border-[#767676] border-solid content-stretch flex h-[35px] items-center justify-between left-[1085px] px-[15px] py-[40px] rounded-[40px] top-[679px] w-[125px]" data-node-id="788:974">
+            <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:Regular'] justify-center leading-[0] not-italic relative shrink-0 text-[#767676] text-[14px] whitespace-nowrap" data-node-id="I788:974;76:112">
+              <p className="leading-[20px]">***</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold leading-[24px] left-[955px] text-[25px] text-black top-[438px] tracking-[-0.75px] whitespace-nowrap" data-node-id="788:979">
+        Dati carta di addebito
+      </p>
+      <Component27 className="absolute left-[410px] size-[36px] top-[222px]" />
+      <Component27 className="absolute flex items-center justify-center left-[144px] size-[36px] top-[221px]" />
+      <Component27 className="absolute flex items-center justify-center left-[144px] size-[36px] top-[221px]" />
+      <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold leading-[normal] left-[1052px] text-[#303030] text-[25px] top-[118px] tracking-[-0.75px] whitespace-nowrap" data-node-id="788:1019">
+        Il tuo piano
+      </p>
+      <div className="absolute bg-[#d0c4f6] h-[202px] left-[697px] rounded-[20px] top-[169px] w-[501px]" data-node-id="778:1149" />
+      <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] justify-center leading-[0] left-[calc(50%+462.72px)] not-italic text-[#181818] text-[0px] text-center top-[246px] w-[131.44px]" data-node-id="788:1092">
+        <p className="font-['Baloo_2:Bold'] font-bold text-[49.914px]">
+          <span className="leading-[41.595px]">{`POCO `}</span>
+          <span className="leading-[41.595px] text-[#181818]">LOCO</span>
+        </p>
+      </div>
+      <div className="absolute flex inset-[19.35%_25.16%_55.84%_56.09%] items-center justify-center" data-node-id="788:1021" style={{ containerType: "size" }}>
+        <div className="-scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+          <div className="relative size-full" data-name="Group">
+            <div className="absolute inset-[-0.23%_-0.2%]">
+              <img alt="" className="block max-w-none size-full" src={imgGroup1} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute content-stretch flex flex-col h-[42px] items-center justify-center left-[471px] top-[255px] w-[157.4px]" data-node-id="897:3009" data-name="Button 1¨livello" />
+      <a className="absolute content-stretch cursor-pointer flex flex-col items-center justify-center left-[1034px] top-[313px]" data-node-id="897:3035" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3035;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Crea percorsi" labelText="Crea percorsi" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </a>
+      <div className="absolute content-stretch flex flex-col items-center justify-center left-[252px] top-[746px]" data-node-id="897:3039" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3039;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Modifica" labelText="Modifica" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </div>
+      <div className="absolute content-stretch flex flex-col items-center justify-center left-[639px] top-[746px]" data-node-id="897:3043" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3043;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Modifica indirizzo" labelText="Modifica indirizzo" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </div>
+      <div className="absolute content-stretch flex flex-col items-center justify-center left-[1106px] top-[24px]" data-node-id="1342:2227" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I1342:2227;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Log out" labelText="Log out" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </div>
+      <div className="absolute content-stretch flex flex-col items-center justify-center left-[983px] top-[746px]" data-node-id="897:3049" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3049;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Modifica dati carta" labelText="Modifica dati carta" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </div>
+      <div className="absolute left-[25px] size-[30px] top-[755px]" data-node-id="1328:1130">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007823} />
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: Black font: #303030.
+If the node is connected to a code component in the users codebase via Code Connect, the connected component will be included in the final markup wrapped in a CodeConnectSnippet element, with relevant imports at the top of the file. There are two formats: 1. Single snippet: <CodeConnectSnippet data-snippet-language="React"><TitleComponent>Hello World</TitleComponent></CodeConnectSnippet> 2. Multiple options: <CodeConnectSnippet data-snippet-language="React" options={[<Button variant="primary" />, <Button variant="secondary" />]} /> IMPORTANT: the CodeConnectSnippet wrapper element should not be part of the final code. For the options format, choose the single most appropriate option to use in your implementation. The source of the code component will be in the import path, e.g. import {ComponentName } from 'path/to/component'; IMPORTANT: the import path may not be relative/may point to a URL, so you should search for the component in the codebase and MUST use it if possible.
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## home-01
+**Node ID:** 152:622
+
+home, homepage, return, house, menu
+
+## route
+**Node ID:** 152:677
+
+route, map, direction
+
+## book-open-01
+**Node ID:** 152:707
+
+book, news, newspaper, article, blog, blogpost
+
+## Style=Filled, State=Enabled, Show Icon=False
+**Node ID:** 3:188
+
+Filled buttons are high-emphasis buttons. They have the most visual impact after the FAB, and should be used for important, final actions that complete a flow, like "Save", "Join now", or "Confirm".
+
+## Button
+**Node ID:** 3:15
+
+Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like Dialogs, Modal windows, Forms, Cards and Toolbars
+
+**Documentation:**
+- [http://m3.material.io/components/buttons/overview](http://m3.material.io/components/buttons/overview)
+
+## bell-01
+**Node ID:** 152:682
+
+bell, notification, alert
+The generated code contains image and SVG URL constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

@@ -1,0 +1,269 @@
+const imgProperty1Default = "https://www.figma.com/api/mcp/asset/88f770ef-331a-4fa2-a2ee-b9dd8be5835b.svg";
+const imgRectangle444 = "https://www.figma.com/api/mcp/asset/b7f4866a-e061-4071-bc7d-282f55e384c9.png";
+const imgImage14 = "https://www.figma.com/api/mcp/asset/faf8f87f-ec17-41c0-915f-9a5e04555088.png";
+const imgImage15 = "https://www.figma.com/api/mcp/asset/bf983ed1-256f-48c6-b080-84e08c8b7de5.png";
+const imgGroup = "https://www.figma.com/api/mcp/asset/dca78a39-3488-4c5d-864e-320004c5312c.png";
+const imgVector1 = "https://www.figma.com/api/mcp/asset/3fb08685-66cf-4eea-9685-3c03c07be13b.png";
+const imgGroup7 = "https://www.figma.com/api/mcp/asset/d7962686-d362-4eab-831b-8e9856912982.png";
+const imgGroup1000007442 = "https://www.figma.com/api/mcp/asset/5324e5f1-4120-4210-a9b2-049e2ed2d69e.svg";
+const imgEllipse543 = "https://www.figma.com/api/mcp/asset/8fecfdf4-a199-4fdd-9c24-5a3bfcab6a0e.svg";
+const imgGroup1000007788 = "https://www.figma.com/api/mcp/asset/78738fca-9349-4865-a960-c8e6a71602f8.svg";
+const imgGroup1000007789 = "https://www.figma.com/api/mcp/asset/801e4cfd-969b-4702-b360-cb090d861dfc.svg";
+const imgBookOpen01 = "https://www.figma.com/api/mcp/asset/df2f8824-af88-4924-8b6e-c17b5a04f6ed.svg";
+const imgGroup1000007795 = "https://www.figma.com/api/mcp/asset/e58dd858-8301-48fb-b115-2b6132b5b371.svg";
+const imgVector = "https://www.figma.com/api/mcp/asset/3bb79718-407d-4118-b40b-523a80c0c005.svg";
+const imgEllipse1 = "https://www.figma.com/api/mcp/asset/fcbf48a5-ce56-4ce2-b45d-2191a8eceebd.svg";
+const imgGroup1000007790 = "https://www.figma.com/api/mcp/asset/ab223fd9-9800-4bb3-954e-41a0ac1d7470.svg";
+const imgGroup1 = "https://www.figma.com/api/mcp/asset/6573f6ee-99e2-47ec-84f2-efd9e5abe354.svg";
+const imgGroup2 = "https://www.figma.com/api/mcp/asset/83705200-9154-42b4-93e2-4f9fc8564bfe.svg";
+const imgVector2 = "https://www.figma.com/api/mcp/asset/c7f429d2-ac1f-4427-bd7e-2e371ecac9eb.svg";
+const imgGroup3 = "https://www.figma.com/api/mcp/asset/1dabcfea-8bee-4875-9c46-c77222eabfae.svg";
+const imgGroup4 = "https://www.figma.com/api/mcp/asset/9393f0d1-a11a-42b8-9df8-07bba47a30b0.svg";
+const imgGroup5 = "https://www.figma.com/api/mcp/asset/70920710-c32c-4845-911d-33ead07dfa2f.svg";
+const imgGroup6 = "https://www.figma.com/api/mcp/asset/cdb69c24-ebae-47c9-bd58-545243d29a57.svg";
+const imgGroup8 = "https://www.figma.com/api/mcp/asset/aed36715-b4e4-4ec0-a952-1fa1b683d278.svg";
+const imgGroup9 = "https://www.figma.com/api/mcp/asset/2f1bcf94-b7ce-48d0-996c-85025c8ac65e.svg";
+const imgComponent24 = "https://www.figma.com/api/mcp/asset/a8da0494-f2eb-40e1-9c33-8bceaffccc3b.svg";
+const imgGroup1000007823 = "https://www.figma.com/api/mcp/asset/13d0670f-98ce-4deb-bbcf-c100bdf3dda4.svg";
+
+type Component27Props = {
+  className?: string;
+  property1?: "Default";
+};
+
+function Component27({ className, property1 = "Default" }: Component27Props) {
+  return (
+    <div className={className || "relative size-[36px]"} data-node-id="800:1084">
+      <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgProperty1Default} />
+    </div>
+  );
+}
+
+export default function SecondoLivelloCorsoAliasCorsoSingolo() {
+  return (
+    <div className="bg-white relative size-full" data-node-id="849:900" data-name="secondo livello corso - alias corso singolo">
+      <div className="absolute h-[832px] left-0 top-0 w-[75px]" data-node-id="849:902">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007442} />
+      </div>
+      <div className="absolute flex items-center justify-center left-[22px] size-[36px] top-[458px]" data-node-id="849:904">
+        <div className="-scale-y-100 flex-none">
+          <div className="relative size-[36px]">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse543} />
+          </div>
+        </div>
+      </div>
+      <a className="absolute block cursor-pointer left-[22px] size-[36px] top-[239px]" data-node-id="972:1096">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007788} />
+      </a>
+      <a className="absolute block cursor-pointer left-[22px] size-[36px] top-[312px]" data-node-id="972:1097">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007789} />
+      </a>
+      <div className="absolute inset-[56.37%_96.25%_41.71%_2.5%]" data-node-id="849:909" data-name="book-open-01">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgBookOpen01} />
+      </div>
+      <a className="absolute block cursor-pointer left-[28px] size-[60px] top-[373px]" data-node-id="972:1107">
+        <div className="absolute inset-[-16.67%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup1000007795} />
+        </div>
+      </a>
+      <div className="absolute contents inset-[1.8%_94.84%_93.31%_0.86%]" data-node-id="849:914">
+        <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[3.36%_94.84%_93.31%_1.23%] justify-center leading-[0] not-italic text-[39.964px] text-black text-center tracking-[-1.5619px] whitespace-pre-wrap" data-node-id="849:915">
+          <p className="leading-[26.776px] mb-0">{`   O`}</p>
+          <p className="leading-[26.776px]">CO</p>
+        </div>
+        <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[1.8%_96.43%_94.86%_0.86%] justify-center leading-[0] not-italic text-[36.634px] text-center text-white tracking-[0.0033px]" data-node-id="849:916">
+          <p className="leading-[0.933px]">L</p>
+        </div>
+        <div className="absolute flex inset-[2%_98.18%_96.65%_0.86%] items-center justify-center" data-node-id="849:917" style={{ containerType: "size" }}>
+          <div className="-scale-x-100 flex-none h-[hypot(27.271cqw,60.7909cqh)] rotate-[-26.19deg] w-[hypot(-72.729cqw,39.2091cqh)]">
+            <div className="relative size-full" data-name="Vector">
+              <div className="absolute inset-[-5.49%_-4.2%_-5.48%_-4.18%]">
+                <img alt="" className="block max-w-none size-full" src={imgVector} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-[2.12%_98.11%_97.64%_1.81%]" data-node-id="849:918">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse1} />
+        </div>
+      </div>
+      <a className="absolute block cursor-pointer left-[22px] size-[36px] top-[531px]" data-node-id="972:1098">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007790} />
+      </a>
+      <Component27 className="absolute flex items-center justify-center left-[97px] size-[36px] top-[82px]" />
+      <p className="[word-break:break-word] absolute font-['Baloo_2:Medium'] font-medium h-[138px] leading-[0] left-[171px] text-[#181818] text-[75px] top-[67px] tracking-[-3.75px] w-[469px] whitespace-pre-wrap" data-node-id="880:1020">
+        <span className="font-['Baloo_2:Bold'] font-bold leading-[60px]">Corso 1:</span>
+        <span className="leading-[60px]">
+          {` `}
+          <br aria-hidden />
+          Tecnica dei Loci
+        </span>
+      </p>
+      <div className="absolute content-stretch flex flex-col items-center justify-center left-[139px] top-[418px]" data-node-id="897:3252" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3252;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Guarda ora" labelText="Guarda ora" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </div>
+      <div className="absolute content-stretch flex flex-col items-center justify-center left-[139px] top-[699px]" data-node-id="897:3257" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3257;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Guarda ora" labelText="Guarda ora" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </div>
+      <div className="absolute content-stretch flex flex-col items-center justify-center left-[735px] top-[418px]" data-node-id="897:3261" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3261;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Guarda ora" labelText="Guarda ora" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </div>
+      <p className="[word-break:break-word] absolute font-['Baloo_2:Bold'] font-bold h-[28px] leading-[28.568px] left-[139px] text-[#181818] text-[40px] top-[266px] tracking-[-1.2px] w-[155px]" data-node-id="849:957">
+        Lezione 1
+      </p>
+      <p className="[word-break:break-word] absolute font-['Inter_Tight:Regular'] h-[49px] leading-[25px] left-[138px] not-italic text-[#181818] text-[24px] top-[304px] tracking-[0.1865px] w-[240px]" data-node-id="849:958">
+        Approccio alle tecniche mnemoniche
+      </p>
+      <div className="absolute h-[206px] left-[392px] rounded-[30px] top-[248px] w-[309px]" data-node-id="849:955">
+        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[30px]">
+          <img alt="" className="absolute max-w-none object-cover rounded-[30px] size-full" src={imgRectangle444} />
+          <div className="absolute bg-[#d0c4f6] inset-0 rounded-[30px]" />
+        </div>
+      </div>
+      <p className="[word-break:break-word] absolute font-['Baloo_2:Bold'] font-bold h-[28px] leading-[28.568px] left-[138px] text-[#181818] text-[40px] top-[547px] tracking-[-1.2px] w-[161px]" data-node-id="849:960">
+        Lezione 2
+      </p>
+      <p className="[word-break:break-word] absolute font-['Inter_Tight:Regular'] h-[52px] leading-[27.98px] left-[137px] not-italic text-[#181818] text-[24px] top-[582px] tracking-[0.1399px] w-[178px]" data-node-id="849:961">
+        Introduzione alla tecnica dei Loci
+      </p>
+      <div className="absolute h-[206px] left-[391px] rounded-[30px] top-[542px] w-[309px]" data-node-id="849:965" data-name="image 14">
+        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[30px]">
+          <div className="absolute inset-0 overflow-hidden rounded-[30px]">
+            <img alt="" className="absolute h-full left-[-12.32%] max-w-none top-0 w-[117.63%]" src={imgImage14} />
+          </div>
+          <div className="absolute bg-[#d0c4f6] inset-0 rounded-[30px]" />
+        </div>
+      </div>
+      <p className="[word-break:break-word] absolute font-['Baloo_2:Bold'] font-bold h-[28px] leading-[28.568px] left-[735px] text-[#181818] text-[40px] top-[266px] tracking-[-1.2px] w-[184px]" data-node-id="849:963">
+        Lezione 3
+      </p>
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[45px] justify-center leading-[0] left-[735px] not-italic text-[#181818] text-[24px] top-[332.5px] tracking-[0.1399px] w-[254px]" data-node-id="849:964">
+        <p className="leading-[27.98px]">Come utilizzare la tecnica dei Loci</p>
+      </div>
+      <div className="absolute h-[206px] left-[933px] rounded-[30px] top-[248px] w-[309px]" data-node-id="849:966" data-name="image 15">
+        <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[30px]">
+          <img alt="" className="absolute max-w-none object-bottom rounded-[30px] size-full" src={imgImage15} />
+          <div className="absolute bg-[#d0c4f6] inset-0 rounded-[30px]" />
+        </div>
+      </div>
+      <div className="absolute contents left-[392px] top-[248px]" data-node-id="866:2236">
+        <div className="absolute inset-[36.66%_54.94%_26.77%_29.06%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[20px_-57px] mask-size-[309px_206px]" data-node-id="880:1230" style={{ maskImage: `url("${imgGroup}")` }} data-name="Group">
+          <div className="absolute inset-[-0.16%_-0.24%]">
+            <img alt="" className="block max-w-none size-full" src={imgGroup1} />
+          </div>
+        </div>
+        <div className="absolute inset-[24.88%_45.71%_52.88%_44.38%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-176px_41px] mask-size-[309px_206px]" data-node-id="866:2201" style={{ maskImage: `url("${imgGroup}")` }} data-name="Group">
+          <div className="absolute inset-[0_-0.39%_-0.27%_-0.39%]">
+            <img alt="" className="block max-w-none size-full" src={imgGroup2} />
+          </div>
+        </div>
+      </div>
+      <div className="absolute contents left-[391px] top-[542px]" data-node-id="866:2257">
+        <div className="absolute inset-[70.31%_65.31%_23.92%_29.84%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[9px_-43px] mask-size-[309px_206px]" data-node-id="866:2255" style={{ maskImage: `url("${imgVector1}")` }} data-name="Vector">
+          <div className="absolute inset-[-1.04%_-0.81%]">
+            <img alt="" className="block max-w-none size-full" src={imgVector2} />
+          </div>
+        </div>
+        <div className="absolute inset-[69.47%_57.97%_22.59%_36.48%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-76px_-36px] mask-size-[309px_206px]" data-node-id="866:2243" style={{ maskImage: `url("${imgVector1}")` }} data-name="Group">
+          <div className="absolute inset-[-0.76%_-0.7%]">
+            <img alt="" className="block max-w-none size-full" src={imgGroup3} />
+          </div>
+        </div>
+        <div className="absolute contents inset-[62.86%_40.16%_-1.26%_35.63%]" data-node-id="866:2235">
+          <div className="absolute inset-[77.43%_40.16%_-1.24%_35.63%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-65px_-102.228px] mask-size-[309px_206px]" data-node-id="880:1267" style={{ maskImage: `url("${imgVector1}")` }} data-name="Group">
+            <div className="absolute inset-[-0.25%_-0.16%]">
+              <img alt="" className="block max-w-none size-full" src={imgGroup4} />
+            </div>
+          </div>
+          <div className="absolute inset-[62.86%_43.95%_22.49%_45.93%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-196.919px_19px] mask-size-[309px_206px]" data-node-id="880:1273" style={{ maskImage: `url("${imgVector1}")` }} data-name="Group">
+            <div className="absolute inset-[-0.36%_-0.34%_-0.41%_-0.36%]">
+              <img alt="" className="block max-w-none size-full" src={imgGroup5} />
+            </div>
+          </div>
+          <div className="absolute inset-[82.25%_46.89%_-1.26%_42.98%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-159.107px_-142.31px] mask-size-[309px_206px]" data-node-id="880:1295" style={{ maskImage: `url("${imgVector1}")` }} data-name="Group">
+            <div className="absolute inset-[-0.32%_-0.39%]">
+              <img alt="" className="block max-w-none size-full" src={imgGroup6} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute inset-[48.92%_1.7%_44.81%_71.8%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[14px_-159px] mask-size-[309px_206px]" data-node-id="880:1303" style={{ maskImage: `url("${imgGroup7}")` }} data-name="Group">
+        <div className="absolute inset-[-1.11%_-0.17%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup8} />
+        </div>
+      </div>
+      <div className="absolute inset-[35.34%_2.18%_36.98%_75.63%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-35px_-46px] mask-size-[309px_206px]" data-node-id="866:2276" style={{ maskImage: `url("${imgGroup7}")` }} data-name="Group">
+        <div className="absolute inset-[-0.22%_-0.18%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup9} />
+        </div>
+      </div>
+      <div className="absolute h-[60.173px] left-[736px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[197px_130px] mask-size-[309px_206px] top-[118px] w-[61.331px]" data-node-id="811:1320" style={{ maskImage: `url("${imgGroup7}")` }} data-name="Component 24">
+        <div className="absolute inset-[-9.62%_-9.43%]">
+          <img alt="" className="block max-w-none size-full" src={imgComponent24} />
+        </div>
+      </div>
+      <div className="absolute left-[1208px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[-275px_218px] mask-size-[309px_206px] size-[25px] top-[30px]" data-node-id="1328:1140" style={{ maskImage: `url("${imgGroup7}")` }}>
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007823} />
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+If the node is connected to a code component in the users codebase via Code Connect, the connected component will be included in the final markup wrapped in a CodeConnectSnippet element, with relevant imports at the top of the file. There are two formats: 1. Single snippet: <CodeConnectSnippet data-snippet-language="React"><TitleComponent>Hello World</TitleComponent></CodeConnectSnippet> 2. Multiple options: <CodeConnectSnippet data-snippet-language="React" options={[<Button variant="primary" />, <Button variant="secondary" />]} /> IMPORTANT: the CodeConnectSnippet wrapper element should not be part of the final code. For the options format, choose the single most appropriate option to use in your implementation. The source of the code component will be in the import path, e.g. import {ComponentName } from 'path/to/component'; IMPORTANT: the import path may not be relative/may point to a URL, so you should search for the component in the codebase and MUST use it if possible.
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## bell-01
+**Node ID:** 152:682
+
+bell, notification, alert
+
+## home-01
+**Node ID:** 152:622
+
+home, homepage, return, house, menu
+
+## route
+**Node ID:** 152:677
+
+route, map, direction
+
+## book-open-01
+**Node ID:** 152:707
+
+book, news, newspaper, article, blog, blogpost
+
+## Style=Filled, State=Enabled, Show Icon=False
+**Node ID:** 3:188
+
+Filled buttons are high-emphasis buttons. They have the most visual impact after the FAB, and should be used for important, final actions that complete a flow, like "Save", "Join now", or "Confirm".
+
+## Button
+**Node ID:** 3:15
+
+Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like Dialogs, Modal windows, Forms, Cards and Toolbars
+
+**Documentation:**
+- [http://m3.material.io/components/buttons/overview](http://m3.material.io/components/buttons/overview)
+The generated code contains image and SVG URL constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

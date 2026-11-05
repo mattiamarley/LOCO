@@ -1,0 +1,609 @@
+const imgImage = "https://www.figma.com/api/mcp/asset/0b570f2b-cd4a-4d81-ba83-97e5ef2c347b.png";
+const imgImage25 = "https://www.figma.com/api/mcp/asset/0ee77434-e8c9-42a7-bdbc-84058f063585.png";
+const imgImage28 = "https://www.figma.com/api/mcp/asset/61b93cf6-a886-457c-af3f-a4df2059cf4c.png";
+const imgEllipse586 = "https://www.figma.com/api/mcp/asset/d3ae8675-dcc2-401b-8026-205398f0706a.svg";
+const imgGroup1000007442 = "https://www.figma.com/api/mcp/asset/630faf65-bdbe-4e20-9a71-ed1b6611c4b8.svg";
+const imgEllipse543 = "https://www.figma.com/api/mcp/asset/72f9dcd0-87b0-4d68-8eb0-eb1df1762a26.svg";
+const imgEllipse545 = "https://www.figma.com/api/mcp/asset/7ed108fb-6f1d-469b-ae20-61467526f596.svg";
+const imgHome01 = "https://www.figma.com/api/mcp/asset/f271af93-5d99-4d0a-bb60-ac26f1059963.svg";
+const imgRoute = "https://www.figma.com/api/mcp/asset/c227b1ff-6ba5-4dbc-9af1-4a0b7bff2b17.svg";
+const imgBookOpen01 = "https://www.figma.com/api/mcp/asset/e169bd4a-e86c-482a-9200-810f463430d9.svg";
+const imgIcon = "https://www.figma.com/api/mcp/asset/1d6e66c8-df7f-4802-90b4-d787e283d483.svg";
+const imgEllipse573 = "https://www.figma.com/api/mcp/asset/036820c3-bce4-467e-a200-03527f80052d.svg";
+const imgGroup = "https://www.figma.com/api/mcp/asset/e029516a-8ca6-453b-b142-24609cc3dfa9.svg";
+const imgEllipse2 = "https://www.figma.com/api/mcp/asset/b49c785b-10b8-4b0e-b85e-4102a8799ab7.svg";
+const imgEllipse3 = "https://www.figma.com/api/mcp/asset/df5ee2e8-0557-4a1f-8018-f6be0d207da0.svg";
+const imgEllipse499 = "https://www.figma.com/api/mcp/asset/430514f2-4c61-4e8a-99c3-fc8ef5fa22db.svg";
+const imgEllipse501 = "https://www.figma.com/api/mcp/asset/a453047b-5ced-4223-90db-8bcb2c28a983.svg";
+const imgGroup1 = "https://www.figma.com/api/mcp/asset/71dd2d54-d079-4c3a-8116-7225e6b90bb2.svg";
+const imgLine47 = "https://www.figma.com/api/mcp/asset/e71593a6-34f7-4a78-8c44-6d4c3fe14889.svg";
+const imgGroup2 = "https://www.figma.com/api/mcp/asset/b3f344d6-afd7-47c8-a24c-462a74398f0d.svg";
+const imgEllipse546 = "https://www.figma.com/api/mcp/asset/ca616429-e0ea-4515-ad8d-3f3fd71aa134.svg";
+const imgVector97 = "https://www.figma.com/api/mcp/asset/3c2f07b5-e170-42cd-b7c6-45706d060102.svg";
+const imgEllipse502 = "https://www.figma.com/api/mcp/asset/2ec332e6-b27a-4137-abe7-808d5956544a.svg";
+const imgEllipse504 = "https://www.figma.com/api/mcp/asset/fc4029da-b57a-4d2e-9d52-64be36d5015b.svg";
+const imgEllipse507 = "https://www.figma.com/api/mcp/asset/e506dd38-bc9f-41de-b7f0-eb7340b1a18e.svg";
+const imgVector = "https://www.figma.com/api/mcp/asset/c5aeeac0-7d6a-44cd-ae91-1cc20c79119d.svg";
+const imgEllipse1 = "https://www.figma.com/api/mcp/asset/46a3e009-bff3-4f3d-8053-0cea7a5dbbd0.svg";
+const imgEllipse589 = "https://www.figma.com/api/mcp/asset/522cca2f-9ce9-46b4-8630-a6dee1bfca67.svg";
+const imgLine48 = "https://www.figma.com/api/mcp/asset/5fb52ba1-dce9-47e5-a0be-deac96359d12.svg";
+const imgLine49 = "https://www.figma.com/api/mcp/asset/1a95b597-d03f-45d7-ba56-836f2581cbe7.svg";
+const imgEllipse594 = "https://www.figma.com/api/mcp/asset/6de771a8-21c0-4745-ae99-58a6463b8685.svg";
+const imgEllipse590 = "https://www.figma.com/api/mcp/asset/a5903948-4162-473f-908e-3997a5c720a9.svg";
+const imgEllipse592 = "https://www.figma.com/api/mcp/asset/10a92394-2844-4a9e-aff7-43fb82ab35d4.svg";
+const imgEllipse591 = "https://www.figma.com/api/mcp/asset/f05daff0-1c6e-460e-b65b-6475d8bec048.svg";
+const imgImage24 = "https://www.figma.com/api/mcp/asset/449dae6c-f49a-4e4d-977f-eaec2275fe4b.svg";
+
+type Bottoni1LivelloProps = {
+  className?: string;
+  property1?: "Default";
+};
+
+function Bottoni1Livello({ className, property1 = "Default" }: Bottoni1LivelloProps) {
+  return (
+    <button className={className || "content-stretch cursor-pointer flex items-start relative"} data-node-id="815:906">
+      <div className="border border-[#613be0] border-solid content-stretch flex gap-[7px] items-center justify-center px-[15px] py-[10px] relative rounded-[20px] shrink-0" data-node-id="815:903" data-name="Bottoni 1° livello">
+        <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[#181818] text-[16px] text-left tracking-[0.1px] whitespace-nowrap" data-node-id="815:905">
+          <p className="leading-[20px]">Capitali</p>
+        </div>
+      </div>
+    </button>
+  );
+}
+
+export default function Mappete2() {
+  return (
+    <div className="bg-white relative size-full" data-node-id="587:613" data-name="MAPPETE 2">
+      <div className="absolute contents left-0 top-0" data-node-id="789:3110">
+        <div className="absolute flex h-[110px] items-center justify-center left-[849px] top-[195px] w-[150.805px]" data-node-id="789:3111">
+          <div className="flex-none rotate-[88.63deg]">
+            <div className="h-[148.296px] relative w-[106.477px]">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse586} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute h-[832px] left-0 top-0 w-[75px]" data-node-id="789:3112">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007442} />
+        </div>
+        <div className="absolute flex items-center justify-center left-[22px] size-[36px] top-[458px]" data-node-id="789:3114">
+          <div className="-scale-y-100 flex-none">
+            <div className="relative size-[36px]">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse543} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute flex items-center justify-center left-[22px] size-[36px] top-[312px]" data-node-id="789:3115">
+          <div className="-scale-y-100 flex-none">
+            <div className="relative size-[36px]">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse543} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute flex items-center justify-center left-[22px] size-[36px] top-[239px]" data-node-id="789:3116">
+          <div className="-scale-y-100 flex-none">
+            <div className="relative size-[36px]">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse545} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-[29.57%_96.09%_68.03%_2.34%]" data-node-id="789:3117" data-name="home-01">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgHome01} />
+        </div>
+        <div className="absolute inset-[38.58%_96.17%_59.25%_2.42%]" data-node-id="789:3118" data-name="route">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgRoute} />
+        </div>
+        <div className="absolute inset-[56.25%_96.17%_41.59%_2.42%]" data-node-id="789:3119" data-name="book-open-01">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgBookOpen01} />
+        </div>
+        <div className="absolute flex items-center justify-center left-[22px] size-[36px] top-[535px]" data-node-id="789:3120">
+          <div className="-scale-y-100 flex-none">
+            <div className="relative size-[36px]">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse543} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-[65.5%_96.33%_32.69%_2.58%]" data-node-id="789:3121" data-name="Icon">
+          <div className="absolute inset-[-6.67%_-7.14%]">
+            <img alt="" className="block max-w-none size-full" src={imgIcon} />
+          </div>
+        </div>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold h-[69px] leading-[40px] left-[844px] text-[#181818] text-[50px] top-[104px] tracking-[-2.5px] w-[254px]" data-node-id="789:3122">
+          Bentornata Vanessa!
+        </p>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold leading-[normal] left-[844px] text-[#303030] text-[25px] top-[318px] tracking-[-0.75px] whitespace-nowrap" data-node-id="789:3123">
+          Risorse usate
+        </p>
+        <div className="absolute bg-[#d0c4f6] h-[98px] left-[844px] rounded-[20px] top-[369px] w-[83px]" data-node-id="789:3124" />
+        <div className="absolute bg-[#d0c4f6] h-[98px] left-[958px] rounded-[20px] top-[369px] w-[83px]" data-node-id="789:3125" />
+        <div className="absolute bg-[#d0c4f6] h-[98px] left-[1072px] rounded-[20px] top-[369px] w-[83px]" data-node-id="789:3126" />
+        <div className="[word-break:break-word] absolute font-['Inter_Tight:Regular'] h-[26.436px] leading-[0] left-[856px] not-italic text-[#181818] text-[13px] top-[383px] w-[41.416px]" data-node-id="789:3127">
+          <p className="leading-[12.988px] mb-0">Track</p>
+          <p className="leading-[12.988px]">salvati</p>
+        </div>
+        <p className="[word-break:break-word] absolute font-['Inter_Tight:Regular'] h-[27px] leading-[12.988px] left-[966px] not-italic text-[#181818] text-[13px] top-[382px] w-[53px] whitespace-pre-wrap" data-node-id="789:3128">
+          {`Scan `}
+          <br aria-hidden />
+          stanze
+        </p>
+        <p className="[word-break:break-word] absolute font-['Inter_Tight:Regular'] h-[26.436px] leading-[12.988px] left-[1083px] not-italic text-[#181818] text-[13px] top-[383px] w-[41.416px]" data-node-id="789:3129">
+          Loci inseriti
+        </p>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:Medium'] font-medium h-[35px] leading-[normal] left-[1079px] text-[#181818] text-[30px] top-[412px] tracking-[-1.5px] w-[69px]" data-node-id="789:3130">
+          molti
+        </p>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:Medium'] font-medium h-[34.367px] leading-[normal] left-[856px] text-[#181818] text-[30px] top-[413px] tracking-[-0.9px] w-[44.06px]" data-node-id="789:3131">
+          2\5
+        </p>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:Medium'] font-medium h-[34.367px] leading-[normal] left-[971px] text-[#181818] text-[30px] top-[415px] tracking-[-1.5px] w-[44.06px]" data-node-id="789:3132">
+          2\5
+        </p>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold leading-[normal] left-[850px] text-[#303030] text-[25px] top-[491px] tracking-[-0.75px] whitespace-nowrap" data-node-id="789:3133">
+          Il tuo piano
+        </p>
+        <div className="absolute flex h-[164.036px] items-center justify-center left-[867.08px] top-[576.47px] w-[198.065px]" data-node-id="789:3134">
+          <div className="flex-none rotate-[88.63deg]">
+            <div className="h-[194.3px] relative w-[159.426px]">
+              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse573} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute flex inset-[66.23%_8.67%_11.45%_74.46%] items-center justify-center" data-node-id="789:3135" style={{ containerType: "size" }}>
+          <div className="-scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+            <div className="relative size-full" data-name="Group">
+              <div className="absolute inset-[-0.25%_-0.22%]">
+                <img alt="" className="block max-w-none size-full" src={imgGroup} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="-translate-x-1/2 -translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] justify-center leading-[0] left-[calc(50%+252.72px)] not-italic text-[#181818] text-[0px] text-center top-[615px] w-[107.44px]" data-node-id="789:3206">
+          <p className="font-['Baloo_2:Bold'] font-bold text-[40.8px]">
+            <span className="leading-[34px]">{`POCO `}</span>
+            <span className="leading-[34px] text-[#181818]">LOCO</span>
+          </p>
+        </div>
+        <div className="absolute bg-[#613be0] content-stretch flex gap-[5.511px] h-[32.5px] items-center justify-center left-[844px] px-[11.81px] py-[7.873px] rounded-[15.747px] top-[702.75px] w-[97.631px]" data-node-id="789:3207" data-name="Bottoni 1° livello">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[12.6px] text-white tracking-[0.1px] whitespace-nowrap" data-node-id="I789:3207;34:60">
+            <p className="leading-[15.747px]">Cambia piano</p>
+          </div>
+        </div>
+        <div className="absolute bg-[#613be0] content-stretch flex gap-[5.511px] h-[32.5px] items-center justify-center left-[1023px] px-[11.81px] py-[7.873px] rounded-[15.747px] top-[233px] w-[97.631px]" data-node-id="789:3208" data-name="Bottoni 1° livello">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[12.6px] text-white tracking-[0.1px] whitespace-nowrap" data-node-id="I789:3208;34:60">
+            <p className="leading-[15.747px]">Modifica profilo</p>
+          </div>
+        </div>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold h-[34px] leading-[25px] left-[152px] text-[#181818] text-[35px] top-[90px] tracking-[-1.05px] w-[291px]" data-node-id="789:3209">
+          I tuoi percorsi
+        </p>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold h-[34px] leading-[25px] left-[149px] text-[#181818] text-[35px] top-[525.56px] tracking-[-1.05px] w-[291px]" data-node-id="789:3210">
+          I tuoi corsi
+        </p>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold leading-[normal] left-[301.42px] text-[#181818] text-[19.309px] top-[161.69px] whitespace-nowrap" data-node-id="789:3211">
+          75%
+        </p>
+        <div className="absolute left-[282.12px] size-[71.718px] top-[141px]" data-node-id="789:3212">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse2} />
+        </div>
+        <div className="absolute left-[282.12px] size-[71.718px] top-[141px]" data-node-id="789:3213">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse3} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[18.442px] justify-center leading-[0] left-[152px] not-italic text-[#181818] text-[20.491px] top-[174.81px] tracking-[0.1433px] w-[108.601px]" data-node-id="789:3214">
+          <p className="leading-[25.613px]">Casa Torino</p>
+        </div>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold leading-[normal] left-[589.82px] text-[#181818] text-[19.309px] top-[161.69px] whitespace-nowrap" data-node-id="789:3215">
+          75%
+        </p>
+        <div className="absolute left-[570.51px] size-[71.718px] top-[141px]" data-node-id="789:3216">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse2} />
+        </div>
+        <div className="absolute left-[570.51px] size-[71.718px] top-[141px]" data-node-id="789:3217">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse3} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[18.442px] justify-center leading-[0] left-[424px] not-italic text-[#181818] text-[20.491px] top-[174.81px] tracking-[0.1433px] w-[124.994px]" data-node-id="789:3218">
+          <p className="leading-[25.613px]">Cucina nonna</p>
+        </div>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold leading-[normal] left-[301.42px] text-[#181818] text-[19.309px] top-[256.97px] whitespace-nowrap" data-node-id="789:3219">
+          75%
+        </p>
+        <div className="absolute left-[282.12px] size-[71.718px] top-[236.28px]" data-node-id="789:3220">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse2} />
+        </div>
+        <div className="absolute left-[282.12px] size-[71.718px] top-[236.28px]" data-node-id="789:3221">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse3} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[18.442px] justify-center leading-[0] left-[152px] not-italic text-[#181818] text-[20.491px] top-[270.09px] tracking-[0.1433px] w-[108.601px]" data-node-id="789:3222">
+          <p className="leading-[25.613px]">Parchetto</p>
+        </div>
+        <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold leading-[normal] left-[589.82px] text-[#181818] text-[19.309px] top-[256.97px] whitespace-nowrap" data-node-id="789:3223">
+          75%
+        </p>
+        <div className="absolute left-[570.51px] size-[71.718px] top-[236.28px]" data-node-id="789:3224">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse2} />
+        </div>
+        <div className="absolute left-[570.51px] size-[71.718px] top-[236.28px]" data-node-id="789:3225">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse3} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[18.442px] justify-center leading-[0] left-[424px] not-italic text-[#181818] text-[20.491px] top-[270.09px] tracking-[0.1433px] w-[108.601px]" data-node-id="789:3226">
+          <p className="leading-[25.613px]">Stanza TO</p>
+        </div>
+        <div className="absolute h-[159px] left-[144px] rounded-[20px] top-[338px] w-[559px]" data-node-id="789:3227" data-name="image">
+          <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[20px]">
+            <img alt="" className="absolute max-w-none object-cover rounded-[20px] size-full" src={imgImage} />
+            <div className="absolute bg-[#d0c4f6] inset-0 rounded-[20px]" />
+          </div>
+        </div>
+        <div className="absolute bg-[#613be0] content-stretch flex gap-[7.337px] h-[42.5px] items-center justify-center left-[196px] px-[15.723px] py-[10.482px] rounded-[20.964px] top-[395px] w-[158.231px]" data-node-id="789:3228" data-name="Bottoni 1° livello">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[16.77px] text-white tracking-[0.1px] whitespace-nowrap" data-node-id="I789:3228;34:60">
+            <p className="leading-[20.964px]">Crea percorsi</p>
+          </div>
+        </div>
+        <p className="[word-break:break-word] absolute font-['Inter_Tight:Medium'] h-[32.913px] leading-[23.509px] left-[167.57px] not-italic text-[#181818] text-[24px] top-[577.89px] tracking-[0.1175px] w-[95.212px]" data-node-id="789:3229">
+          Corso 1
+        </p>
+        <div className="absolute left-[167.86px] size-[10.579px] top-[643.86px]" data-node-id="789:3230">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse499} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[21.158px] justify-center leading-[0] left-[184.18px] not-italic text-[#181818] text-[12px] top-[651.14px] tracking-[0.1175px] w-[122.248px]" data-node-id="789:3231">
+          <p className="leading-[11.755px] whitespace-pre-wrap">
+            {`Approccio alle `}
+            <br aria-hidden />
+            {`tecniche mnemoniche `}
+          </p>
+        </div>
+        <div className="absolute left-[166.69px] size-[10.579px] top-[680.3px]" data-node-id="789:3232">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse499} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[21.158px] justify-center leading-[0] left-[183px] not-italic text-[#181818] text-[12px] top-[687.58px] tracking-[0.1175px] w-[122.248px]" data-node-id="789:3233">
+          <p className="leading-[11.755px]">Introduzione della Tecnica dei Loci</p>
+        </div>
+        <div className="absolute left-[166.69px] size-[10.579px] top-[716.74px]" data-node-id="789:3234">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse501} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[21.158px] justify-center leading-[0] left-[184.03px] not-italic text-[#181818] text-[12px] top-[721.36px] tracking-[0.1175px] w-[122.248px]" data-node-id="789:3235">
+          <p className="leading-[11.755px] whitespace-pre-wrap">
+            {`Come utilizzare la `}
+            <br aria-hidden />
+            Tecnica dei Loci
+          </p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Medium'] h-[24.685px] justify-center leading-[0] left-[168px] not-italic text-[#181818] text-[12px] top-[778.34px] tracking-[0.1175px] w-[30.562px]" data-node-id="789:3236">
+          <p className="leading-[23.509px]">3/3</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Medium'] h-[28.211px] justify-center leading-[0] left-[168px] not-italic text-[#181818] text-[12px] top-[761.11px] tracking-[0.1175px] w-[94.037px]" data-node-id="789:3237">
+          <p className="leading-[23.509px]">Lezioni svolte</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[10.082px] justify-center leading-[0] left-[168.37px] not-italic text-[#181818] text-[12.603px] top-[610.93px] tracking-[0.1175px] w-[107.546px]" data-node-id="789:3238">
+          <p className="leading-[23.509px]">Tecnica dei Loci</p>
+        </div>
+        <div className="absolute inset-[37.38%_46.17%_39.47%_32.97%]" data-node-id="789:3239" data-name="Group">
+          <div className="absolute inset-[-0.25%_-0.18%]">
+            <img alt="" className="block max-w-none size-full" src={imgGroup1} />
+          </div>
+        </div>
+        <div className="-translate-y-1/2 absolute flex h-[737px] items-center justify-center left-[773px] top-[calc(50%+6.5px)] w-0" data-node-id="789:3324">
+          <div className="flex-none rotate-90">
+            <div className="h-0 relative w-[737px]">
+              <div className="absolute inset-[-1px_0_0_0]">
+                <img alt="" className="block max-w-none size-full" src={imgLine47} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute contents inset-[25.29%_24.48%_65.31%_69.49%]" data-node-id="789:3325" data-name="Group">
+          <div className="absolute inset-[25.29%_24.48%_65.31%_69.49%]" data-node-id="789:3326" data-name="Group">
+            <div className="absolute inset-[-1.46%_-1.49%_-1.46%_-1.48%]">
+              <img alt="" className="block max-w-none size-full" src={imgGroup2} />
+            </div>
+          </div>
+        </div>
+        <div className="absolute flex items-center justify-center left-[28px] size-[60px] top-[373px]" data-node-id="789:3335">
+          <div className="-scale-y-100 flex-none">
+            <div className="relative size-[60px]">
+              <div className="absolute inset-[-16.67%]">
+                <img alt="" className="block max-w-none size-full" src={imgEllipse546} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute bottom-1/2 flex items-center justify-center left-[3.52%] right-[94.45%] top-[46.87%]" data-node-id="789:3336" style={{ containerType: "size" }}>
+          <div className="flex-none h-[100cqw] rotate-90 w-[100cqh]">
+            <div className="relative size-full">
+              <div className="absolute inset-[-4.38%]">
+                <img alt="" className="block max-w-none size-full" src={imgVector97} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <p className="[word-break:break-word] absolute font-['Inter_Tight:Medium'] h-[33.597px] leading-[23.998px] left-[363.81px] not-italic text-[#181818] text-[23.998px] top-[578px] tracking-[0.12px] w-[88.792px]" data-node-id="789:3337">
+          Corso 2
+        </p>
+        <div className="absolute left-[361px] size-[10.799px] top-[646.03px]" data-node-id="789:3338">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse502} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[21.598px] justify-center leading-[0] left-[380.2px] not-italic text-[#181818] text-[11.999px] top-[651.8px] tracking-[0.12px] w-[124.788px]" data-node-id="789:3339">
+          <p className="leading-[11.999px] whitespace-pre-wrap">
+            {`Introduzione al `}
+            <br aria-hidden />
+            Linked method
+          </p>
+        </div>
+        <div className="absolute left-[361.41px] size-[10.799px] top-[682.54px]" data-node-id="789:3340">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse502} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[21.598px] justify-center leading-[0] left-[379px] not-italic text-[#181818] text-[11.999px] top-[689px] tracking-[0.12px] w-[124.788px]" data-node-id="789:3341">
+          <p className="leading-[11.999px] whitespace-pre-wrap">
+            {`Come creare storie `}
+            <br aria-hidden />
+            per il Linked method
+          </p>
+        </div>
+        <div className="absolute left-[361.41px] size-[10.799px] top-[719.73px]" data-node-id="789:3342">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse504} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[21.598px] justify-center leading-[0] left-[379px] not-italic text-[11.999px] text-[rgba(24,24,24,0.4)] top-[726.19px] tracking-[0.12px] w-[124.788px]" data-node-id="789:3343">
+          <p className="leading-[11.999px]">
+            Come utilizzare il
+            <br aria-hidden />
+            Linked method
+          </p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Medium'] h-[25.198px] justify-center leading-[0] left-[361px] not-italic text-[#181818] text-[11.999px] top-[778.6px] tracking-[0.12px] w-[31.197px]" data-node-id="789:3344">
+          <p className="leading-[23.998px]">2/3</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Medium'] h-[28.797px] justify-center leading-[0] left-[361px] not-italic text-[#181818] text-[11.999px] top-[761.4px] tracking-[0.12px] w-[74.393px]" data-node-id="789:3345">
+          <p className="leading-[23.998px]">Lezioni svolte</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[10.292px] justify-center leading-[0] left-[363.57px] not-italic text-[#181818] text-[12.6px] top-[611.72px] tracking-[0.12px] w-[109.781px]" data-node-id="789:3346">
+          <p className="leading-[23.998px]">Linked method</p>
+        </div>
+        <p className="[word-break:break-word] absolute font-['Inter_Tight:Medium'] h-[33.159px] leading-[23.685px] left-[546px] not-italic text-[#181818] text-[24px] top-[578px] tracking-[0.1184px] w-[107.768px]" data-node-id="789:3347">
+          Corso 3
+        </p>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[21.317px] justify-center leading-[0] left-[566.19px] not-italic opacity-40 text-[#181818] text-[11.843px] top-[650.66px] tracking-[0.1184px] w-[123.163px]" data-node-id="789:3348">
+          <p className="leading-[11.843px]">Introduzione alla Conversione fonetica</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[21.317px] justify-center leading-[0] left-[565px] not-italic opacity-40 text-[#181818] text-[11.843px] top-[687.37px] tracking-[0.1184px] w-[123.163px]" data-node-id="789:3349">
+          <p className="leading-[11.843px]">Come imparare l’alfabeto numerico</p>
+        </div>
+        <div className="absolute left-[546.42px] size-[10.658px] top-[717.89px]" data-node-id="789:3350">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse507} />
+        </div>
+        <div className="absolute left-[546.42px] size-[10.658px] top-[681.54px]" data-node-id="789:3351">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse507} />
+        </div>
+        <div className="absolute left-[546.42px] size-[10.658px] top-[644.3px]" data-node-id="789:3352">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse507} />
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[21.317px] justify-center leading-[0] left-[565px] not-italic opacity-40 text-[#181818] text-[11.843px] top-[724.08px] tracking-[0.1184px] w-[123.163px]" data-node-id="789:3353">
+          <p className="leading-[11.843px] whitespace-pre-wrap">
+            {`Come utilizzare la `}
+            <br aria-hidden />
+            Conversione fonetica
+          </p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[10.158px] justify-center leading-[0] left-[546.42px] not-italic text-[#181818] text-[12.6px] top-[611.28px] tracking-[0.1184px] w-[133.747px]" data-node-id="789:3354">
+          <p className="leading-[23.685px]">Conversione fonetica</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Medium'] h-[24.87px] justify-center leading-[0] left-[546px] not-italic text-[#181818] text-[12px] top-[778.43px] tracking-[0.1184px] w-[30.791px]" data-node-id="789:3355">
+          <p className="leading-[23.685px]">0/3</p>
+        </div>
+        <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Medium'] h-[28.422px] justify-center leading-[0] left-[546px] not-italic text-[#181818] text-[12px] top-[761.21px] tracking-[0.1184px] w-[73.424px]" data-node-id="789:3356">
+          <p className="leading-[23.685px]">Lezioni svolte</p>
+        </div>
+        <div className="absolute contents inset-[1.8%_94.84%_93.31%_0.86%]" data-node-id="789:3357">
+          <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[3.36%_94.84%_93.31%_1.23%] justify-center leading-[0] not-italic text-[39.964px] text-black text-center tracking-[-1.5619px] whitespace-pre-wrap" data-node-id="789:3358">
+            <p className="leading-[26.776px] mb-0">{`   O`}</p>
+            <p className="leading-[26.776px]">CO</p>
+          </div>
+          <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[1.8%_96.43%_94.86%_0.86%] justify-center leading-[0] not-italic text-[36.634px] text-center text-white tracking-[0.0033px]" data-node-id="789:3359">
+            <p className="leading-[0.933px]">L</p>
+          </div>
+          <div className="absolute flex inset-[2%_98.18%_96.65%_0.86%] items-center justify-center" data-node-id="789:3360" style={{ containerType: "size" }}>
+            <div className="-scale-x-100 flex-none h-[hypot(27.271cqw,60.7909cqh)] rotate-[-26.19deg] w-[hypot(-72.729cqw,39.2091cqh)]">
+              <div className="relative size-full" data-name="Vector">
+                <div className="absolute inset-[-5.49%_-4.2%_-5.48%_-4.18%]">
+                  <img alt="" className="block max-w-none size-full" src={imgVector} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="absolute inset-[2.12%_98.11%_97.64%_1.81%]" data-node-id="789:3361">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse1} />
+          </div>
+        </div>
+      </div>
+      <div className="absolute bg-[rgba(24,24,24,0.6)] h-[832px] left-0 top-0 w-[1280px]" data-node-id="587:884" />
+      <div className="-translate-x-1/2 -translate-y-1/2 absolute bg-white h-[737px] left-[calc(50%+0.5px)] rounded-[20px] top-[calc(50%+0.5px)] w-[1179px]" data-node-id="587:885" />
+      <a className="-translate-x-1/2 absolute content-stretch cursor-pointer flex flex-col items-center justify-center left-[calc(50%+50.5px)] top-[693px] w-[113px]" data-node-id="897:3393" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3393;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Salva" labelText="Salva" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </a>
+      <div className="absolute flex items-center justify-center left-[1187px] size-[60px] top-[37px]" data-node-id="587:886">
+        <div className="-scale-y-100 flex-none">
+          <div className="relative size-[60px]">
+            <div className="absolute inset-[-16.67%]">
+              <img alt="" className="block max-w-none size-full" src={imgEllipse589} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="-translate-y-1/2 [word-break:break-word] absolute flex flex-col font-['Inter_Tight:Regular'] h-[55px] justify-center leading-[0] left-[calc(50%-542px)] not-italic text-[18px] text-black top-[204.5px] w-[456px]" data-node-id="587:907">
+        <p className="leading-[18px] whitespace-pre-wrap">{`Inserisci le informazioni utili al completamento del percorso,  ti servirà per ritrovare i tuoi percorsi! `}</p>
+      </div>
+      <p className="[word-break:break-word] absolute font-['Baloo_2:SemiBold'] font-semibold h-[46px] leading-[50px] left-[calc(50%-543px)] text-[40px] text-black top-[128px] tracking-[-2px] w-[472px]" data-node-id="587:908">
+        Dicci di più del percorso
+      </p>
+      <CodeConnectSnippet data-node-id="587:939" data-name="Search">
+        {/* Simple Design System component */}
+        <Search textValue="Nome percorso..." value="Nome percorso..." variantState="Default" state="Default" variantValueType="Default" valueType="Default">
+          <X variantSize="16" size="16" />
+        </Search>
+      </CodeConnectSnippet>
+      <p className="[word-break:break-word] absolute font-['Inter_Tight:SemiBold'] h-[43px] leading-none left-[633px] not-italic text-[25px] text-black top-[246px] w-[367px]" data-node-id="587:944">
+        Come vuoi intitolare il percorso?
+      </p>
+      <CodeConnectSnippet data-node-id="587:945" data-name="Search">
+        {/* Simple Design System component */}
+        <Search textValue="Descrivi percorso..." value="Descrivi percorso..." variantState="Default" state="Default" variantValueType="Default" valueType="Default">
+          <X variantSize="16" size="16" />
+        </Search>
+      </CodeConnectSnippet>
+      <CodeConnectSnippet data-node-id="811:1021" data-name="Search">
+        {/* Simple Design System component */}
+        <Search textValue="Altro..." value="Altro..." variantState="Default" state="Default" variantValueType="Default" valueType="Default">
+          <X variantSize="16" size="16" />
+        </Search>
+      </CodeConnectSnippet>
+      <p className="[word-break:break-word] absolute font-['Inter_Tight:SemiBold'] h-[43px] leading-none left-[633px] not-italic text-[25px] text-black top-[359px] w-[392px]" data-node-id="587:946">{`Descrivi le nozioni da associare `}</p>
+      <p className="[word-break:break-word] absolute font-['Inter_Tight:SemiBold'] h-[43px] leading-none left-[633px] not-italic text-[25px] text-black top-[476px] w-[250px]" data-node-id="587:952">
+        Cosa vuoi imparare?
+      </p>
+      <button className="absolute content-stretch cursor-pointer flex items-start left-[730px] top-[537px]" data-node-id="815:944" data-name="Bottoni 1° livello">
+        <div className="border border-[#613be0] border-solid content-stretch flex gap-[7px] items-center justify-center px-[15px] py-[10px] relative rounded-[20px] shrink-0" data-node-id="I815:944;815:903" data-name="Bottoni 1° livello">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[#181818] text-[16px] text-left tracking-[0.1px] whitespace-nowrap" data-node-id="I815:944;815:905">
+            <p className="leading-[20px]">Compleanni</p>
+          </div>
+        </div>
+      </button>
+      <button className="absolute content-stretch cursor-pointer flex items-start left-[860px] top-[537px]" data-node-id="815:954" data-name="Bottoni 1° livello">
+        <div className="border border-[#613be0] border-solid content-stretch flex gap-[7px] items-center justify-center px-[15px] py-[10px] relative rounded-[20px] shrink-0" data-node-id="I815:954;815:903" data-name="Bottoni 1° livello">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[#181818] text-[16px] text-left tracking-[0.1px] whitespace-nowrap" data-node-id="I815:954;815:905">
+            <p className="leading-[20px]">Storia</p>
+          </div>
+        </div>
+      </button>
+      <button className="absolute content-stretch cursor-pointer flex items-start left-[945px] top-[537px]" data-node-id="815:964" data-name="Bottoni 1° livello">
+        <div className="border border-[#613be0] border-solid content-stretch flex gap-[7px] items-center justify-center px-[15px] py-[10px] relative rounded-[20px] shrink-0" data-node-id="I815:964;815:903" data-name="Bottoni 1° livello">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[#181818] text-[16px] text-left tracking-[0.1px] whitespace-nowrap" data-node-id="I815:964;815:905">
+            <p className="leading-[20px]">Lista della spesa</p>
+          </div>
+        </div>
+      </button>
+      <button className="absolute content-stretch cursor-pointer flex items-start left-[633px] top-[588px]" data-node-id="815:974" data-name="Bottoni 1° livello">
+        <div className="border border-[#613be0] border-solid content-stretch flex gap-[7px] items-center justify-center px-[15px] py-[10px] relative rounded-[20px] shrink-0" data-node-id="I815:974;815:903" data-name="Bottoni 1° livello">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[#181818] text-[16px] text-left tracking-[0.1px] whitespace-nowrap" data-node-id="I815:974;815:905">
+            <p className="leading-[20px]">Chimica</p>
+          </div>
+        </div>
+      </button>
+      <button className="absolute content-stretch cursor-pointer flex items-start left-[734px] top-[588px]" data-node-id="815:984" data-name="Bottoni 1° livello">
+        <div className="border border-[#613be0] border-solid content-stretch flex gap-[7px] items-center justify-center px-[15px] py-[10px] relative rounded-[20px] shrink-0" data-node-id="I815:984;815:903" data-name="Bottoni 1° livello">
+          <div className="[word-break:break-word] flex flex-col font-['Inter_Tight:SemiBold'] justify-center leading-[0] not-italic relative shrink-0 text-[#181818] text-[16px] text-left tracking-[0.1px] whitespace-nowrap" data-node-id="I815:984;815:905">
+            <p className="leading-[20px]">Discorso</p>
+          </div>
+        </div>
+      </button>
+      <div className="absolute contents left-[388px] top-[68px]" data-node-id="789:1991">
+        <p className="[word-break:break-word] absolute font-['Inter_Tight:Light'] leading-[18px] left-[calc(50%-252px)] not-italic text-[14px] text-black top-[103px] whitespace-nowrap" data-node-id="789:1992">
+          Posizione
+        </p>
+        <p className="[word-break:break-word] absolute font-['Inter_Tight:Light'] leading-[18px] left-[calc(50%-101px)] not-italic text-[14px] text-black top-[103px] whitespace-nowrap" data-node-id="789:1993">
+          Tracciato
+        </p>
+        <p className="[word-break:break-word] absolute font-['Inter_Tight:SemiBold'] leading-[18px] left-[calc(50%+46px)] not-italic text-[14px] text-black top-[103px] whitespace-nowrap" data-node-id="789:1994">
+          Anagrafica
+        </p>
+        <p className="[word-break:break-word] absolute font-['Inter_Tight:Light'] leading-[18px] left-[calc(50%+216px)] not-italic text-[14px] text-[rgba(0,0,0,0.6)] top-[103px] whitespace-nowrap" data-node-id="789:1995">
+          Fine
+        </p>
+        <div className="-translate-x-1/2 absolute contents left-[calc(50%+3.31px)] top-[68px]" data-node-id="789:1996">
+          <div className="-translate-x-1/2 absolute h-[2.112px] left-[calc(50%+3px)] top-[87.73px] w-[452px]" data-node-id="789:1997">
+            <div className="absolute bottom-full left-0 right-0 top-[-300%]">
+              <img alt="" className="block max-w-none size-full" src={imgLine48} />
+            </div>
+          </div>
+          <div className="-translate-x-1/2 absolute h-[2.112px] left-[calc(50%-69.86px)] top-[87.73px] w-[306.28px]" data-node-id="789:1998">
+            <div className="absolute bottom-full left-0 right-0 top-[-300%]">
+              <img alt="" className="block max-w-none size-full" src={imgLine49} />
+            </div>
+          </div>
+          <div className="absolute left-[702px] size-[33px] top-[68px]" data-node-id="789:2004">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse594} />
+          </div>
+          <a className="-translate-x-1/2 absolute block cursor-pointer left-[calc(50%-71.44px)] size-[21.123px] top-[74px]" data-node-id="789:2000">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse590} />
+          </a>
+          <div className="-translate-x-1/2 absolute left-[calc(50%+229.06px)] size-[21.123px] top-[74px]" data-node-id="789:2001">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse592} />
+          </div>
+          <a className="-translate-x-1/2 absolute block cursor-pointer left-[calc(50%-222.44px)] size-[21.123px] top-[74px]" data-node-id="789:2002">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse591} />
+          </a>
+        </div>
+      </div>
+      <Bottoni1Livello className="absolute content-stretch cursor-pointer flex items-start left-[634px] top-[536px]" />
+      <div className="absolute contents left-[98px] top-[244px]" data-node-id="967:1068">
+        <div className="absolute h-[627px] left-[-19px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[117px_36px] mask-size-[458px_499px] top-[208px] w-[730px]" data-node-id="927:2199" style={{ maskImage: `url("${imgImage24}")` }} data-name="image 24">
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage25} />
+        </div>
+        <div className="absolute h-[633px] left-[-78px] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-position-[176px_75px] mask-size-[458px_499px] top-[169px] w-[907px]" data-node-id="1342:1542" style={{ maskImage: `url("${imgImage24}")` }} data-name="image 28">
+          <img alt="" className="absolute inset-0 max-w-none object-cover pointer-events-none size-full" src={imgImage28} />
+        </div>
+      </div>
+      <a className="-translate-x-1/2 absolute content-stretch cursor-pointer flex flex-col items-center justify-center left-[calc(50%+577.5px)] size-[61px] top-[35px]" data-node-id="967:1069" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I967:1069;897:3465">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="" labelText="" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="True" showIcon="True">
+            <Icon />
+          </Button>
+        </CodeConnectSnippet>
+      </a>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+These styles are contained in the design: Black font: #303030.
+If the node is connected to a code component in the users codebase via Code Connect, the connected component will be included in the final markup wrapped in a CodeConnectSnippet element, with relevant imports at the top of the file. There are two formats: 1. Single snippet: <CodeConnectSnippet data-snippet-language="React"><TitleComponent>Hello World</TitleComponent></CodeConnectSnippet> 2. Multiple options: <CodeConnectSnippet data-snippet-language="React" options={[<Button variant="primary" />, <Button variant="secondary" />]} /> IMPORTANT: the CodeConnectSnippet wrapper element should not be part of the final code. For the options format, choose the single most appropriate option to use in your implementation. The source of the code component will be in the import path, e.g. import {ComponentName } from 'path/to/component'; IMPORTANT: the import path may not be relative/may point to a URL, so you should search for the component in the codebase and MUST use it if possible.
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## home-01
+**Node ID:** 152:622
+
+home, homepage, return, house, menu
+
+## route
+**Node ID:** 152:677
+
+route, map, direction
+
+## book-open-01
+**Node ID:** 152:707
+
+book, news, newspaper, article, blog, blogpost
+
+## Style=Filled, State=Enabled, Show Icon=False
+**Node ID:** 3:188
+
+Filled buttons are high-emphasis buttons. They have the most visual impact after the FAB, and should be used for important, final actions that complete a flow, like "Save", "Join now", or "Confirm".
+
+## Button
+**Node ID:** 3:15
+
+Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like Dialogs, Modal windows, Forms, Cards and Toolbars
+
+**Documentation:**
+- [http://m3.material.io/components/buttons/overview](http://m3.material.io/components/buttons/overview)
+
+## X
+**Node ID:** 30:55
+
+Keywords: cancel, close, delete, remove, times, clear
+
+## Style=Filled, State=Enabled, Show Icon=True
+**Node ID:** 3:172
+
+Filled buttons are high-emphasis buttons. They have the most visual impact after the FAB, and should be used for important, final actions that complete a flow, like "Save", "Join now", or "Confirm".
+The generated code contains image and SVG URL constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

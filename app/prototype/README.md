@@ -15,3 +15,9 @@ I dati sono locali a browser e origine: cancellare i dati del browser o cambiare
 È un prototipo di funzionamento, non la riproduzione completa del Figma definitivo. Scansione video/3D, AI, Street View, pagamenti e account non sono implementati. Le illustrazioni/font provengono dai materiali originali. Non aggiungere riprese personali al repository pubblico: usare `user-data/` ignorato da Git.
 
 Verifica: `node --test app/prototype/tests/model.test.mjs`.
+
+## Portale derivato dal Figma definitivo
+
+La pagina iniziale ora apre il portale con 15 viste tratte dai contesti Figma; la precedente prova della stanza è in [laboratory.html](laboratory.html), accessibile dal collegamento sotto il portale. Navigazione e bozze sono locali e dimostrative. Il layout desktop riproduce il canvas originale; il mobile è un adattamento responsive ancora da completare nella fedeltà visiva. Il rapporto `research/figma/IMPLEMENTATION-FIDELITY.md` documenta verifiche, screenshot e difformità residue, compreso il contenitore mappa privo di asset nell'export acquisito. Non considerare l'app completa o certificata pixel-perfect.
+
+Rigenerazione viste: `python3 scripts/build-figma-views.py`. Test completi: `node --test app/prototype/tests/*.test.mjs`.

@@ -1,0 +1,37 @@
+const imgVector = "https://www.figma.com/api/mcp/asset/4c0a3a4c-d4d8-41e7-9626-b3cf55246870.svg";
+const imgEllipse1 = "https://www.figma.com/api/mcp/asset/48213071-e5df-4e4c-92db-f0128cd1a4ca.svg";
+
+export default function Group9() {
+  return (
+    <div className="contents relative size-full" data-node-id="652:1009">
+      <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[3.36%_94.69%_93.31%_1.38%] justify-center leading-[0] not-italic text-[39.964px] text-black text-center tracking-[-1.5619px] whitespace-pre-wrap" data-node-id="652:1010">
+        <p className="leading-[26.776px] mb-0">{`   O`}</p>
+        <p className="leading-[26.776px]">CO</p>
+      </div>
+      <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[1.8%_96.28%_94.86%_1.02%] justify-center leading-[0] not-italic text-[36.634px] text-center text-white tracking-[0.0033px]" data-node-id="652:1011">
+        <p className="leading-[0.933px]">L</p>
+      </div>
+      <div className="absolute flex inset-[2%_98.02%_96.65%_1.02%] items-center justify-center" data-node-id="652:1012" style={{ containerType: "size" }}>
+        <div className="-scale-x-100 flex-none h-[hypot(27.271cqw,60.7909cqh)] rotate-[-26.19deg] w-[hypot(-72.729cqw,39.2091cqh)]">
+          <div className="relative size-full" data-name="Vector">
+            <div className="absolute inset-[-5.49%_-4.2%_-5.48%_-4.18%]">
+              <img alt="" className="block max-w-none size-full" src={imgVector} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute inset-[2.12%_97.96%_97.64%_1.97%]" data-node-id="652:1013">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse1} />
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+The generated code contains image and SVG URL constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

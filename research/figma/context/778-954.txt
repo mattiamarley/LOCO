@@ -1,0 +1,547 @@
+const imgGroup1000007442 = "https://www.figma.com/api/mcp/asset/a84a5558-b26f-4dde-8182-b14e189e718f.svg";
+const imgEllipse543 = "https://www.figma.com/api/mcp/asset/e1ac0318-b29c-4081-b4d3-c4c8be153cdb.svg";
+const imgGroup1000007780 = "https://www.figma.com/api/mcp/asset/ef7cbfc9-51bf-46e9-a236-d68c986e0ee0.svg";
+const imgGroup1000007781 = "https://www.figma.com/api/mcp/asset/d299a3da-c7d2-4c93-a09b-aab86485d350.svg";
+const imgBookOpen01 = "https://www.figma.com/api/mcp/asset/8d25f722-37a3-40ea-9f67-9db50c4616bf.svg";
+const imgGroup1000007793 = "https://www.figma.com/api/mcp/asset/a24f1692-95f5-47f5-b904-1ede57c21439.svg";
+const imgVector = "https://www.figma.com/api/mcp/asset/453df75d-3114-405e-a8c6-e07d59e610ed.svg";
+const imgEllipse1 = "https://www.figma.com/api/mcp/asset/26997a1b-3bbf-4fcb-b1a6-2c0bf7e98494.svg";
+const imgLivello3 = "https://www.figma.com/api/mcp/asset/6394def0-3fc0-4e80-8ee2-e2c4597038b4.svg";
+const imgVector1 = "https://www.figma.com/api/mcp/asset/57d2ce2a-64ac-42ec-8199-7d7d8a5a4461.svg";
+const imgGroup11 = "https://www.figma.com/api/mcp/asset/98b14e5b-8cb2-4c96-b688-22a18914fefd.svg";
+const imgVector2 = "https://www.figma.com/api/mcp/asset/0664a9b8-74e8-4e09-8297-05d38b671c71.svg";
+const imgGroup = "https://www.figma.com/api/mcp/asset/6916c2fa-9a47-4447-9bf3-b982dd4a8db4.svg";
+const imgVector3 = "https://www.figma.com/api/mcp/asset/857325d2-1072-4319-9f15-008a1947a0c6.svg";
+const imgGroup1 = "https://www.figma.com/api/mcp/asset/9252e7dc-0769-462f-b23e-1aa6a4aebde5.svg";
+const imgGroup2 = "https://www.figma.com/api/mcp/asset/103452c4-9811-4c0e-8d7f-315d6d02f505.svg";
+const imgVector4 = "https://www.figma.com/api/mcp/asset/05f3a9fb-334b-4f50-af63-56c2556e702b.svg";
+const imgGroup3 = "https://www.figma.com/api/mcp/asset/2c32a9c7-15f3-4ad1-9b47-2519594f056f.svg";
+const imgGroup4 = "https://www.figma.com/api/mcp/asset/a3ba9c5e-3e2f-4985-8586-402c40e29d92.svg";
+const imgVector5 = "https://www.figma.com/api/mcp/asset/c1065299-2ec5-49e0-bfe7-4ab44b74f446.svg";
+const imgGroup5 = "https://www.figma.com/api/mcp/asset/0e48ff85-d2ba-4908-b41f-335a1a27a408.svg";
+const imgVector6 = "https://www.figma.com/api/mcp/asset/b4e00257-dbed-47f7-8fd2-1d29fe10783d.svg";
+const imgVector7 = "https://www.figma.com/api/mcp/asset/d6b65a71-f230-46a5-b9ae-9ba2a69ec800.svg";
+const imgVector8 = "https://www.figma.com/api/mcp/asset/b79e54ab-64c5-45c8-9566-cf46eebe3d44.svg";
+const imgVector9 = "https://www.figma.com/api/mcp/asset/222f55e2-a884-4287-b885-7a870b0b9822.svg";
+const imgVector10 = "https://www.figma.com/api/mcp/asset/b5d76f67-2fea-4011-bc54-bbce2e3df691.svg";
+const imgVector11 = "https://www.figma.com/api/mcp/asset/6a50e89b-0bfe-4a7e-aff4-a2a41b925028.svg";
+const imgVector12 = "https://www.figma.com/api/mcp/asset/649bdafe-5ac2-49ed-89a3-fd04f9fad9dc.svg";
+const imgVector13 = "https://www.figma.com/api/mcp/asset/ebac5cb1-663c-41df-ac15-7debb3d9ea74.svg";
+const imgVector14 = "https://www.figma.com/api/mcp/asset/d768314e-c304-482b-9287-463aa85cbad8.svg";
+const imgVector15 = "https://www.figma.com/api/mcp/asset/55a3ec7f-4a9b-42be-bf19-18f64a67d2d0.svg";
+const imgGroup6 = "https://www.figma.com/api/mcp/asset/a2e22411-88e8-4b80-82b5-dc85c54cf605.svg";
+const imgVector16 = "https://www.figma.com/api/mcp/asset/ff0ff61b-6842-424b-b544-e3fdcb6c2850.svg";
+const imgVector17 = "https://www.figma.com/api/mcp/asset/c1b461f7-d265-4b75-b0f5-90185cc2e5b7.svg";
+const imgVector18 = "https://www.figma.com/api/mcp/asset/af361655-9d01-4a5a-86c2-401093d152d1.svg";
+const imgVector19 = "https://www.figma.com/api/mcp/asset/169512e4-b0d4-475f-baf8-800503d1a4af.svg";
+const imgVector20 = "https://www.figma.com/api/mcp/asset/cf593271-89f0-4fe5-854a-43a45b3669cb.svg";
+const imgVector21 = "https://www.figma.com/api/mcp/asset/d19732ec-326d-46fa-a120-496809c422a5.svg";
+const imgVector22 = "https://www.figma.com/api/mcp/asset/a74deee2-152d-4017-98e9-c40e5698e8dc.svg";
+const imgVector23 = "https://www.figma.com/api/mcp/asset/7a651269-346c-422e-ad74-8e5fbbcf2583.svg";
+const imgVector24 = "https://www.figma.com/api/mcp/asset/bb12fef8-4aa2-4bd3-b5c9-ce21720a653b.svg";
+const imgVector25 = "https://www.figma.com/api/mcp/asset/0df049b0-bd28-4221-95ca-4925f63fe51b.svg";
+const imgVector26 = "https://www.figma.com/api/mcp/asset/c71b73f8-b44f-48e8-ae25-c498acc684de.svg";
+const imgVector27 = "https://www.figma.com/api/mcp/asset/bb641b9a-fe24-4a0c-aeac-c732ece5dc80.svg";
+const imgVector28 = "https://www.figma.com/api/mcp/asset/07376de7-1edc-4808-a49a-20980abe40a3.svg";
+const imgGroup7 = "https://www.figma.com/api/mcp/asset/a53046ca-2354-49cf-b6fc-45b74cf06964.svg";
+const imgVector29 = "https://www.figma.com/api/mcp/asset/4e832e30-b029-4c8b-aeaa-437557c19c41.svg";
+const imgVector30 = "https://www.figma.com/api/mcp/asset/b7f05aeb-241b-46d9-ae2a-4d26f799755b.svg";
+const imgVector31 = "https://www.figma.com/api/mcp/asset/cbe34641-1c4b-4784-9bfb-c6ac27a6acd9.svg";
+const imgVector32 = "https://www.figma.com/api/mcp/asset/04dc5401-4eb4-451e-b951-c85e713c2915.svg";
+const imgVector33 = "https://www.figma.com/api/mcp/asset/29783ebc-d03a-4a60-96d1-7a112ef456a0.svg";
+const imgVector34 = "https://www.figma.com/api/mcp/asset/63f19630-4705-45e6-9131-39e563194246.svg";
+const imgVector35 = "https://www.figma.com/api/mcp/asset/4e92a3e6-04de-4875-b820-a71f34757eb4.svg";
+const imgVector36 = "https://www.figma.com/api/mcp/asset/d312eac7-2a00-4b47-8872-d700c646c062.svg";
+const imgVector37 = "https://www.figma.com/api/mcp/asset/3207a19c-8dc7-4929-a7c7-094633127b61.svg";
+const imgVector38 = "https://www.figma.com/api/mcp/asset/b4a31a54-8421-4c49-a2ad-e9d9a29e84b4.svg";
+const imgLivello6 = "https://www.figma.com/api/mcp/asset/2da5c9f8-51a5-4a8e-b704-d7c537c89110.svg";
+const imgLivello7 = "https://www.figma.com/api/mcp/asset/65e3773c-b71c-4b87-b91a-d00a36cc9ccd.svg";
+const imgLivello2 = "https://www.figma.com/api/mcp/asset/8709bfb5-0401-4ad7-9014-c7a1b521dc55.svg";
+const imgLivello9 = "https://www.figma.com/api/mcp/asset/62a72043-e8a2-4a46-b1b9-8233532cccbe.svg";
+const imgLivello4 = "https://www.figma.com/api/mcp/asset/d0ad20b9-695e-4a01-b8a1-93881b4edd84.svg";
+const imgLivello8 = "https://www.figma.com/api/mcp/asset/5a26621a-cd33-41e8-a83a-0e27ddabe5b1.svg";
+const imgGroup1000007782 = "https://www.figma.com/api/mcp/asset/88e8f5a9-f8a3-461a-ad61-779c82ad7f60.svg";
+const imgGroup1000007823 = "https://www.figma.com/api/mcp/asset/5740180b-ea00-4458-8d9a-53de9cb53c44.svg";
+
+export default function Corsi() {
+  return (
+    <div className="bg-white relative size-full" data-node-id="778:954" data-name="Corsi">
+      <div className="absolute h-[832px] left-0 top-0 w-[75px]" data-node-id="778:956">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007442} />
+      </div>
+      <div className="absolute flex items-center justify-center left-[22px] size-[36px] top-[458px]" data-node-id="778:958">
+        <div className="-scale-y-100 flex-none">
+          <div className="relative size-[36px]">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse543} />
+          </div>
+        </div>
+      </div>
+      <a className="absolute block cursor-pointer left-[22px] size-[36px] top-[239px]" data-node-id="972:1079">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007780} />
+      </a>
+      <a className="absolute block cursor-pointer left-[22px] size-[36px] top-[312px]" data-node-id="972:1080">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007781} />
+      </a>
+      <div className="absolute inset-[56.37%_96.25%_41.71%_2.5%]" data-node-id="778:963" data-name="book-open-01">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgBookOpen01} />
+      </div>
+      <a className="absolute block cursor-pointer left-[28px] size-[60px] top-[373px]" data-node-id="972:1105">
+        <div className="absolute inset-[-16.67%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup1000007793} />
+        </div>
+      </a>
+      <div className="absolute contents inset-[1.8%_94.84%_93.31%_0.86%]" data-node-id="778:971">
+        <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[3.36%_94.84%_93.31%_1.23%] justify-center leading-[0] not-italic text-[39.964px] text-black text-center tracking-[-1.5619px] whitespace-pre-wrap" data-node-id="778:972">
+          <p className="leading-[26.776px] mb-0">{`   O`}</p>
+          <p className="leading-[26.776px]">CO</p>
+        </div>
+        <div className="[word-break:break-word] absolute flex flex-col font-['Baloo:Regular'] inset-[1.8%_96.43%_94.86%_0.86%] justify-center leading-[0] not-italic text-[36.634px] text-center text-white tracking-[0.0033px]" data-node-id="778:973">
+          <p className="leading-[0.933px]">L</p>
+        </div>
+        <div className="absolute flex inset-[2%_98.18%_96.65%_0.86%] items-center justify-center" data-node-id="778:974" style={{ containerType: "size" }}>
+          <div className="-scale-x-100 flex-none h-[hypot(27.271cqw,60.7909cqh)] rotate-[-26.19deg] w-[hypot(-72.729cqw,39.2091cqh)]">
+            <div className="relative size-full" data-name="Vector">
+              <div className="absolute inset-[-5.49%_-4.2%_-5.48%_-4.18%]">
+                <img alt="" className="block max-w-none size-full" src={imgVector} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-[2.12%_98.11%_97.64%_1.81%]" data-node-id="778:975">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgEllipse1} />
+        </div>
+      </div>
+      <p className="[word-break:break-word] absolute font-['Baloo_2:Medium'] font-medium h-[40px] leading-[40px] left-[144px] text-[#181818] text-[75px] top-[78px] tracking-[-3.75px] w-[451px]" data-node-id="811:1254">
+        I nostri corsi
+      </p>
+      <p className="[word-break:break-word] absolute font-['Inter_Tight:Medium'] leading-[normal] left-[calc(50%-491px)] not-italic text-[20px] text-black top-[136px] whitespace-nowrap" data-node-id="811:1258">{`Segui le lezioni per comprendere al meglio le tecniche mnemoniche `}</p>
+      <p className="[word-break:break-word] absolute font-['Inter_Tight:Medium'] h-[50px] leading-[25.525px] left-[149px] not-italic text-[#181818] text-[20.42px] top-[533px] tracking-[0.1021px] w-[294px]" data-node-id="832:975">
+        Tre lezioni per conoscere al meglio la Tecnica dei Loci e come utilizzarla.
+      </p>
+      <div className="absolute bg-[#d0c4f6] h-[206px] left-[149px] rounded-[30px] top-[200px] w-[309px]" data-node-id="832:979" />
+      <p className="[word-break:break-word] absolute font-['Inter_Tight:Medium'] h-[50px] leading-[25px] left-[504px] not-italic text-[#181818] text-[20px] top-[534px] tracking-[0.1px] w-[257px]" data-node-id="832:980">
+        Tre lezioni per conoscere al meglio il Linked method e come utilizzarlo.
+      </p>
+      <div className="absolute h-[216px] left-[500px] rounded-[31.456px] top-[203px] w-[324px]" data-node-id="832:985" />
+      <p className="[word-break:break-word] absolute font-['Inter_Tight:Medium'] h-[50px] leading-[25px] left-[864px] not-italic text-[#181818] text-[20px] top-[533px] tracking-[0.1px] w-[250px]" data-node-id="832:986">
+        Tre lezioni per conoscere la conversione fonetica e come utilizzarlo.
+      </p>
+      <div className="[word-break:break-word] absolute contents left-[147px] text-[#181818] top-[442px]" data-node-id="832:991">
+        <p className="absolute font-['Baloo_2:Bold'] font-bold h-[27.222px] leading-[28.568px] left-[148px] text-[40px] top-[442px] tracking-[-1.2px] w-[122px]" data-node-id="832:992">
+          Corso 1
+        </p>
+        <div className="-translate-y-1/2 absolute flex flex-col font-['Inter_Tight:Regular'] h-[10.889px] justify-center leading-[0] left-[147px] not-italic text-[24px] top-[485.44px] tracking-[0.1865px] w-[170.667px]" data-node-id="832:993">
+          <p className="leading-[37.307px]">Tecnica dei Loci</p>
+        </div>
+      </div>
+      <div className="[word-break:break-word] absolute contents left-[507px] text-[#181818] top-[441px]" data-node-id="832:994">
+        <p className="absolute font-['Baloo_2:Bold'] font-bold h-[40px] leading-[28.568px] left-[507px] text-[40px] top-[441px] tracking-[-1.2px] w-[134px]" data-node-id="832:995">
+          Corso 2
+        </p>
+        <div className="-translate-y-1/2 absolute flex flex-col font-['Inter_Tight:Regular'] h-[22px] justify-center leading-[0] left-[510px] not-italic text-[24px] top-[485px] tracking-[0.1399px] w-[163px]" data-node-id="832:996">
+          <p className="leading-[27.98px]">Linked method</p>
+        </div>
+      </div>
+      <div className="[word-break:break-word] absolute contents left-[865px] text-[#181818] top-[442px]" data-node-id="832:997">
+        <p className="absolute font-['Baloo_2:Bold'] font-bold h-[43.404px] leading-[28.568px] left-[865px] text-[40px] top-[442px] tracking-[-1.2px] w-[136px]" data-node-id="832:998">
+          Corso 3
+        </p>
+        <div className="-translate-y-1/2 absolute flex flex-col font-['Inter_Tight:Regular'] h-[13.021px] justify-center leading-[0] left-[865px] not-italic text-[24px] top-[485.51px] tracking-[0.1399px] w-[224px]" data-node-id="832:999">
+          <p className="leading-[27.98px]">Conversione fonetica</p>
+        </div>
+      </div>
+      <div className="absolute bg-[#d0c4f6] h-[206px] left-[507px] rounded-[30px] top-[200px] w-[309px]" data-node-id="832:1010" data-name="image 14" />
+      <div className="absolute bg-[#d0c4f6] h-[206px] left-[865px] rounded-[30px] top-[200px] w-[309px]" data-node-id="832:1011" data-name="image 15" />
+      <div className="absolute inset-[24.16%_68.32%_53.82%_14.4%]" data-node-id="856:1164" data-name="Livello-3">
+        <div className="absolute inset-[-0.27%_-0.22%]">
+          <img alt="" className="block max-w-none size-full" src={imgLivello3} />
+        </div>
+      </div>
+      <div className="absolute inset-[27.47%_81.76%_70.6%_15.14%]" data-node-id="856:1196" data-name="Vector">
+        <div className="absolute inset-[-3.08%_-1.24%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector1} />
+        </div>
+      </div>
+      <div className="absolute flex inset-[30.17%_75.69%_51.2%_15.38%] items-center justify-center" data-node-id="856:1197" style={{ containerType: "size" }}>
+        <div className="-scale-x-100 flex-none h-[100cqh] w-[100cqw]">
+          <div className="relative size-full">
+            <div className="absolute inset-[-0.25%_-0.34%_-0.25%_-0.35%]">
+              <img alt="" className="block max-w-none size-full" src={imgGroup11} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute inset-[30.65%_83.89%_67.68%_13.17%]" data-node-id="856:1241" data-name="Vector">
+        <div className="absolute inset-[-3.55%_-1.31%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector2} />
+        </div>
+      </div>
+      <div className="absolute inset-[33.15%_67.45%_65.18%_29.6%]" data-node-id="856:1242" data-name="Vector">
+        <div className="absolute inset-[-3.55%_-1.31%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector2} />
+        </div>
+      </div>
+      <div className="absolute flex inset-[36.64%_83.5%_61.77%_15.49%] items-center justify-center" data-node-id="856:1243" style={{ containerType: "size" }}>
+        <div className="flex-none h-[hypot(76.0392cqw,-22.7954cqh)] rotate-[-106.96deg] w-[hypot(-23.9608cqw,-77.2046cqh)]">
+          <div className="relative size-full" data-name="Group">
+            <div className="absolute inset-[-3.64%_-3.52%]">
+              <img alt="" className="block max-w-none size-full" src={imgGroup} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute inset-[37.5%_68.62%_60.34%_29.56%]" data-node-id="856:1246" data-name="Vector">
+        <div className="absolute inset-[-2.74%_-2.11%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector3} />
+        </div>
+      </div>
+      <div className="absolute inset-[39.03%_85.6%_58.73%_12.89%]" data-node-id="856:1247" data-name="Group">
+        <div className="absolute inset-[-3.64%_-3.52%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup1} />
+        </div>
+      </div>
+      <div className="absolute flex inset-[43.39%_83.67%_54.94%_15.26%] items-center justify-center" data-node-id="856:1250" style={{ containerType: "size" }}>
+        <div className="flex-none h-[hypot(-69.1196cqw,29.5175cqh)] rotate-[66.61deg] w-[hypot(30.8804cqw,70.4825cqh)]">
+          <div className="relative size-full" data-name="Group">
+            <div className="absolute inset-[-3.64%_-3.52%]">
+              <img alt="" className="block max-w-none size-full" src={imgGroup2} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute inset-[43.77%_68.94%_53.83%_29.04%]" data-node-id="856:1253" data-name="Vector">
+        <div className="absolute inset-[-2.47%_-1.9%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector4} />
+        </div>
+      </div>
+      <div className="absolute inset-[30.53%_44%_57.85%_44.18%]" data-node-id="856:1297" data-name="Group">
+        <div className="absolute inset-[-0.5%_-0.32%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup3} />
+        </div>
+      </div>
+      <div className="absolute inset-[27.55%_45.19%_69.47%_52.73%]" data-node-id="856:1255" data-name="Group">
+        <div className="absolute inset-[-1.97%_-1.83%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup4} />
+        </div>
+      </div>
+      <div className="absolute inset-[27.76%_56.95%_70.53%_40.05%]" data-node-id="856:1266" data-name="Vector">
+        <div className="absolute inset-[-3.55%_-1.31%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector5} />
+        </div>
+      </div>
+      <div className="absolute inset-[29.06%_52.3%_55.8%_42.54%]" data-node-id="856:1267" data-name="Group">
+        <div className="absolute inset-[-0.17%_-0.74%_-0.39%_-0.33%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup5} />
+        </div>
+      </div>
+      <div className="absolute inset-[31.36%_47.63%_66.25%_50.93%]" data-node-id="856:1303" data-name="Vector">
+        <div className="absolute inset-[-2.45%_-2.65%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector6} />
+        </div>
+      </div>
+      <div className="absolute inset-[32.36%_47.3%_65.28%_51.38%]" data-node-id="856:1304" data-name="Vector">
+        <div className="absolute inset-[-2.48%_-2.88%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector7} />
+        </div>
+      </div>
+      <div className="absolute inset-[32.97%_47.79%_66.58%_51.71%]" data-node-id="856:1305" data-name="Vector">
+        <div className="absolute inset-[-13.17%_-7.72%_-13.14%_-7.7%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector8} />
+        </div>
+      </div>
+      <div className="absolute inset-[33.22%_46.57%_65.89%_52.53%]" data-node-id="856:1306" data-name="Vector">
+        <div className="absolute inset-[-6.58%_-4.29%_-6.58%_-4.28%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector9} />
+        </div>
+      </div>
+      <div className="absolute inset-[33.29%_39.61%_65.01%_57.39%]" data-node-id="856:1307" data-name="Vector">
+        <div className="absolute inset-[-3.55%_-1.31%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector10} />
+        </div>
+      </div>
+      <div className="absolute inset-[33.54%_48.44%_65.87%_51.29%]" data-node-id="856:1308" data-name="Vector">
+        <div className="absolute inset-[-10%_-13.94%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector11} />
+        </div>
+      </div>
+      <div className="absolute inset-[34.19%_47.77%_64.85%_51.56%]" data-node-id="856:1309" data-name="Vector">
+        <div className="absolute inset-[-6.1%_-5.71%_-6.09%_-5.71%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector12} />
+        </div>
+      </div>
+      <div className="absolute inset-[34.95%_47.74%_64.64%_51.66%]" data-node-id="856:1310" data-name="Vector">
+        <div className="absolute inset-[-14.36%_-6.41%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector13} />
+        </div>
+      </div>
+      <div className="absolute inset-[35.36%_46.17%_63.9%_50.32%]" data-node-id="856:1311" data-name="Vector">
+        <div className="absolute inset-[-7.94%_-1.09%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector14} />
+        </div>
+      </div>
+      <div className="absolute inset-[36.08%_45.95%_60.09%_50.08%]" data-node-id="856:1312" data-name="Vector">
+        <div className="absolute inset-[-1.53%_-0.96%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector15} />
+        </div>
+      </div>
+      <div className="absolute inset-[36.16%_39.19%_54.5%_56.17%]" data-node-id="856:1313" data-name="Group">
+        <div className="absolute inset-[-0.63%_-0.82%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup6} />
+        </div>
+      </div>
+      <div className="absolute inset-[36.27%_44.44%_58.67%_48.86%]" data-node-id="856:1318" data-name="Vector">
+        <div className="absolute inset-[-1.16%_-0.57%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector16} />
+        </div>
+      </div>
+      <div className="absolute inset-[37.05%_49.09%_62.58%_50.01%]" data-node-id="856:1319" data-name="Vector">
+        <div className="absolute inset-[-15.84%_-4.26%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector17} />
+        </div>
+      </div>
+      <div className="absolute inset-[37.05%_45.82%_62.58%_53.28%]" data-node-id="856:1320" data-name="Vector">
+        <div className="absolute inset-[-15.84%_-4.26%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector18} />
+        </div>
+      </div>
+      <div className="absolute flex inset-[37.23%_56.94%_59.19%_40.88%] items-center justify-center" data-node-id="856:1321" style={{ containerType: "size" }}>
+        <div className="flex-none h-[hypot(-57.1546cqw,30.7795cqh)] rotate-60 w-[hypot(42.8454cqw,69.2205cqh)]">
+          <div className="relative size-full" data-name="Vector">
+            <div className="absolute inset-[-2.74%_-2.11%]">
+              <img alt="" className="block max-w-none size-full" src={imgVector19} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute inset-[37.42%_49.01%_62.21%_50.1%]" data-node-id="856:1322" data-name="Vector">
+        <div className="absolute inset-[-15.84%_-4.25%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector20} />
+        </div>
+      </div>
+      <div className="absolute inset-[37.42%_45.91%_62.21%_53.2%]" data-node-id="856:1323" data-name="Vector">
+        <div className="absolute inset-[-15.84%_-4.25%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector21} />
+        </div>
+      </div>
+      <div className="absolute inset-[37.79%_48.93%_61.84%_50.17%]" data-node-id="856:1324" data-name="Vector">
+        <div className="absolute inset-[-15.85%_-4.23%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector22} />
+        </div>
+      </div>
+      <div className="absolute inset-[37.79%_45.98%_61.84%_53.12%]" data-node-id="856:1325" data-name="Vector">
+        <div className="absolute inset-[-15.85%_-4.23%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector23} />
+        </div>
+      </div>
+      <div className="absolute inset-[38.16%_48.88%_61.47%_50.22%]" data-node-id="856:1326" data-name="Vector">
+        <div className="absolute inset-[-15.84%_-4.26%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector24} />
+        </div>
+      </div>
+      <div className="absolute inset-[38.16%_46.03%_61.47%_53.07%]" data-node-id="856:1327" data-name="Vector">
+        <div className="absolute inset-[-15.84%_-4.26%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector25} />
+        </div>
+      </div>
+      <div className="absolute inset-[39.91%_46.45%_59.52%_50.58%]" data-node-id="856:1328" data-name="Vector">
+        <div className="absolute inset-[-10.33%_-1.28%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector26} />
+        </div>
+      </div>
+      <div className="absolute inset-[40.22%_46.45%_52.71%_48.07%]" data-node-id="856:1329" data-name="Vector">
+        <div className="absolute inset-[-0.83%_-0.7%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector27} />
+        </div>
+      </div>
+      <div className="absolute inset-[40.48%_44.03%_54.95%_50.25%]" data-node-id="856:1330" data-name="Vector">
+        <div className="absolute inset-[-1.28%_-0.67%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector28} />
+        </div>
+      </div>
+      <div className="absolute inset-[42.77%_39.46%_53.35%_44.19%]" data-node-id="856:1331" data-name="Group">
+        <div className="absolute inset-[-1.52%_-0.23%]">
+          <img alt="" className="block max-w-none size-full" src={imgGroup7} />
+        </div>
+      </div>
+      <div className="absolute inset-[43.19%_45.68%_56.11%_53.44%]" data-node-id="856:1355" data-name="Vector">
+        <div className="absolute inset-[-7.36%_-2.04%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector29} />
+        </div>
+      </div>
+      <div className="absolute inset-[43.27%_45.79%_52.8%_52.86%]" data-node-id="856:1356" data-name="Vector">
+        <div className="absolute inset-[-1.49%_-2.83%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector30} />
+        </div>
+      </div>
+      <div className="absolute inset-[43.81%_45.32%_52.41%_53.03%]" data-node-id="856:1357" data-name="Vector">
+        <div className="absolute inset-[-1.55%_-2.31%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector31} />
+        </div>
+      </div>
+      <div className="absolute inset-[44.73%_50.38%_53.9%_49.08%]" data-node-id="856:1358" data-name="Vector">
+        <div className="absolute inset-[-4.29%_-7.08%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector32} />
+        </div>
+      </div>
+      <div className="absolute inset-[44.8%_47%_54.93%_52.91%]" data-node-id="856:1359" data-name="Vector">
+        <div className="absolute inset-[-21.67%_-39.25%_-21.66%_-39.25%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector33} />
+        </div>
+      </div>
+      <div className="absolute inset-[44.8%_47%_52.71%_52.11%]" data-node-id="856:1360" data-name="Vector">
+        <div className="absolute inset-[-2.35%_-4.28%_-2.35%_-4.27%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector34} />
+        </div>
+      </div>
+      <div className="absolute inset-[45.14%_46.74%_54.59%_52.89%]" data-node-id="856:1361" data-name="Vector">
+        <div className="absolute inset-[-21.95%_-10.36%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector35} />
+        </div>
+      </div>
+      <div className="absolute inset-[45.18%_50.01%_53.9%_49.62%]" data-node-id="856:1362" data-name="Vector">
+        <div className="absolute inset-[-6.42%_-10.45%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector36} />
+        </div>
+      </div>
+      <div className="absolute inset-[45.5%_46.74%_54.24%_52.89%]" data-node-id="856:1363" data-name="Vector">
+        <div className="absolute inset-[-21.93%_-10.37%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector37} />
+        </div>
+      </div>
+      <div className="absolute inset-[45.83%_46.74%_53.9%_52.89%]" data-node-id="856:1364" data-name="Vector">
+        <div className="absolute inset-[-21.95%_-10.36%]">
+          <img alt="" className="block max-w-none size-full" src={imgVector35} />
+        </div>
+      </div>
+      <div className="absolute contents left-[951px] top-[204px]" data-node-id="856:1366">
+        <div className="absolute flex inset-[25.76%_16.24%_71.71%_82.29%] items-center justify-center" data-node-id="856:1367" style={{ containerType: "size" }}>
+          <div className="flex-none h-[hypot(65.1961cqw,-24.0497cqh)] rotate-[-112.35deg] w-[hypot(-34.8039cqw,-75.9503cqh)]">
+            <div className="relative size-full" data-name="Vector">
+              <div className="absolute inset-[-2.74%_-2.11%]">
+                <img alt="" className="block max-w-none size-full" src={imgVector38} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="absolute inset-[27.24%_14.55%_51.83%_74.3%]" data-node-id="856:1368" data-name="Livello-6">
+          <div className="absolute inset-[-0.27%_-0.33%]">
+            <img alt="" className="block max-w-none size-full" src={imgLivello6} />
+          </div>
+        </div>
+        <div className="absolute inset-[28.95%_20.79%_66.87%_77.55%]" data-node-id="856:1377" data-name="Livello-7">
+          <div className="absolute inset-[-1.37%_-2.24%]">
+            <img alt="" className="block max-w-none size-full" src={imgLivello7} />
+          </div>
+        </div>
+        <div className="absolute inset-[29.77%_19.7%_68.84%_78.89%]" data-node-id="856:1386" data-name="Livello-2">
+          <div className="absolute inset-[-4.11%_-2.66%]">
+            <img alt="" className="block max-w-none size-full" src={imgLivello2} />
+          </div>
+        </div>
+        <div className="absolute inset-[31.66%_12.27%_56.54%_78.43%]" data-node-id="856:1388" data-name="Livello-9">
+          <div className="absolute inset-[-0.49%_-0.4%]">
+            <img alt="" className="block max-w-none size-full" src={imgLivello9} />
+          </div>
+        </div>
+        <div className="absolute inset-[32.01%_17.61%_63.46%_78.15%]" data-node-id="856:1400" data-name="Livello-4">
+          <div className="absolute inset-[-1.26%_-0.88%]">
+            <img alt="" className="block max-w-none size-full" src={imgLivello4} />
+          </div>
+        </div>
+        <div className="absolute inset-[30.17%_16.3%_59.32%_75.23%]" data-node-id="856:1403" data-name="Livello-8">
+          <div className="absolute inset-[-0.54%_-0.44%]">
+            <img alt="" className="block max-w-none size-full" src={imgLivello8} />
+          </div>
+        </div>
+        <div className="-translate-x-1/2 -translate-y-1/2 absolute flex h-[26.14px] items-center justify-center left-[1034.24px] top-[217.07px] w-[33.533px]" data-node-id="856:1413">
+          <div className="flex-none rotate-[-10.13deg]">
+            <div className="[word-break:break-word] flex flex-col font-['Baloo:Regular'] h-[21.143px] justify-center leading-[0] not-italic relative text-[#ffd014] text-[38.096px] text-center tracking-[0.019px] w-[30.287px]">
+              <p className="leading-[16.191px]">M</p>
+            </div>
+          </div>
+        </div>
+        <div className="-translate-x-1/2 -translate-y-1/2 absolute flex h-[33.454px] items-center justify-center left-[1079.5px] top-[238.44px] w-[36.801px]" data-node-id="856:1414">
+          <div className="flex-none rotate-30">
+            <div className="[word-break:break-word] flex flex-col font-['Baloo:Regular'] h-[21.143px] justify-center leading-[0] not-italic relative text-[24.763px] text-black text-center tracking-[0.019px] w-[30.287px]">
+              <p className="leading-[16.191px]">3</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a className="absolute block cursor-pointer left-[22px] size-[36px] top-[531px]" data-node-id="972:1081">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007782} />
+      </a>
+      <div className="absolute content-stretch flex flex-col items-center justify-center left-[905px] top-[659px]" data-node-id="897:3235" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3235;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Inizia" labelText="Inizia" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </div>
+      <div className="absolute content-stretch flex flex-col items-center justify-center left-[544px] top-[659px]" data-node-id="897:3239" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3239;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Inizia" labelText="Inizia" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </div>
+      <a className="absolute content-stretch cursor-pointer flex flex-col items-center justify-center left-[196px] top-[659px]" data-node-id="897:3243" data-name="Button 1¨livello">
+        <CodeConnectSnippet data-node-id="I897:3243;897:2829" data-name="Button">
+          {/* Material 3 Design Kit component
+Docs:
+  http://m3.material.io/components/buttons/overview */}
+          <Button instanceSwapIcon="5:353" icon="5:353" textLabelText="Inizia" labelText="Inizia" variantStyle="Filled" style="Filled" variantState="Enabled" state="Enabled" variantShowIcon="False" showIcon="False" />
+        </CodeConnectSnippet>
+      </a>
+      <div className="absolute left-[25px] size-[30px] top-[755px]" data-node-id="1357:2237">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1000007823} />
+      </div>
+    </div>
+  );
+}
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+If the node is connected to a code component in the users codebase via Code Connect, the connected component will be included in the final markup wrapped in a CodeConnectSnippet element, with relevant imports at the top of the file. There are two formats: 1. Single snippet: <CodeConnectSnippet data-snippet-language="React"><TitleComponent>Hello World</TitleComponent></CodeConnectSnippet> 2. Multiple options: <CodeConnectSnippet data-snippet-language="React" options={[<Button variant="primary" />, <Button variant="secondary" />]} /> IMPORTANT: the CodeConnectSnippet wrapper element should not be part of the final code. For the options format, choose the single most appropriate option to use in your implementation. The source of the code component will be in the import path, e.g. import {ComponentName } from 'path/to/component'; IMPORTANT: the import path may not be relative/may point to a URL, so you should search for the component in the codebase and MUST use it if possible.
+Component descriptions: The following components have usage descriptions or documentation links defined in Figma. These descriptions provide important context about the intended usage, best practices, and any constraints for each component. Follow these guidelines when implementing or using these components.
+
+## home-01
+**Node ID:** 152:622
+
+home, homepage, return, house, menu
+
+## route
+**Node ID:** 152:677
+
+route, map, direction
+
+## book-open-01
+**Node ID:** 152:707
+
+book, news, newspaper, article, blog, blogpost
+
+## Style=Filled, State=Enabled, Show Icon=False
+**Node ID:** 3:188
+
+Filled buttons are high-emphasis buttons. They have the most visual impact after the FAB, and should be used for important, final actions that complete a flow, like "Save", "Join now", or "Confirm".
+
+## Button
+**Node ID:** 3:15
+
+Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like Dialogs, Modal windows, Forms, Cards and Toolbars
+
+**Documentation:**
+- [http://m3.material.io/components/buttons/overview](http://m3.material.io/components/buttons/overview)
+
+## bell-01
+**Node ID:** 152:682
+
+bell, notification, alert
+The generated code contains image and SVG URL constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These URLs are temporary download sources and expire after 7 days. Download each asset into the project with curl -L, then replace its URL in the generated code with a reference to the downloaded asset. Never use the temporary URLs as runtime image sources.

@@ -1,0 +1,107 @@
+[
+  {
+    "view": "home",
+    "broken": [],
+    "images": 40,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "create",
+    "broken": [],
+    "images": 43,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "courses",
+    "broken": [],
+    "images": 73,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "course",
+    "broken": [],
+    "images": 31,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "recap",
+    "broken": [],
+    "images": 52,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "position",
+    "broken": [],
+    "images": 40,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "position-filled",
+    "broken": [],
+    "images": 40,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "confirm",
+    "broken": [],
+    "images": 40,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "trace",
+    "broken": [],
+    "images": 53,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "details",
+    "broken": [],
+    "images": 46,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "finish",
+    "broken": [],
+    "images": 46,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "draft",
+    "broken": [],
+    "images": 39,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "login",
+    "broken": [],
+    "images": 3,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "profile",
+    "broken": [],
+    "images": 24,
+    "scroll": 1376,
+    "width": 1376
+  },
+  {
+    "view": "loading",
+    "broken": [],
+    "images": 2,
+    "scroll": 1376,
+    "width": 1376
+  }
+]
