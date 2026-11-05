@@ -6,3 +6,10 @@
 @media(max-width:700px){.mobile-routes{grid-template-columns:repeat(2,minmax(0,1fr))}.mobile-route{flex-wrap:wrap;min-width:0}.mobile-portal .design-button{max-width:100%;white-space:normal;height:auto;min-height:40px;padding-block:10px}.mobile-resources{gap:8px}.mobile-resources div{min-width:0;padding:12px}.mobile-banner>img{right:0;max-width:65%}.mobile-plan img{max-width:55%}}
 
 .create-hit-area{position:absolute;top:416px;width:294.04px;height:301px;border-radius:30px;background:transparent;z-index:10}
+
+/* Corrections verified against author screenshots supplied 2026-11-05. */
+.figma-screen input[data-node-id="778:1067"]{border:2px solid #181818}
+.figma-screen [data-node-id="800:1084"]{transform:rotate(180deg)}
+.figma-screen [data-node-id="849:964"]{width:198px;height:75px}
+.play-cue{font-size:15px;line-height:1;display:inline-block}
+.figma-screen[data-node-id="642:678"] [data-node-id="778:1220"]{display:none}

@@ -6,7 +6,7 @@ let draft={title:'',description:'',topic:'',position:'Politecnico di Torino'};
 let progress=[];try{progress=JSON.parse(localStorage.getItem('loco.portal.read')||'[]');if(!Array.isArray(progress))progress=[];}catch{}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const courseNames=['Tecnica dei Loci','Linked method','Conversione fonetica'];
-const courseLessons=[['Approccio alle tecniche mnemoniche','Introduzione della Tecnica dei Loci','Come utilizzare la Tecnica dei Loci'],['Introduzione al Linked method','Come creare storie per il Linked method','Come utilizzare il Linked method'],['Introduzione alla Conversione fonetica','Come imparare l’alfabeto numerico','Come utilizzare la Conversione fonetica']];
+const courseLessons=[['Approccio alle tecniche mnemoniche','Introduzione alla tecnica dei Loci','Come utilizzare la tecnica dei Loci'],['Introduzione al Linked method','Come creare storie per il Linked method','Come utilizzare il Linked method'],['Introduzione alla Conversione fonetica','Come imparare l’alfabeto numerico','Come utilizzare la Conversione fonetica']];
 const demoRoutes=[['Discussione tesi',25,'642-678-imgRectangle376.png','3D SCAN','DISCorso'],['Tavola periodica',40,'642-678-imgImage25.png','STREET VIEW','CHIMICA'],['Casa de nonna',75,'642-678-imgImage26.png','3D SCAN','LISTA SPESA'],['Stanza TO',100,'642-678-imgRectangle376.png','3D SCAN','STUDIO']];
 function message(s){const el=document.querySelector('#message');el.textContent=s;el.hidden=false;clearTimeout(message.timer);message.timer=setTimeout(()=>el.hidden=true,6500)}
 function modal(title,body){document.querySelector('#dialog-body').innerHTML=`<h2>${esc(title)}</h2>${body}`;document.querySelector('#dialog').showModal()}
@@ -61,10 +61,13 @@ function render(){
   ['Discussione tesi','Tavola periodica','Casa de nonna','Stanza TO'].forEach(s=>byText(s,()=>goto('recap')));
   ['Corso 1','Corso 2','Corso 3'].forEach((s,i)=>byText(s,()=>{course=i;goto('course')}));
  }
- if(current==='courses'){screen.querySelectorAll('.design-button').forEach(b=>{const x=Number.parseFloat(b.parentElement.style.left)||parseFloat(getComputedStyle(b.parentElement).left);const i=x>800?2:x>400?1:0;b.onclick=()=>{course=i;goto('course')}})}
+ if(current==='courses'){
+  [...screen.querySelectorAll('.design-button')].sort((a,b)=>a.getBoundingClientRect().left-b.getBoundingClientRect().left).forEach((b,i)=>b.onclick=()=>{course=i;goto('course')});
+ }
  if(current==='course'){
-  if(course!==0){for(const el of screen.querySelectorAll('p')){if(el.textContent.trim()==='Corso 1:')el.textContent=`Corso ${course+1}:`;if(el.textContent.trim()==='Tecnica dei Loci')el.textContent=courseNames[course];}const names=['Approccio alle tecniche mnemoniche','Introduzione alla tecnica dei Loci','Come utilizzare la tecnica dei Loci'];for(const el of screen.querySelectorAll('p')){const j=names.findIndex(n=>el.textContent.replace(/\s+/g,' ').trim().toLowerCase()===n.toLowerCase());if(j>=0)el.textContent=courseLessons[course][j];}}
-  const bs=[...screen.querySelectorAll('.design-button')].filter(b=>b.textContent.trim()==='Guarda ora');bs.forEach((b,i)=>{const rect=b.getBoundingClientRect();const x=parseFloat(getComputedStyle(b.parentElement).left),y=parseFloat(getComputedStyle(b.parentElement).top);b.onclick=()=>reading(x>600?2:y>500?1:0)});
+  const heading=node('880:1020');if(heading){heading.querySelector('span').textContent=`Corso ${course+1}:`;const last=heading.querySelector('span:last-child');if(last){last.replaceChildren(document.createElement('br'),document.createTextNode(courseNames[course]));}}
+  ['849:958','849:961','849:964'].forEach((id,i)=>{const e=node(id);if(e){const target=e.querySelector('p')||e;target.textContent=courseLessons[course][i];}});
+  ['897:3252','897:3257','897:3261'].forEach((id,i)=>{const b=node(id)?.querySelector('button');if(b)b.onclick=()=>reading(i)});
   buttonAction(node('800:1084'),()=>goto('courses'),'Tutti i corsi');
  }
  if(current==='create'){
@@ -79,10 +82,10 @@ function render(){
  if(current==='finish')byText("Inizia l’esperienza",()=>demoReview());
  if(current==='draft'){byText('Salva nelle bozze',()=>saveDraft(false));byText('No, ci penso dopo',()=>goto('home'));}
  if(current==='recap'){
-  screen.querySelectorAll('.design-button').forEach((b,i)=>{if(b.textContent.trim()==='Ripassa')b.onclick=()=>demoReview(i%3)});byText('Bozze ( 1 )',()=>showDraft());byText('Bozze (1)',()=>showDraft());
+  screen.querySelectorAll('.design-button').forEach((b,i)=>{if(b.textContent.trim()==='Ripassa'){b.insertAdjacentHTML('afterbegin','<span class="play-cue" aria-hidden="true">▷</span>');b.onclick=()=>demoReview(i%3)}});byText('Bozze ( 1 )',()=>showDraft());byText('Bozze (1)',()=>showDraft());
   const input=screen.querySelector('input');
   const scale=screen.getBoundingClientRect().width/1280,origin=screen.getBoundingClientRect().top;
-  const rows=[266,443,620].map((y,i)=>({text:['Discorso esame DISCORSO 3D SCAN','Tavola periodica CHIMICA STREET VIEW','Casa de nonna LISTA SPESA 3D SCAN'][i].toLowerCase(),elements:[...screen.querySelectorAll('*')].filter(el=>{const r=el.getBoundingClientRect(),top=(r.top-origin)/scale;return r.height>0&&top>=y-1&&top<y+160&&r.height/scale<=165&&!el.closest('nav')})}));
+  const rows=[266,443,620].map((y,i)=>({text:['Discussione tesi DISCORSO 3D SCAN','Tavola periodica CHIMICA STREET VIEW','Casa de nonna LISTA SPESA 3D SCAN'][i].toLowerCase(),elements:[...screen.querySelectorAll('*')].filter(el=>{const r=el.getBoundingClientRect(),top=(r.top-origin)/scale;return r.height>0&&top>=y-1&&top<y+160&&r.height/scale<=165&&!el.closest('nav')})}));
   if(input)input.oninput=()=>rows.forEach(row=>row.elements.forEach(el=>el.hidden=!row.text.includes(input.value.toLowerCase().trim())));
   document.querySelector('#mobile-search')?.addEventListener('input',e=>portal.querySelectorAll('[data-route-card]').forEach(el=>el.hidden=!el.textContent.toLowerCase().includes(e.target.value.toLowerCase())));
  }
