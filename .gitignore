@@ -33,3 +33,9 @@ node_modules/
 /research/figma/private/
 
 /user-data/
+
+# Local application database and backups
+/app/runtime/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal

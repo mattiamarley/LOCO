@@ -46,3 +46,7 @@ Le utility OCR/trascrizione dipendono dagli strumenti locali descritti nei rispe
 Le chiavi API e le configurazioni locali sono escluse da Git. Nessuna credenziale deve essere inserita nel codice, nel README o nei materiali pubblicati. Il budget indicativo concordato per le integrazioni è di 100 euro/mese; provider e quote operative saranno definiti durante l'implementazione.
 
 Non è stata concessa una licenza aggiuntiva tramite questo repository: marchio, materiali e contenuti di terzi conservano le rispettive titolarità.
+
+## Nuova app operativa locale
+
+Avvio: `node app/server/dev.mjs`, quindi http://127.0.0.1:8781 . Account, percorsi, loci, lezioni e ripassi sono ora persistenti in SQLite. I dati locali sono esclusi da Git. Funzioni, limiti e test in [app/server/README.md](app/server/README.md); valutazione economica e vincoli Street View/3D in [research/SERVICE-FEASIBILITY.md](research/SERVICE-FEASIBILITY.md). L'app completa e il deployment pubblico sono ancora da completare.
