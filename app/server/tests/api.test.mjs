@@ -23,3 +23,14 @@ test('account isolation, persisted paths, ordering and review transactions',asyn
  const foreign=await fetch(origin+'/api/routes',{method:'POST',headers:{'Content-Type':'application/json',Origin:'https://evil.example',Cookie:a.cookie,'X-Loco-Request':'1'},body:'{}'});assert.equal(foreign.status,403);
  assert.equal((await req('/api/logout','POST',{},a.cookie)).status,200);assert.equal((await req('/api/me','GET',null,a.cookie)).status,401);
 });
+
+test('3D anchors persist in world space and survive text edits and reopen',()=>{
+ const dir=mkdtempSync(join(tmpdir(),'loco-3d-')),path=join(dir,'room.sqlite');let s=new Store(path);
+ try{const {user}=s.account({email:'room@example.test',password:'test-only-password',name:'Room'},true);const r=s.saveRoute(user.id,{title:'Room'});const anchor={scene:'loco-room-v1',point:{x:1,y:1.3,z:-4.9},normal:{x:0,y:0,z:1},camera:{x:0,y:1.6,z:2},yaw:0,pitch:-.1,surface:'Parete in fondo'};
+ const l=s.saveLocus(user.id,r.id,{label:'Parete',question:'Q',answer:'A',anchor});assert.deepEqual(l.anchor,anchor);
+ assert.throws(()=>s.saveLocus(user.id,r.id,{label:'Bad',question:'Q',answer:'A',anchor:{...anchor,scene:'other-room'}}));
+ assert.throws(()=>s.saveLocus(user.id,r.id,{label:'Bad',question:'Q',answer:'A',anchor:{...anchor,point:{x:Infinity,y:1,z:0}}}));
+ s.saveLocus(user.id,r.id,{label:'Parete rinominata',question:'Q',answer:'A'},l.id);assert.deepEqual(s.detail(user.id,r.id).loci[0].anchor,anchor);
+ s.db.close();s=new Store(path);assert.deepEqual(s.detail(user.id,r.id).loci[0].anchor,anchor);assert.equal(s.one('PRAGMA user_version').user_version,2);
+ }finally{s.db.close();rmSync(dir,{recursive:true,force:true})}
+});

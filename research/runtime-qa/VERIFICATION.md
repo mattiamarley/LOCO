@@ -7,3 +7,7 @@ Nel browser: creato un account di collaudo locale con indirizzo example.test; cr
 Vista telefono provata tramite override 390×844 (larghezza CSS effettiva 419 per lo zoom della sessione): nessuno scorrimento orizzontale, nessuna immagine fallita nella Home. Override ripristinato. Screenshot desktop e mobile allegati. Non è una verifica su telefono fisico né di fedeltà integrale al Figma.
 
 Il DB di collaudo e le sessioni sono in app/runtime/, escluso da Git. Non sono pubblicati né sincronizzati. Le schermate operative aggiunte sono una base per provare dati reali; integrazione completa con i frame definitivi e servizi esterni ancora da terminare.
+
+## Collaudo loci 3D
+
+Verificato: avanzamento mediante pulsante, attivazione Aggiungi locus qui, clic sulla parete, nome superficie proposto, salvataggio domanda/risposta/associazione, ricaricamento e presenza del comando Vai al punto 3D sul locus salvato. Test automatico aggiunto su coordinate mondo, scena/versione valida, rifiuto di coordinate non finite, conservazione del punto dopo modifica testo e riapertura del database. Sette test complessivi superati. Viewport telefono: canvas e controlli disponibili, nessuno scorrimento orizzontale alla larghezza CSS effettiva 419. Screenshot locus-3d-desktop.jpg e locus-3d-mobile.jpg. È una scena di prova, non una scansione.
