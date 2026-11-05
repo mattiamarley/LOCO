@@ -21,3 +21,7 @@ L'editor ora comprende una stanza geometrica di prova navigabile con trascinamen
 Migrazione automatica v2: `loci.anchor_json` conserva identificativo/versione della scena, punto XYZ in metri, normale della superficie e posa della camera. Non sono coordinate sullo schermo. Il riordino e le modifiche del testo conservano il punto. Vai al punto 3D ripristina la vista; studio e ripasso mostrano il locus nel viewer mantenendo nascoste risposta e associazione fino al richiamo. Il database e l'API conservano il dato spaziale anche dopo un riavvio.
 
 La stanza è costruita per il collaudo, non riproduce una scansione personale o Street View. Non è ancora implementato l'import di modelli GLB/splat. Il collegamento a una scansione richiederà un identificativo/versione del modello e trasformazioni coerenti, senza riutilizzare automaticamente coordinate di una scena differente. Three.js 0.180.0 è incluso localmente con licenza MIT; nessuna dipendenza CDN a runtime.
+
+## Ingresso ripristinato alla UX Figma
+
+Dopo il riscontro dell'autore, `/` su porta 8781 apre il portale `index.html` derivato dal Figma, ancora con dati dimostrativi dichiarati. Le funzioni database/3D sopra descritte sono disponibili soltanto nel laboratorio esplicitamente etichettato: http://127.0.0.1:8781/workspace.html . Il laboratorio non è la UX approvata del prodotto. Collegare le API e il viewer alle schermate originali resta lavoro da completare.

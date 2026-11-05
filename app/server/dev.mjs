@@ -36,7 +36,7 @@ export function createApp(database){const store=new Store(database),attempts=new
    throw new AppError('Endpoint non trovato.',404);
   }
   if(!['GET','HEAD'].includes(method))throw new AppError('Metodo non consentito.',405);
-  const file=resolve(root,'.'+decodeURIComponent(path==='/'?'/workspace.html':path));if(!file.startsWith(root+sep))throw new AppError('Non trovato.',404);
+  const file=resolve(root,'.'+decodeURIComponent(path==='/'?'/index.html':path));if(!file.startsWith(root+sep))throw new AppError('Non trovato.',404);
   const info=await stat(file);if(!info.isFile())throw new AppError('Non trovato.',404);
   const mime={'.html':'text/html; charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.ttf':'font/ttf'}[extname(file)]||'application/octet-stream';res.writeHead(200,{'Content-Type':mime,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'"});res.end(method==='HEAD'?undefined:await readFile(file));
  }catch(e){json(e.status||(e.code==='ENOENT'?404:500),{error:e.status?e.message:e.code==='ENOENT'?'Non trovato.':'Errore interno del server.'});if(!e.status&&e.code!=='ENOENT')console.error(e.message)}

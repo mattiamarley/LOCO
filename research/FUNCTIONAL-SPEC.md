@@ -175,3 +175,9 @@ Questi passaggi sono ora requisiti documentati, non solo proposte della ricostru
 ### Selezione della versione definitiva confermata dall’autore
 
 Usare esclusivamente il gruppo **in basso a destra di Portale / Area riservata** per la web app finale e i caricamenti **in alto a sinistra** della stessa pagina. Le altre soluzioni sono prove. La mappatura dei flussi estratti dal PDF va confermata rispetto a questi gruppi; la posizione nel PDF e lo stile visivo non sono criteri sufficienti per dichiarare un frame definitivo.
+
+## Correzione vincolante dell'autore: interazione dall'interno del castello
+
+Il castello viene prima avviato. L'utente si trova già al suo interno e, mentre esplora, interagisce con l'ambiente per aggiungere i loci. La voce è una modalità possibile, non obbligatoria. Il flusso principale non deve costringere a uscire dalla scena per compilare un editor separato con lista e modulo. Le implementazioni tecniche precedenti hanno interpretato male questa centralità e non sono il riferimento UX.
+
+Prima della prossima modifica di UX sono da chiarire con l'autore: scelta del punto tramite sguardo/tocco/comando o riconoscimento dell'oggetto nominato; contenuti creati in scena oppure pre-caricati; frame/video esatto dei controlli da riprodurre. Non trattare le opzioni proposte nelle domande come scelte già approvate.

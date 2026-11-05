@@ -32,3 +32,9 @@ Nessuna API a pagamento è stata chiamata. Le bozze sono locali al browser e non
 ## Riproduzione
 
 `python3 scripts/build-figma-views.py` ricostruisce le viste dai contesti pubblicati. Nessun file della cartella privata è necessario. `node --test app/prototype/tests/*.test.mjs` esegue i controlli. Avvio: `python3 -m http.server 8780 --bind 127.0.0.1 --directory app/prototype`.
+
+## Correzione dopo il riscontro dell'autore sulla UX
+
+L'area workspace.html e il successivo editor 3D hanno introdotto una nuova UX (sidebar di dimensioni diverse, Home a schede, lista loci e modulo sotto la scena) non approvata dall'autore. Non erano una riproduzione fedele e non vanno presentati come versione definitiva. La correzione ripristina index.html, derivato dai contesti Figma, come ingresso principale anche del server con database su porta 8781. workspace.html rimane soltanto un laboratorio tecnico esplicitamente etichettato, accessibile tramite indirizzo diretto. Database, ancoraggi e viewer sono conservati per collegarli in seguito alle schermate approvate.
+
+Il portale ripristinato mantiene i dati dimostrativi dichiarati: questo cambio di ingresso non integra automaticamente le API nelle schermate Figma. Tale integrazione rimane da fare. Non si deve ricostruire un nuovo editor collocando arbitrariamente pannelli e controlli. L'esplorazione 3D e la creazione dei loci vanno inserite nei frame originali corrispondenti quando sono disponibili i relativi contesti. Il nuovo tentativo di lettura Figma ha confermato il limite MCP del piano Starter.
