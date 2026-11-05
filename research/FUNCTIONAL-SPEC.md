@@ -181,3 +181,11 @@ Usare esclusivamente il gruppo **in basso a destra di Portale / Area riservata**
 Il castello viene prima avviato. L'utente si trova già al suo interno e, mentre esplora, interagisce con l'ambiente per aggiungere i loci. La voce è una modalità possibile, non obbligatoria. Il flusso principale non deve costringere a uscire dalla scena per compilare un editor separato con lista e modulo. Le implementazioni tecniche precedenti hanno interpretato male questa centralità e non sono il riferimento UX.
 
 Prima della prossima modifica di UX sono da chiarire con l'autore: scelta del punto tramite sguardo/tocco/comando o riconoscimento dell'oggetto nominato; contenuti creati in scena oppure pre-caricati; frame/video esatto dei controlli da riprodurre. Non trattare le opzioni proposte nelle domande come scelte già approvate.
+
+### Risposte confermate dall'autore
+
+- Il punto è scelto con sguardo/tocco; Aggiungi locus o il comando vocale confermano la selezione.
+- Nozione e associazione sono inserite con voce o testo durante l'esperienza, restando nell'ambiente.
+- Il riferimento per l'interazione è il video locale `PROJECT START FOLDER/Video/DEF MOBILE.mov`.
+
+Riesaminati i fotogrammi 01:21, 01:30, 01:42 e 03:15: selezione spaziale con puntatore/indicatore, strumenti contestuali, campo sovrapposto alla scena e alternanza nozione/associazione. Il viewer non deve essere ridotto a un riquadro sopra un modulo esterno. Il portale gestisce accesso, scelta/avvio e archivio; il castello aperto è il luogo in cui si creano i loci.

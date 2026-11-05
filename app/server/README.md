@@ -25,3 +25,9 @@ La stanza è costruita per il collaudo, non riproduce una scansione personale o 
 ## Ingresso ripristinato alla UX Figma
 
 Dopo il riscontro dell'autore, `/` su porta 8781 apre il portale `index.html` derivato dal Figma, ancora con dati dimostrativi dichiarati. Le funzioni database/3D sopra descritte sono disponibili soltanto nel laboratorio esplicitamente etichettato: http://127.0.0.1:8781/workspace.html . Il laboratorio non è la UX approvata del prodotto. Collegare le API e il viewer alle schermate originali resta lavoro da completare.
+
+## Castello con strumenti contestuali
+
+Nel laboratorio, Apri percorso → Avvia castello avvia `#castle/<id>` a tutta scena. È una prova funzionale basata sulla sequenza di DEF MOBILE.mov (01:15–01:51 e 03:09–03:39), separata dalla UX definitiva finché controlli e asset originali non sono integralmente allineati. Scegli un punto con tocco oppure con il puntatore centrale e Aggiungi locus; compila Nozione e Associazione nel pannello sovrapposto. Il salvataggio aggiunge il marker e lascia l'utente nello stesso ambiente e nella stessa posizione. I marker esistenti possono essere riaperti. Durante la compilazione un'altra selezione è bloccata per non sovrascrivere la bozza.
+
+Voce: integrazione Web Speech del browser predisposta per dettatura e comandi aggiungi locus / salva / annulla, soltanto dopo pressione del pulsante. Non è stata collaudata con acquisizione microfono; dipende dalla disponibilità e dai permessi del browser e può usare il servizio online del browser. Nessuna chiamata OpenAI. Fonte tecnica: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition . Alternativa testo sempre disponibile. Non è un'implementazione VR/gaze tracking della testa: il puntatore normale è il centro della camera controllata con trascinamento.
