@@ -47,9 +47,9 @@ export default function FaqPage() {
             <img
               src="/marketing/hero-faq.webp"
               alt="Mascotte oca LOCO con cagnolino, foglie e punto interrogativo"
-              width="763"
-              height="515"
-              className="h-auto w-full max-w-[500px] object-contain mix-blend-multiply"
+              width="1169"
+              height="699"
+              className="h-auto w-full max-w-[520px] object-contain"
             />
           </div>
         </div>
@@ -101,9 +101,9 @@ export default function FaqPage() {
             <img
               src="/marketing/faq-cta.webp"
               alt="Personaggio LOCO che corre con smartphone tra foglie e nuvole"
-              width="630"
-              height="600"
-              className="h-auto w-full max-w-[500px] object-contain mix-blend-multiply"
+              width="1502"
+              height="1093"
+              className="h-auto w-full max-w-[580px] object-contain"
             />
           </div>
         </div>

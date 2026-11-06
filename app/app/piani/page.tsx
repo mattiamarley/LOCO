@@ -12,14 +12,14 @@ export default function PianiPage() {
     <SiteShell>
       {/* Hero with lavender curved background */}
       <section className="relative overflow-hidden bg-loco-lavender/70 pb-16 pt-10 sm:pb-24 sm:pt-16">
-        <div className="loco-container grid items-center gap-8 md:grid-cols-[.48fr_1fr]">
+        <div className="loco-container grid items-center gap-8 md:grid-cols-[.52fr_1fr]">
           <div className="flex justify-center md:justify-start">
             <img
               src="/marketing/hero-piani.webp"
-              width="511"
-              height="546"
+              width="1076"
+              height="879"
               alt="Persona LOCO che studia alla scrivania alta con lampada gialla"
-              className="h-auto w-full max-w-[320px] object-contain mix-blend-multiply"
+              className="h-auto w-full max-w-[440px] object-contain"
             />
           </div>
           <div>
@@ -43,9 +43,9 @@ export default function PianiPage() {
               <img
                 src="/marketing/card-locomprodopo.webp"
                 alt="LOCO MPRO DOPO card con personaggio che cammina"
-                width="579"
-                height="210"
-                className="h-auto w-full max-w-[500px] object-contain"
+                width="1760"
+                height="638"
+                className="h-auto w-full max-w-[540px] object-contain"
               />
             </div>
             <div>
@@ -66,9 +66,9 @@ export default function PianiPage() {
               <img
                 src="/marketing/card-pocoloco.webp"
                 alt="POCO LOCO card con personaggio che legge"
-                width="579"
-                height="210"
-                className="h-auto w-full max-w-[500px] object-contain"
+                width="1760"
+                height="689"
+                className="h-auto w-full max-w-[540px] object-contain"
               />
             </div>
           </div>
@@ -79,9 +79,9 @@ export default function PianiPage() {
               <img
                 src="/marketing/card-proloco.webp"
                 alt="PRO LOCO card con personaggio che corre con fotocamera"
-                width="579"
-                height="210"
-                className="h-auto w-full max-w-[500px] object-contain"
+                width="1760"
+                height="638"
+                className="h-auto w-full max-w-[540px] object-contain"
               />
             </div>
             <div>
@@ -129,13 +129,13 @@ export default function PianiPage() {
               </Link>
             </div>
           </div>
-          <div className="flex justify-center md:justify-end">
+          <div className="flex justify-center md:justify-start">
             <img
               src="/marketing/piani-goose.webp"
               alt="Mascotte oca LOCO con becco arancione, nuvolette e foglie fluttuanti"
-              width="600"
-              height="640"
-              className="h-auto w-full max-w-[500px] object-contain"
+              width="3549"
+              height="2065"
+              className="h-auto w-full max-w-[780px] object-contain md:w-[140%] md:max-w-none md:-mr-[35%]"
             />
           </div>
         </div>

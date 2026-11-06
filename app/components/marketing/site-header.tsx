@@ -19,8 +19,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur-xl">
       <div className="mx-auto flex h-[84px] max-w-[1240px] items-center justify-between px-6 sm:px-12">
         <Link href="/" aria-label="LOCO, vai alla Home" className="flex shrink-0 items-center" onClick={() => setOpen(false)}>
-          {/* The artwork is cropped from the original user-supplied home.svg. */}
-          <img src="/marketing/loco-logo.webp" alt="LOCO" className="h-[46px] w-auto object-contain" width="117" height="48" />
+          <img src="/marketing/loco-logo.webp" alt="LOCO" className="h-[42px] w-auto object-contain" width="522" height="161" />
         </Link>
         <nav aria-label="Navigazione principale" className="hidden items-center gap-9 md:flex">
           {navigation.map((item) => (

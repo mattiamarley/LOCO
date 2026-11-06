@@ -109,9 +109,9 @@ export default function DemoPage() {
             <img
               src="/marketing/demo-banner.webp"
               alt="Smetti di usare promemoria, sblocca una memoria pro"
-              width="1100"
-              height="440"
-              className="h-auto w-full max-w-[960px] object-contain"
+              width="2760"
+              height="991"
+              className="h-auto w-full max-w-[1040px] object-contain"
             />
           </div>
           <div className="mt-8">

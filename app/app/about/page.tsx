@@ -63,10 +63,10 @@ export default function AboutPage() {
           <div className="flex justify-center">
             <img
               src="/marketing/hero-about.webp"
-              width="602"
-              height="735"
+              width="1607"
+              height="1138"
               alt="Persona LOCO seduta a leggere un libro con cuffie e scarpe gialle"
-              className="h-auto w-full max-w-[560px] object-contain mix-blend-multiply"
+              className="h-auto w-full max-w-[620px] object-contain"
             />
           </div>
         </div>
@@ -87,9 +87,9 @@ export default function AboutPage() {
               <img
                 src="/marketing/tech-street.webp"
                 alt="Globo illustrato Google Street View"
-                width="336"
-                height="329"
-                className="mx-auto mb-6 h-36 w-36 object-contain"
+                width="558"
+                height="549"
+                className="mx-auto mb-6 h-40 w-40 object-contain"
               />
               <h3 className="loco-display text-[clamp(28px,3.2vw,38px)] uppercase leading-tight text-black">
                 GOOGLE<br />STREET VIEW
@@ -104,9 +104,9 @@ export default function AboutPage() {
               <img
                 src="/marketing/tech-ai.webp"
                 alt="Microchip illustrato intelligenza artificiale"
-                width="385"
-                height="329"
-                className="mx-auto mb-6 h-36 w-36 object-contain"
+                width="607"
+                height="553"
+                className="mx-auto mb-6 h-40 w-40 object-contain"
               />
               <h3 className="loco-display text-[clamp(28px,3.2vw,38px)] uppercase leading-tight text-black">
                 INTELLIGENZA<br />ARTIFICIALE
@@ -145,10 +145,10 @@ export default function AboutPage() {
                   <img
                     src={method.img}
                     alt={method.alt}
-                    width="750"
-                    height="650"
+                    width="1143"
+                    height="960"
                     loading="lazy"
-                    className="mx-auto h-auto max-h-[380px] w-full max-w-[460px] object-contain mix-blend-multiply"
+                    className="mx-auto h-auto w-full max-w-[500px] object-contain"
                   />
                 </div>
                 <div className={index % 2 === 1 ? "md:order-1" : ""}>

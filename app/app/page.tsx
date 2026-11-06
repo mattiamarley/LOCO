@@ -60,9 +60,9 @@ export default function HomePage() {
             <img
               src="/marketing/hero-home.webp"
               alt="Personaggio LOCO con binocolo e cagnolino tra nuvole e foglie"
-              width="861"
-              height="777"
-              className="h-auto w-full max-w-[620px] object-contain mix-blend-multiply"
+              width="1797"
+              height="1315"
+              className="h-auto w-full max-w-[680px] object-contain"
             />
           </div>
         </div>
@@ -216,8 +216,8 @@ export default function HomePage() {
       {/* Ooo? Cosa ca-volo aspetti */}
       <section className="overflow-hidden bg-white pb-24 pt-6 sm:pb-36">
         <div className="loco-container">
-          <div className="grid items-center gap-6 md:grid-cols-[.75fr_1.1fr_.75fr]">
-            <div>
+          <div className="relative mx-auto max-w-[1080px]">
+            <div className="mb-6 md:absolute md:left-0 md:top-6 md:z-10 md:mb-0">
               <h2 className="loco-display text-[clamp(42px,5.5vw,72px)] leading-[.96] text-black">
                 Ooo? Cosa ca<br />
                 <span className="font-extrabold">-volo aspetti</span>
@@ -227,13 +227,13 @@ export default function HomePage() {
               <img
                 src="/marketing/zoo.webp"
                 alt="Oche al parco davanti alla staccionata con cartello ZOO"
-                width="952"
-                height="749"
+                width="2052"
+                height="1181"
                 loading="lazy"
-                className="h-auto w-full max-w-[560px] object-contain mix-blend-multiply"
+                className="h-auto w-full max-w-[780px] object-contain"
               />
             </div>
-            <div className="text-right md:text-left">
+            <div className="mt-6 text-right md:absolute md:bottom-4 md:right-0 md:z-10 md:mt-0">
               <h2 className="loco-display text-[clamp(36px,4.8vw,64px)] leading-[.96] text-black">
                 unisciti<br />
                 <span className="font-extrabold">agli altri lochi</span>
