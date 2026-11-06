@@ -1,106 +1,67 @@
-const sidebarWidths = [74, 58, 82, 66, 71, 54];
-const articleWidths = [100, 97, 94, 98, 86];
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { SiteShell } from "@/components/marketing/site-shell";
+import { SectionHeading } from "@/components/marketing/section-heading";
 
-export default function Home() {
-  return (
-    <main className="fixed inset-0 overflow-hidden bg-[#fbfaf8] text-zinc-900">
-      <header
-        aria-hidden="true"
-        className="grid h-[76px] grid-cols-[1fr_auto_1fr] items-center border-b border-stone-200 bg-white/95 px-6 sm:px-14"
-      >
-        <div className="flex items-center gap-3">
-          <span className="h-9 w-9 rounded-full bg-stone-100" />
-          <span className="h-3.5 w-28 rounded-full bg-stone-100" />
+export const metadata: Metadata = {
+  title: "Home",
+  description: "Memorizza con LOCO: percorsi mnemonici, associazioni personali, tecniche di memoria e richiamo attivo. Scopri come funziona il progetto.",
+};
+
+const features = [
+  { title: "Percorsi virtuali", image: "/marketing/feature-route.webp", alt: "Pin di localizzazione illustrato", copy: "Collega le nozioni a luoghi che conosci: una porta, una piazza o il tragitto verso casa." },
+  { title: "Associazioni generative", image: "/marketing/feature-magic.webp", alt: "Stella brillante illustrata", copy: "Dai vita a immagini mentali personali. I suggerimenti AI sono una funzione in sviluppo." },
+  { title: "Tecniche mnemoniche", image: "/marketing/feature-tools.webp", alt: "Strumenti illustrati", copy: "Scopri il metodo dei loci, i collegamenti e altre strategie con esempi concreti." },
+  { title: "User-centered", image: "/marketing/feature-human.webp", alt: "Persona e icona illustrativa", copy: "Sei tu a decidere i luoghi, le associazioni e quando ripassare. LOCO ti accompagna." },
+];
+
+export default function HomePage() {
+  return <SiteShell>
+    <section className="overflow-hidden bg-white pb-10 pt-10 sm:pb-20 sm:pt-20">
+      <div className="loco-container grid items-center gap-9 lg:grid-cols-[.98fr_1.02fr] lg:gap-2">
+        <div className="relative z-10 py-2">
+          <h1 className="loco-display text-[clamp(53px,6.7vw,95px)] leading-[.94]">
+            Memorizza all&apos;infinito con <span className="block font-extrabold">LOCO</span>
+          </h1>
+          <p className="mt-7 max-w-[445px] text-[clamp(17px,1.9vw,23px)] font-medium leading-[1.23]">Crea percorsi mnemonici virtuali e immagina tutto quello che vuoi.</p>
+          <Link href="/demo" className="loco-button loco-button-purple mt-10">Prova LOCO <ArrowUpRight size={17} aria-hidden /></Link>
         </div>
-        <span className="hidden h-9 w-[min(30vw,420px)] rounded-xl bg-stone-100 sm:block" />
-        <div className="flex items-center justify-end gap-3">
-          <span className="hidden h-9 w-9 rounded-full bg-stone-100 sm:block" />
-          <span className="h-9 w-24 rounded-xl bg-stone-100" />
-        </div>
-      </header>
-
-      <div
-        aria-hidden="true"
-        className="grid h-[calc(100%-76px)] grid-cols-[180px_minmax(0,1fr)_260px] gap-10 px-6 pb-24 pt-10 opacity-55 max-lg:grid-cols-[150px_minmax(0,1fr)] max-sm:grid-cols-1 sm:px-14"
-      >
-        <aside className="hidden border-r border-stone-200 pr-7 sm:block">
-          <div className="mb-6 h-2.5 w-16 rounded-full bg-stone-200" />
-          <div className="space-y-4">
-            {sidebarWidths.map((width) => (
-              <div key={width} className="flex items-center gap-3">
-                <span className="h-4 w-4 rounded bg-stone-200" />
-                <span
-                  className="h-2.5 rounded-full bg-stone-200"
-                  style={{ width: `${width}%` }}
-                />
-              </div>
-            ))}
-          </div>
-          <div className="mb-6 mt-9 h-2.5 w-24 rounded-full bg-stone-200" />
-          <div className="space-y-4">
-            {sidebarWidths.slice(0, 3).map((width) => (
-              <span
-                key={width}
-                className="block h-2.5 rounded-full bg-stone-200"
-                style={{ width: `${width}%` }}
-              />
-            ))}
-          </div>
-        </aside>
-
-        <article className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-          <div className="space-y-3">
-            <div className="h-2.5 w-28 rounded-full bg-stone-200" />
-            <div className="h-7 w-4/5 rounded-lg bg-stone-200" />
-            <div className="h-7 w-3/5 rounded-lg bg-stone-200" />
-          </div>
-          <div className="min-h-[240px] flex-1 rounded-2xl bg-stone-200" />
-          <div className="flex items-center gap-3">
-            <span className="h-9 w-9 rounded-full bg-stone-200" />
-            <span className="h-2.5 w-28 rounded-full bg-stone-200" />
-          </div>
-          <div className="space-y-2">
-            {articleWidths.map((width) => (
-              <span
-                key={width}
-                className="block h-2.5 rounded-full bg-stone-200"
-                style={{ width: `${width}%` }}
-              />
-            ))}
-          </div>
-        </article>
-
-        <aside className="space-y-5 max-lg:hidden">
-          {[0, 1].map((card) => (
-            <div
-              key={card}
-              className="space-y-4 rounded-2xl border border-stone-200 bg-white/70 p-6"
-            >
-              <span className="block h-10 w-10 rounded-full bg-stone-200" />
-              <span className="block h-3 w-3/5 rounded-full bg-stone-200" />
-              <span className="block h-2.5 w-full rounded-full bg-stone-200" />
-              <span className="block h-2.5 w-4/5 rounded-full bg-stone-200" />
-              <span className="block h-8 w-24 rounded-lg bg-stone-200" />
-            </div>
-          ))}
-        </aside>
+        <img src="/marketing/hero-home.webp" alt="Personaggio LOCO che esplora con un binocolo accompagnato da un cagnolino" width="861" height="777" className="mx-auto h-auto w-full max-w-[630px] object-contain mix-blend-multiply" />
       </div>
+    </section>
 
-      <output
-        aria-live="polite"
-        aria-atomic="true"
-        className="absolute left-1/2 top-[clamp(96px,13vh,122px)] w-[min(620px,calc(100%-40px))] -translate-x-1/2 rounded-[18px] border border-stone-200 bg-white/95 px-5 py-5 shadow-[0_18px_50px_rgb(24_24_27/9%)] backdrop-blur-sm"
-      >
-        <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.09em] text-stone-500">
-          Building your site
-        </p>
-        <h1 className="text-xl font-semibold tracking-tight">
-          Your site is taking shape
-        </h1>
-        <p className="mt-1 text-sm text-stone-500">
-          Your first version will appear here automatically when it’s ready.
-        </p>
-      </output>
-    </main>
-  );
+    <section className="loco-blob-left loco-blob-right relative overflow-hidden py-24 sm:py-36">
+      <div className="loco-container relative z-10 text-center">
+        <SectionHeading description="LOCO è un progetto per la memorizzazione che unisce luoghi, associazioni personali e tecniche di apprendimento. Per ricordare, non basta leggere: bisogna provare a richiamare.">Che è sto LOCO</SectionHeading>
+        <Link href="/about" className="loco-button loco-button-purple mt-10">Scopri di più <ArrowRight size={17} aria-hidden /></Link>
+      </div>
+    </section>
+
+    <section className="pb-24 pt-10 sm:pb-32" aria-labelledby="come-funziona">
+      <div className="loco-container">
+        <SectionHeading className="mb-16">Come funziona?<br /><span id="come-funziona">Di base bene</span></SectionHeading>
+        <div className="grid gap-x-12 gap-y-12 md:grid-cols-2 md:gap-y-20">
+          {features.map((item) => <div key={item.title} className="grid grid-cols-[108px_1fr] items-center gap-5 sm:grid-cols-[135px_1fr] sm:gap-8">
+            <img src={item.image} alt={item.alt} width="220" height="220" loading="lazy" className="h-[120px] w-[120px] object-contain sm:h-[145px] sm:w-[145px]" />
+            <div><h3 className="loco-display text-[clamp(22px,2.5vw,30px)] leading-tight">{item.title}</h3><p className="mt-3 text-[15px] leading-snug text-black/75">{item.copy}</p></div>
+          </div>)}
+        </div>
+      </div>
+    </section>
+
+    <section className="bg-[#fbf9ff] py-24 sm:py-32">
+      <div className="loco-container text-center">
+        <SectionHeading description="Le testimonianze arriveranno dopo i test con utenti veri. Intanto, la prova migliore è sperimentare il metodo in prima persona.">Non fidarti delle promesse.<br />Fai una prova.</SectionHeading>
+        <div className="mt-9 flex justify-center"><Link href="/demo" className="loco-button loco-button-purple">Prova tu, poi ci dici <ArrowUpRight size={17} aria-hidden /></Link></div>
+      </div>
+    </section>
+
+    <section className="overflow-hidden py-24 sm:py-32">
+      <div className="loco-container grid items-center gap-4 md:grid-cols-[.8fr_1.2fr]">
+        <div><h2 className="loco-display text-[clamp(39px,5vw,70px)] leading-[.96]">Ooo? Cosa ca-LOCO aspetti?</h2><p className="mt-5 text-lg">Vieni a fare un giro tra i tuoi ricordi.</p><Link href="/demo" className="loco-button loco-button-purple mt-9">Entra in LOCO <ArrowRight size={17} aria-hidden /></Link></div>
+        <img src="/marketing/zoo.webp" alt="Illustrazione LOCO di oche al parco" width="952" height="749" loading="lazy" className="mx-auto h-auto w-full max-w-[670px] mix-blend-multiply" />
+      </div>
+    </section>
+  </SiteShell>;
 }

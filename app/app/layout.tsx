@@ -1,26 +1,22 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Starter Project",
-  description: "A clean starting point for building your site.",
-  other: {
-    "codex-preview": "development",
+  title: { default: "LOCO | Un posto per ogni idea", template: "%s | LOCO" },
+  description: "LOCO aiuta a costruire percorsi di memoria e associazioni personali per studiare, richiamare e ripassare. Scopri il metodo dei loci e prova una demo interattiva.",
+  applicationName: "LOCO",
+  openGraph: {
+    title: "LOCO — Un posto per ogni idea",
+    description: "Luoghi, associazioni e richiamo attivo: scopri LOCO, un progetto per imparare a ricordare.",
+    locale: "it_IT",
+    type: "website",
   },
-  icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-  },
+  robots: { index: true, follow: true },
+  icons: { icon: "/marketing/favicon.png", apple: "/marketing/favicon.png" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className="antialiased">{children}</body>
-    </html>
-  );
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#ffffff" };
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="it"><body className="min-h-screen bg-white text-loco-black antialiased">{children}</body></html>;
 }
