@@ -6,6 +6,7 @@ import { resolve, extname, sep } from 'node:path';
 import { Store, AppError, hash, text } from './store.mjs';
 
 const root = resolve(fileURLToPath(new URL('../prototype/', import.meta.url)));
+const fontsRoot = resolve(fileURLToPath(new URL('../assets/fonts/', import.meta.url)));
 
 export function createApp(database) {
   const store = new Store(database);
@@ -518,8 +519,12 @@ export function createApp(database) {
       if (!['GET', 'HEAD'].includes(method)) {
         throw new AppError('Metodo non consentito.', 405);
       }
-      const file = resolve(root, '.' + decodeURIComponent(path === '/' ? '/index.html' : path));
-      if (!file.startsWith(root + sep)) throw new AppError('Non trovato.', 404);
+      const decodedPath = decodeURIComponent(path === '/' ? '/index.html' : path);
+      const isFontAsset = decodedPath.startsWith('/assets/fonts/');
+      const baseDir = isFontAsset ? fontsRoot : root;
+      const relPath = isFontAsset ? '.' + decodedPath.slice('/assets/fonts'.length) : '.' + decodedPath;
+      const file = resolve(baseDir, relPath);
+      if (!file.startsWith(baseDir + sep)) throw new AppError('Non trovato.', 404);
       const info = await stat(file);
       if (!info.isFile()) throw new AppError('Non trovato.', 404);
       const mime =

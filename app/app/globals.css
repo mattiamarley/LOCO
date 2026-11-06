@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "../vendor/shadcn-tailwind-4.13.0.css";
 
-/* Fonts are copied locally from app/prototype/assets by scripts/prepare-marketing-assets.mjs.
+/* Fonts are copied locally from app/assets/fonts by scripts/prepare-marketing-assets.mjs.
    Do not bundle or fetch fonts from third-party CDNs at runtime. */
 @font-face {
   font-family: "Baloo 2";

@@ -1,2 +1,11 @@
-PROJECT[[:space:]]START[[:space:]]FOLDER/** filter=lfs diff=lfs merge=lfs -text
-references/*.pdf filter=lfs diff=lfs merge=lfs -text
+# Text normalization
+* text=auto eol=lf
+
+# Binary assets
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary

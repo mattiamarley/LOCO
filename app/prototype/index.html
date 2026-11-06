@@ -1,1 +1,26 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob:; connect-src 'none'; object-src 'none'"><title>LOCO · Il tuo spazio per ricordare</title><link rel="stylesheet" href="figma-layout.css?v=20261105-ref4"><link rel="stylesheet" href="portal.css?v=20261105-ref4"></head><body><div id="viewport"><main id="portal" aria-label="LOCO"></main></div><footer id="preview-tools"><span>Anteprima · dati dimostrativi del progetto</span><a href="laboratory.html">La mia stanza e i ripassi</a><button id="settings">Impostazioni</button></footer><dialog id="dialog"><button class="dialog-close" aria-label="Chiudi finestra">×</button><div id="dialog-body"></div></dialog><div id="message" role="status" hidden></div><script type="module" src="bootstrap.mjs?v=20261105-ref4"></script></body></html>
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' blob:; connect-src 'none'; object-src 'none'">
+    <title>LOCO · Prototipo Interattivo</title>
+    <link rel="stylesheet" href="portal.css">
+    <link rel="stylesheet" href="workspace.css">
+  </head>
+  <body>
+    <div id="viewport">
+      <main id="portal" aria-label="LOCO" style="position:relative;width:min(100% - 40px,1040px);height:auto;margin:48px auto;padding:40px;border-radius:28px;background:#faf8fe;border:1px solid #e6deed;">
+        <img src="assets/logo.svg" alt="LOCO" style="width:56px;margin-bottom:24px;">
+        <h1 style="font-family:'Baloo 2',sans-serif;font-size:48px;line-height:1.05;margin:0 0 16px;">LOCO · Prototipo Interattivo</h1>
+        <p style="font-size:18px;line-height:1.6;max-width:680px;margin-bottom:28px;">
+          Ambiente locale di riferimento per la meccanica spaziale 2D/3D (stanza, castello, ripasso cieco, lezioni e mazzo da 52 carte) collegato al server SQLite locale.
+        </p>
+        <div class="toolbar">
+          <a class="design-button" href="workspace.html">Apri Laboratorio tecnico 3D e database</a>
+          <a class="outline-button" href="laboratory.html">La mia stanza 2D, lezioni e 52 carte</a>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

@@ -8,7 +8,7 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const dir = join(root, "public", "marketing", "fonts");
 await mkdir(dir, { recursive: true });
 for (const name of ["baloo-variable.ttf", "inter-tight-variable.ttf"]) {
-  const source = join(root, "prototype", "assets", name);
+  const source = join(root, "assets", "fonts", name);
   const dest = join(dir, name);
   try {
     await stat(source);

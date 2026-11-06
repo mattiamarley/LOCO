@@ -1,54 +1,84 @@
 # LOCO
 
-Ricostruzione del progetto LOCO: una web app per computer e telefono che combina percorsi, metodo dei loci, associazioni personali e assistenza AI per studiare e ripassare.
+**LOCO is a spatial learning and memory platform.** It helps people transform study material into verified knowledge units, associate them with memorable places and personalized cues, practise retrieval without seeing the answer, and review at increasing intervals. Spatial environments, mnemonic techniques, and optional AI assistance support learning; generating an image is not itself evidence of learning.
 
-## Stato attuale
+> **Development status — snapshot of `main` at `9861c821` (6 November 2026).** This repository has a Next.js marketing website, a separate functional browser prototype, and a Node/SQLite local backend with legacy `/api/*` and newer `/v1/*` endpoints and automated tests. The public Next.js `/app` page is currently a placeholder. Neither the production-ready integrated web app nor hosted backend, accounts, generative features, payments, Maps integration, personal 3D scanning, or VR should be represented as live capabilities. Recheck the repository after any subsequent changes.
 
-Sono stati raccolti e analizzati i materiali originali, preparati un catalogo visivo e una prima specifica funzionale. È disponibile una prima prova locale gratuita in `app/prototype/`: stanza schematica, loci, contenuti, richiamo, lezioni e carte. Non è ancora il prodotto completo e non è pubblicata online. Avvio e limiti in [app/prototype/README.md](app/prototype/README.md).
+## What LOCO is building
 
-Il riferimento definitivo di design è [loco nuovo su Figma](https://www.figma.com/design/FeZKyO6xCZtjmQ1uEef4kx/loco-nuovo?node-id=310-887). Il file include le pagine `sito`, `Portale / Area riservata`, `App mobile` e le librerie/materiali del progetto. L'analisi dettagliata dei frame è in corso.
+1. **Prepare knowledge:** add text, questions and answers, or—once supported—import sources; verify extracted facts before studying.
+2. **Create a memory palace:** select a real or virtual environment and establish stable, ordered loci.
+3. **Encode in context:** associate each knowledge item with a locus and a vivid, personally meaningful cue. Creation/editing happens **inside the opened environment**; voice is optional.
+4. **Study and retrieve:** attempt recall before revealing answers; record the result and assistance used.
+5. **Revisit:** schedule item-level spaced repetition and inspect meaningful, sample-aware progress.
+6. **Extend:** lessons, skill practice, adaptive recommendations, friends and challenges, as these become integrated and verified.
 
-## Contenuto
+The same user-owned data should eventually work across desktop and mobile. Immersive/VR interactions are a design ambition, not a shipped feature.
 
-- `PROJECT START FOLDER/`: materiali originali forniti dall'autore, inclusi video, ADV, mockup, sorgente InDesign e font.
-- `research/FUNCTIONAL-SPEC.md`: struttura del funzionamento, dati e criteri di accettazione.
-- `research/PROJECT-AUDIT.md`: audit del primo book.
-- `research/MEMORY-FOUNDATIONS.md`: fondamenti delle tecniche di memoria e implicazioni per le funzionalità.
-- `research/media/index.html`: catalogo locale con immagini, video e 134 fotogrammi campionati.
-- `research/media/MEDIA-STUDY.md`: studio dei materiali locali, differenze fra versioni e requisiti emersi.
-- `research/figma/`: riferimenti e stato di analisi del file definitivo.
-- `references/`: book e riferimenti acquisiti durante lo studio.
-- `scripts/`: strumenti di catalogazione, OCR, trascrizione locale e anteprima.
-- `app/`: scaffold tecnico per la futura web app.
+## Repository map
 
-## Clonazione e materiali pesanti
+| Path | Purpose |
+| --- | --- |
+| `app/app/` | Next.js App Router: public marketing pages and the current `/app` placeholder |
+| `app/components/`, `app/lib/`, `app/hooks/` | UI components, hooks, and shared frontend modules |
+| `app/assets/fonts/` | Canonical tracked source for licensed brand fonts (`baloo-variable.ttf`, `inter-tight-variable.ttf`) and OFL licenses |
+| `app/public/marketing/` | Current production marketing illustrations and imagery; **do not remove** |
+| `app/public/assets/figma-curated/` | Reserved for the owner's selected, app-ready Figma assets (initially empty) |
+| `app/prototype/` | Interactive local 2D/3D spatial prototype (`laboratory.html`, `workspace.html`, `castle.mjs`, `room3d.mjs`, `model.mjs`) |
+| `app/server/` | Local Node/SQLite server, `/api` compatibility layer, `/v1` API, model contracts, tests and proposed PostgreSQL schema |
+| `docs/` | Product, architecture, learning, assets, decisions and roadmap; intentionally no `DESIGN.md` yet |
+| `AGENTS.md` | Primary operating instructions for coding agents |
+| `CLAUDE.md` | Thin pointer to common agent instructions |
 
-I materiali originali pesanti sono conservati con Git LFS. Installare Git LFS prima del clone oppure eseguire `git lfs pull` dopo la clonazione.
+## Requirements and local setup
 
-```sh
-git clone https://github.com/mattiamarley/LOCO.git
-cd LOCO
-git lfs pull
+- Git and Node.js **>=22.13.0** for the Next.js website; npm as the package manager.
+- For the local server and its tests, use a Node release with usable `node:sqlite` and native TypeScript stripping; the code was documented as verified on **Node 25.2.1**. This is not a general promise of compatibility with every 22.x runtime.
+- No third-party API keys are needed for the static prototype or its existing local flows.
+
+```bash
+# From the LOCO repository root
+cd app
+npm ci
+npm run dev             # Next.js website, generally http://localhost:3000
 ```
 
-Per consultare il catalogo in locale:
+Run in separate terminals when needed:
 
-```sh
-python3 scripts/serve-media.py
+```bash
+# From repository root — legacy static prototype
+python3 -m http.server 8780 --bind 127.0.0.1 --directory app/prototype
+
+# From repository root — local Node/SQLite backend + prototype entry
+node app/server/dev.mjs   # generally http://127.0.0.1:8781
 ```
 
-Aprire l'indirizzo locale stampato. Il server è limitato al loopback e serve solo materiali, riferimenti e ricerca.
+The local backend is **not** automatically the backend of the production Next.js deployment.
 
-Le utility OCR/trascrizione dipendono dagli strumenti locali descritti nei rispettivi script; i percorsi temporanei sono quelli della sessione di ricerca, non un'installazione portabile del prodotto.
+### Quality checks
 
-## Configurazione
+```bash
+cd app
+npm run check:marketing
+npm run test:local
+npm run lint
+npm run build:vercel
+```
 
-Le chiavi API e le configurazioni locali sono escluse da Git. Nessuna credenziale deve essere inserita nel codice, nel README o nei materiali pubblicati. Il budget indicativo concordato per le integrazioni è di 100 euro/mese; provider e quote operative saranno definiti durante l'implementazione.
+`npm start` runs `next start` for a built Next.js production server.
 
-Non è stata concessa una licenza aggiuntiva tramite questo repository: marchio, materiali e contenuti di terzi conservano le rispettive titolarità.
+## Deployment
 
-## Nuova app operativa locale
+The existing Vercel project expects **Root Directory `app`**, framework **Next.js**, and the current `app/vercel.json` build command `npm run build:vercel`. During `dev` and `build`, `app/scripts/prepare-marketing-assets.mjs` copies the two original brand fonts from `app/assets/fonts/` into `app/public/marketing/fonts/`. The domain/URL can change; do not treat a deployed marketing site as proof of a deployed private application.
 
-Avvio: `node app/server/dev.mjs`, quindi http://127.0.0.1:8781 . Account, percorsi, loci, lezioni e ripassi sono ora persistenti in SQLite. I dati locali sono esclusi da Git. Funzioni, limiti e test in [app/server/README.md](app/server/README.md); valutazione economica e vincoli Street View/3D in [research/SERVICE-FEASIBILITY.md](research/SERVICE-FEASIBILITY.md). L'app completa e il deployment pubblico sono ancora da completare.
+Store secrets only in the deployment environment, never in tracked source, examples containing real credentials, or exported design documents.
 
-Correzione UX: l'ingresso su porta 8781 ora mostra il portale derivato dal Figma. La prova operativa con database/3D è separata in `/workspace.html` ed etichettata come laboratorio tecnico; non rappresenta la UX definitiva. Il collegamento dei servizi alle schermate originali è ancora da completare.
+## Working with AI coding agents
+
+Start with [AGENTS.md](AGENTS.md). Product outcomes: [docs/PRODUCT.md](docs/PRODUCT.md); actual system boundaries: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); learning rules: [docs/LEARNING.md](docs/LEARNING.md); asset handling: [docs/ASSETS.md](docs/ASSETS.md); established decisions: [docs/DECISIONS.md](docs/DECISIONS.md); next steps: [docs/ROADMAP.md](docs/ROADMAP.md).
+
+**Design source:** [LOCO — loco nuovo in Figma](https://www.figma.com/design/FeZKyO6xCZtjmQ1uEef4kx/loco-nuovo?node-id=310-887). The owner's definitive *Portale / Area riservata* is the **bottom-right group**, not all exported frames. The owner will supply a hand-curated set of visual assets separately.
+
+## Intellectual property and safety
+
+The repository does not, by its presence alone, grant any new license to LOCO branding or third-party creative work. Retain existing font license texts and check third-party content rights. Avoid tracking personally identifying data, source uploads, user-captured media, local databases, credentials, or unnecessary historical design exports. Do not make unverified promises about memory performance.

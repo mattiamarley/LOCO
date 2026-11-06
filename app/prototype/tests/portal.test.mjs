@@ -1,22 +1,24 @@
-import {test} from 'node:test';
+import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync,statSync} from 'node:fs';
-import {views} from '../figma-views.mjs';
+import { readFileSync, statSync } from 'node:fs';
 
-test('all exported screens are portable HTML with available local assets',()=>{
-  assert.equal(Object.keys(views).length,15);
-  for(const [name,markup] of Object.entries(views)){
-    assert.ok(!/<[A-Z]|className=|src=\{|style=\{/.test(markup),`${name}: unresolved JSX`);
-    assert.ok(!/https?:\/\//.test(markup),`${name}: remote runtime dependency`);
-    for(const match of markup.matchAll(/(?:src="|mask-image:url\()([^"\)]+)/g)){
-      assert.ok(statSync(new URL('../'+match[1],import.meta.url)).size>0,`${name}: empty asset`);
+test('prototype HTML entrypoints and modules are portable with available local assets', () => {
+  const htmlFiles = ['index.html', 'laboratory.html', 'workspace.html'];
+  const moduleFiles = ['app.mjs', 'workspace.mjs', 'castle.mjs', 'room3d.mjs', 'model.mjs'];
+
+  for (const file of [...htmlFiles, ...moduleFiles]) {
+    const content = readFileSync(new URL('../' + file, import.meta.url), 'utf8');
+    assert.ok(!/https?:\/\//.test(content), `${file}: unexpected remote runtime dependency`);
+    for (const match of content.matchAll(/(?:src=")([^"$]+)"/g)) {
+      const ref = match[1].split('?')[0];
+      assert.ok(statSync(new URL('../' + ref, import.meta.url)).size > 0, `${file}: empty or missing asset ${ref}`);
     }
   }
 });
 
-test('published profile uses example contact and payment data',()=>{
-  assert.ok(views.profile.includes('demo@example.com'));
-  assert.ok(!/\b(?:\d[ -]?){13,19}\b|cirivane@|Via Morozzo/.test(views.profile));
-  const index=readFileSync(new URL('../index.html',import.meta.url),'utf8');
-  assert.ok(index.includes("connect-src 'none'"));
+test('static prototype entrypoints enforce strict offline CSP', () => {
+  for (const file of ['index.html', 'laboratory.html']) {
+    const html = readFileSync(new URL('../' + file, import.meta.url), 'utf8');
+    assert.ok(html.includes("connect-src 'none'"), `${file}: missing offline connect-src CSP`);
+  }
 });

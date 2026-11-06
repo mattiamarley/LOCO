@@ -14,6 +14,7 @@
 node_modules/
 **/node_modules/
 **/.next/
+**/.vercel/
 **/.vinext/
 **/.wrangler/
 **/.sites-runtime/
@@ -29,15 +30,21 @@ node_modules/
 .DS_Store
 **/.DS_Store
 
-# Unreviewed raw design exports with profile/payment specimen data
-/research/figma/private/
-
-/user-data/
-
-# Local application database and backups
+# Local application database and user data
 /app/runtime/
+/user-data/
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
-/vercel-preview/
 
+# Raw academic/design exports, videos, and temporary archives (never commit to Git)
+/PROJECT START FOLDER/
+/references/
+/research/
+/base research/
+/vercel-preview/
+/LOCO_Documentation_Pack/
+*.mov
+*.mp4
+*.idml
+*.zip

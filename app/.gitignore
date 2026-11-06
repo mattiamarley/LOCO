@@ -2,17 +2,10 @@
 /node_modules/
 /.pnp
 .pnp.*
-# Keep authored Yarn tooling if the project adopts Yarn.
-/.yarn/*
-!/.yarn/patches/
-!/.yarn/plugins/
-!/.yarn/releases/
-!/.yarn/versions/
 
 # Generated builds and framework state
 /dist/
 /.next/
-/.vinext/
 /out/
 next-env.d.ts
 *.tsbuildinfo
@@ -31,17 +24,17 @@ yarn-error.log*
 .dev.vars*
 *.pem
 
-# Checkout-local tool state
-/.wrangler/
-/.sites-runtime/
+# Local SQLite runtime state
+/runtime/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
 
-# Workspace scaffolding and publication archives
+# Workspace scaffolding and OS metadata
 /.agents/
 /.codex/
 /outputs/
 /work/
-
-# OS metadata
 .DS_Store
 /public/marketing/fonts/
 /.vercel/

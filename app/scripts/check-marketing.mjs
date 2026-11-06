@@ -15,8 +15,8 @@ for (const relative of requiredRoutes.map(p => `app/${p}`).concat(requiredAssets
   if (!existsSync(join(app, relative))) { console.error(`MISSING ${relative}`); missing++; }
 }
 for (const font of ['baloo-variable.ttf', 'inter-tight-variable.ttf']) {
-  if (!existsSync(join(app, 'prototype', 'assets', font))) {
-    console.error(`MISSING original brand font: app/prototype/assets/${font}`);
+  if (!existsSync(join(app, 'assets', 'fonts', font))) {
+    console.error(`MISSING original brand font: app/assets/fonts/${font}`);
     missing++;
   }
 }
