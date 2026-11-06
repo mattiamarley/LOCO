@@ -1,0 +1,36 @@
+{
+  "outboxEventEnvelope": {
+    "id": "b9a66a39-6142-4815-9362-f64160368a6f",
+    "eventType": "recall.completed",
+    "aggregateType": "learning_target",
+    "aggregateId": "c5c27692-9667-4db4-a9e8-62368d5402c3",
+    "actorId": "1abb4c6a-e082-425b-8a32-d2325a8bc9c4",
+    "schemaVersion": 1,
+    "createdAt": "2026-11-06T15:00:00Z",
+    "payload": {
+      "attemptId": "05fe4f7c-6bfc-459c-9fa7-20a0bb92f322",
+      "result": "forgot",
+      "newDueAt": "2026-11-06T15:10:00Z"
+    }
+  },
+  "adaptiveInterventionExample": {
+    "rationaleCode": "slow_major_pair_bidirectional_drill",
+    "algorithmVersion": "adaptive-rules-v2.0",
+    "metricVersion": "v2.0",
+    "targetScope": "skill",
+    "skill": "major",
+    "stimulusKey": "major:36",
+    "recommendedAction": "targeted_bidirectional_major_drill",
+    "explanation": "Conversione major:36 (number_to_image) lenta o imprecisa, spesso confusa con major:63. Allena il recupero bidirezionale numero->immagine e immagine->numero prima di progredire.",
+    "evidence": {
+      "stimulusKey": "major:36",
+      "direction": "number_to_image",
+      "unassistedAccuracy": 0.5,
+      "medianRetrievalMs": 4200,
+      "topConfusedWithKey": "major:63",
+      "topConfusionCount": 3
+    },
+    "sampleSize": 10,
+    "confidenceLevel": "low"
+  }
+}

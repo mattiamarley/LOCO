@@ -1,33 +1,58 @@
-# LOCO: applicazione locale con database
+# LOCO: Backend Locale & Blueprint v2 (`/api` + `/v1`)
 
-Avvio dalla radice: `node app/server/dev.mjs`. Richiede Node con `node:sqlite` (verificato Node 25.2.1; il modulo SQLite è ancora segnalato sperimentale). Aprire http://127.0.0.1:8781 e creare un account di prova. In alternativa da app/: `npm run dev:local`. Non richiede npm install, chiavi o credito.
+Avvio dalla radice: `node app/server/dev.mjs` (oppure da `app/`: `npm run dev:local`).
+Richiede Node con `node:sqlite` e supporto TypeScript nativo (verificato su Node 25.2.1).
+Aprire http://127.0.0.1:8781 .
 
-Il database SQLite è in `app/runtime/loco.sqlite`, escluso da Git. Schema SQL inizializzato all'avvio: utenti, sessioni, percorsi, loci ordinati, cronologia ripassi e lezioni lette. Password derivate con PBKDF2 e salt, sessioni con token casuale (hash conservato nel DB) e cookie HttpOnly/SameSite. Controlli di proprietà su tutte le operazioni; scritture con header dedicato e verifica Origin. Nessuna chiave AI o contenuto Google viene inviato o memorizzato.
+## Architettura: Compatibilità v1 + Backend Blueprint v2
 
-Funzionante: registrazione/accesso/uscita; nome profilo; percorsi e bozze modificabili; loci con domanda, risposta e associazione personale; riordino; studio guidato; risposta nascosta prima del richiamo; autovalutazione e prossima scadenza; otto lezioni testuali con completamento persistente; ricerca percorsi; esportazione JSON. Una modifica a domanda o risposta azzera la progressione del locus. La coda di ripasso volontaria comprende tutti i loci; i contatori distinguono quelli in scadenza.
+Il server locale mantiene **il 100% di retrocompatibilità** con il prototipo esistente (`/api/*` e tabelle SQLite `users`, `sessions`, `routes`, `loci`, `reviews`, `lesson_progress` con `PRAGMA user_version=2`) e integra l'intera architettura **LOCO — Backend Blueprint v2** su `/v1/*`:
 
-L'area operativa `workspace.html` usa i materiali LOCO e un layout responsive per provare i dati reali. Il riferimento Figma precedente è ancora in `index.html`; la ricomposizione esatta delle schermate con dati dinamici è da completare. Questa versione non sostituisce la verifica di fedeltà già documentata.
+1. **Identity + Friends (`/v1/me`, `/v1/users`, `/v1/friends`, `/v1/friend-requests`)**
+   - Profilo pubblico limitato (`handle` senza email, `displayName`, `discoverable`, `leaderboardVisibility`: `public` | `friends` | `hidden`).
+   - Preferenze di studio (`learningGoal`, `dailyTargetMinutes`, `desiredRetention`, `preferredSrsAlgorithm`: `simple-v1` | `fsrs-7`, `aiPersonalizationOptIn`).
+   - Amicizie normalizzate `(user_low_id, user_high_id)`, inviti con anti-inversione e blocchi bidirezionali (`user_blocks`) che rimuovono immediatamente visibilità social e classifiche.
+   - Export GDPR idempotente (`POST /v1/me/exports`).
 
-È un ambiente locale di sviluppo, non ancora il servizio pubblico completo. Il server ascolta soltanto su 127.0.0.1: non è accessibile dal telefono fisico. Le prove mobile sono di viewport browser. Per test reali fra dispositivi serve un ambiente HTTPS con database condiviso. Prima dell'esposizione pubblica: server di produzione, cookie Secure, recupero/verifica email, monitoraggio, backup programmati/ripristino, limiti di consumo e trattamento dei dati. Il JSON esportato comprende percorsi e letture, non password/sessioni né l'intera cronologia; il recupero automatico/importazione non è ancora implementato.
+2. **Study + Knowledge (`/v1/projects`, `/v1/sources`, `/v1/knowledge`)**
+   - Upload in bucket privato (`media_assets`), parsing documenti in `document_chunks` con pagina/offset.
+   - Nozioni `knowledge_items` con revisioni immutabili (`knowledge_revisions`) ed evidenze citate (`knowledge_evidence`).
+   - **Guardrail AI**: una nozione estratta da AI nasce sempre `state = 'proposed'` e non può diventare un `learning_target` attivo finché l'utente non la conferma (`POST /v1/knowledge/:id/confirm`).
+   - Controllo ottimistico della concorrenza tramite `expectedRevision` (`409 CONFLICT` se obsoleta) e riconciliazione dello scheduler senza sovrascrivere lo storico dei tentativi.
 
-Street View, scansione 3D, upload video, generazione AI, VR e pagamenti non sono collegati. Il campo ambiente Street View è soltanto predisposto. Nessuna conversione 3D viene simulata. Il server Node/SQLite locale è distinto dallo scaffold Cloudflare/Vinext: per quel deployment occorre adattare l'accesso SQL a D1 oppure scegliere un hosting Node con disco persistente.
+3. **Memory, Palaces & Spatial/Media Engine v2 (`/v1/palaces`, `/v1/loci`, `/v1/mnemonics`)**
+   - Versionamento immutabile della scena (`palace_scene_versions`), anchor spaziali vincolati a `scene_version` (`locus_anchors`) e posizionamento multi-oggetto 2D/video/GLB animato (`locus_placements`).
+   - Revisioni storiche delle associazioni mnemoniche (`association_revisions`) e varianti multimediali (`media_variants`).
 
-Test dalla radice: `node --test app/server/tests/*.test.mjs app/prototype/tests/*.test.mjs`. L'integrazione apre un server su porta temporanea e crea/elimina un database isolato. Verifica due account, isolamento, ordinamento atomico, ripassi, reset della progressione, coordinate, persistenza riaprendo il DB e rifiuto di origini esterne.
+4. **Learning, Blind Recall & SRS (`/v1/reviews/due`, `/v1/review-attempts`)**
+   - **Blind Recall**: `GET /v1/reviews/due` non espone mai la risposta prima del tentativo.
+   - **Idempotenza**: `POST /v1/review-attempts` deduplica per `(owner_id, idempotency_key)`.
+   - **Guardrail SRS (`src/srs.ts`)**: se `viewedAnswerBeforeAttempt = true` il voto viene forzato a `again` (`forgot`); se `hintCount > 0` il voto massimo è `hard` (`partial`). Supporta `simple-v1` e `fsrs-7`.
 
-## Loci durante l'esplorazione 3D
+5. **Training, 18 Metriche Versionate & Interventi Adattivi Spiegabili (`/v1/training/*`, `/v1/me/learning-profile`)**
+   - Motore di calcolo (`src/memoryMetrics.ts`) per tutte le **18 famiglie metriche** distribuite nelle 5 dashboard del Memory Profile (`overview`, `memorySkills`, `techniqueMastery`, `learningAnalytics`, `recordsRankings`), sempre accompagnate da `sampleSize`, `windowDays`, `formulaVersion` e `confidenceLevel`.
+   - Statistiche granulari per singolo stimolo e direzione (`user_skill_item_stats`, es. Major `00–99` `number_to_image` separato da `image_to_number`) e matrice di confusione tra loci adiacenti (`locus_confusion_stats`).
+   - Motore decisionale spiegabile (`src/adaptiveRecommendations.ts`) con `rationale_code`, evidenze e valutazione post-intervento (`intervention_outcomes`, con esito `inconclusive` quando le prove pre/post non sono comparabili).
 
-L'editor ora comprende una stanza geometrica di prova navigabile con trascinamento per la visuale, WASD/frecce e pulsanti su telefono. Premi Aggiungi locus qui, quindi tocca una superficie: il raycast sceglie la superficie visibile e apre la compilazione del contenuto. La creazione del locus richiede un punto 3D; i loci precedenti senza punto possono essere ancorati tramite Modifica.
+6. **Arena — Challenges & Leaderboards (`/v1/challenges`, `/v1/challenge-versions/:id/*`)**
+   - Versioni immutabili delle sfide, **1 tentativo ranked per utente per versione** (`409 CONFLICT` al secondo tentativo), allenamenti illimitati fuori classifica (`isRanked: false`).
+   - Scoring deterministico lato server (`src/challengeScoring.ts`: `accuracy_time` e `perfect_speed`), verifica `nonce` e `deadline`, calcolo `rank()` ufficiale a pari merito con tie-breaker visuale `achieved_at`.
 
-Migrazione automatica v2: `loci.anchor_json` conserva identificativo/versione della scena, punto XYZ in metri, normale della superficie e posa della camera. Non sono coordinate sullo schermo. Il riordino e le modifiche del testo conservano il punto. Vai al punto 3D ripristina la vista; studio e ripasso mostrano il locus nel viewer mantenendo nascoste risposta e associazione fino al richiamo. Il database e l'API conservano il dato spaziale anche dopo un riavvio.
+## Struttura dei File
 
-La stanza è costruita per il collaudo, non riproduce una scansione personale o Street View. Non è ancora implementato l'import di modelli GLB/splat. Il collegamento a una scansione richiederà un identificativo/versione del modello e trasformazioni coerenti, senza riutilizzare automaticamente coordinate di una scena differente. Three.js 0.180.0 è incluso localmente con licenza MIT; nessuna dipendenza CDN a runtime.
+- `app/server/db/001_schema.sql` .. `007_performance_adaptivity.sql`: 54 tabelle PostgreSQL 15+ proposte (37 v1 + 17 v2 Addendum) + policy RLS opzionali (`002_rls_optional.sql`).
+- `app/server/src/models.ts` e `app/server/src/models.v2.ts`: contratti TypeScript v1 e v2.
+- `app/server/src/challengeScoring.ts`: scorer deterministico e builder classifica.
+- `app/server/src/srs.ts`: scheduler versionato `simple-v1` e `fsrs-7`.
+- `app/server/src/memoryMetrics.ts`: calcolo delle 18 famiglie metriche, delay buckets e diagnostica per direzione/loci.
+- `app/server/src/adaptiveRecommendations.ts`: motore di raccomandazioni spiegabili e verifica di comparabilità.
+- `app/server/api/openapi.yaml`: specifica OpenAPI 3.1 per `/v1`.
+- `app/server/docs/`: documentazione tecnica (`API_V2.md`, `PERFORMANCE_V2.md`, `MEDIA_SPATIAL_V2.md`, `ERD_V2.mmd`).
+- `app/server/tests/`: suite di test (`api.test.mjs`, `metrics.test.mjs`, `v2-api.test.mjs`).
 
-## Ingresso ripristinato alla UX Figma
+## Esecuzione Test
 
-Dopo il riscontro dell'autore, `/` su porta 8781 apre il portale `index.html` derivato dal Figma, ancora con dati dimostrativi dichiarati. Le funzioni database/3D sopra descritte sono disponibili soltanto nel laboratorio esplicitamente etichettato: http://127.0.0.1:8781/workspace.html . Il laboratorio non è la UX approvata del prodotto. Collegare le API e il viewer alle schermate originali resta lavoro da completare.
-
-## Castello con strumenti contestuali
-
-Nel laboratorio, Apri percorso → Avvia castello avvia `#castle/<id>` a tutta scena. È una prova funzionale basata sulla sequenza di DEF MOBILE.mov (01:15–01:51 e 03:09–03:39), separata dalla UX definitiva finché controlli e asset originali non sono integralmente allineati. Scegli un punto con tocco oppure con il puntatore centrale e Aggiungi locus; compila Nozione e Associazione nel pannello sovrapposto. Il salvataggio aggiunge il marker e lascia l'utente nello stesso ambiente e nella stessa posizione. I marker esistenti possono essere riaperti. Durante la compilazione un'altra selezione è bloccata per non sovrascrivere la bozza.
-
-Voce: integrazione Web Speech del browser predisposta per dettatura e comandi aggiungi locus / salva / annulla, soltanto dopo pressione del pulsante. Non è stata collaudata con acquisizione microfono; dipende dalla disponibilità e dai permessi del browser e può usare il servizio online del browser. Nessuna chiamata OpenAI. Fonte tecnica: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition . Alternativa testo sempre disponibile. Non è un'implementazione VR/gaze tracking della testa: il puntatore normale è il centro della camera controllata con trascinamento.
+Dalla cartella `app/`:
+```sh
+npm run test:local
+```

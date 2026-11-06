@@ -1,0 +1,403 @@
+openapi: 3.1.0
+info:
+  title: LOCO Backend Blueprint v2 API
+  version: 2.0.0
+  description: >-
+    Contratto API /v1 per LOCO — Sistema di apprendimento personalizzato,
+    Memory Performance (18 metriche versionate), Spatial & Media Engine,
+    training, amici, sfide immutabili e classifiche.
+servers:
+  - url: /v1
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Healthcheck API v1
+      responses:
+        '200': { description: OK }
+  /me:
+    get:
+      operationId: getMe
+      summary: Profilo personale e preferenze
+      responses:
+        '200': { description: Profilo utente e preferenze }
+    patch:
+      operationId: updateMe
+      summary: Aggiorna handle, displayName, discoverable e leaderboardVisibility
+      responses:
+        '200': { description: Profilo aggiornato }
+  /me/preferences:
+    patch:
+      operationId: updateMyPreferences
+      summary: Aggiorna desiredRetention, dailyTargetMinutes, learningGoal, preferredSrsAlgorithm
+      responses:
+        '200': { description: Preferenze aggiornate }
+  /me/exports:
+    post:
+      operationId: createMyDataExport
+      summary: Avvia o recupera export GDPR idempotente dei dati utente
+      responses:
+        '201': { description: Export job creato }
+  /users:
+    get:
+      operationId: searchUsersByHandle
+      summary: Ricerca profili ricercabili (discoverable=true) per handle
+      parameters:
+        - name: handle
+          in: query
+          schema: { type: string }
+      responses:
+        '200': { description: Lista utenti ricercabili (senza email) }
+  /friends:
+    get:
+      operationId: listFriends
+      summary: Lista amici accettati (esclusi utenti bloccati)
+      responses:
+        '200': { description: Lista amici }
+  /friends/{userId}:
+    delete:
+      operationId: removeFriend
+      summary: Rimuove amicizia
+      responses:
+        '204': { description: Amicizia rimossa }
+  /friend-requests:
+    get:
+      operationId: listFriendRequests
+      summary: Richieste di amicizia in entrata e in uscita
+      responses:
+        '200': { description: Richieste pendenti }
+    post:
+      operationId: createFriendRequest
+      summary: Invia richiesta di amicizia
+      responses:
+        '201': { description: Richiesta creata }
+  /friend-requests/{id}/accept:
+    post:
+      operationId: acceptFriendRequest
+      summary: Accetta richiesta e crea coppia normalizzata in friendships
+      responses:
+        '200': { description: Amicizia creata }
+  /friend-requests/{id}/reject:
+    post:
+      operationId: rejectFriendRequest
+      summary: Rifiuta richiesta di amicizia
+      responses:
+        '200': { description: Richiesta rifiutata }
+  /users/{userId}/block:
+    post:
+      operationId: blockUser
+      summary: Blocca utente (rimuove visibilità social in entrambe le direzioni)
+      responses:
+        '204': { description: Utente bloccato }
+    delete:
+      operationId: unblockUser
+      summary: Rimuove blocco utente
+      responses:
+        '204': { description: Blocco rimosso }
+  /projects:
+    get:
+      operationId: listProjects
+      summary: Lista study_projects dell'utente
+      responses:
+        '200': { description: Lista progetti }
+    post:
+      operationId: createProject
+      summary: Crea un nuovo study_project
+      responses:
+        '201': { description: Progetto creato }
+  /projects/{id}:
+    get:
+      operationId: getProject
+      summary: Dettaglio study_project
+      responses:
+        '200': { description: Progetto }
+    patch:
+      operationId: updateProject
+      summary: Aggiorna study_project
+      responses:
+        '200': { description: Progetto aggiornato }
+    delete:
+      operationId: deleteProject
+      summary: Elimina study_project
+      responses:
+        '204': { description: Progetto eliminato }
+  /projects/{id}/uploads:
+    post:
+      operationId: initProjectUpload
+      summary: Inizializza caricamento file in bucket privato e registra media_assets
+      responses:
+        '201': { description: Asset ID e signed URL temporaneo }
+  /projects/{id}/sources:
+    get:
+      operationId: listProjectSources
+      summary: Lista source_documents del progetto
+      responses:
+        '200': { description: Documenti }
+    post:
+      operationId: createProjectSource
+      summary: Completa upload documento, estrae document_chunks e proposte AI
+      responses:
+        '201': { description: Documento e job AI }
+  /sources/{id}/chunks:
+    get:
+      operationId: listSourceChunks
+      summary: Lista chunk estratti con pagina/offset
+      responses:
+        '200': { description: Chunks privati }
+  /projects/{id}/knowledge:
+    get:
+      operationId: listProjectKnowledge
+      summary: Lista knowledge_items con filtri state/kind ed evidenze
+      responses:
+        '200': { description: Knowledge items }
+    post:
+      operationId: createKnowledgeItem
+      summary: Crea knowledge_item manuale o proposto
+      responses:
+        '201': { description: Knowledge item creato }
+  /knowledge/{id}:
+    patch:
+      operationId: updateKnowledgeItem
+      summary: Aggiorna knowledge_item con controllo expectedRevision (409 se obsoleto)
+      responses:
+        '200': { description: Nuova revisione creata }
+  /knowledge/{id}/confirm:
+    post:
+      operationId: confirmKnowledgeItem
+      summary: Conferma knowledge_item e sblocca learning_target attivo
+      responses:
+        '200': { description: Nozione confermata }
+  /knowledge/{id}/targets:
+    post:
+      operationId: createLearningTarget
+      summary: Crea learning_target per una direzione (forward/reverse/explain/apply/cloze)
+      responses:
+        '201': { description: Learning target }
+  /knowledge/{id}/evidence:
+    get:
+      operationId: getKnowledgeEvidence
+      summary: Chunks e citazioni di provenance per la nozione
+      responses:
+        '200': { description: Evidenze }
+  /palaces:
+    get:
+      operationId: listPalaces
+      summary: Lista palazzi della memoria dell'utente
+      responses:
+        '200': { description: Palaces }
+    post:
+      operationId: createPalace
+      summary: Crea palazzo con palace_scene_versions iniziale
+      responses:
+        '201': { description: Palace creato }
+  /palaces/{id}:
+    get:
+      operationId: getPalace
+      summary: Dettaglio palazzo e versioni scena
+      responses:
+        '200': { description: Palace }
+    patch:
+      operationId: updatePalace
+      summary: Aggiorna metadati o crea nuova sceneVersion immutabile
+      responses:
+        '200': { description: Palace aggiornato }
+  /palaces/{id}/loci:
+    get:
+      operationId: listPalaceLoci
+      summary: Lista loci ordinati del palazzo con anchor e placements
+      responses:
+        '200': { description: Loci }
+    post:
+      operationId: createPalaceLocus
+      summary: Crea locus con verifica sceneVersion sull'anchor
+      responses:
+        '201': { description: Locus creato }
+  /palaces/{id}/loci/order:
+    put:
+      operationId: reorderPalaceLoci
+      summary: Riordina atomicamente i loci del palazzo
+      responses:
+        '200': { description: Loci riordinati }
+  /loci/{id}:
+    patch:
+      operationId: updateLocus
+      summary: Aggiorna label o anchor con verifica sceneVersion
+      responses:
+        '200': { description: Locus aggiornato }
+  /loci/{id}/placements:
+    post:
+      operationId: createLocusPlacement
+      summary: Posiziona oggetto 2D/video/GLB animato nel locus (v2 Spatial Engine)
+      responses:
+        '201': { description: Placement creato }
+  /learning-targets/{id}/mnemonics:
+    post:
+      operationId: createMnemonicAssociation
+      summary: Crea associazione mnemonica e revisione iniziale
+      responses:
+        '201': { description: Associazione creata }
+  /mnemonics/{id}:
+    patch:
+      operationId: updateMnemonicAssociation
+      summary: Aggiorna associazione creando nuova association_revision
+      responses:
+        '200': { description: Associazione aggiornata }
+  /mnemonics/{id}/confirm:
+    post:
+      operationId: confirmMnemonicAssociation
+      summary: Conferma associazione mnemonica
+      responses:
+        '200': { description: Associazione confermata }
+  /reviews/due:
+    get:
+      operationId: listDueReviews
+      summary: Targets in scadenza (senza esporre la risposta prima del tentativo)
+      responses:
+        '200': { description: Coda di richiamo cieco }
+  /study-sessions:
+    post:
+      operationId: createStudySession
+      summary: Avvia sessione di studio o richiamo
+      responses:
+        '201': { description: Sessione creata }
+  /review-attempts:
+    post:
+      operationId: submitReviewAttempt
+      summary: Registra tentativo di richiamo idempotente, aggiorna SRS e trial_diagnostics
+      responses:
+        '201': { description: Tentativo registrato e nuova scadenza }
+  /learning-targets/{id}/history:
+    get:
+      operationId: getLearningTargetHistory
+      summary: Cronologia immutabile dei review_attempts per il target
+      responses:
+        '200': { description: Storico tentativi }
+  /learning-targets/{id}/schedule:
+    get:
+      operationId: getLearningTargetSchedule
+      summary: Stato corrente review_schedule per il target
+      responses:
+        '200': { description: Stato scheduler }
+  /me/learning-profile:
+    get:
+      operationId: getMyLearningProfile
+      summary: Memory Profile v2 con 5 dashboard e 18 famiglie metriche versionate
+      responses:
+        '200': { description: Memory Profile completo }
+  /me/skill-profiles:
+    get:
+      operationId: getMySkillProfiles
+      summary: Statistiche granulari per skill, Major 00-99 per direzione e confusioni loci
+      responses:
+        '200': { description: Skill profile snapshots e item stats }
+  /me/interventions:
+    get:
+      operationId: listMyInterventions
+      summary: Interventi adattivi spiegabili con rationale_code ed evidenze
+      responses:
+        '200': { description: Lista interventi }
+  /interventions/{id}/respond:
+    post:
+      operationId: respondToIntervention
+      summary: Accetta o ignora un suggerimento adattivo
+      responses:
+        '200': { description: Intervento aggiornato }
+  /interventions/{id}/evaluate:
+    post:
+      operationId: evaluateInterventionOutcome
+      summary: Valuta esito post-intervento con verifica di comparabilità (o inconclusive)
+      responses:
+        '200': { description: Esito valutazione }
+  /training/exercises:
+    get:
+      operationId: listTrainingExercises
+      summary: Catalogo template di esercizi di training versionati
+      responses:
+        '200': { description: Catalogo esercizi }
+  /training/sessions:
+    post:
+      operationId: startTrainingSession
+      summary: Avvia sessione di training generando stimoli con seed salvato sul server
+      responses:
+        '201': { description: Sessione e stimoli }
+  /training/sessions/{id}/trials:
+    post:
+      operationId: submitTrainingTrial
+      summary: Registra singolo trial con direzione, tempo ed error_category
+      responses:
+        '201': { description: Feedback trial }
+  /training/sessions/{id}/finish:
+    post:
+      operationId: finishTrainingSession
+      summary: Chiude sessione in modo idempotente e ricalcola snapshot/interventi
+      responses:
+        '200': { description: Riepilogo sessione e prossimo suggerimento }
+  /training/history:
+    get:
+      operationId: listTrainingHistory
+      summary: Storico sessioni di training dell'utente
+      responses:
+        '200': { description: Sessioni di training }
+  /challenges:
+    get:
+      operationId: listChallenges
+      summary: Definizioni e versioni pubblicate delle sfide canoniche
+      responses:
+        '200': { description: Catalogo sfide }
+  /challenges/{id}:
+    get:
+      operationId: getChallenge
+      summary: Dettaglio sfida e regole pubbliche della versione
+      responses:
+        '200': { description: Dettaglio sfida }
+  /challenge-versions/{id}/runs:
+    post:
+      operationId: startChallengeRun
+      summary: Avvia tentativo competitivo (1 ranked attempt per versione, senza soluzioni)
+      responses:
+        '201': { description: Run avviata con deadline e nonce }
+  /challenge-runs/{id}/submit:
+    post:
+      operationId: submitChallengeRun
+      summary: Invia risposte e calcola score deterministico lato server
+      responses:
+        '200': { description: Risultato verificato }
+  /challenge-runs/{id}/result:
+    get:
+      operationId: getChallengeRunResult
+      summary: Legge score verificato del tentativo
+      responses:
+        '200': { description: Risultato }
+  /challenge-versions/{id}/leaderboard:
+    get:
+      operationId: getChallengeLeaderboard
+      summary: Classifica globale o amici a parità di challenge_version_id
+      parameters:
+        - name: scope
+          in: query
+          schema: { type: string, enum: [global, friends] }
+      responses:
+        '200': { description: Classifica con rank() e tie-breaker achieved_at }
+  /challenge-versions/{id}/me:
+    get:
+      operationId: getMyChallengeStanding
+      summary: Record personale e posizione nella challenge_version
+      responses:
+        '200': { description: Record personale }
+  /challenge-invites:
+    get:
+      operationId: listChallengeInvites
+      summary: Inviti a challenge ricevuti e inviati
+      responses:
+        '200': { description: Inviti }
+    post:
+      operationId: createChallengeInvite
+      summary: Invita un amico accettato a una challenge_version
+      responses:
+        '201': { description: Invito creato }
+  /challenge-invites/{id}/accept:
+    post:
+      operationId: acceptChallengeInvite
+      summary: Accetta invito (senza avviare automaticamente il tentativo ranked)
+      responses:
+        '200': { description: Invito accettato }
