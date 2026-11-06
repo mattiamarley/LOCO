@@ -1,97 +1,211 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { SiteShell } from "@/components/marketing/site-shell";
-import { SectionHeading } from "@/components/marketing/section-heading";
 
 export const metadata: Metadata = {
-  title: "About | Le tecniche di memoria",
-  description: "Scopri il metodo dei loci, il linked method e la conversione fonetica. LOCO aiuta a costruire associazioni e a metterle alla prova con il richiamo attivo.",
+  title: "About | LOCO",
+  description: "Non ti ricordi nemmeno il nome di tua mamma? Scopri le tecnologie e le tecniche di memoria di LOCO.",
 };
 
 const methods = [
   {
-    name: "Il palazzo della memoria",
+    name: "IL PALAZZO DELLA\nMEMORIA",
     img: "/marketing/method-loci.webp",
     alt: "Personaggio LOCO che esplora una città con edifici gialli",
-    description: "Trasforma i luoghi che conosci in mappe mentali. Associa un concetto a ogni punto di un percorso e ritrovalo ripercorrendo mentalmente quei luoghi.",
+    description: "Trasforma i luoghi che conosci in mappe mentali su cui associare le informazioni da ricordare, così ripercorrendo i percorsi evochi i concetti correlati.",
   },
   {
-    name: "Linked method",
+    name: "LINKED METHOD",
     img: "/marketing/method-link.webp",
     alt: "Illustrazione LOCO di persone e un gatto intorno a un tavolo",
-    description: "Crea catene di immagini mentali in cui un elemento richiama il successivo. Funziona bene per esercitarsi con sequenze e informazioni collegate.",
+    description: "Crea catene di immagini mentali collegate tra loro per ricordare sequenze complesse. Ogni immagine evoca la successiva, creando una storia indissolubile.",
   },
   {
-    name: "Conversione fonetica",
+    name: "CONVERSIONE\nFONETICA",
     img: "/marketing/method-phonetic.webp",
-    alt: "Personaggio LOCO con simboli e numeri",
-    description: "Associa numeri a suoni consonantici, poi trasforma le sequenze in parole e immagini. Il codice scelto deve rimanere stabile e va esercitato.",
+    alt: "Personaggio LOCO con simboli e numeri M 3",
+    description: "Associa i numeri a parole, rendendo i dati più facili da richiamare, come se fosse una melodia che non riesci a toglierti dalla testa.",
+  },
+];
+
+const qualities = [
+  {
+    icon: "/marketing/quality-memory.webp",
+    title: "Quantità di informazioni\nmemorizzabili",
+  },
+  {
+    icon: "/marketing/quality-quality.webp",
+    title: "Qualità delle informazioni\nmemorizzate",
+  },
+  {
+    icon: "/marketing/quality-dynamic.webp",
+    title: "Apprendimento\npersonalizzato e dinamico",
   },
 ];
 
 export default function AboutPage() {
-  return <SiteShell>
-    <section className="overflow-hidden py-12 sm:py-20">
-      <div className="loco-container grid items-center gap-9 lg:grid-cols-2">
-        <div>
-          <h1 className="loco-display text-[clamp(45px,6.3vw,85px)] leading-[.98]">Non ti ricordi <strong>nemmeno il nome</strong> di tua mamma?</h1>
-          <p className="mt-8 max-w-[490px] text-[clamp(17px,1.9vw,23px)] leading-tight">Si chiama Paola.<br />Ma tranquillo: non servono conoscenze pregresse o una memoria già allenata per iniziare.</p>
+  return (
+    <SiteShell>
+      {/* Hero */}
+      <section className="overflow-hidden bg-white pb-14 pt-8 sm:pb-24 sm:pt-16">
+        <div className="loco-container grid items-center gap-8 lg:grid-cols-[1.1fr_1fr]">
+          <div className="py-2">
+            <h1 className="loco-display text-[clamp(46px,6.5vw,88px)] leading-[.96] text-black">
+              Non ti ricordi<br />
+              <span className="font-extrabold">nemmeno il nome</span><br />
+              di tua <span className="font-extrabold">mamma</span>?
+            </h1>
+            <p className="mt-7 max-w-[480px] text-[clamp(17px,1.9vw,22px)] font-medium leading-[1.3] text-black/85">
+              Si chiama Paola,<br />
+              ma comunque non servono conoscenze pregresse o una memoria già allenata.
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <img
+              src="/marketing/hero-about.webp"
+              width="602"
+              height="735"
+              alt="Persona LOCO seduta a leggere un libro con cuffie e scarpe gialle"
+              className="h-auto w-full max-w-[560px] object-contain mix-blend-multiply"
+            />
+          </div>
         </div>
-        <img src="/marketing/hero-about.webp" width="602" height="735" alt="Persona LOCO seduta a leggere un libro con cuffie e scarpe gialle" className="mx-auto h-auto w-full max-w-[590px] mix-blend-multiply" />
-      </div>
-    </section>
+      </section>
 
-    <section className="py-20 sm:py-28">
-      <div className="loco-container">
-        <SectionHeading>Tecnologia from fear</SectionHeading>
-        <div className="mx-auto mt-16 grid max-w-[880px] gap-12 sm:grid-cols-2 sm:gap-20">
-          <article className="text-center">
-            <img src="/marketing/tech-street.webp" alt="Globo illustrato in stile LOCO" width="336" height="329" className="mx-auto mb-6 h-36 w-36 object-contain" />
-            <h3 className="loco-display text-3xl uppercase leading-tight">Google<br />Street View</h3>
-            <p className="mt-4 text-[16px] text-black/75">La visione di LOCO include percorsi virtuali in luoghi reali, nel rispetto delle licenze e dei limiti dei servizi geografici.</p>
-            <span className="mt-3 inline-block rounded-full bg-loco-cream px-4 py-2 text-xs font-bold">Integrazione futura</span>
-          </article>
-          <article className="text-center">
-            <img src="/marketing/tech-ai.webp" alt="Microchip illustrato in stile LOCO" width="385" height="329" className="mx-auto mb-6 h-36 w-36 object-contain" />
-            <h3 className="loco-display text-3xl uppercase leading-tight">Intelligenza<br />artificiale</h3>
-            <p className="mt-4 text-[16px] text-black/75">Un assistente potrà proporre scene e associazioni. La scelta finale rimarrà dell&apos;utente, che potrà correggerle.</p>
-            <span className="mt-3 inline-block rounded-full bg-loco-cream px-4 py-2 text-xs font-bold">Integrazione futura</span>
-          </article>
-        </div>
-        <div className="mt-14 text-center"><Link href="/demo" className="loco-button loco-button-purple">Prova la demo manuale <ArrowRight size={16} aria-hidden /></Link></div>
-      </div>
-    </section>
+      {/* Tecnologia from fear */}
+      <section className="bg-white py-20 sm:py-32">
+        <div className="loco-container">
+          <div className="text-center">
+            <h2 className="loco-display text-[clamp(42px,5.8vw,72px)] text-black">
+              Tecnologia from fear
+            </h2>
+          </div>
 
-    <section className="py-20 sm:py-28">
-      <div className="loco-container">
-        <SectionHeading>Scopri le tecniche<br />di memoria</SectionHeading>
-        <div className="mt-14 space-y-12 sm:mt-20 sm:space-y-24">
-          {methods.map((method, i) => <article key={method.name} className="grid items-center gap-8 md:grid-cols-2 md:gap-16">
-            <div className={i % 2 ? "md:order-2" : ""}>
-              <img src={method.img} alt={method.alt} width="750" height="650" loading="lazy" className="mx-auto h-auto max-h-[360px] w-full max-w-[440px] object-contain mix-blend-multiply" />
-            </div>
-            <div className={i % 2 ? "md:order-1" : ""}>
-              <h3 className="loco-display text-[clamp(32px,4vw,48px)] uppercase leading-[.99]">{method.name}</h3>
-              <p className="mt-5 max-w-[475px] text-[17px] leading-relaxed text-black/75">{method.description}</p>
-            </div>
-          </article>)}
-        </div>
-        <div className="mt-12 text-center"><Link className="loco-button loco-button-purple" href="/faq">Altre domande? <ArrowRight size={16} aria-hidden /></Link></div>
-      </div>
-    </section>
+          <div className="mx-auto mt-16 grid max-w-[920px] gap-12 sm:grid-cols-2 sm:gap-20">
+            {/* Google Street View */}
+            <article className="text-center">
+              <img
+                src="/marketing/tech-street.webp"
+                alt="Globo illustrato Google Street View"
+                width="336"
+                height="329"
+                className="mx-auto mb-6 h-36 w-36 object-contain"
+              />
+              <h3 className="loco-display text-[clamp(28px,3.2vw,38px)] uppercase leading-tight text-black">
+                GOOGLE<br />STREET VIEW
+              </h3>
+              <p className="mx-auto mt-4 max-w-[380px] text-[16px] font-normal leading-relaxed text-black/75">
+                Loco integra il potente motore di navigazione di Google Street View per permetterti di sviluppare percorsi personalizzati e a te familiari.
+              </p>
+            </article>
 
-    <section className="py-20 sm:py-32">
-      <div className="loco-container">
-        <SectionHeading>Recappino delle<br />nostre qualità</SectionHeading>
-        <div className="mt-14 grid gap-12 text-center md:grid-cols-3">
-          {[{ icon: "/marketing/quality-memory.webp", title: "Associazioni ordinate", desc: "Percorsi e punti riconoscibili." },{ icon: "/marketing/quality-quality.webp", title: "Richiamo verificabile", desc: "Prove senza risposta in vista." },{ icon: "/marketing/quality-dynamic.webp", title: "Apprendimento personale", desc: "Associazioni che scegli e puoi cambiare." }].map((a) => <div key={a.title}>
-            <img src={a.icon} alt="" width="360" height="360" className="mx-auto h-32 w-32 object-contain" loading="lazy" />
-            <h3 className="mt-7 text-xl font-bold">{a.title}</h3><p className="mt-2 text-black/70">{a.desc}</p>
-          </div>)}
+            {/* Intelligenza Artificiale */}
+            <article className="text-center">
+              <img
+                src="/marketing/tech-ai.webp"
+                alt="Microchip illustrato intelligenza artificiale"
+                width="385"
+                height="329"
+                className="mx-auto mb-6 h-36 w-36 object-contain"
+              />
+              <h3 className="loco-display text-[clamp(28px,3.2vw,38px)] uppercase leading-tight text-black">
+                INTELLIGENZA<br />ARTIFICIALE
+              </h3>
+              <p className="mx-auto mt-4 max-w-[380px] text-[16px] font-normal leading-relaxed text-black/75">
+                Interagisci con i loci che incontri attraverso il riempimento generativo: l&apos;intelligenza artificiale in grado di generare qualunque immagine.
+              </p>
+            </article>
+          </div>
+
+          <div className="mt-14 text-center">
+            <Link href="/demo" className="loco-button loco-button-purple !px-8 !py-3 text-[15px]">
+              Prova l&apos;AI generativa
+            </Link>
+          </div>
         </div>
-        <div className="mt-14 text-center"><Link href="/piani" className="loco-button loco-button-purple">Scopri i piani previsti <ArrowRight size={16} aria-hidden /></Link></div>
-      </div>
-    </section>
-  </SiteShell>;
+      </section>
+
+      {/* Scopri le Tecniche di memoria */}
+      <section className="bg-white py-20 sm:py-32">
+        <div className="loco-container">
+          <div className="text-center">
+            <h2 className="loco-display text-[clamp(42px,5.8vw,72px)] leading-[.96] text-black">
+              Scopri le Tecniche<br />
+              <span className="font-extrabold">di memoria</span>
+            </h2>
+          </div>
+
+          <div className="mt-20 space-y-20 sm:space-y-32">
+            {methods.map((method, index) => (
+              <article
+                key={method.name}
+                className="grid items-center gap-8 md:grid-cols-2 md:gap-16"
+              >
+                <div className={index % 2 === 1 ? "md:order-2" : ""}>
+                  <img
+                    src={method.img}
+                    alt={method.alt}
+                    width="750"
+                    height="650"
+                    loading="lazy"
+                    className="mx-auto h-auto max-h-[380px] w-full max-w-[460px] object-contain mix-blend-multiply"
+                  />
+                </div>
+                <div className={index % 2 === 1 ? "md:order-1" : ""}>
+                  <h3 className="loco-display whitespace-pre-line text-[clamp(32px,4vw,50px)] uppercase leading-[.98] text-black">
+                    {method.name}
+                  </h3>
+                  <p className="mt-6 max-w-[480px] text-[17px] font-normal leading-relaxed text-black/80">
+                    {method.description}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link href="/faq" className="loco-button loco-button-purple !px-8 !py-3 text-[15px]">
+              Altre domande?
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Recappino delle nostre qualità */}
+      <section className="bg-white py-20 sm:py-32">
+        <div className="loco-container">
+          <div className="text-center">
+            <h2 className="loco-display text-[clamp(42px,5.8vw,72px)] leading-[.96] text-black">
+              Recappino delle<br />
+              <span className="font-extrabold">nostre qualità</span>
+            </h2>
+          </div>
+
+          <div className="mx-auto mt-16 grid max-w-[1000px] gap-10 text-center md:grid-cols-3">
+            {qualities.map((item) => (
+              <div key={item.title} className="flex flex-col items-center">
+                <img
+                  src={item.icon}
+                  alt=""
+                  width="360"
+                  height="360"
+                  className="mx-auto h-36 w-36 object-contain"
+                  loading="lazy"
+                />
+                <h3 className="mt-6 whitespace-pre-line text-[18px] font-bold leading-snug text-black">
+                  {item.title}
+                </h3>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-14 text-center">
+            <Link href="/piani" className="loco-button loco-button-purple !px-8 !py-3 text-[15px]">
+              Scopri gli abbonamenti
+            </Link>
+          </div>
+        </div>
+      </section>
+    </SiteShell>
+  );
 }
