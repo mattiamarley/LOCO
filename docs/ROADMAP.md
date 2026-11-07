@@ -16,20 +16,20 @@
 | --- | --- | --- |
 | Public Home, About, Piani, FAQ, Demo | **Implemented in source** | Next.js routes in `app/app`; must smoke-test and verify marketing claims |
 | Marketing branding and static assets | **Implemented in source** | `app/public/marketing`, brand fonts canonically tracked in `app/assets/fonts/` |
-| Next.js authenticated workspace `/app` | **Not integrated** | `app/app/app/page.tsx` is placeholder |
+| Next.js workspace `/app` | **Implemented in source (client + shared v2 engine)** | `app/app/app/page.tsx` + `app/components/webapp/` implements the 15 Figma desktop screens, in-scene 3D/Street-View locus editor, Blind Recall FSRS-7, 18 metrics, Adaptive Coach, Palestra & Arena; hosted DB/auth persistence remains separate |
 | Basic local browser prototype | **Prototyped** | `app/prototype/` contains authoring, memory practice, lessons and 3D/portal surfaces |
 | Local users and sessions | **Implemented in source** | Node/SQLite `app/server`; not hosted auth |
 | Local `/api/*` routes | **Implemented in source** | Legacy app/route/test code; important compatibility layer |
 | `/v1` profile, friends and privacy | **Implemented in source** | API handlers and v2 tests; production security still required |
 | `/v1` projects, knowledge proposals/revisions | **Implemented in source / specified** | Code + API contract; need client, real document pipeline and hosted storage |
-| `/v1` palaces, anchors and placements | **Implemented in source / specified** | Versioned spatial contracts; final in-scene UX incomplete |
-| `/v1` due reviews and attempts | **Implemented in source** | `app/server`, `srs.ts`, tests; not connected to public `/app` |
-| FSRS-7 + simple-v1 scheduler | **Implemented in source** | `app/server/src/srs.ts`; run tests and validate scheduling behavior |
-| Learning metrics (18 families) | **Implemented in source** | `memoryMetrics.ts`, v2 tests; display and evidence UX pending |
-| Adaptive recommendations | **Implemented in source** | `adaptiveRecommendations.ts`; real intervention evaluation pending |
-| Arena/challenges/leaderboards | **Implemented in source** | `challengeScoring.ts`, `/v1` tests; UI and production fraud controls pending |
+| `/v1` palaces, anchors and placements | **Implemented in source** | Versioned spatial contracts + in-scene 3D/map authoring in `/app` (`room-3d-viewer.tsx`) |
+| `/v1` due reviews and attempts | **Implemented in source** | `app/server`, `srs.ts`, tests, and interactive Blind Recall session in `/app` |
+| FSRS-7 + simple-v1 scheduler | **Implemented in source** | `app/server/src/srs.ts`; wired into both server tests and `/app` Blind Recall |
+| Learning metrics (18 families) | **Implemented in source** | `memoryMetrics.ts`, v2 tests, and 18-metric profile dashboard in `/app` |
+| Adaptive recommendations | **Implemented in source** | `adaptiveRecommendations.ts` + explainable Coach UI in `/app` |
+| Arena/challenges/leaderboards | **Implemented in source** | `challengeScoring.ts`, `/v1` tests, and Arena UI in `/app` |
 | PostgreSQL schema and optional RLS | **Specified** | `app/server/db/001..007*.sql`; no verified running hosted DB |
-| Owner-curated Figma visuals | **Planned handoff** | Owner to provide; no final `DESIGN.md` in this phase |
+| Owner-curated Figma visuals | **Implemented in source** | 30 curated WebP/SVG assets (`972 KB`) in `app/public/assets/figma-curated/` |
 | AI document extraction/generation | **Planned integration** | Preserve proposed/confirmed knowledge safety behavior; no production provider assumed |
 | Google Maps/Street View and personal scans | **Planned** | Check licenses, privacy, quotas and technical feasibility |
 | Voice authoring and immersive VR | **Planned** | UX intent exists; no shipped production flow |

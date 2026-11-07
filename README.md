@@ -19,11 +19,11 @@ The same user-owned data should eventually work across desktop and mobile. Immer
 
 | Path | Purpose |
 | --- | --- |
-| `app/app/` | Next.js App Router: public marketing pages and the current `/app` placeholder |
-| `app/components/`, `app/lib/`, `app/hooks/` | UI components, hooks, and shared frontend modules |
+| `app/app/` | Next.js App Router: public marketing pages and the interactive `/app` WebApp (`Home`, `Recappete`, `Mappete`, `Corsi`, `Profilo`, `Login`, in-scene 3D/Street-View editor, Blind Recall FSRS-7, and 18 Memory Metrics) |
+| `app/components/`, `app/lib/`, `app/hooks/` | UI components (including `app/components/webapp/`), hooks, and shared frontend modules |
 | `app/assets/fonts/` | Canonical tracked source for licensed brand fonts (`baloo-variable.ttf`, `inter-tight-variable.ttf`) and OFL licenses |
 | `app/public/marketing/` | Current production marketing illustrations and imagery; **do not remove** |
-| `app/public/assets/figma-curated/` | Reserved for the owner's selected, app-ready Figma assets (initially empty) |
+| `app/public/assets/figma-curated/` | Owner-curated WebP/SVG assets (`972 KB` total) powering the `/app` WebApp |
 | `app/prototype/` | Interactive local 2D/3D spatial prototype (`laboratory.html`, `workspace.html`, `castle.mjs`, `room3d.mjs`, `model.mjs`) |
 | `app/server/` | Local Node/SQLite server, `/api` compatibility layer, `/v1` API, model contracts, tests and proposed PostgreSQL schema |
 | `docs/` | Product, architecture, learning, assets, decisions and roadmap; intentionally no `DESIGN.md` yet |

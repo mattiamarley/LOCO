@@ -2,8 +2,11 @@
 // Explainable rule-based decision engine for study & training interventions
 // and post-intervention outcome evaluation with strict comparability checks.
 
-import { randomUUID } from 'node:crypto';
 import type { UUID } from './models.ts';
+
+function randomUUID(): string {
+  return globalThis.crypto.randomUUID();
+}
 import type {
   InterventionOutcomeEvaluation,
   InterventionRationaleCode,
