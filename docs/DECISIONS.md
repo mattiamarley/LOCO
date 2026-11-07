@@ -18,6 +18,15 @@
 | D10 | Blind recall means answer not shown until a valid attempt | Never credit reveal/hinted trials as full unaided success |
 | D11 | Unsupported AI/media/maps must not block manual learning | Keep hand-authored fallback flows and persistent drafts |
 | D12 | Site marketing and authenticated learning platform are distinct surfaces | Do not label the Next.js `/app` placeholder as complete |
+| D13 | The marketing site's actual visual identity is authoritative for LOCO branding | White-led canvas (`#FFFFFF`), black text (`#181818`), purple actions (`#613BE0`), lavender secondary surfaces (`#D2C4F5` / `#D0C4F6`), yellow accents (`#FFD014`); no `#2513A4`/`#2E1BC4` dark-blue/purple screens |
+| D14 | The original left sidebar and five primary destinations must be retained | Keep the ~77px lavender sidebar (`Home`, `Recappete`, protruding `Crea/Mappete`, `Corsi`, `Profilo`) and bottom notification bell |
+| D15 | The original "I nostri corsi" screen is the Academy catalog entry point | Preserve the clean white-canvas layout, `I nostri corsi` heading, and 3-column illustrated course card structure |
+| D16 | Course navigation expands horizontally beyond the original three courses | All 12 courses are browsable via a horizontal scroll-snap carousel (3 cards on desktop, 1 on mobile) |
+| D17 | The Duolingo-like vertical learning path belongs inside an individual course | Selecting a course opens its dedicated vertical node sequence rather than dumping all 56 lessons on one page |
+| D18 | Lessons use a focused interactive player | Single-activity view with top progress bar, centered question/exercise, and bottom primary CTA |
+| D19 | Gamification and analytics must not overwhelm the learning journey | Keep XP, levels, streaks, and badges functional in the engine, but avoid dashboard clutter on `I nostri corsi`; detailed stats live in `Profilo` |
+| D20 | New screens must reuse original LOCO visual language | Use `Baloo 2`, `Inter Tight`, and approved flat 2D LOCO artwork (`docs/BRAND-UX-GUIDELINES.md`) |
+| D21 | Figma is unavailable to the coding agent; provided specifications and approved assets are authoritative | Follow `docs/BRAND-UX-GUIDELINES.md` and existing curated/marketing assets without blocking on Figma access |
 
 ## Current engineering realities to preserve
 

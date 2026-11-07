@@ -2,11 +2,16 @@
 
 This is the main web workspace for LOCO. It contains the **Next.js marketing website**, UI components, an interactive **local 2D/3D prototype**, and a **Node/SQLite backend** with proposed PostgreSQL contracts.
 
-For product context and non-negotiable learning behavior, begin at [`../AGENTS.md`](../AGENTS.md), [`../docs/PRODUCT.md`](../docs/PRODUCT.md) and [`../docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md).
+For product context, brand/UI rules, and non-negotiable learning behavior, begin at [`../AGENTS.md`](../AGENTS.md), [`../docs/BRAND-UX-GUIDELINES.md`](../docs/BRAND-UX-GUIDELINES.md), [`../docs/PRODUCT.md`](../docs/PRODUCT.md) and [`../docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md).
 
 ## Runtime status
 
-- Next.js routes: Home, About, Piani, FAQ, Demo, and `/app` (placeholder).
+- Next.js routes: Home, About, Piani, FAQ, Demo, and `/app` (interactive WebApp with the 5-destination left lavender sidebar: `Home`, `Recappete`, protruding `Crea/Mappete`, `Corsi`, `Profilo`).
+- Inside `Corsi`:
+  - **`I nostri corsi`:** white-canvas catalog with a horizontal scroll-snap carousel across the **12 Academy courses** (starting with the original 3 illustrated courses: *Tecnica dei Loci*, *Linked Method*, *Conversione Fonetica*).
+  - **Course Detail (Learning Path):** selecting a course opens its dedicated vertical Duolingo-like node path (`56` lessons total across `12` courses, plus unit checkpoints).
+  - **Focused Lesson Player:** distraction-free single-activity screen supporting 12 interactive exercise types, immediate feedback, and completion summary (`+10 XP`).
+  - **Secondary tools (`Palestra`, `Arena`, `Ripassa errori`):** accessible via discreet secondary actions without competing navigation tabs.
 - Local prototype: interactive 2D/3D reference (`laboratory.html` for 2D/lessons/cards and `workspace.html` for 3D room/castle/SQLite API); not the final integrated application.
 - Local backend: `server/dev.mjs` with legacy `/api/*`, newer `/v1/*`, SQLite store and tests.
 - PostgreSQL SQL under `server/db/` is a **proposed schema**, not an applied live instance.
@@ -71,11 +76,10 @@ See `server/README.md`, `server/api/openapi.yaml`, `server/docs/`, and `server/t
 
 ## Project documentation
 
+- [`../docs/BRAND-UX-GUIDELINES.md`](../docs/BRAND-UX-GUIDELINES.md)
 - [`../docs/PRODUCT.md`](../docs/PRODUCT.md)
 - [`../docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md)
 - [`../docs/LEARNING.md`](../docs/LEARNING.md)
 - [`../docs/ASSETS.md`](../docs/ASSETS.md)
 - [`../docs/DECISIONS.md`](../docs/DECISIONS.md)
 - [`../docs/ROADMAP.md`](../docs/ROADMAP.md)
-
-`docs/DESIGN.md` is intentionally deferred; the owner will provide selected Figma assets later.

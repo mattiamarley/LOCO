@@ -841,9 +841,11 @@ export function LocoWebApp() {
             onClick={() => {
               setEditingRouteId(null);
               setSelectedCourseId(null);
+              setActiveAcademyLessonId(null);
+              setCoursesSubView("corsi");
               setActiveTab("corsi");
             }}
-            title="Corsi & Palestra Mnemonica"
+            title="I nostri corsi"
             aria-label="Corsi"
             className="flex h-9 w-9 items-center justify-center rounded-full transition hover:opacity-90"
           >
@@ -1386,128 +1388,99 @@ export function LocoWebApp() {
             </div>
           ) : activeTab === "corsi" ? (
             /* ============================================================
-               SCREEN 3 & 4: LOCO ACADEMY LEARNING PATH + PALESTRA & ARENA V2
+               SCREEN 3 & 4: I NOSTRI CORSI (CATALOG -> COURSE PATH -> PLAYER)
+               + QUIET SECONDARY PALESTRA & ARENA
                ============================================================ */
             <div className="flex flex-col gap-6">
-              {/* Sub-navigation bar: Percorso Academy (12 Unità) · Palestra · Arena */}
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <h1 className="loco-display text-[36px] font-bold leading-none text-[#181818]">
-                    Corsi &amp; Percorso Academy
-                  </h1>
-                  <p className="mt-2 max-w-[540px] text-[16px] leading-snug text-[#181818]">
-                    Percorso interattivo a tappe con 12 Unità, 56 microlezioni giocabili, sfide di
-                    fine unità e ripasso intelligente degli errori.
-                  </p>
-                </div>
-
-                <div className="inline-flex rounded-full bg-[#D0C4F6] p-1">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setCoursesSubView("corsi");
-                      setSelectedCourseId(null);
-                    }}
-                    className={`rounded-full px-4 py-1.5 text-xs font-bold transition ${
-                      coursesSubView === "corsi"
-                        ? "bg-[#613BE0] text-white"
-                        : "text-[#181818] hover:bg-white/50"
-                    }`}
-                  >
-                    Percorso Academy (56)
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCoursesSubView("palestra")}
-                    className={`rounded-full px-4 py-1.5 text-xs font-bold transition ${
-                      coursesSubView === "palestra"
-                        ? "bg-[#613BE0] text-white"
-                        : "text-[#181818] hover:bg-white/50"
-                    }`}
-                  >
-                    Palestra Fonetica &amp; Carte
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setCoursesSubView("arena")}
-                    className={`rounded-full px-4 py-1.5 text-xs font-bold transition ${
-                      coursesSubView === "arena"
-                        ? "bg-[#613BE0] text-white"
-                        : "text-[#181818] hover:bg-white/50"
-                    }`}
-                  >
-                    Arena Sfide Classificate
-                  </button>
-                </div>
-              </div>
-
               {coursesSubView === "corsi" && (
-                <>
-                  {/* Quick Course Focus Bar (connects Home's 3 core courses with the 12-Unit Path) */}
-                  <div className="flex flex-wrap items-center gap-2">
+                <LocoAcademySection
+                  progressMap={academyProgress}
+                  onUpdateLessonProgress={handleUpdateAcademyLessonProgress}
+                  activeLessonId={activeAcademyLessonId}
+                  onSelectLesson={setActiveAcademyLessonId}
+                  routes={routes}
+                  dueReviewsCount={dueReviewsCount}
+                  adaptiveRecommendations={adaptiveAcademyRecommendations}
+                  focusedCourseNumber={selectedCourseId}
+                  onClearFocusedCourseNumber={() => setSelectedCourseId(null)}
+                  onOpenPalestra={() => setCoursesSubView("palestra")}
+                  onOpenArena={() => setCoursesSubView("arena")}
+                  onOpenSceneForLesson={() => {
+                    setActiveAcademyLessonId(null);
+                    setActiveTab("recappete");
+                    openRouteInScene(routes[0]?.id ?? "route-tesi");
+                  }}
+                  onStartBlindRecallFromAcademy={() => {
+                    setActiveAcademyLessonId(null);
+                    const targetRoute = routes[0];
+                    if (targetRoute) {
+                      setNowReferenceMs(Date.now());
+                      setReviewSession({
+                        routeId: targetRoute.id,
+                        locusIndex: 0,
+                        userAttemptText: "",
+                        hintCount: 0,
+                        viewedAnswerBeforeAttempt: false,
+                        answerRevealed: false,
+                        algorithmVersion: "fsrs-7",
+                        lastResultBanner: null,
+                      });
+                    }
+                  }}
+                  onCreateOnboardingRouteFromAcademy={
+                    handleCreateOnboardingRouteFromAcademy
+                  }
+                />
+              )}
+
+              {coursesSubView !== "corsi" && (
+                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#181818]/10 pb-4">
+                  <div className="flex items-center gap-3">
                     <button
                       type="button"
-                      onClick={() => setSelectedCourseId(null)}
-                      className={`rounded-full px-4 py-1.5 text-xs font-extrabold transition ${
-                        selectedCourseId === null
-                          ? "bg-[#2513A4] text-[#E9FF60]"
-                          : "bg-[#D0C4F6] text-[#181818] hover:bg-[#D0C4F6]/80"
-                      }`}
+                      onClick={() => setCoursesSubView("corsi")}
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#181818]/15 bg-white text-[#181818] transition hover:border-[#613BE0] hover:text-[#613BE0]"
+                      aria-label="Torna a I nostri corsi"
                     >
-                      🗺️ Tutte le 12 Unità (Percorso Completo)
+                      ←
                     </button>
-                    {courses.map((course) => (
-                      <button
-                        key={course.id}
-                        type="button"
-                        onClick={() => setSelectedCourseId(course.id)}
-                        className={`rounded-full px-4 py-1.5 text-xs font-extrabold transition ${
-                          selectedCourseId === course.id
-                            ? "bg-[#FFD014] text-[#181818] ring-2 ring-[#2513A4]"
-                            : "bg-[#D0C4F6]/70 text-[#181818] hover:bg-[#D0C4F6]"
-                        }`}
-                      >
-                        {course.numberLabel}: {course.title}
-                      </button>
-                    ))}
+                    <div>
+                      <h1 className="loco-display text-[32px] font-bold leading-none text-[#181818]">
+                        {coursesSubView === "palestra"
+                          ? "Palestra Fonetica & Carte"
+                          : "Arena Sfide Classificate"}
+                      </h1>
+                      <p className="mt-1 text-sm text-[#181818]/75">
+                        Allenamento pratico collegato alle tecniche dei corsi LOCO.
+                      </p>
+                    </div>
                   </div>
 
-                  <LocoAcademySection
-                    progressMap={academyProgress}
-                    onUpdateLessonProgress={handleUpdateAcademyLessonProgress}
-                    activeLessonId={activeAcademyLessonId}
-                    onSelectLesson={setActiveAcademyLessonId}
-                    routes={routes}
-                    dueReviewsCount={dueReviewsCount}
-                    adaptiveRecommendations={adaptiveAcademyRecommendations}
-                    focusedCourseNumber={selectedCourseId}
-                    onOpenSceneForLesson={() => {
-                      setActiveAcademyLessonId(null);
-                      setActiveTab("recappete");
-                      openRouteInScene(routes[0]?.id ?? "route-tesi");
-                    }}
-                    onStartBlindRecallFromAcademy={() => {
-                      setActiveAcademyLessonId(null);
-                      const targetRoute = routes[0];
-                      if (targetRoute) {
-                        setNowReferenceMs(Date.now());
-                        setReviewSession({
-                          routeId: targetRoute.id,
-                          locusIndex: 0,
-                          userAttemptText: "",
-                          hintCount: 0,
-                          viewedAnswerBeforeAttempt: false,
-                          answerRevealed: false,
-                          algorithmVersion: "fsrs-7",
-                          lastResultBanner: null,
-                        });
-                      }
-                    }}
-                    onCreateOnboardingRouteFromAcademy={
-                      handleCreateOnboardingRouteFromAcademy
-                    }
-                  />
-                </>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setCoursesSubView("palestra")}
+                      className={`rounded-full px-4 py-1.5 text-xs font-bold transition ${
+                        coursesSubView === "palestra"
+                          ? "bg-[#613BE0] text-white"
+                          : "bg-[#D2C4F5]/50 text-[#181818]"
+                      }`}
+                    >
+                      Palestra
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setCoursesSubView("arena")}
+                      className={`rounded-full px-4 py-1.5 text-xs font-bold transition ${
+                        coursesSubView === "arena"
+                          ? "bg-[#613BE0] text-white"
+                          : "bg-[#D2C4F5]/50 text-[#181818]"
+                      }`}
+                    >
+                      Arena
+                    </button>
+                  </div>
+                </div>
               )}
 
               {coursesSubView === "palestra" && (

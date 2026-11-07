@@ -26,7 +26,7 @@ The same user-owned data should eventually work across desktop and mobile. Immer
 | `app/public/assets/figma-curated/` | Owner-curated WebP/SVG assets (`972 KB` total) powering the `/app` WebApp |
 | `app/prototype/` | Interactive local 2D/3D spatial prototype (`laboratory.html`, `workspace.html`, `castle.mjs`, `room3d.mjs`, `model.mjs`) |
 | `app/server/` | Local Node/SQLite server, `/api` compatibility layer, `/v1` API, model contracts, tests and proposed PostgreSQL schema |
-| `docs/` | Product, architecture, learning, assets, decisions and roadmap; intentionally no `DESIGN.md` yet |
+| `docs/` | Product, architecture, learning, assets, decisions, brand/UX guidelines (`docs/BRAND-UX-GUIDELINES.md`), and roadmap |
 | `AGENTS.md` | Primary operating instructions for coding agents |
 | `CLAUDE.md` | Thin pointer to common agent instructions |
 
@@ -75,7 +75,7 @@ Store secrets only in the deployment environment, never in tracked source, examp
 
 ## Working with AI coding agents
 
-Start with [AGENTS.md](AGENTS.md). Product outcomes: [docs/PRODUCT.md](docs/PRODUCT.md); actual system boundaries: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); learning rules: [docs/LEARNING.md](docs/LEARNING.md); asset handling: [docs/ASSETS.md](docs/ASSETS.md); established decisions: [docs/DECISIONS.md](docs/DECISIONS.md); next steps: [docs/ROADMAP.md](docs/ROADMAP.md).
+Start with [AGENTS.md](AGENTS.md). Brand and UI/UX guidelines: [docs/BRAND-UX-GUIDELINES.md](docs/BRAND-UX-GUIDELINES.md); product outcomes: [docs/PRODUCT.md](docs/PRODUCT.md); actual system boundaries: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); learning rules: [docs/LEARNING.md](docs/LEARNING.md); asset handling: [docs/ASSETS.md](docs/ASSETS.md); established decisions: [docs/DECISIONS.md](docs/DECISIONS.md); next steps: [docs/ROADMAP.md](docs/ROADMAP.md).
 
 **Design source:** [LOCO — loco nuovo in Figma](https://www.figma.com/design/FeZKyO6xCZtjmQ1uEef4kx/loco-nuovo?node-id=310-887). The owner's definitive *Portale / Area riservata* is the **bottom-right group**, not all exported frames. The owner will supply a hand-curated set of visual assets separately.
 

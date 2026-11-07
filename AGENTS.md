@@ -12,9 +12,10 @@ Develop LOCO into a responsive, reliable learning app built around **verified kn
 2. `docs/ARCHITECTURE.md` — what actually runs, contracts, persistence, security and deployment.
 3. `docs/ROADMAP.md` — status by maturity, and high-priority integration gaps.
 4. `docs/DECISIONS.md` — approved UX and architecture boundaries.
-5. `docs/ASSETS.md` when touching media; `docs/LEARNING.md` when touching teaching, recall, metrics, mnemonics or SRS.
+5. `docs/BRAND-UX-GUIDELINES.md` — authoritative brand palette, typography, original navigation, course catalog, Duolingo-like learning path, and focused lesson player rules.
+6. `docs/ASSETS.md` when touching media; `docs/LEARNING.md` when touching teaching, recall, metrics, mnemonics or SRS.
 
-There is intentionally **no `docs/DESIGN.md` yet**. Do not invent one or automatically infer an entire design system from historical exports. Figma is a reference, curated assets are supplied by the owner, and current functional design should not be reconstructed from obsolete sample frames.
+Before any UI or visual implementation, read `docs/BRAND-UX-GUIDELINES.md`. Preserve the original LOCO marketing visual identity and five-destination application navigation. Do not introduce new dominant colors, unrelated illustration styles or unapproved navigation systems.
 
 ## Source-of-truth hierarchy
 
