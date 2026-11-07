@@ -82,3 +82,12 @@ The repo is publicly viewable at the baseline. Never commit user documents, geol
 - The curated folder is intentionally empty or contains only owner-approved assets.
 - Large raw PDF/image/video archives live **outside** Git and are recoverable.
 - Test/build output and source fonts are correctly handled by `.gitignore` and deployment scripts.
+
+## 7. Curated WebApp & LOCO Academy Assets (`app/public/assets/figma-curated/`)
+
+In addition to the core WebApp Figma screens/icons (`brand-logo-yellow.svg`, `icon-nav-*.svg`, `illustration-home-desk.svg`, `illustration-plan-poco-loco.svg`, `avatar-*.webp`, `route-thumb-*.webp`, `map-politecnico-*.webp`, `marker-locus-cloud.svg`), `app/public/assets/figma-curated/` includes 27 semantic vector illustrations (`academy-*.svg`) curated from the owner's `BASE ASSET` handoff for the interactive LOCO Academy Learning Path and Multi-Step Lesson Player:
+
+- **Scenes (`academy-scene-*.svg`):** `academy-scene-relax-night.svg`, `academy-scene-study-desk.svg`, `academy-scene-explorer.svg`, `academy-scene-runner.svg`, `academy-scene-library.svg`, `academy-scene-zen-room.svg`
+- **Character Mascots (`academy-mascot-*.svg`):** `academy-mascot-lion.svg`, `academy-mascot-elephant.svg`, `academy-mascot-cat.svg`, `academy-mascot-goose.svg`, `academy-mascot-headphones.svg`, `academy-mascot-tablet.svg`, `academy-mascot-zen-book.svg`, `academy-mascot-runner.svg`, `academy-mascot-photographer.svg`, `academy-mascot-dog.svg`
+- **Mascot Heads / Badges (`academy-head-*.svg`):** `academy-head-lion.svg`, `academy-head-elephant.svg`, `academy-head-cat.svg`, `academy-head-goose.svg`, `academy-head-headphones.svg`, `academy-head-dog.svg`
+- **Room Objects / Interactive Loci (`academy-item-*.svg`):** `academy-item-lamp.svg`, `academy-item-clock.svg`, `academy-item-stool.svg`, `academy-item-fishbowl.svg`, `academy-item-bookshelf.svg`, `academy-item-lightbulb.svg`

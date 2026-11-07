@@ -1,23 +1,34 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
+  ACADEMY_BADGES,
   ACADEMY_COURSES,
   ACADEMY_LESSONS_BY_ID,
   AcademyCourse,
+  AcademyGamificationState,
   AcademyLessonProgress,
+  AcademyMistakeItem,
   AcademyProgressMap,
   AcademyTheme,
   AdaptiveAcademyRecommendation,
   ENRICHED_ACADEMY_LESSONS,
   EnrichedAcademyLesson,
-  LEGACY_LESSON_MAP,
-  LessonStatus,
+  LOCO_ACADEMY_GAMIFICATION_KEY,
+  LOCO_LEVELS,
+  LessonStepSpec,
   LessonTier,
   MAJOR_IT_V1_TABLE,
+  PathNodeVisualState,
   TIER_NAMING,
+  XP_REWARDS,
+  awardIdempotentXp,
+  computeUnlockedBadgeIds,
+  createDefaultGamificationState,
   encodeItalianWordToMajorDigits,
   recordAcademyCheckpointAttempt,
+  resolveLocoLevel,
+  resolvePathNodeVisualState,
 } from "./loco-academy-curriculum";
 import { WebAppRoute } from "./loco-webapp-data";
 
@@ -37,75 +48,17 @@ interface LocoAcademySectionProps {
   onCreateOnboardingRouteFromAcademy: (
     customAssociations: { locusLabel: string; itemWord: string; actionCue: string }[]
   ) => void;
+  focusedCourseNumber?: number | null;
 }
 
-const STATUS_LABELS: Record<
-  LessonStatus,
-  { label: string; badgeBg: string; badgeText: string; dotColor: string }
-> = {
-  available: {
-    label: "Disponibile",
-    badgeBg: "bg-white/15",
-    badgeText: "text-white/85",
-    dotColor: "bg-white/50",
-  },
-  reading: {
-    label: "Lezione letta",
-    badgeBg: "bg-[#6CA6FF]/25",
-    badgeText: "text-[#CFE2FF]",
-    dotColor: "bg-[#6CA6FF]",
-  },
-  practice_done: {
-    label: "Esercizio svolto",
-    badgeBg: "bg-[#FFE27A]/25",
-    badgeText: "text-[#FFE27A]",
-    dotColor: "bg-[#FFE27A]",
-  },
-  provisionally_passed: {
-    label: "Superata (attende verifica ritardata)",
-    badgeBg: "bg-[#E9FF60]/25",
-    badgeText: "text-[#E9FF60]",
-    dotColor: "bg-[#E9FF60]",
-  },
-  mastered_after_delay: {
-    label: "Padronanza verificata",
-    badgeBg: "bg-[#E9FF60]",
-    badgeText: "text-[#2513A4]",
-    dotColor: "bg-[#2513A4]",
-  },
-  needs_review: {
-    label: "Da ripassare",
-    badgeBg: "bg-[#FF8A8A]/25",
-    badgeText: "text-[#FFD2D2]",
-    dotColor: "bg-[#FF8A8A]",
-  },
-};
+type AcademySubScreen = "path" | "progress" | "mistakes" | "catalog";
 
-const THEME_LABELS: { id: "all" | AcademyTheme; label: string }[] = [
-  { id: "all", label: "Tutti i temi (56)" },
-  { id: "onboarding", label: "0 · Onboarding (S01–S06)" },
-  { id: "loci", label: "1 · Tecnica dei Loci (L01–L07)" },
-  { id: "linked", label: "2 · Linked Method (K01–K04)" },
-  { id: "numbers", label: "3 & 7 · Numeri & Major System (N, Q)" },
-  { id: "study", label: "4 & 8 · Metodo di Studio & Esami (T, R)" },
-  { id: "real-life", label: "5 · Vita Reale (X01–X04)" },
-  { id: "palaces-advanced", label: "6 & 9 · Architettura & Spazi (P, W)" },
-  { id: "training", label: "10 · Palestra dei Campioni (U01–U04)" },
-  { id: "ai-studio", label: "11 · AI Memory Studio (A01–A04)" },
-];
-
-const S01_TARGET_WORDS = ["limone", "violino", "ponte", "bussola", "moneta"];
-const S03_DEMO_SURFACES = [
-  { id: "surf-porta", label: "Porta d'ingresso", zone: "Parete Nord · Ingresso" },
-  { id: "surf-attaccapanni", label: "Attaccapanni in legno", zone: "Parete Nord-Est" },
-  { id: "surf-tavolo", label: "Tavolo / Scrivania", zone: "Centro Stanza" },
-  { id: "surf-divano", label: "Divano / Poltrona", zone: "Parete Sud" },
-  { id: "surf-finestra", label: "Finestra panoramica", zone: "Parete Ovest" },
-  { id: "surf-libreria", label: "Libreria a parete", zone: "Parete Est" },
-  { id: "surf-lampada", label: "Lampada da terra", zone: "Angolo Lettura" },
-  { id: "surf-specchio", label: "Specchio a muro", zone: "Corridoio" },
-  { id: "surf-pianta", label: "Pianta di ficus", zone: "Balcone" },
-  { id: "surf-quadro", label: "Quadro geometrico", zone: "Sopra il divano" },
+const COMBO_PRAISES = [
+  "Perfetto!",
+  "Ottimo recupero!",
+  "Tre di fila! 🔥",
+  "Associazione geniale!",
+  "Memoria inarrestabile!",
 ];
 
 export function LocoAcademySection({
@@ -119,92 +72,111 @@ export function LocoAcademySection({
   onOpenSceneForLesson,
   onStartBlindRecallFromAcademy,
   onCreateOnboardingRouteFromAcademy,
+  focusedCourseNumber,
 }: LocoAcademySectionProps) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedTier, setSelectedTier] = useState<"all" | LessonTier>("all");
-  const [selectedTheme, setSelectedTheme] = useState<"all" | AcademyTheme>("all");
-  const [selectedStatusFilter, setSelectedStatusFilter] = useState<
-    "all" | "todo" | "in_progress" | "passed" | "needs_review"
-  >("all");
-  const [calmModeNoTimers, setCalmModeNoTimers] = useState(false);
-  const [hideRecommendations, setHideRecommendations] = useState(false);
-  const [showMajorTableModal, setShowMajorTableModal] = useState(false);
+  // Gamification & Persistent Store
+  const [gamification, setGamification] = useState<AcademyGamificationState>(() => {
+    const fallback = createDefaultGamificationState();
+    if (typeof window === "undefined") return fallback;
+    try {
+      const raw = window.localStorage.getItem(LOCO_ACADEMY_GAMIFICATION_KEY);
+      if (!raw) return fallback;
+      const parsed = JSON.parse(raw) as Partial<AcademyGamificationState>;
+      return {
+        ...fallback,
+        ...parsed,
+        awardedXpEventIds: Array.isArray(parsed.awardedXpEventIds)
+          ? parsed.awardedXpEventIds
+          : [],
+        completedUnitCheckpoints: Array.isArray(parsed.completedUnitCheckpoints)
+          ? parsed.completedUnitCheckpoints
+          : [],
+        mistakeQueue: Array.isArray(parsed.mistakeQueue) ? parsed.mistakeQueue : [],
+        unlockedBadgeIds: Array.isArray(parsed.unlockedBadgeIds)
+          ? parsed.unlockedBadgeIds
+          : [],
+      };
+    } catch {
+      return fallback;
+    }
+  });
 
-  // Player states (reset when activeLessonId changes via helper)
-  const [activeBlockTab, setActiveBlockTab] = useState<
-    "reading" | "exercise" | "checkpoint"
-  >("reading");
-  const [checkpointUserAnswer, setCheckpointUserAnswer] = useState("");
-  const [checkpointHintsUsed, setCheckpointHintsUsed] = useState(0);
-  const [checkpointViewedAnswerBefore, setCheckpointViewedAnswerBefore] =
-    useState(false);
-  const [checkpointSubmittedResult, setCheckpointSubmittedResult] = useState<{
-    isCorrect: boolean;
-    feedback: string;
-    autonomousSuccess: boolean;
-    resultingStatus: LessonStatus;
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      window.localStorage.setItem(
+        LOCO_ACADEMY_GAMIFICATION_KEY,
+        JSON.stringify(gamification)
+      );
+    } catch {
+      // ignore quota errors
+    }
+  }, [gamification]);
+
+  // Central configurable entitlement tier (Free default, switchable to preview Plus/Pro)
+  const [simulatedPlanTier, setSimulatedPlanTier] = useState<LessonTier>("free");
+  const [subScreen, setSubScreen] = useState<AcademySubScreen>("path");
+
+  // Modals / Drawers for the 9 screens
+  const [unitDetailCourseId, setUnitDetailCourseId] = useState<string | null>(null);
+  const [premiumPreviewLesson, setPremiumPreviewLesson] =
+    useState<EnrichedAcademyLesson | null>(null);
+  const [activeCheckpointCourse, setActiveCheckpointCourse] =
+    useState<AcademyCourse | null>(null);
+  const [checkpointStepIdx, setCheckpointStepIdx] = useState(0);
+  const [checkpointSelectedValue, setCheckpointSelectedValue] = useState<string | null>(
+    null
+  );
+  const [checkpointMistakes, setCheckpointMistakes] = useState(0);
+  const [checkpointFinished, setCheckpointFinished] = useState(false);
+
+  // Catalog filters
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedTierFilter, setSelectedTierFilter] = useState<"all" | LessonTier>("all");
+  const [selectedThemeFilter, setSelectedThemeFilter] = useState<"all" | AcademyTheme>(
+    "all"
+  );
+  const [showMajorReferenceModal, setShowMajorReferenceModal] = useState(false);
+
+  // Interactive Multi-Step Lesson Player State
+  const [playerStepIndex, setPlayerStepIndex] = useState(0);
+  const [expandedExplanation, setExpandedExplanation] = useState(false);
+  const [comboCount, setComboCount] = useState(0);
+  const [lessonMistakesCount, setLessonMistakesCount] = useState(0);
+  const [lessonHintsCount, setLessonHintsCount] = useState(0);
+  const [lessonCompleteSummary, setLessonCompleteSummary] = useState<{
+    xpEarnedNow: number;
+    bonusXpEarned: number;
+    totalSteps: number;
+    mistakesCount: number;
   } | null>(null);
 
-  // S01 exercise states
-  const [s01Phase, setS01Phase] = useState<"observe" | "recall" | "compared">(
-    "observe"
-  );
-  const [s01Input, setS01Input] = useState("");
+  // Step-level Answer Feedback banner state
+  const [stepFeedback, setStepFeedback] = useState<{
+    isCorrect: boolean;
+    headline: string;
+    detail: string;
+  } | null>(null);
 
-  // S02 exercise states
-  const [s02QOrder, setS02QOrder] = useState(
-    "Qual è l'ordine dei primi quattro pianeti partendo dal Sole?"
-  );
-  const [s02QFeature, setS02QFeature] = useState(
-    "Quale caratteristica distingue l'atmosfera di Venere?"
-  );
-  const [s02QCompare, setS02QCompare] = useState("");
+  // Reusable Exercise States (reset per step)
+  const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
+  const [matchedPairIds, setMatchedPairIds] = useState<string[]>([]);
+  const [selectedLeftPairId, setSelectedLeftPairId] = useState<string | null>(null);
+  const [orderedSequence, setOrderedSequence] = useState<string[]>([]);
+  const [flashHidden, setFlashHidden] = useState(false);
+  const [flashRecallSelection, setFlashRecallSelection] = useState<string[]>([]);
+  const [blankChoice, setBlankChoice] = useState<string>("");
+  const [freeRecallInput, setFreeRecallInput] = useState("");
+  const [freeRecallHintShown, setFreeRecallHintShown] = useState(false);
+  const [placedLociCount, setPlacedLociCount] = useState(0);
+  const [builderObj, setBuilderObj] = useState("");
+  const [builderAct, setBuilderAct] = useState("");
+  const [builderLoc, setBuilderLoc] = useState("");
+  const [majorInputText, setMajorInputText] = useState("");
 
-  // S03 / L-series locus builder states
-  const [selectedSurfaceIds, setSelectedSurfaceIds] = useState<string[]>([
-    "surf-porta",
-    "surf-attaccapanni",
-    "surf-tavolo",
-    "surf-divano",
-    "surf-finestra",
-  ]);
-  const [s03LabelsHidden, setS03LabelsHidden] = useState(false);
-  const [s03OrderAttemptIds, setS03OrderAttemptIds] = useState<string[]>([]);
-  const [s03OrderVerified, setS03OrderVerified] = useState<boolean | null>(null);
-
-  // S04 association builder states
-  const [s04Cues, setS04Cues] = useState<string[]>([
-    "Un limone gigante si incastra nella maniglia della porta e spruzza succo acido.",
-    "Un violino appeso all'attaccapanni suona da solo appena passa una corrente d'aria.",
-    "Un ponte in miniatura di pietra attraversa il tavolo da un bordo all'altro.",
-    "Una bussola magnetica gigante gira vorticosamente sui cuscini del divano.",
-    "",
-  ]);
-  const [s04SavedToRoutes, setS04SavedToRoutes] = useState(false);
-
-  // S05 blind recall mini-run states
-  const [s05Index, setS05Index] = useState(0);
-  const [s05Answer, setS05Answer] = useState("");
-  const [s05HintUsedOnCurrent, setS05HintUsedOnCurrent] = useState(false);
-  const [s05Log, setS05Log] = useState<
-    { locus: string; expected: string; given: string; correct: boolean; assisted: boolean }[]
-  >([]);
-
-  // Major phonetic drill states (N01-N05, Q01-Q04)
-  const [majorWordInput, setMajorWordInput] = useState("scena");
-  const [majorForward14, setMajorForward14] = useState("");
-  const [majorForward32, setMajorForward32] = useState("");
-  const [majorReverseMicio, setMajorReverseMicio] = useState("");
-  const [majorReverseMago, setMajorReverseMago] = useState("");
-  const [majorHideReferenceTable, setMajorHideReferenceTable] = useState(false);
-  const [majorDrillChecked, setMajorDrillChecked] = useState(false);
-
-  // A01 AI audit exercise state
-  const [a01RejectedFalseCard, setA01RejectedFalseCard] = useState(false);
-  const [a01ApprovedVerifiedCard, setA01ApprovedVerifiedCard] = useState(false);
-
-  // Generic practice reflection state for lessons
-  const [practiceNotes, setPracticeNotes] = useState("");
+  // Mistake review session state
+  const [mistakeReplyText, setMistakeReplyText] = useState("");
+  const [mistakeFeedbackMsg, setMistakeFeedbackMsg] = useState<string | null>(null);
 
   const activeLesson: EnrichedAcademyLesson | null = activeLessonId
     ? ACADEMY_LESSONS_BY_ID[activeLessonId] ?? null
@@ -215,359 +187,532 @@ export function LocoAcademySection({
       ? progressMap[activeLesson.id]
       : null;
 
-  const openLessonPlayer = (
-    lessonId: string,
-    initialTab: "reading" | "exercise" | "checkpoint" = "reading",
-    skippedReading: boolean = false
-  ) => {
+  const totalLociInRoutes = useMemo(
+    () => routes.reduce((acc, r) => acc + r.loci.length, 0),
+    [routes]
+  );
+
+  const unlockedBadgeIds = useMemo(
+    () => computeUnlockedBadgeIds(progressMap, gamification, totalLociInRoutes),
+    [progressMap, gamification, totalLociInRoutes]
+  );
+
+  const levelInfo = useMemo(
+    () => resolveLocoLevel(gamification.totalXp),
+    [gamification.totalXp]
+  );
+
+  const resetStepInteractionState = () => {
+    setStepFeedback(null);
+    setExpandedExplanation(false);
+    setSelectedOptionId(null);
+    setMatchedPairIds([]);
+    setSelectedLeftPairId(null);
+    setOrderedSequence([]);
+    setFlashHidden(false);
+    setFlashRecallSelection([]);
+    setBlankChoice("");
+    setFreeRecallInput("");
+    setFreeRecallHintShown(false);
+    setPlacedLociCount(0);
+    setBuilderObj("");
+    setBuilderAct("");
+    setBuilderLoc("");
+    setMajorInputText("");
+  };
+
+  // Launch or resume a lesson in the multi-step game player
+  const startOrResumeLesson = (lessonId: string) => {
     const lesson = ACADEMY_LESSONS_BY_ID[lessonId];
     if (!lesson) return;
+    const prog = progressMap[lessonId];
+    const savedStep =
+      prog && prog.currentStepIndex > 0 && prog.currentStepIndex < lesson.steps.length
+        ? prog.currentStepIndex
+        : 0;
+
     const nowIso = new Date().toISOString();
     onUpdateLessonProgress(lessonId, (prev) => ({
       ...prev,
       openedAt: prev.openedAt ?? nowIso,
-      status:
-        !skippedReading && prev.status === "available" ? "reading" : prev.status,
-      readCompletedAt:
-        !skippedReading && !prev.readCompletedAt ? nowIso : prev.readCompletedAt,
-      skippedReadingToTest: prev.skippedReadingToTest || skippedReading,
+      status: prev.status === "available" ? "reading" : prev.status,
+      readCompletedAt: prev.readCompletedAt ?? nowIso,
     }));
+
+    setPlayerStepIndex(savedStep);
+    setComboCount(0);
+    setLessonMistakesCount(0);
+    setLessonHintsCount(0);
+    setLessonCompleteSummary(null);
+    resetStepInteractionState();
     onSelectLesson(lessonId);
-    setActiveBlockTab(initialTab);
-    setCheckpointUserAnswer("");
-    setCheckpointHintsUsed(0);
-    setCheckpointViewedAnswerBefore(false);
-    setCheckpointSubmittedResult(null);
   };
 
-  // Summary counts across all 56 lessons
-  const stats = useMemo(() => {
-    let readCount = 0;
-    let practiceCount = 0;
-    let passedCount = 0;
-    let masteredCount = 0;
-    let onboardingCompleted = 0;
-
+  // Next recommended lesson on the path
+  const nextRecommendedLesson = useMemo(() => {
     for (const lesson of ENRICHED_ACADEMY_LESSONS) {
-      const p = progressMap[lesson.id];
-      if (!p) continue;
-      if (p.status !== "available") readCount += 1;
-      if (
-        p.practiceCompletedAt ||
-        p.status === "practice_done" ||
-        p.status === "provisionally_passed" ||
-        p.status === "mastered_after_delay"
-      ) {
-        practiceCount += 1;
-      }
-      if (
-        p.status === "provisionally_passed" ||
-        p.status === "mastered_after_delay"
-      ) {
-        passedCount += 1;
-      }
-      if (p.status === "mastered_after_delay") {
-        masteredCount += 1;
-      }
-      if (
-        lesson.requiredInOnboarding &&
-        (p.status === "provisionally_passed" ||
-          p.status === "mastered_after_delay" ||
-          p.status === "practice_done")
-      ) {
-        onboardingCompleted += 1;
+      const st = progressMap[lesson.id]?.status ?? "available";
+      if (st !== "provisionally_passed" && st !== "mastered_after_delay") {
+        return lesson;
       }
     }
-
-    return {
-      totalLessons: ENRICHED_ACADEMY_LESSONS.length,
-      totalCourses: ACADEMY_COURSES.length,
-      readCount,
-      practiceCount,
-      passedCount,
-      masteredCount,
-      onboardingCompleted,
-    };
+    return ENRICHED_ACADEMY_LESSONS[0];
   }, [progressMap]);
 
-  // Filtered courses & lessons
-  const filteredCourses = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
-
-    return ACADEMY_COURSES.map((course) => {
-      const matchingLessons = course.lessons.filter((lesson) => {
-        if (selectedTier !== "all" && lesson.planTier !== selectedTier) {
-          return false;
-        }
-        if (selectedTheme !== "all" && lesson.theme !== selectedTheme) {
-          return false;
-        }
-        const p = progressMap[lesson.id];
-        const status = p?.status ?? "available";
-        if (selectedStatusFilter === "todo" && status !== "available") {
-          return false;
-        }
-        if (
-          selectedStatusFilter === "in_progress" &&
-          status !== "reading" &&
-          status !== "practice_done"
-        ) {
-          return false;
-        }
-        if (
-          selectedStatusFilter === "passed" &&
-          status !== "provisionally_passed" &&
-          status !== "mastered_after_delay"
-        ) {
-          return false;
-        }
-        if (selectedStatusFilter === "needs_review" && status !== "needs_review") {
-          return false;
-        }
-
-        if (!q) return true;
-        return (
-          lesson.id.toLowerCase().includes(q) ||
-          lesson.title.toLowerCase().includes(q) ||
-          lesson.courseName.toLowerCase().includes(q) ||
-          lesson.reading.toLowerCase().includes(q) ||
-          lesson.workedExample.toLowerCase().includes(q)
-        );
-      });
-
+  // Helper to push a mistake into the persistent Mistake Queue
+  const enqueueMistake = (
+    lesson: EnrichedAcademyLesson,
+    step: LessonStepSpec,
+    expectedAnswer: string,
+    explanation: string
+  ) => {
+    const mistakeId = `mistake-${lesson.id}-${step.stepId}`;
+    const newItem: AcademyMistakeItem = {
+      id: mistakeId,
+      lessonId: lesson.id,
+      lessonTitle: lesson.title,
+      stepId: step.stepId,
+      prompt: step.title,
+      expectedAnswer,
+      explanation,
+      createdAt: new Date().toISOString(),
+    };
+    setGamification((prev) => {
+      const filtered = prev.mistakeQueue.filter((m) => m.id !== mistakeId);
       return {
-        ...course,
-        lessons: matchingLessons,
+        ...prev,
+        mistakeQueue: [newItem, ...filtered],
       };
-    }).filter((c) => c.lessons.length > 0);
-  }, [
-    searchQuery,
-    selectedTier,
-    selectedTheme,
-    selectedStatusFilter,
-    progressMap,
-  ]);
-
-  const markPracticeCompleted = (lessonId: string, summary: string) => {
-    const nowIso = new Date().toISOString();
-    onUpdateLessonProgress(lessonId, (prev) => ({
-      ...prev,
-      practiceCompletedAt: nowIso,
-      practiceSummary: summary,
-      status:
-        prev.status === "available" || prev.status === "reading"
-          ? "practice_done"
-          : prev.status,
-    }));
-  };
-
-  const handleVerifyCheckpoint = (isDelayedFollowUp: boolean = false) => {
-    if (!activeLesson || !activeProgress) return;
-    const nowIso = new Date().toISOString();
-    const { updated, evaluation } = recordAcademyCheckpointAttempt(
-      activeProgress,
-      activeLesson,
-      {
-        userAnswer: checkpointUserAnswer,
-        hintsUsedInAttempt: checkpointHintsUsed,
-        viewedAnswerBeforeAttempt: checkpointViewedAnswerBefore,
-        isDelayedFollowUp,
-        nowIso,
-      }
-    );
-
-    onUpdateLessonProgress(activeLesson.id, () => updated);
-    setCheckpointSubmittedResult({
-      isCorrect: evaluation.isCorrect,
-      feedback: evaluation.feedback,
-      autonomousSuccess: evaluation.autonomousSuccess,
-      resultingStatus: updated.status,
     });
   };
 
-  const onboardingLessons = ACADEMY_COURSES[0]?.lessons ?? [];
-  const nextOnboardingLesson =
-    onboardingLessons.find((l) => {
-      const st = progressMap[l.id]?.status ?? "available";
-      return st !== "provisionally_passed" && st !== "mastered_after_delay";
-    }) ?? onboardingLessons[0];
+  // Evaluate the current interactive step when the user clicks "VERIFICA"
+  const handleVerifyCurrentStep = () => {
+    if (!activeLesson || !activeProgress) return;
+    const step = activeLesson.steps[playerStepIndex];
+    if (!step) return;
+
+    // Narrative steps (hook, explanation, demonstration) succeed immediately on continue
+    if (
+      step.type === "hook" ||
+      step.type === "explanation" ||
+      step.type === "demonstration"
+    ) {
+      handleAdvanceToNextStep();
+      return;
+    }
+
+    let isCorrect = false;
+    let feedbackDetail = step.explanationOnSuccess;
+    let expectedForMistakeQueue = activeLesson.checkpoint.expectedAnswer;
+
+    if (
+      step.type === "multiple_choice" ||
+      step.type === "image_association" ||
+      step.type === "error_correction"
+    ) {
+      const chosen = step.options?.find((o) => o.id === selectedOptionId);
+      if (!chosen) return;
+      isCorrect = chosen.isCorrect;
+      feedbackDetail = chosen.explanation || (isCorrect ? step.explanationOnSuccess : step.explanationOnMistake);
+      const rightOpt = step.options?.find((o) => o.isCorrect);
+      expectedForMistakeQueue = rightOpt?.label ?? activeLesson.checkpoint.expectedAnswer;
+    } else if (step.type === "matching_pairs") {
+      const totalPairs = step.pairs?.length ?? 0;
+      isCorrect = matchedPairIds.length >= totalPairs;
+      expectedForMistakeQueue = (step.pairs ?? [])
+        .map((p) => `${p.left} = ${p.right}`)
+        .join(" · ");
+    } else if (step.type === "sequence_ordering") {
+      const targetSeq = step.sequenceItems ?? [];
+      isCorrect =
+        orderedSequence.length === targetSeq.length &&
+        orderedSequence.every((item, i) => item === targetSeq[i]);
+      expectedForMistakeQueue = targetSeq.join(" → ");
+    } else if (step.type === "memory_flash") {
+      const targetFlash = step.flashItems ?? [];
+      isCorrect =
+        flashRecallSelection.length === targetFlash.length &&
+        flashRecallSelection.every((item, i) => item === targetFlash[i]);
+      expectedForMistakeQueue = targetFlash.join(", ");
+    } else if (step.type === "fill_in_blank") {
+      const expected = step.blankSentence?.expectedWord ?? "";
+      isCorrect = blankChoice.trim().toLowerCase() === expected.trim().toLowerCase();
+      expectedForMistakeQueue = expected;
+    } else if (step.type === "loci_placement") {
+      const targetCount = step.lociPlacementSpec?.itemsToPlace.length ?? 5;
+      isCorrect = placedLociCount >= targetCount;
+      expectedForMistakeQueue = "5 loci ordinati nella scena";
+    } else if (step.type === "mnemonic_builder") {
+      isCorrect = Boolean(builderObj && builderAct && builderLoc);
+      expectedForMistakeQueue = "Oggetto concreto + Azione fisica + Locus stabile";
+      if (isCorrect && activeLesson.id === "S04") {
+        onCreateOnboardingRouteFromAcademy([
+          {
+            locusLabel: builderLoc,
+            itemWord: builderObj,
+            actionCue: `${builderObj} ${builderAct} ${builderLoc}`,
+          },
+        ]);
+      }
+    } else if (step.type === "number_encoding") {
+      const targetNum = step.numberEncodingSpec?.targetNumber ?? "14";
+      const encoded = encodeItalianWordToMajorDigits(majorInputText);
+      isCorrect = encoded === targetNum;
+      expectedForMistakeQueue = `Parola con cifre ${targetNum} (es. ${
+        step.numberEncodingSpec?.exampleValidWords.join(", ") ?? "toro"
+      })`;
+      setGamification((prev) => ({
+        ...prev,
+        forwardEncodingTotalCount: prev.forwardEncodingTotalCount + 1,
+        forwardEncodingCorrectCount:
+          prev.forwardEncodingCorrectCount + (isCorrect ? 1 : 0),
+      }));
+    } else if (step.type === "reverse_decoding") {
+      const expectedDigits = step.reverseDecodingSpec?.expectedDigits ?? "02";
+      isCorrect = majorInputText.trim() === expectedDigits;
+      expectedForMistakeQueue = `${step.reverseDecodingSpec?.stimulusWord} → ${expectedDigits}`;
+      setGamification((prev) => ({
+        ...prev,
+        reverseDecodingTotalCount: prev.reverseDecodingTotalCount + 1,
+        reverseDecodingCorrectCount:
+          prev.reverseDecodingCorrectCount + (isCorrect ? 1 : 0),
+      }));
+    } else if (step.type === "free_recall") {
+      const clean = freeRecallInput.trim().toLowerCase();
+      const kws = step.freeRecallPrompt?.acceptedKeywords ?? [];
+      const matched = kws.filter((k) => clean.includes(k));
+      isCorrect =
+        clean.length > 0 &&
+        (matched.length >= Math.max(1, Math.ceil(kws.length * 0.4)) ||
+          clean ===
+            (step.freeRecallPrompt?.expectedAnswer ?? "")
+              .trim()
+              .replace(/\.$/, "")
+              .toLowerCase());
+      expectedForMistakeQueue =
+        step.freeRecallPrompt?.expectedAnswer ?? activeLesson.checkpoint.expectedAnswer;
+    }
+
+    if (isCorrect) {
+      const nextCombo = comboCount + 1;
+      setComboCount(nextCombo);
+      const praise =
+        COMBO_PRAISES[Math.min(nextCombo - 1, COMBO_PRAISES.length - 1)] ??
+        "Perfetto!";
+      setStepFeedback({
+        isCorrect: true,
+        headline: nextCombo >= 2 ? `${praise} (Combo x${nextCombo})` : praise,
+        detail: feedbackDetail,
+      });
+    } else {
+      setComboCount(0);
+      setLessonMistakesCount((m) => m + 1);
+      enqueueMistake(
+        activeLesson,
+        step,
+        expectedForMistakeQueue,
+        step.explanationOnMistake || `Evita di ${activeLesson.commonMistake}`
+      );
+      setStepFeedback({
+        isCorrect: false,
+        headline: "Da ripassare! Aggiunto alla coda errori",
+        detail: `${
+          step.explanationOnMistake || feedbackDetail
+        } — Risposta corretta: «${expectedForMistakeQueue}»`,
+      });
+    }
+  };
+
+  // Advance to the next step or finish the lesson
+  const handleAdvanceToNextStep = () => {
+    if (!activeLesson || !activeProgress) return;
+    const currentStep = activeLesson.steps[playerStepIndex];
+    const nextIdx = playerStepIndex + 1;
+    const nowIso = new Date().toISOString();
+
+    if (nextIdx < activeLesson.steps.length) {
+      onUpdateLessonProgress(activeLesson.id, (prev) => ({
+        ...prev,
+        currentStepIndex: nextIdx,
+        practiceCompletedAt:
+          nextIdx >= 3 ? prev.practiceCompletedAt ?? nowIso : prev.practiceCompletedAt,
+        status:
+          prev.status === "available" || prev.status === "reading"
+            ? nextIdx >= 3
+              ? "practice_done"
+              : "reading"
+            : prev.status,
+        completedStepIds: currentStep
+          ? Array.from(new Set([...prev.completedStepIds, currentStep.stepId]))
+          : prev.completedStepIds,
+      }));
+      setPlayerStepIndex(nextIdx);
+      resetStepInteractionState();
+      return;
+    }
+
+    // Lesson finished! Record checkpoint attempt & award idempotent XP
+    const isDelayedFollowUp = Boolean(activeProgress.provisionallyPassedAt);
+    const { updated } = recordAcademyCheckpointAttempt(activeProgress, activeLesson, {
+      userAnswer: activeLesson.checkpoint.expectedAnswer,
+      hintsUsedInAttempt: lessonHintsCount,
+      viewedAnswerBeforeAttempt: false,
+      isDelayedFollowUp,
+      nowIso,
+    });
+
+    const finalRecord: AcademyLessonProgress = {
+      ...updated,
+      currentStepIndex: 0,
+      practiceCompletedAt: updated.practiceCompletedAt ?? nowIso,
+      completedStepIds: activeLesson.steps.map((s) => s.stepId),
+    };
+    onUpdateLessonProgress(activeLesson.id, () => finalRecord);
+
+    // Award XP idempotently
+    let xpEarnedNow = 0;
+    let bonusXpEarned = 0;
+
+    setGamification((prev) => {
+      let working = prev;
+      const firstPassEventId = `xp-lesson-complete-${activeLesson.id}`;
+      const firstAward = awardIdempotentXp(
+        working,
+        firstPassEventId,
+        XP_REWARDS.LESSON_COMPLETED
+      );
+      working = firstAward.updated;
+      xpEarnedNow += firstAward.awardedNow;
+
+      if (lessonMistakesCount === 0 && lessonHintsCount === 0) {
+        const bonusEventId = `xp-lesson-perfect-${activeLesson.id}`;
+        const bonusAward = awardIdempotentXp(
+          working,
+          bonusEventId,
+          XP_REWARDS.PERFECT_FIRST_TRY_BONUS
+        );
+        working = bonusAward.updated;
+        bonusXpEarned = bonusAward.awardedNow;
+      }
+
+      // If lesson was already completed previously, award +5 XP review if delayed follow-up
+      if (firstAward.awardedNow === 0 && isDelayedFollowUp) {
+        const revEventId = `xp-review-${activeLesson.id}-${activeProgress.checkpointAttempts + 1}`;
+        const revAward = awardIdempotentXp(
+          working,
+          revEventId,
+          XP_REWARDS.REVIEW_COMPLETED
+        );
+        working = {
+          ...revAward.updated,
+          reviewsCompletedCount: working.reviewsCompletedCount + 1,
+        };
+        xpEarnedNow += revAward.awardedNow;
+      }
+
+      return working;
+    });
+
+    setLessonCompleteSummary({
+      xpEarnedNow: xpEarnedNow || XP_REWARDS.REVIEW_COMPLETED,
+      bonusXpEarned,
+      totalSteps: activeLesson.steps.length,
+      mistakesCount: lessonMistakesCount,
+    });
+  };
 
   return (
-    <div className="mt-10 space-y-7">
-      {/* Header Banner LOCO Academy */}
-      <div className="rounded-[28px] border-2 border-[#E9FF60]/60 bg-[#2E1BC4] p-5 md:p-7 shadow-xl">
+    <div className="mt-6 space-y-6">
+      {/* =====================================================================
+          TOP GAMIFICATION & NAVIGATION HUD (XP, Livello, Obiettivo, Streak, Energia)
+          ===================================================================== */}
+      <div className="rounded-[26px] border-2 border-[#613BE0]/30 bg-[#2513A4] p-4 md:p-6 text-white shadow-xl">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#E9FF60] px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-[#2513A4]">
-              <span>LOCO Academy · Curriculum v1.0</span>
-              <span>•</span>
-              <span>12 Corsi · 56 Microlezioni</span>
-            </div>
-            <h2 className="mt-3 font-display text-2xl md:text-4xl font-extrabold text-white">
-              Scuola Interattiva della Memoria: Capire → Codificare → Recuperare → Consolidare
-            </h2>
-            <p className="mt-1.5 max-w-3xl text-sm md:text-base text-white/85">
-              Leggere una spiegazione non equivale a padroneggiare una tecnica. Ogni modulo separa{" "}
-              <strong className="text-[#E9FF60]">lettura</strong>,{" "}
-              <strong className="text-[#E9FF60]">esercizio guidato</strong>,{" "}
-              <strong className="text-[#E9FF60]">verifica a risposta nascosta</strong> e{" "}
-              <strong className="text-[#E9FF60]">consolidamento nel tempo</strong>. Onboarding,
-              fondamenti, Blind Recall e coda ripassi sono sempre gratuiti.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2.5">
-            <button
-              type="button"
-              onClick={() =>
-                nextOnboardingLesson && openLessonPlayer(nextOnboardingLesson.id)
-              }
-              className="rounded-full bg-[#E9FF60] px-5 py-2.5 font-display text-sm font-extrabold text-[#2513A4] shadow-md hover:brightness-105 transition"
-            >
-              {stats.onboardingCompleted === 6
-                ? "Rivedi Corso 0 (S01–S06)"
-                : `Continua Percorso Iniziale (${nextOnboardingLesson?.id ?? "S01"})`}
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowMajorTableModal((v) => !v)}
-              className="rounded-full border border-white/30 bg-white/10 px-4 py-2.5 text-xs font-bold text-white hover:bg-white/20 transition"
-            >
-              {showMajorTableModal
-                ? "Chiudi Tabella Fonetica major-it-v1"
-                : "Tabella Fonetica major-it-v1"}
-            </button>
-          </div>
-        </div>
-
-        {/* Statistiche reali progresso Academy (distinte tra lettura, pratica, verifica, padronanza) */}
-        <div className="mt-5 grid grid-cols-2 sm:grid-cols-5 gap-3">
-          <div className="rounded-2xl bg-[#2513A4]/80 border border-white/15 p-3">
-            <div className="text-[11px] uppercase tracking-wider text-white/70">
-              Onboarding (S01–S06)
-            </div>
-            <div className="mt-1 font-display text-xl font-extrabold text-[#E9FF60]">
-              {stats.onboardingCompleted} / 6
-            </div>
-            <div className="text-[11px] text-white/65">Percorso iniziale gratuito</div>
-          </div>
-          <div className="rounded-2xl bg-[#2513A4]/80 border border-white/15 p-3">
-            <div className="text-[11px] uppercase tracking-wider text-white/70">
-              Lezioni lette (`reading`)
-            </div>
-            <div className="mt-1 font-display text-xl font-extrabold text-white">
-              {stats.readCount} / {stats.totalLessons}
-            </div>
-            <div className="text-[11px] text-white/65">Include migrazione legacy</div>
-          </div>
-          <div className="rounded-2xl bg-[#2513A4]/80 border border-white/15 p-3">
-            <div className="text-[11px] uppercase tracking-wider text-white/70">
-              Esercizi svolti
-            </div>
-            <div className="mt-1 font-display text-xl font-extrabold text-[#FFE27A]">
-              {stats.practiceCount} / {stats.totalLessons}
-            </div>
-            <div className="text-[11px] text-white/65">Pratica guidata completata</div>
-          </div>
-          <div className="rounded-2xl bg-[#2513A4]/80 border border-white/15 p-3">
-            <div className="text-[11px] uppercase tracking-wider text-white/70">
-              Verifiche superate
-            </div>
-            <div className="mt-1 font-display text-xl font-extrabold text-[#E9FF60]">
-              {stats.passedCount} / {stats.totalLessons}
-            </div>
-            <div className="text-[11px] text-white/65">Tentativo a risposta nascosta</div>
-          </div>
-          <div className="rounded-2xl bg-[#2513A4]/80 border border-white/15 p-3">
-            <div className="text-[11px] uppercase tracking-wider text-white/70">
-              Padronanza (`mastered`)
-            </div>
-            <div className="mt-1 font-display text-xl font-extrabold text-[#6CA6FF]">
-              {stats.masteredCount} / {stats.totalLessons}
-            </div>
-            <div className="text-[11px] text-white/65">Solo dopo prova autonoma</div>
-          </div>
-        </div>
-
-        {/* Striscia Corso 0 — Benvenuto in LOCO (S01-S06) */}
-        <div className="mt-5 rounded-2xl bg-[#2513A4]/90 border border-white/15 p-4">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-            <div>
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#E9FF60]">
-                Corso 0 · Percorso Iniziale Consigliato (Impara facendo)
-              </span>
-              <p className="text-xs text-white/80">
-                Costruisci il tuo primo palazzo mentre impari la differenza tra riconoscimento e richiamo attivo.
-              </p>
-            </div>
-            <label className="inline-flex items-center gap-2 text-xs text-white/80 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={calmModeNoTimers}
-                onChange={(e) => setCalmModeNoTimers(e.target.checked)}
-                className="rounded accent-[#E9FF60]"
+          {/* Left: Level & Mascot */}
+          <div className="flex items-center gap-3.5">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[#FFF8EC] p-2 shadow-md">
+              <img
+                src={levelInfo.current.mascotAsset}
+                alt={levelInfo.current.title}
+                className="h-full w-full object-contain"
               />
-              <span>Modalità senza pressione (disattiva timer)</span>
-            </label>
+            </div>
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-[#E9FF60] px-3 py-0.5 font-display text-xs font-extrabold text-[#2513A4]">
+                  LIVELLO {levelInfo.current.level} · {levelInfo.current.title.toUpperCase()}
+                </span>
+                <span className="text-xs font-bold text-white/80">
+                  {gamification.totalXp} XP totali
+                </span>
+              </div>
+              <p className="mt-1 text-xs text-white/80">
+                {levelInfo.current.description}
+              </p>
+              {levelInfo.next && (
+                <div className="mt-1.5 flex items-center gap-2">
+                  <div className="h-2 w-40 overflow-hidden rounded-full bg-white/15">
+                    <div
+                      className="h-full rounded-full bg-[#E9FF60] transition-all"
+                      style={{ width: `${levelInfo.progressPercent}%` }}
+                    />
+                  </div>
+                  <span className="text-[11px] text-white/70">
+                    Prossimo: {levelInfo.next.title} ({levelInfo.next.minXp} XP)
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-2.5">
-            {onboardingLessons.map((lesson) => {
-              const p = progressMap[lesson.id];
-              const st = p?.status ?? "available";
-              const stMeta = STATUS_LABELS[st];
-              return (
-                <button
-                  key={lesson.id}
-                  type="button"
-                  onClick={() => openLessonPlayer(lesson.id)}
-                  className="text-left rounded-xl border border-white/20 bg-white/5 hover:bg-white/15 p-3 transition flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between gap-1">
-                      <span className="font-display text-sm font-extrabold text-[#E9FF60]">
-                        {lesson.id}
-                      </span>
-                      <span
-                        className={`inline-block h-2.5 w-2.5 rounded-full ${stMeta.dotColor}`}
-                        title={stMeta.label}
-                      />
-                    </div>
-                    <div className="mt-1 font-bold text-xs text-white line-clamp-2">
-                      {lesson.title}
-                    </div>
-                  </div>
-                  <div className="mt-2 text-[10px] font-semibold text-white/75">
-                    {stMeta.label}
-                  </div>
-                </button>
-              );
-            })}
+
+          {/* Right: Daily Goal, Streak, Positive Energy & Tier Selector */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-3.5 py-2.5">
+              <div className="text-[10px] font-bold uppercase text-white/70">
+                Obiettivo Giornaliero
+              </div>
+              <div className="mt-0.5 font-display text-lg font-extrabold text-[#E9FF60]">
+                {gamification.todayXp} / {gamification.dailyGoalXp} XP
+              </div>
+              <div className="text-[10px] text-white/70">
+                {gamification.todayXp >= gamification.dailyGoalXp
+                  ? "✓ Obiettivo centrato!"
+                  : "+10 XP a lezione"}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-3.5 py-2.5">
+              <div className="text-[10px] font-bold uppercase text-white/70">
+                Giorni Attivi (Streak)
+              </div>
+              <div className="mt-0.5 font-display text-lg font-extrabold text-[#FFD014]">
+                🔥 {gamification.streakDays} {gamification.streakDays === 1 ? "giorno" : "giorni"}
+              </div>
+              <div className="text-[10px] text-white/70">Ritmo positivo, zero stress</div>
+            </div>
+
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-3.5 py-2.5">
+              <div className="text-[10px] font-bold uppercase text-white/70">
+                Carica Allenamento
+              </div>
+              <div className="mt-0.5 font-display text-lg font-extrabold text-emerald-300">
+                ⚡ 100% Attiva
+              </div>
+              <div className="text-[10px] text-white/70">Gli errori non bloccano mai</div>
+            </div>
+
+            <div className="rounded-2xl border border-white/15 bg-white/10 px-3.5 py-2.5">
+              <label className="block text-[10px] font-bold uppercase text-white/70">
+                Piano attivo (Demo)
+              </label>
+              <select
+                value={simulatedPlanTier}
+                onChange={(e) => setSimulatedPlanTier(e.target.value as LessonTier)}
+                aria-label="Seleziona il piano di abbonamento per testare gli sblocchi"
+                className="mt-1 w-full rounded-lg bg-[#2513A4] px-2 py-1 text-xs font-extrabold text-[#E9FF60] border border-white/25"
+              >
+                <option value="free">LOCOMPRO DOPO (Free)</option>
+                <option value="plus">POCO LOCO (Plus)</option>
+                <option value="pro">PRO LOCO (Pro)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        {/* Navigation Pills between the Academy Views */}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-white/15 pt-4">
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => setSubScreen("path")}
+              className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${
+                subScreen === "path"
+                  ? "bg-[#E9FF60] text-[#2513A4]"
+                  : "bg-white/10 text-white hover:bg-white/20"
+              }`}
+            >
+              🗺️ Percorso di Apprendimento (12 Unità)
+            </button>
+            <button
+              type="button"
+              onClick={() => setSubScreen("mistakes")}
+              className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${
+                subScreen === "mistakes"
+                  ? "bg-[#E9FF60] text-[#2513A4]"
+                  : "bg-white/10 text-white hover:bg-white/20"
+              }`}
+            >
+              🔁 Ripassa Errori & Scadenze (
+              {gamification.mistakeQueue.length + dueReviewsCount})
+            </button>
+            <button
+              type="button"
+              onClick={() => setSubScreen("progress")}
+              className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${
+                subScreen === "progress"
+                  ? "bg-[#E9FF60] text-[#2513A4]"
+                  : "bg-white/10 text-white hover:bg-white/20"
+              }`}
+            >
+              🏆 Abilità, Livelli & Badge ({unlockedBadgeIds.length}/{ACADEMY_BADGES.length})
+            </button>
+            <button
+              type="button"
+              onClick={() => setSubScreen("catalog")}
+              className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${
+                subScreen === "catalog"
+                  ? "bg-[#E9FF60] text-[#2513A4]"
+                  : "bg-white/10 text-white hover:bg-white/20"
+              }`}
+            >
+              📚 Catalogo Rapido (56 Lezioni)
+            </button>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowMajorReferenceModal((v) => !v)}
+              className="rounded-full border border-white/30 bg-white/10 px-3.5 py-1.5 text-xs font-bold text-white hover:bg-white/20"
+            >
+              🔢 Tabella Fonetica `major-it-v1`
+            </button>
+            {nextRecommendedLesson && (
+              <button
+                type="button"
+                onClick={() => startOrResumeLesson(nextRecommendedLesson.id)}
+                className="rounded-full bg-[#FFD014] px-4 py-2 font-display text-xs font-extrabold text-[#181818] shadow-md hover:brightness-105"
+              >
+                ▶ Gioca ora: {nextRecommendedLesson.id} · {nextRecommendedLesson.title}
+              </button>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Tabella Fonetica Ufficiale major-it-v1 (apribile a richiesta) */}
-      {showMajorTableModal && (
-        <div className="rounded-[24px] border-2 border-[#E9FF60] bg-[#2513A4] p-5 shadow-xl">
-          <div className="flex items-center justify-between gap-3 mb-3">
+      {/* Tabella Fonetica major-it-v1 espandibile */}
+      {showMajorReferenceModal && (
+        <div className="rounded-[24px] border-2 border-[#613BE0] bg-[#2513A4] p-5 text-white shadow-xl">
+          <div className="flex items-center justify-between gap-2 mb-3">
             <div>
               <h3 className="font-display text-xl font-extrabold text-[#E9FF60]">
-                Convenzione Fonetica Italiana Ufficiale (`major-it-v1`)
+                Tabella Fonetica Italiana Ufficiale (`major-it-v1`)
               </h3>
               <p className="text-xs text-white/80">
-                Il Major System valuta i <strong>suoni consonantici pronunciati</strong>, non la semplice grafia.
-                Nota: il suono dolce «SC» di <em>scena</em> (/ʃ/) appartiene allo <strong>0</strong>, mentre il <strong>6</strong> codifica solo C/G dolci (/tʃ/, /dʒ/ di <em>ciao, gelato</em>).
+                0 = S/Z/SC dolce (<em>scena</em>=02) · 6 = C/G dolce (<em>ciao</em>=6,{" "}
+                <em>micio</em>=36) · 7 = C/G dura (<em>casa</em>=70, <em>mago</em>=37).
               </p>
             </div>
             <button
               type="button"
-              onClick={() => setShowMajorTableModal(false)}
-              className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold text-white hover:bg-white/25"
+              onClick={() => setShowMajorReferenceModal(false)}
+              className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold text-white"
             >
-              Chiudi
+              Chiudi ✕
             </button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
             {MAJOR_IT_V1_TABLE.map((row) => (
               <div
                 key={row.digit}
@@ -577,17 +722,13 @@ export function LocoAcademySection({
                   <span className="font-display text-2xl font-extrabold text-[#E9FF60]">
                     {row.digit}
                   </span>
-                  <span className="rounded bg-[#2513A4] px-2 py-0.5 font-mono text-[11px] text-white/90">
+                  <span className="font-mono text-[11px] text-white/80">
                     {row.phonemes}
                   </span>
                 </div>
-                <div className="mt-1 font-bold text-white">{row.sounds}</div>
-                <div className="mt-1 text-white/75 text-[11px]">{row.mnemonicHint}</div>
-                <div className="mt-2 pt-1.5 border-t border-white/15 text-[11px] text-[#E9FF60]">
-                  Es:{" "}
-                  {row.exampleWords
-                    .map((ex) => `${ex.word} (${ex.digits})`)
-                    .join(" · ")}
+                <div className="mt-1 font-bold">{row.sounds}</div>
+                <div className="mt-1 text-[11px] text-[#E9FF60]">
+                  {row.exampleWords.map((e) => `${e.word} (${e.digits})`).join(" · ")}
                 </div>
               </div>
             ))}
@@ -595,1421 +736,1561 @@ export function LocoAcademySection({
         </div>
       )}
 
-      {/* Routing Adattivo ("Durante lo studio — Lezione al momento giusto") */}
-      {!hideRecommendations && adaptiveRecommendations.length > 0 && (
-        <div className="rounded-[24px] border border-white/25 bg-[#2B18B8] p-4 md:p-5">
-          <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-            <div>
-              <span className="text-xs font-extrabold uppercase tracking-wider text-[#E9FF60]">
-                Assistenza Contestuale · Lezione al momento giusto
-              </span>
-              <p className="text-xs text-white/80">
-                Suggerimenti basati sui tentativi registrati nella sessione (spiegabili e disattivabili).
-              </p>
+      {/* =====================================================================
+          SCREEN 1: VISUAL LEARNING PATH (Mappa verticale sinuosa a nodi & tappe)
+          ===================================================================== */}
+      {subScreen === "path" && (
+        <div className="space-y-8">
+          {/* Assistenza Contestuale / Lezione al momento giusto */}
+          {adaptiveRecommendations.length > 0 && (
+            <div className="rounded-[24px] border border-[#613BE0]/35 bg-[#D0C4F6]/65 p-4 md:p-5">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <div>
+                  <span className="rounded-full bg-[#613BE0] px-3 py-0.5 text-[11px] font-extrabold uppercase text-white">
+                    Lezione al momento giusto · Routing Adattivo
+                  </span>
+                  <p className="mt-1 text-xs font-semibold text-[#181818]/80">
+                    Consigli mirati in base agli errori osservati nei tuoi tentativi:
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3">
+                {adaptiveRecommendations.slice(0, 2).map((rec) => (
+                  <div
+                    key={rec.id}
+                    className="rounded-2xl bg-white p-3.5 shadow-xs flex flex-col justify-between gap-2"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="text-xs font-extrabold text-[#613BE0]">
+                          {rec.observedSignal}
+                        </span>
+                        <span className="rounded-full bg-[#D0C4F6] px-2.5 py-0.5 text-[10px] font-bold text-[#181818]">
+                          Campione n={rec.sampleSize}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-xs text-[#181818]/80">{rec.explanation}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {rec.recommendedLessonIds.map((lid) => (
+                        <button
+                          key={lid}
+                          type="button"
+                          onClick={() => startOrResumeLesson(lid)}
+                          className="rounded-full bg-[#613BE0] px-3 py-1 text-xs font-bold text-white hover:opacity-95"
+                        >
+                          ▶ Gioca {lid}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Le 12 Unità del Learning Path */}
+          {ACADEMY_COURSES.map((unit) => {
+            const tierMeta = TIER_NAMING[unit.planTier];
+            const isCheckpointDone = gamification.completedUnitCheckpoints.includes(
+              unit.courseId
+            );
+            const unitCompletedCount = unit.lessons.filter((l) => {
+              const st = progressMap[l.id]?.status;
+              return st === "provisionally_passed" || st === "mastered_after_delay";
+            }).length;
+            const isHighlightedFromHome =
+              focusedCourseNumber !== null &&
+              focusedCourseNumber !== undefined &&
+              unit.courseNumber === focusedCourseNumber;
+
+            // Sinuous horizontal offsets (px) for nodes along the vertical trail
+            const waveOffsets = [0, -48, -72, -32, 36, 72, 28, -28];
+
+            return (
+              <section
+                key={unit.courseId}
+                id={`academy-unit-${unit.courseNumber}`}
+                className={`rounded-[30px] border-2 p-5 md:p-7 transition ${
+                  isHighlightedFromHome
+                    ? "border-[#FFD014] bg-[#2513A4] text-white ring-4 ring-[#FFD014]/50"
+                    : "border-[#613BE0]/25 bg-[#2513A4] text-white"
+                } shadow-xl`}
+              >
+                {/* Unit Header Banner */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 rounded-2xl bg-[#2E1BC4] p-4 md:p-5 border border-white/15">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-[#FFF8EC] p-2 shadow">
+                      <img
+                        src={unit.mascotAsset}
+                        alt={unit.unitTitle}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="rounded-full bg-[#E9FF60] px-3 py-0.5 font-display text-xs font-extrabold text-[#2513A4]">
+                          {unit.unitTitle}
+                        </span>
+                        <span
+                          className={`rounded-full px-3 py-0.5 text-[11px] font-bold ${
+                            unit.planTier === "free"
+                              ? "bg-emerald-400/20 text-emerald-200"
+                              : unit.planTier === "plus"
+                                ? "bg-[#FFD014]/25 text-[#FFD014]"
+                                : "bg-fuchsia-400/25 text-fuchsia-200"
+                          }`}
+                        >
+                          {tierMeta.shortBadge}
+                        </span>
+                        <span className="text-xs font-bold text-white/75">
+                          {unitCompletedCount}/{unit.lessons.length} tappe completate
+                        </span>
+                      </div>
+                      <h3 className="mt-1 font-display text-xl md:text-2xl font-extrabold text-white">
+                        {unit.title}
+                      </h3>
+                      <p className="text-xs md:text-sm text-white/80">{unit.subtitle}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setUnitDetailCourseId(unit.courseId)}
+                      className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-bold text-white hover:bg-white/20"
+                    >
+                      📋 Panoramica Unità
+                    </button>
+                  </div>
+                </div>
+
+                {/* Sinuous Node Trail */}
+                <div className="relative mt-8 flex flex-col items-center space-y-6 pb-4">
+                  {unit.lessons.map((lesson, idx) => {
+                    const prog = progressMap[lesson.id];
+                    const { state: visualState, missingPrerequisites } =
+                      resolvePathNodeVisualState(lesson, progressMap, simulatedPlanTier);
+                    const offsetPx = waveOffsets[idx % waveOffsets.length] ?? 0;
+                    const isNextUp = nextRecommendedLesson?.id === lesson.id;
+
+                    // Styling per node visual state
+                    let circleStyle =
+                      "border-[#E9FF60] bg-[#613BE0] text-white shadow-[0_6px_0_#170B6E]";
+                    let stateBadgeText = "Disponibile";
+                    let iconSymbol = "★";
+
+                    if (visualState === "completed") {
+                      circleStyle =
+                        "border-white bg-[#E9FF60] text-[#2513A4] shadow-[0_6px_0_#9BB01A]";
+                      stateBadgeText =
+                        prog?.status === "mastered_after_delay"
+                          ? "Padroneggiata ✓✓"
+                          : "Completata ✓";
+                      iconSymbol = "✓";
+                    } else if (visualState === "in_progress") {
+                      circleStyle =
+                        "border-[#FFD014] bg-[#FFD014] text-[#181818] shadow-[0_6px_0_#B58E00]";
+                      stateBadgeText = `In corso (Step ${
+                        (prog?.currentStepIndex ?? 0) + 1
+                      }/${lesson.steps.length})`;
+                      iconSymbol = "▶";
+                    } else if (visualState === "needs_review") {
+                      circleStyle =
+                        "border-rose-200 bg-rose-500 text-white shadow-[0_6px_0_#881337]";
+                      stateBadgeText = "Ripasso consigliato";
+                      iconSymbol = "↻";
+                    } else if (visualState === "premium") {
+                      circleStyle =
+                        "border-[#FFD014] bg-[#3B23B8] text-[#FFD014] shadow-[0_6px_0_#170B6E]";
+                      stateBadgeText = `Piano ${
+                        TIER_NAMING[lesson.planTier].editorialName
+                      }`;
+                      iconSymbol = "👑";
+                    } else if (visualState === "locked") {
+                      circleStyle =
+                        "border-white/25 bg-white/10 text-white/60 shadow-[0_5px_0_rgba(0,0,0,0.35)]";
+                      stateBadgeText = `Prerequisito: ${missingPrerequisites.join(", ")}`;
+                      iconSymbol = "🔒";
+                    }
+
+                    return (
+                      <div
+                        key={lesson.id}
+                        className="relative flex flex-col items-center"
+                        style={{ transform: `translateX(${offsetPx}px)` }}
+                      >
+                        {/* Connector line from previous node */}
+                        {idx > 0 && (
+                          <div
+                            className={`-mt-6 mb-2 h-6 w-1.5 rounded-full ${
+                              visualState === "completed"
+                                ? "bg-[#E9FF60]"
+                                : "bg-white/20"
+                            }`}
+                          />
+                        )}
+
+                        {/* Callout bubble on the active / next lesson */}
+                        {isNextUp && (
+                          <div className="mb-2 animate-bounce rounded-full bg-[#FFD014] px-4 py-1 font-display text-xs font-extrabold text-[#181818] shadow-lg">
+                            INIZIA ORA · +10 XP
+                          </div>
+                        )}
+
+                        {/* Circular Interactive Node Button */}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (visualState === "premium") {
+                              setPremiumPreviewLesson(lesson);
+                              return;
+                            }
+                            startOrResumeLesson(lesson.id);
+                          }}
+                          className={`group relative flex h-20 w-20 items-center justify-center rounded-full border-4 font-display text-2xl font-extrabold transition active:translate-y-1 ${circleStyle}`}
+                          aria-label={`${lesson.id} ${lesson.title} — ${stateBadgeText}`}
+                        >
+                          <span>{iconSymbol}</span>
+                          <span className="absolute -bottom-2 rounded-full bg-[#181818] px-2.5 py-0.5 text-[10px] font-extrabold text-[#E9FF60]">
+                            {lesson.id}
+                          </span>
+                        </button>
+
+                        {/* Node Label Card */}
+                        <div className="mt-3 max-w-[250px] text-center">
+                          <div className="font-display text-sm font-extrabold text-white">
+                            {lesson.title}
+                          </div>
+                          <div className="mt-0.5 text-[11px] font-semibold text-white/75">
+                            {stateBadgeText} · {lesson.steps.length} step
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                  {/* Final Unit Checkpoint Challenge Node (+20 XP) */}
+                  <div className="flex flex-col items-center pt-2">
+                    <div
+                      className={`mb-2 h-6 w-1.5 rounded-full ${
+                        isCheckpointDone ? "bg-[#E9FF60]" : "bg-white/25"
+                      }`}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveCheckpointCourse(unit);
+                        setCheckpointStepIdx(0);
+                        setCheckpointSelectedValue(null);
+                        setCheckpointMistakes(0);
+                        setCheckpointFinished(false);
+                      }}
+                      className={`flex items-center gap-3 rounded-3xl border-4 px-6 py-3.5 font-display text-sm font-extrabold shadow-xl transition hover:scale-105 ${
+                        isCheckpointDone
+                          ? "border-white bg-[#E9FF60] text-[#2513A4]"
+                          : "border-[#FFD014] bg-[#613BE0] text-white"
+                      }`}
+                    >
+                      <span className="text-xl">{isCheckpointDone ? "🏆" : "🛡️"}</span>
+                      <div className="text-left">
+                        <div className="text-[10px] uppercase tracking-wider opacity-85">
+                          Checkpoint Fine Unità {unit.unitNumber}
+                        </div>
+                        <div>
+                          {isCheckpointDone
+                            ? "Sfida Superata (+20 XP) · Ripeti"
+                            : "Sfida Conclusiva Unità · +20 XP"}
+                        </div>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      )}
+
+      {/* =====================================================================
+          SCREEN 6: REVIEW MISTAKES & SPACED REPETITION QUEUE
+          ===================================================================== */}
+      {subScreen === "mistakes" && (
+        <div className="rounded-[28px] border-2 border-[#613BE0]/30 bg-[#2513A4] p-6 text-white shadow-xl space-y-5">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/15 pb-4">
+            <div className="flex items-center gap-3">
+              <img
+                src="/assets/figma-curated/academy-item-clock.svg"
+                alt=""
+                className="h-12 w-12 object-contain"
+              />
+              <div>
+                <h3 className="font-display text-2xl font-extrabold text-[#E9FF60]">
+                  Ripasso Intelligente: Coda Errori & Scadenze FSRS-7
+                </h3>
+                <p className="text-xs text-white/80">
+                  Ogni errore alimenta una prova mirata. Superare un errore in autonomia assegna{" "}
+                  <strong>+{XP_REWARDS.REVIEW_COMPLETED} XP</strong> e consolida la tecnica.
+                </p>
+              </div>
             </div>
             <button
               type="button"
-              onClick={() => setHideRecommendations(true)}
-              className="text-xs text-white/70 underline hover:text-white"
+              onClick={onStartBlindRecallFromAcademy}
+              className="rounded-full bg-[#FFD014] px-4 py-2 font-display text-xs font-extrabold text-[#181818]"
             >
-              Nascondi suggerimenti adattivi
+              Apri Blind Recall Completo ({dueReviewsCount} target in scadenza) ↗
             </button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {adaptiveRecommendations.map((rec) => (
-              <div
-                key={rec.id}
-                className="rounded-xl border border-white/15 bg-[#2513A4]/85 p-3.5 flex flex-col justify-between gap-2"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-bold text-[#E9FF60]">
-                      {rec.observedSignal}
-                    </span>
-                    <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold text-white/80">
-                      {rec.isSufficientSample
-                        ? `Campione n=${rec.sampleSize}`
-                        : `Campione ridotto (n=${rec.sampleSize})`}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-xs text-white/85">{rec.explanation}</p>
-                </div>
-                <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                  {rec.recommendedLessonIds.map((lid) => {
-                    const l = ACADEMY_LESSONS_BY_ID[lid];
-                    if (!l) return null;
-                    return (
-                      <button
-                        key={lid}
-                        type="button"
-                        onClick={() => openLessonPlayer(lid)}
-                        className="rounded-full bg-[#E9FF60] px-3 py-1 text-xs font-extrabold text-[#2513A4] hover:brightness-105"
-                      >
-                        Apri {lid} · {l.title}
-                      </button>
-                    );
-                  })}
-                </div>
+
+          {gamification.mistakeQueue.length === 0 ? (
+            <div className="rounded-2xl bg-white/10 p-6 text-center space-y-2">
+              <img
+                src="/assets/figma-curated/academy-mascot-goose.svg"
+                alt=""
+                className="mx-auto h-20 w-20 object-contain"
+              />
+              <div className="font-display text-xl font-extrabold text-[#E9FF60]">
+                Nessun errore in sospeso nella coda Academy!
               </div>
-            ))}
+              <p className="text-xs text-white/80">
+                Continua il percorso di apprendimento o ripassa una lezione già completata per verificare la ritenzione a distanza.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {gamification.mistakeQueue.map((item, idx) => (
+                <div
+                  key={item.id}
+                  className="rounded-2xl border border-white/20 bg-[#2E1BC4] p-4 space-y-3"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-full bg-rose-500/30 px-3 py-0.5 text-xs font-bold text-rose-200">
+                      Errore da riprovare #{idx + 1} · {item.lessonId} ({item.lessonTitle})
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => startOrResumeLesson(item.lessonId)}
+                      className="text-xs font-bold text-[#E9FF60] underline"
+                    >
+                      Rigioca intera lezione {item.lessonId} →
+                    </button>
+                  </div>
+                  <div className="font-display text-base font-extrabold text-white">
+                    {item.prompt}
+                  </div>
+                  <p className="text-xs text-white/80">{item.explanation}</p>
+
+                  {idx === 0 && (
+                    <div className="pt-2 space-y-2">
+                      <input
+                        type="text"
+                        value={mistakeReplyText}
+                        onChange={(e) => setMistakeReplyText(e.target.value)}
+                        placeholder="Scrivi qui la risposta corretta senza guardare..."
+                        className="w-full rounded-xl border border-white/30 bg-[#2513A4] px-3.5 py-2 text-xs text-white"
+                      />
+                      <div className="flex flex-wrap gap-2">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const clean = mistakeReplyText.trim().toLowerCase();
+                            const expected = item.expectedAnswer.trim().toLowerCase();
+                            if (
+                              clean.length > 0 &&
+                              (expected.includes(clean) || clean.includes(expected.slice(0, 4)))
+                            ) {
+                              setGamification((prev) => {
+                                const revId = `xp-mistake-fixed-${item.id}-${prev.reviewsCompletedCount + 1}`;
+                                const awarded = awardIdempotentXp(
+                                  prev,
+                                  revId,
+                                  XP_REWARDS.REVIEW_COMPLETED
+                                );
+                                return {
+                                  ...awarded.updated,
+                                  reviewsCompletedCount:
+                                    awarded.updated.reviewsCompletedCount + 1,
+                                  mistakeQueue: awarded.updated.mistakeQueue.filter(
+                                    (m) => m.id !== item.id
+                                  ),
+                                };
+                              });
+                              setMistakeReplyText("");
+                              setMistakeFeedbackMsg(
+                                `✓ Ottimo recupero! Errore risolto (+${XP_REWARDS.REVIEW_COMPLETED} XP).`
+                              );
+                            } else {
+                              setMistakeFeedbackMsg(
+                                `Riprova! Chiave attesa: «${item.expectedAnswer}»`
+                              );
+                            }
+                          }}
+                          className="rounded-full bg-[#E9FF60] px-4 py-1.5 text-xs font-extrabold text-[#2513A4]"
+                        >
+                          Verifica e Rimuovi dalla Coda (+5 XP)
+                        </button>
+                      </div>
+                      {mistakeFeedbackMsg && (
+                        <div className="text-xs font-bold text-[#E9FF60]">
+                          {mistakeFeedbackMsg}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* =====================================================================
+          SCREEN 8: ACADEMY PROGRESS (Abilità direzionali, Livelli LOCO & Badge)
+          ===================================================================== */}
+      {subScreen === "progress" && (
+        <div className="space-y-6">
+          {/* Directional Competence & Mastery Breakdown */}
+          <div className="rounded-[28px] border-2 border-[#613BE0]/30 bg-[#2513A4] p-6 text-white shadow-xl">
+            <h3 className="font-display text-2xl font-extrabold text-[#E9FF60]">
+              Competenze Verificate & Indicatori Direzionali
+            </h3>
+            <p className="mt-1 text-xs text-white/80">
+              LOCO separa gli XP di attività dalla reale padronanza nel tempo e distingue le direzioni di codifica/decodifica.
+            </p>
+
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="rounded-2xl border border-white/15 bg-[#2E1BC4] p-4">
+                <div className="text-xs font-bold text-[#E9FF60]">
+                  Major System · Codifica (Numero → Parola)
+                </div>
+                <div className="mt-1 font-display text-2xl font-extrabold">
+                  {gamification.forwardEncodingCorrectCount} /{" "}
+                  {gamification.forwardEncodingTotalCount} prove
+                </div>
+                <p className="mt-1 text-[11px] text-white/75">
+                  Trasformazione di cifre astratte in parole foneticamente valide (`major-it-v1`).
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/15 bg-[#2E1BC4] p-4">
+                <div className="text-xs font-bold text-[#E9FF60]">
+                  Major System · Decodifica Inversa (Parola → Numero)
+                </div>
+                <div className="mt-1 font-display text-2xl font-extrabold">
+                  {gamification.reverseDecodingCorrectCount} /{" "}
+                  {gamification.reverseDecodingTotalCount} prove
+                </div>
+                <p className="mt-1 text-[11px] text-white/75">
+                  Estrazione delle cifre a partire dai suoni consonantici dell&apos;immagine.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/15 bg-[#2E1BC4] p-4">
+                <div className="text-xs font-bold text-[#E9FF60]">
+                  Ripassi & Consolidamento a Distanza
+                </div>
+                <div className="mt-1 font-display text-2xl font-extrabold">
+                  {gamification.reviewsCompletedCount} ripassi svolti
+                </div>
+                <p className="mt-1 text-[11px] text-white/75">
+                  Prove autonome effettuate dopo un intervallo o sulla coda errori.
+                </p>
+              </div>
+            </div>
+
+            {/* I 5 Livelli LOCO */}
+            <h4 className="mt-6 font-display text-lg font-extrabold text-white">
+              Scala dei Livelli LOCO
+            </h4>
+            <div className="mt-3 grid grid-cols-1 sm:grid-cols-5 gap-3">
+              {LOCO_LEVELS.map((lvl) => {
+                const isReached = gamification.totalXp >= lvl.minXp;
+                return (
+                  <div
+                    key={lvl.level}
+                    className={`rounded-2xl border p-3.5 text-center ${
+                      isReached
+                        ? "border-[#E9FF60] bg-[#2E1BC4]"
+                        : "border-white/15 bg-white/5 opacity-60"
+                    }`}
+                  >
+                    <img
+                      src={lvl.mascotAsset}
+                      alt={lvl.title}
+                      className="mx-auto h-14 w-14 object-contain"
+                    />
+                    <div className="mt-2 font-display text-sm font-extrabold text-[#E9FF60]">
+                      Liv. {lvl.level} · {lvl.title}
+                    </div>
+                    <div className="text-[11px] text-white/75">{lvl.minXp}+ XP</div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* I 6 Badge Verificabili */}
+            <h4 className="mt-6 font-display text-lg font-extrabold text-white">
+              Badge Verificabili ({unlockedBadgeIds.length} / {ACADEMY_BADGES.length})
+            </h4>
+            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+              {ACADEMY_BADGES.map((badge) => {
+                const unlocked = unlockedBadgeIds.includes(badge.id);
+                return (
+                  <div
+                    key={badge.id}
+                    className={`flex items-center gap-3.5 rounded-2xl border p-3.5 ${
+                      unlocked
+                        ? "border-[#E9FF60] bg-[#2E1BC4]"
+                        : "border-white/15 bg-white/5 opacity-65"
+                    }`}
+                  >
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-[#FFF8EC] p-2">
+                      <img
+                        src={badge.asset}
+                        alt={badge.title}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-display text-sm font-extrabold text-white">
+                          {badge.title}
+                        </span>
+                        <span className="text-xs">
+                          {unlocked ? "✅" : "🔒"}
+                        </span>
+                      </div>
+                      <p className="mt-0.5 text-[11px] text-white/75">
+                        {badge.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       )}
 
-      {/* Filtri & Ricerca Catalogo (12 Corsi, 56 Lezioni, 32 Free / 20 Plus / 4 Pro) */}
-      <div className="rounded-[24px] border border-white/20 bg-[#2A17B5] p-4 md:p-5 space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
-          <div>
-            <h3 className="font-display text-xl md:text-2xl font-extrabold text-white">
-              Catalogo Completo LOCO Academy (12 Corsi · 56 Microlezioni)
-            </h3>
-            <p className="text-xs text-white/75">
-              32 lezioni gratuite (<strong>{TIER_NAMING.free.editorialName}</strong>) · 20 specializzazioni{" "}
-              <strong>{TIER_NAMING.plus.editorialName}</strong> · 4 laboratori{" "}
-              <strong>{TIER_NAMING.pro.editorialName}</strong> (anteprima ed esercizi simulati liberi).
-            </p>
-          </div>
-          <div className="w-full md:w-72">
+      {/* =====================================================================
+          CATALOGO COMPLETO RICERCABILE (Accesso libero a tutte le 56 lezioni)
+          ===================================================================== */}
+      {subScreen === "catalog" && (
+        <div className="rounded-[28px] border-2 border-[#613BE0]/30 bg-[#2513A4] p-6 text-white shadow-xl space-y-5">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+            <div>
+              <h3 className="font-display text-2xl font-extrabold text-[#E9FF60]">
+                Catalogo Completo: 12 Unità · 56 Microlezioni Interattive
+              </h3>
+              <p className="text-xs text-white/80">
+                Il percorso principale è guidato, ma da qui puoi esplorare liberamente qualsiasi approfondimento o tecnica.
+              </p>
+            </div>
             <input
               type="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cerca ID (es. S01, L06, N02) o tema..."
-              aria-label="Cerca lezione nel catalogo LOCO Academy"
-              className="w-full rounded-full border border-white/30 bg-[#2513A4] px-4 py-2 text-xs text-white placeholder:text-white/55 focus:border-[#E9FF60] focus:outline-none"
+              placeholder="Cerca ID (S01, L06, N02...) o parola..."
+              className="w-full md:w-72 rounded-full border border-white/30 bg-[#2E1BC4] px-4 py-2 text-xs text-white"
             />
           </div>
-        </div>
 
-        {/* Tier filter pills */}
-        <div className="flex flex-wrap items-center gap-2">
-          {(
-            [
-              { id: "all", label: "Tutti i piani (56)" },
-              { id: "free", label: "LOCOMPRO DOPO · Free (32)" },
-              { id: "plus", label: "POCO LOCO · Plus (20)" },
-              { id: "pro", label: "PRO LOCO · Pro (4)" },
-            ] as const
-          ).map((tierOpt) => (
-            <button
-              key={tierOpt.id}
-              type="button"
-              onClick={() => setSelectedTier(tierOpt.id)}
-              className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
-                selectedTier === tierOpt.id
-                  ? "bg-[#E9FF60] text-[#2513A4]"
-                  : "bg-white/10 text-white/85 hover:bg-white/20"
-              }`}
-            >
-              {tierOpt.label}
-            </button>
-          ))}
+          <div className="flex flex-wrap gap-2">
+            {(
+              [
+                { id: "all", label: "Tutti (56)" },
+                { id: "free", label: "LOCOMPRO DOPO · Free (32)" },
+                { id: "plus", label: "POCO LOCO · Plus (20)" },
+                { id: "pro", label: "PRO LOCO · Pro (4)" },
+              ] as const
+            ).map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => setSelectedTierFilter(t.id)}
+                className={`rounded-full px-3.5 py-1.5 text-xs font-bold ${
+                  selectedTierFilter === t.id
+                    ? "bg-[#E9FF60] text-[#2513A4]"
+                    : "bg-white/10 text-white"
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
 
-          <span className="mx-1 text-white/30">|</span>
-
-          {(
-            [
-              { id: "all", label: "Tutti gli stati" },
-              { id: "todo", label: "Da iniziare" },
-              { id: "in_progress", label: "Lette / In pratica" },
-              { id: "passed", label: "Superate / Padroneggiate" },
-              { id: "needs_review", label: "Da ripassare" },
-            ] as const
-          ).map((stOpt) => (
-            <button
-              key={stOpt.id}
-              type="button"
-              onClick={() => setSelectedStatusFilter(stOpt.id)}
-              className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
-                selectedStatusFilter === stOpt.id
-                  ? "bg-white text-[#2513A4]"
-                  : "bg-white/10 text-white/80 hover:bg-white/20"
-              }`}
-            >
-              {stOpt.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Theme filter pills */}
-        <div className="flex flex-wrap items-center gap-1.5 pt-1">
-          {THEME_LABELS.map((th) => (
-            <button
-              key={th.id}
-              type="button"
-              onClick={() => setSelectedTheme(th.id)}
-              className={`rounded-full px-3 py-1 text-[11px] font-semibold transition ${
-                selectedTheme === th.id
-                  ? "bg-[#6CA6FF] text-[#170B6E] font-bold"
-                  : "bg-[#2513A4] text-white/80 hover:bg-white/15 border border-white/15"
-              }`}
-            >
-              {th.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Elenco dei 12 Corsi e delle 56 Lezioni */}
-      <div className="space-y-6">
-        {filteredCourses.map((course: AcademyCourse) => {
-          const tierInfo = TIER_NAMING[course.planTier];
-          return (
-            <section
-              key={course.courseId}
-              className="rounded-[26px] border border-white/20 bg-[#2B18B8]/90 p-5 md:p-6 shadow-lg"
-            >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-white/15 pb-4">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-[#E9FF60] px-3 py-0.5 font-display text-xs font-extrabold text-[#2513A4]">
-                      Corso {course.courseNumber}
-                    </span>
-                    <span
-                      className={`rounded-full px-3 py-0.5 text-[11px] font-bold ${
-                        course.planTier === "free"
-                          ? "bg-emerald-400/20 text-emerald-200 border border-emerald-300/30"
-                          : course.planTier === "plus"
-                            ? "bg-amber-300/20 text-amber-200 border border-amber-300/30"
-                            : "bg-fuchsia-400/20 text-fuchsia-200 border border-fuchsia-300/30"
-                      }`}
-                    >
-                      {tierInfo.shortBadge}
-                      {tierInfo.isPaidHypothesis ? " · Anteprima aperta" : ""}
-                    </span>
-                    <span className="text-xs text-white/70">
-                      {course.lessons.length} lezioni · Ingresso: {course.entrySuggestion}
-                    </span>
-                  </div>
-                  <h4 className="mt-2 font-display text-xl md:text-2xl font-extrabold text-white">
-                    {course.title}
-                  </h4>
-                  <p className="text-xs md:text-sm text-white/80">{course.subtitle}</p>
-                </div>
-                <div className="text-right text-xs text-white/70">
-                  <div>Regola sblocco: {course.unlockPolicy}</div>
-                </div>
-              </div>
-
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
-                {course.lessons.map((lesson) => {
-                  const prog = progressMap[lesson.id];
-                  const status: LessonStatus = prog?.status ?? "available";
-                  const statusMeta = STATUS_LABELS[status];
-                  const isSelected = activeLessonId === lesson.id;
-
-                  return (
-                    <div
-                      key={lesson.id}
-                      className={`rounded-2xl border p-4 transition flex flex-col justify-between ${
-                        isSelected
-                          ? "border-[#E9FF60] bg-[#2513A4] ring-2 ring-[#E9FF60]"
-                          : "border-white/15 bg-[#2513A4]/80 hover:border-white/40"
-                      }`}
-                    >
-                      <div>
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="font-display text-base font-extrabold text-[#E9FF60]">
-                            {lesson.id}
-                          </span>
-                          <span
-                            className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold ${statusMeta.badgeBg} ${statusMeta.badgeText}`}
-                          >
-                            {statusMeta.label}
-                          </span>
-                        </div>
-                        <h5 className="mt-1.5 font-display text-base font-extrabold text-white">
-                          {lesson.title}
-                        </h5>
-                        <p className="mt-1 text-xs text-white/75 line-clamp-3">
-                          {lesson.reading}
-                        </p>
-                      </div>
-
-                      <div className="mt-3 pt-2.5 border-t border-white/10 space-y-2">
-                        <div className="flex flex-wrap items-center justify-between gap-1 text-[11px] text-white/65">
-                          <span>
-                            ⏱ ~{lesson.estimatedMinutes ?? 6} min
-                          </span>
-                          <span>
-                            Prereq:{" "}
-                            {lesson.prerequisites.length > 0
-                              ? lesson.prerequisites.join(", ")
-                              : "Nessuno"}
-                          </span>
-                        </div>
-
-                        {prog?.legacyMigratedFrom &&
-                          prog.legacyMigratedFrom.length > 0 && (
-                            <div className="text-[10px] text-[#6CA6FF]">
-                              Continuità legacy:{" "}
-                              {prog.legacyMigratedFrom
-                                .map((id) => `${id} (${LEGACY_LESSON_MAP[id]?.legacyTitle ?? id})`)
-                                .join(", ")}{" "}
-                              → stato lettura (non padronanza automatica)
-                            </div>
-                          )}
-
-                        <div className="flex items-center gap-2 pt-1">
-                          <button
-                            type="button"
-                            onClick={() => openLessonPlayer(lesson.id, "reading", false)}
-                            className="flex-1 rounded-full bg-[#E9FF60] px-3 py-1.5 text-xs font-extrabold text-[#2513A4] hover:brightness-105 transition"
-                          >
-                            Apri Lezione
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => openLessonPlayer(lesson.id, "checkpoint", true)}
-                            title="Salta la lettura, prova ora la verifica a risposta nascosta"
-                            className="rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-[11px] font-bold text-white hover:bg-white/20 transition"
-                          >
-                            Prova ora
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </section>
-          );
-        })}
-      </div>
-
-      {/* Modal / Player Interattivo della Singola Lezione (5 Blocchi) */}
-      {activeLesson && activeProgress && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="academy-lesson-player-title"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-3 md:p-6 overflow-y-auto"
-        >
-          <div className="my-auto w-full max-w-4xl rounded-[28px] border-2 border-[#E9FF60] bg-[#2513A4] p-5 md:p-7 text-white shadow-2xl max-h-[92vh] overflow-y-auto">
-            {/* Top header bar */}
-            <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/15 pb-4">
-              <div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-[#E9FF60] px-3 py-0.5 font-display text-xs font-extrabold text-[#2513A4]">
-                    {activeLesson.id} · {activeLesson.courseName}
-                  </span>
-                  <span className="rounded-full bg-white/15 px-2.5 py-0.5 text-[11px] font-bold text-white">
-                    {TIER_NAMING[activeLesson.planTier].shortBadge}
-                  </span>
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 text-[11px] font-bold ${
-                      STATUS_LABELS[activeProgress.status].badgeBg
-                    } ${STATUS_LABELS[activeProgress.status].badgeText}`}
-                  >
-                    Stato: {STATUS_LABELS[activeProgress.status].label}
-                  </span>
-                </div>
-                <h3
-                  id="academy-lesson-player-title"
-                  className="mt-2 font-display text-2xl md:text-3xl font-extrabold text-white"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+            {ENRICHED_ACADEMY_LESSONS.filter((l) => {
+              if (selectedTierFilter !== "all" && l.planTier !== selectedTierFilter)
+                return false;
+              if (selectedThemeFilter !== "all" && l.theme !== selectedThemeFilter)
+                return false;
+              if (!searchQuery.trim()) return true;
+              const q = searchQuery.toLowerCase();
+              return (
+                l.id.toLowerCase().includes(q) ||
+                l.title.toLowerCase().includes(q) ||
+                l.reading.toLowerCase().includes(q)
+              );
+            }).map((lesson) => {
+              const prog = progressMap[lesson.id];
+              const isDone =
+                prog?.status === "provisionally_passed" ||
+                prog?.status === "mastered_after_delay";
+              return (
+                <div
+                  key={lesson.id}
+                  className="rounded-2xl border border-white/15 bg-[#2E1BC4] p-4 flex flex-col justify-between"
                 >
-                  {activeLesson.title}
-                </h3>
-                <p className="text-xs text-white/75">
-                  Versione contenuto {activeLesson.contentVersion} · Tempo stimato ~
-                  {activeLesson.estimatedMinutes ?? 6} min · Prerequisiti:{" "}
-                  {activeLesson.prerequisites.length > 0
-                    ? activeLesson.prerequisites.join(", ")
-                    : "nessuno"}
-                </p>
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="font-display text-sm font-extrabold text-[#E9FF60]">
+                        {lesson.id} · Unità {lesson.unitNumber}
+                      </span>
+                      <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-bold">
+                        {TIER_NAMING[lesson.planTier].editorialName}
+                      </span>
+                    </div>
+                    <h4 className="mt-1 font-display text-base font-extrabold text-white">
+                      {lesson.title}
+                    </h4>
+                    <p className="mt-1 text-xs text-white/75 line-clamp-2">
+                      {lesson.reading}
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-2 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-[11px] text-white/70">
+                      {lesson.steps.length} schermate · {isDone ? "✓ Completata" : "Da giocare"}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => startOrResumeLesson(lesson.id)}
+                      className="rounded-full bg-[#E9FF60] px-3.5 py-1 text-xs font-extrabold text-[#2513A4]"
+                    >
+                      ▶ Gioca
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* =====================================================================
+          SCREEN 2: UNIT DETAIL MODAL
+          ===================================================================== */}
+      {unitDetailCourseId &&
+        (() => {
+          const unit = ACADEMY_COURSES.find((c) => c.courseId === unitDetailCourseId);
+          if (!unit) return null;
+          return (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 overflow-y-auto">
+              <div className="w-full max-w-2xl rounded-[28px] border-2 border-[#E9FF60] bg-[#2513A4] p-6 text-white shadow-2xl space-y-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={unit.mascotAsset}
+                      alt=""
+                      className="h-14 w-14 rounded-xl bg-[#FFF8EC] p-1.5 object-contain"
+                    />
+                    <div>
+                      <span className="text-xs font-extrabold text-[#E9FF60]">
+                        {unit.unitTitle}
+                      </span>
+                      <h3 className="font-display text-2xl font-extrabold">
+                        {unit.title}
+                      </h3>
+                      <p className="text-xs text-white/80">{unit.subtitle}</p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setUnitDetailCourseId(null)}
+                    className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold"
+                  >
+                    Chiudi ✕
+                  </button>
+                </div>
+
+                <div className="space-y-2">
+                  {unit.lessons.map((l) => {
+                    const p = progressMap[l.id];
+                    return (
+                      <div
+                        key={l.id}
+                        className="flex items-center justify-between rounded-xl border border-white/15 bg-[#2E1BC4] p-3"
+                      >
+                        <div>
+                          <div className="font-display text-sm font-extrabold text-[#E9FF60]">
+                            {l.id} · {l.title}
+                          </div>
+                          <div className="text-[11px] text-white/75">
+                            {l.steps.length} schermate interattive · ~{l.estimatedMinutes ?? 5} min · Stato:{" "}
+                            {p?.status ?? "available"}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setUnitDetailCourseId(null);
+                            startOrResumeLesson(l.id);
+                          }}
+                          className="rounded-full bg-[#E9FF60] px-4 py-1.5 text-xs font-extrabold text-[#2513A4]"
+                        >
+                          ▶ Avvia
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
+            </div>
+          );
+        })()}
+
+      {/* =====================================================================
+          SCREEN 9: PREMIUM PREVIEW MODAL (POCO LOCO & PRO LOCO)
+          ===================================================================== */}
+      {premiumPreviewLesson && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4">
+          <div className="w-full max-w-lg rounded-[28px] border-2 border-[#FFD014] bg-[#2513A4] p-6 text-white shadow-2xl space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="rounded-full bg-[#FFD014] px-3 py-1 text-xs font-extrabold text-[#181818]">
+                👑 Anteprima Piano {TIER_NAMING[premiumPreviewLesson.planTier].editorialName}
+              </span>
               <button
                 type="button"
-                onClick={() => onSelectLesson(null)}
-                className="rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-bold text-white hover:bg-white/25"
+                onClick={() => setPremiumPreviewLesson(null)}
+                className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold"
               >
                 Chiudi ✕
               </button>
             </div>
 
-            {/* Step switcher (1. Lettura & Esempio | 2. Fai tu: Esercizio | 3. Richiama e controlla: Verifica) */}
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
-              <div className="flex flex-wrap gap-2">
-                <button
-                  type="button"
-                  onClick={() => setActiveBlockTab("reading")}
-                  className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${
-                    activeBlockTab === "reading"
-                      ? "bg-[#E9FF60] text-[#2513A4]"
-                      : "bg-white/10 text-white hover:bg-white/20"
-                  }`}
-                >
-                  1. Da leggere & Esempio LOCO
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveBlockTab("exercise")}
-                  className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${
-                    activeBlockTab === "exercise"
-                      ? "bg-[#E9FF60] text-[#2513A4]"
-                      : "bg-white/10 text-white hover:bg-white/20"
-                  }`}
-                >
-                  2. Fai tu (Esercizio guidato)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveBlockTab("checkpoint")}
-                  className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${
-                    activeBlockTab === "checkpoint"
-                      ? "bg-[#E9FF60] text-[#2513A4]"
-                      : "bg-white/10 text-white hover:bg-white/20"
-                  }`}
-                >
-                  3. Verifica (Risposta nascosta)
-                </button>
+            <div className="flex items-center gap-4">
+              <img
+                src="/assets/figma-curated/illustration-plan-poco-loco.svg"
+                alt=""
+                className="h-20 w-20 object-contain"
+              />
+              <div>
+                <h3 className="font-display text-2xl font-extrabold text-white">
+                  {premiumPreviewLesson.id} · {premiumPreviewLesson.title}
+                </h3>
+                <p className="mt-1 text-xs text-white/85">
+                  {TIER_NAMING[premiumPreviewLesson.planTier].description}
+                </p>
               </div>
-
-              {activeBlockTab === "reading" && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    onUpdateLessonProgress(activeLesson.id, (prev) => ({
-                      ...prev,
-                      skippedReadingToTest: true,
-                    }));
-                    setActiveBlockTab("checkpoint");
-                  }}
-                  className="text-xs font-bold text-[#E9FF60] underline hover:opacity-90"
-                >
-                  Salta la lettura, prova ora →
-                </button>
-              )}
             </div>
 
-            {/* TAB 1: LETTURA & ESEMPIO LOCO */}
-            {activeBlockTab === "reading" && (
-              <div className="mt-5 space-y-4">
-                <div className="rounded-2xl border border-white/20 bg-[#2E1BC4] p-5">
-                  <div className="text-xs font-extrabold uppercase tracking-wider text-[#E9FF60]">
-                    Da leggere
-                  </div>
-                  <p className="mt-2 text-sm md:text-base leading-relaxed text-white/95">
-                    {activeLesson.reading}
-                  </p>
-                </div>
+            <ul className="space-y-1.5 rounded-2xl bg-[#2E1BC4] p-4 text-xs text-white/90">
+              {TIER_NAMING[premiumPreviewLesson.planTier].featuresList.map((f, i) => (
+                <li key={i}>✓ {f}</li>
+              ))}
+            </ul>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="rounded-2xl border border-[#E9FF60]/50 bg-[#FFF8EC] p-4 text-[#2513A4]">
-                    <div className="text-xs font-extrabold uppercase tracking-wider text-[#2513A4]/80">
-                      Esempio LOCO
-                    </div>
-                    <p className="mt-1.5 text-sm font-medium leading-relaxed">
-                      {activeLesson.workedExample}
-                    </p>
-                  </div>
-
-                  <div className="rounded-2xl border border-rose-300/40 bg-rose-950/40 p-4 text-white">
-                    <div className="text-xs font-extrabold uppercase tracking-wider text-rose-300">
-                      Errore tipico da evitare
-                    </div>
-                    <p className="mt-1.5 text-sm leading-relaxed text-white/90">
-                      Non {activeLesson.commonMistake}
-                    </p>
-                    <div className="mt-3 text-xs text-white/75">
-                      <strong>Criterio di padronanza:</strong>{" "}
-                      {activeLesson.masteryCriterion}
-                    </div>
-                  </div>
+            {premiumPreviewLesson.requiresSimulatedFallbackNotice &&
+              premiumPreviewLesson.fallbackNoticeText && (
+                <div className="rounded-xl border border-amber-300/50 bg-amber-500/15 p-3 text-xs text-amber-100">
+                  {premiumPreviewLesson.fallbackNoticeText}
                 </div>
+              )}
 
-                <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-                  <div className="text-xs text-white/75">
-                    Stato lettura:{" "}
-                    <strong>
-                      {activeProgress.readCompletedAt
-                        ? "Registrata (`lesson_read`)"
-                        : "In corso"}
-                    </strong>{" "}
-                    — Nota: la sola lettura non assegna la padronanza (`mastered`).
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setActiveBlockTab("exercise")}
-                    className="rounded-full bg-[#E9FF60] px-5 py-2.5 font-display text-sm font-extrabold text-[#2513A4] hover:brightness-105"
-                  >
-                    Passa all&apos;Esercizio Guidato (Fai tu) →
-                  </button>
-                </div>
+            <div className="flex flex-wrap justify-end gap-2.5 pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  const targetId = premiumPreviewLesson.id;
+                  setSimulatedPlanTier(premiumPreviewLesson.planTier);
+                  setPremiumPreviewLesson(null);
+                  startOrResumeLesson(targetId);
+                }}
+                className="rounded-full bg-[#E9FF60] px-5 py-2.5 font-display text-xs font-extrabold text-[#2513A4]"
+              >
+                Attiva Anteprima {TIER_NAMING[premiumPreviewLesson.planTier].editorialName} e Gioca Lezione →
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* =====================================================================
+          SCREEN 7: UNIT CHECKPOINT CHALLENGE MODAL (+20 XP)
+          ===================================================================== */}
+      {activeCheckpointCourse && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
+          <div className="w-full max-w-xl rounded-[28px] border-2 border-[#FFD014] bg-[#2513A4] p-6 text-white shadow-2xl space-y-5">
+            <div className="flex items-center justify-between border-b border-white/15 pb-3">
+              <div>
+                <span className="text-xs font-extrabold uppercase text-[#FFD014]">
+                  🛡️ Sfida Finale {activeCheckpointCourse.unitTitle}
+                </span>
+                <h3 className="font-display text-xl font-extrabold">
+                  Checkpoint senza suggerimenti · +{XP_REWARDS.CHECKPOINT_PASSED} XP
+                </h3>
               </div>
-            )}
+              <button
+                type="button"
+                onClick={() => setActiveCheckpointCourse(null)}
+                className="rounded-full bg-white/15 px-3 py-1 text-xs font-bold"
+              >
+                Esci ✕
+              </button>
+            </div>
 
-            {/* TAB 2: ESERCIZIO PRATICO GUIDATO */}
-            {activeBlockTab === "exercise" && (
-              <div className="mt-5 space-y-4">
-                <div className="rounded-2xl border border-[#E9FF60]/60 bg-[#2E1BC4] p-4">
-                  <div className="text-xs font-extrabold uppercase tracking-wider text-[#E9FF60]">
-                    Consegna Esercizio Guidato ({activeLesson.id})
-                  </div>
-                  <p className="mt-1 text-sm md:text-base font-semibold text-white">
-                    {activeLesson.exercise.prompt}
-                  </p>
-                  {activeLesson.requiresSimulatedFallbackNotice &&
-                    activeLesson.fallbackNoticeText && (
-                      <div className="mt-3 rounded-xl border border-amber-300/50 bg-amber-500/15 p-3 text-xs text-amber-100">
-                        <strong>Avviso trasparenza runtime:</strong>{" "}
-                        {activeLesson.fallbackNoticeText}
-                      </div>
-                    )}
-                </div>
-
-                {/* ESERCIZIO SPECIFICO S01: Recognition vs Recall Switch */}
-                {activeLesson.runtimeExerciseKind ===
-                  "s01-recognition-recall-switch" && (
-                  <div className="rounded-2xl border border-white/20 bg-white/5 p-4 space-y-3">
-                    {s01Phase === "observe" && (
-                      <div>
-                        <div className="text-xs font-bold text-[#E9FF60]">
-                          Fase 1 (Studio / Riconoscimento): Osserva queste 5 parole{" "}
-                          {!calmModeNoTimers && "(per circa 15 secondi)"}, poi nascondile:
-                        </div>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {S01_TARGET_WORDS.map((w) => (
-                            <span
-                              key={w}
-                              className="rounded-xl bg-[#FFF8EC] px-4 py-2 font-display text-base font-extrabold text-[#2513A4]"
-                            >
-                              {w}
-                            </span>
-                          ))}
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setS01Phase("recall");
-                            setS01Input("");
-                          }}
-                          className="mt-4 rounded-full bg-[#E9FF60] px-4 py-2 text-xs font-extrabold text-[#2513A4]"
-                        >
-                          Nascondi la lista e prova il richiamo senza guardare →
-                        </button>
-                      </div>
-                    )}
-
-                    {s01Phase === "recall" && (
-                      <div>
-                        <div className="text-xs font-bold text-[#E9FF60]">
-                          Fase 2 (Recupero cieco / Blind Recall): Lista nascosta! Scrivi le parole che ricordi separate da virgola o spazio:
-                        </div>
-                        <input
-                          type="text"
-                          value={s01Input}
-                          onChange={(e) => setS01Input(e.target.value)}
-                          placeholder="Scrivi qui le 5 parole senza guardare..."
-                          className="mt-2 w-full rounded-xl border border-white/30 bg-[#2513A4] px-3.5 py-2.5 text-sm text-white"
-                        />
-                        <div className="mt-3 flex gap-2">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setS01Phase("compared");
-                              markPracticeCompleted(
-                                activeLesson.id,
-                                `Richiamo S01 tentato: ${s01Input}`
-                              );
-                            }}
-                            className="rounded-full bg-[#E9FF60] px-4 py-2 text-xs font-extrabold text-[#2513A4]"
-                          >
-                            Confronta con la lista originale
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setS01Phase("observe")}
-                            className="rounded-full bg-white/15 px-3 py-2 text-xs text-white"
-                          >
-                            Rivedi lista (Riconoscimento)
-                          </button>
-                        </div>
-                      </div>
-                    )}
-
-                    {s01Phase === "compared" && (
-                      <div>
-                        <div className="text-xs font-bold text-[#E9FF60]">
-                          Confronto completato:
-                        </div>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {S01_TARGET_WORDS.map((w) => {
-                            const hit = s01Input.toLowerCase().includes(w);
-                            return (
-                              <span
-                                key={w}
-                                className={`rounded-xl px-3 py-1.5 text-xs font-bold ${
-                                  hit
-                                    ? "bg-emerald-400/25 text-emerald-200 border border-emerald-300/40"
-                                    : "bg-rose-400/25 text-rose-200 border border-rose-300/40"
-                                }`}
-                              >
-                                {w} {hit ? "✓ recuperata" : "✗ da consolidare"}
-                              </span>
-                            );
-                          })}
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setS01Phase("observe")}
-                          className="mt-3 text-xs underline text-white/80"
-                        >
-                          Riprova esercizio S01
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* ESERCIZIO SPECIFICO S02: Target Question Builder */}
-                {activeLesson.runtimeExerciseKind ===
-                  "s02-target-question-builder" && (
-                  <div className="rounded-2xl border border-white/20 bg-white/5 p-4 space-y-3">
-                    <div className="text-xs text-white/85">
-                      Trasforma l&apos;obiettivo vago <strong>«ripassare i pianeti»</strong> in 3 target verificabili:
+            {!checkpointFinished ? (
+              (() => {
+                const q =
+                  activeCheckpointCourse.checkpointQuestions[checkpointStepIdx];
+                if (!q) return null;
+                return (
+                  <div className="space-y-4">
+                    <div className="text-xs text-white/75">
+                      Domanda {checkpointStepIdx + 1} di{" "}
+                      {activeCheckpointCourse.checkpointQuestions.length}
+                    </div>
+                    <div className="font-display text-lg font-extrabold text-white">
+                      {q.question}
                     </div>
                     <div className="space-y-2">
-                      <label className="block text-xs">
-                        <span className="font-bold text-[#E9FF60]">
-                          1. Domanda sull&apos;ordine:
-                        </span>
-                        <input
-                          type="text"
-                          value={s02QOrder}
-                          onChange={(e) => setS02QOrder(e.target.value)}
-                          className="mt-1 w-full rounded-xl border border-white/25 bg-[#2513A4] px-3 py-2 text-xs text-white"
-                        />
-                      </label>
-                      <label className="block text-xs">
-                        <span className="font-bold text-[#E9FF60]">
-                          2. Domanda sulle caratteristiche:
-                        </span>
-                        <input
-                          type="text"
-                          value={s02QFeature}
-                          onChange={(e) => setS02QFeature(e.target.value)}
-                          className="mt-1 w-full rounded-xl border border-white/25 bg-[#2513A4] px-3 py-2 text-xs text-white"
-                        />
-                      </label>
-                      <label className="block text-xs">
-                        <span className="font-bold text-[#E9FF60]">
-                          3. Domanda di confronto (scrivila tu):
-                        </span>
-                        <input
-                          type="text"
-                          value={s02QCompare}
-                          onChange={(e) => setS02QCompare(e.target.value)}
-                          placeholder="Es. Qual è la differenza principale tra pianeti rocciosi e giganti gassosi?"
-                          className="mt-1 w-full rounded-xl border border-white/25 bg-[#2513A4] px-3 py-2 text-xs text-white"
-                        />
-                      </label>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        markPracticeCompleted(
-                          activeLesson.id,
-                          `3 target creati: ${s02QOrder} | ${s02QFeature} | ${s02QCompare}`
-                        )
-                      }
-                      className="rounded-full bg-[#E9FF60] px-4 py-2 text-xs font-extrabold text-[#2513A4]"
-                    >
-                      Conferma i 3 Target Verificabili ✓
-                    </button>
-                  </div>
-                )}
-
-                {/* ESERCIZIO SPECIFICO S03 & L01-L07: In-Scene Locus Builder & Label-Hidden Order Check */}
-                {(activeLesson.runtimeExerciseKind ===
-                  "s03-five-locus-scene-builder" ||
-                  activeLesson.runtimeExerciseKind === "loci-scene-lab") && (
-                  <div className="rounded-2xl border border-white/20 bg-white/5 p-4 space-y-4">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div>
-                        <div className="text-xs font-bold text-[#E9FF60]">
-                          Costruzione Loci nella Scena Aperta ({selectedSurfaceIds.length}{" "}
-                          selezionati · target{" "}
-                          {activeLesson.id === "L06" ? "10 loci" : "5 loci"})
-                        </div>
-                        <p className="text-xs text-white/75">
-                          Seleziona punti non ambigui, poi chiudi le etichette e toccali nell&apos;ordine scelto, oppure apri direttamente la Stanza 3D interattiva.
-                        </p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => onOpenSceneForLesson(activeLesson.id)}
-                        className="rounded-full bg-[#6CA6FF] px-3.5 py-1.5 text-xs font-extrabold text-[#170B6E]"
-                      >
-                        Apri Stanza 3D Interattiva (In-Scene) ↗
-                      </button>
-                    </div>
-
-                    {!s03LabelsHidden ? (
-                      <div>
-                        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-                          {S03_DEMO_SURFACES.map((surf) => {
-                            const idx = selectedSurfaceIds.indexOf(surf.id);
-                            const isSelected = idx !== -1;
-                            return (
-                              <button
-                                key={surf.id}
-                                type="button"
-                                onClick={() => {
-                                  if (isSelected) {
-                                    setSelectedSurfaceIds((prev) =>
-                                      prev.filter((id) => id !== surf.id)
-                                    );
-                                  } else {
-                                    setSelectedSurfaceIds((prev) => [
-                                      ...prev,
-                                      surf.id,
-                                    ]);
-                                  }
-                                }}
-                                className={`rounded-xl border p-2.5 text-left text-xs transition ${
-                                  isSelected
-                                    ? "border-[#E9FF60] bg-[#E9FF60]/20 text-white"
-                                    : "border-white/15 bg-[#2513A4] text-white/75"
-                                }`}
-                              >
-                                <div className="flex items-center justify-between">
-                                  <span className="font-bold">
-                                    {isSelected ? `Locus #${idx + 1}` : "Non scelto"}
-                                  </span>
-                                </div>
-                                <div className="mt-1 font-semibold text-white">
-                                  {surf.label}
-                                </div>
-                                <div className="text-[10px] text-white/60">
-                                  {surf.zone}
-                                </div>
-                              </button>
-                            );
-                          })}
-                        </div>
-                        <button
-                          type="button"
-                          disabled={selectedSurfaceIds.length < 5}
-                          onClick={() => {
-                            setS03LabelsHidden(true);
-                            setS03OrderAttemptIds([]);
-                            setS03OrderVerified(null);
-                          }}
-                          className="mt-3 rounded-full bg-[#E9FF60] px-4 py-2 text-xs font-extrabold text-[#2513A4] disabled:opacity-40"
-                        >
-                          Chiudi le etichette e verifica l&apos;ordine ({selectedSurfaceIds.length} loci) →
-                        </button>
-                      </div>
-                    ) : (
-                      <div className="space-y-3">
-                        <div className="text-xs font-bold text-[#E9FF60]">
-                          Etichette ordine nascoste! Tocca i {selectedSurfaceIds.length} loci scelti seguendo esattamente il tuo ordine (selezionati finora:{" "}
-                          {s03OrderAttemptIds.length}/{selectedSurfaceIds.length}):
-                        </div>
-                        <div className="flex flex-wrap gap-2">
-                          {S03_DEMO_SURFACES.filter((s) =>
-                            selectedSurfaceIds.includes(s.id)
-                          ).map((surf) => {
-                            const chosenStep =
-                              s03OrderAttemptIds.indexOf(surf.id) + 1;
-                            return (
-                              <button
-                                key={surf.id}
-                                type="button"
-                                onClick={() => {
-                                  if (chosenStep > 0) return;
-                                  const nextAttempt = [
-                                    ...s03OrderAttemptIds,
-                                    surf.id,
-                                  ];
-                                  setS03OrderAttemptIds(nextAttempt);
-                                  if (
-                                    nextAttempt.length ===
-                                    selectedSurfaceIds.length
-                                  ) {
-                                    const ok = nextAttempt.every(
-                                      (id, i) => id === selectedSurfaceIds[i]
-                                    );
-                                    setS03OrderVerified(ok);
-                                    if (ok) {
-                                      markPracticeCompleted(
-                                        activeLesson.id,
-                                        `Ordine di ${selectedSurfaceIds.length} loci verificato senza etichette`
-                                      );
-                                    }
-                                  }
-                                }}
-                                className={`rounded-xl border px-3.5 py-2 text-xs font-bold ${
-                                  chosenStep > 0
-                                    ? "border-[#E9FF60] bg-[#E9FF60] text-[#2513A4]"
-                                    : "border-white/30 bg-[#2513A4] text-white"
-                                }`}
-                              >
-                                {chosenStep > 0 ? `${chosenStep}. ` : "? · "}
-                                {surf.label}
-                              </button>
-                            );
-                          })}
-                        </div>
-                        {s03OrderVerified !== null && (
-                          <div
-                            className={`text-xs font-bold ${
-                              s03OrderVerified
-                                ? "text-[#E9FF60]"
-                                : "text-rose-300"
-                            }`}
-                          >
-                            {s03OrderVerified
-                              ? `Perfetto! ${selectedSurfaceIds.length}/${selectedSurfaceIds.length} loci ricostruiti in ordine senza etichette.`
-                              : "Ordine invertito su almeno un punto: riapri le etichette o riprova la sequenza."}
-                          </div>
-                        )}
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setS03LabelsHidden(false);
-                            setS03OrderAttemptIds([]);
-                          }}
-                          className="text-xs underline text-white/80"
-                        >
-                          Mostra di nuovo le etichette dei loci
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* ESERCIZIO SPECIFICO S04: Action-Association Builder */}
-                {activeLesson.runtimeExerciseKind ===
-                  "s04-action-association-builder" && (
-                  <div className="rounded-2xl border border-white/20 bg-white/5 p-4 space-y-3">
-                    <div className="text-xs font-bold text-[#E9FF60]">
-                      Associa i 5 elementi di S01 ai 5 loci di S03 con una frase d&apos;azione chiara (scrivi tu almeno la quinta):
-                    </div>
-                    <div className="space-y-2">
-                      {S01_TARGET_WORDS.map((word, idx) => {
-                        const surf = S03_DEMO_SURFACES[idx];
-                        return (
-                          <div
-                            key={word}
-                            className="rounded-xl border border-white/15 bg-[#2513A4] p-2.5"
-                          >
-                            <div className="text-xs font-bold text-[#E9FF60]">
-                              Locus {idx + 1}: {surf?.label} → Bersaglio: «{word}»
-                            </div>
-                            <input
-                              type="text"
-                              value={s04Cues[idx] ?? ""}
-                              onChange={(e) => {
-                                const val = e.target.value;
-                                setS04Cues((prev) => {
-                                  const copy = [...prev];
-                                  copy[idx] = val;
-                                  return copy;
-                                });
-                              }}
-                              placeholder={`Scrivi un'azione che colleghi «${word}» a ${surf?.label}...`}
-                              className="mt-1 w-full rounded-lg border border-white/25 bg-black/20 px-3 py-1.5 text-xs text-white"
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          markPracticeCompleted(
-                            activeLesson.id,
-                            "5 associazioni d'azione create per i 5 loci"
-                          );
-                          onCreateOnboardingRouteFromAcademy(
-                            S01_TARGET_WORDS.map((w, i) => ({
-                              locusLabel:
-                                S03_DEMO_SURFACES[i]?.label ?? `Locus ${i + 1}`,
-                              itemWord: w,
-                              actionCue:
-                                s04Cues[i]?.trim() ||
-                                `${w} interagisce con ${S03_DEMO_SURFACES[i]?.label}`,
-                            }))
-                          );
-                          setS04SavedToRoutes(true);
-                        }}
-                        className="rounded-full bg-[#E9FF60] px-4 py-2 text-xs font-extrabold text-[#2513A4]"
-                      >
-                        Salva le 5 associazioni nel tuo Percorso LOCO ✓
-                      </button>
-                      {s04SavedToRoutes && (
-                        <span className="text-xs font-bold text-[#E9FF60]">
-                          Percorso salvato! Ora puoi testarlo in S05.
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {/* ESERCIZIO SPECIFICO S05: Blind Recall con tracciamento indizi */}
-                {activeLesson.runtimeExerciseKind ===
-                  "s05-blind-recall-simulation" && (
-                  <div className="rounded-2xl border border-white/20 bg-white/5 p-4 space-y-3">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="text-xs font-bold text-[#E9FF60]">
-                        Blind Recall sui 5 punti (Punto {Math.min(s05Index + 1, 5)} di 5) — Risposta nascosta
-                      </div>
-                      <button
-                        type="button"
-                        onClick={onStartBlindRecallFromAcademy}
-                        className="rounded-full bg-[#6CA6FF] px-3 py-1 text-[11px] font-extrabold text-[#170B6E]"
-                      >
-                        Apri Motore Blind Recall Completo (Recappete) ↗
-                      </button>
-                    </div>
-
-                    {s05Index < 5 ? (
-                      <div className="rounded-xl border border-white/20 bg-[#2513A4] p-3.5 space-y-2.5">
-                        <div className="text-sm font-bold text-white">
-                          Locus #{s05Index + 1}:{" "}
-                          <span className="text-[#E9FF60]">
-                            {S03_DEMO_SURFACES[s05Index]?.label}
-                          </span>{" "}
-                          — Quale elemento avevi collocato qui?
-                        </div>
-                        {s05HintUsedOnCurrent && (
-                          <div className="rounded-lg bg-amber-400/20 border border-amber-300/40 px-3 py-1.5 text-xs text-amber-100">
-                            Indizio registrato (tentativo assistito):{" "}
-                            {s04Cues[s05Index]?.slice(0, 42) ||
-                              `Inizia per "${S01_TARGET_WORDS[s05Index]?.[0]}"`}
-                            ...
-                          </div>
-                        )}
-                        <input
-                          type="text"
-                          value={s05Answer}
-                          onChange={(e) => setS05Answer(e.target.value)}
-                          placeholder="Scrivi l'elemento prima di scoprire la soluzione..."
-                          className="w-full rounded-xl border border-white/25 bg-black/25 px-3 py-2 text-xs text-white"
-                        />
-                        <div className="flex flex-wrap gap-2">
-                          <button
-                            type="button"
-                            onClick={() => {
-                              const expected = S01_TARGET_WORDS[s05Index] ?? "";
-                              const ok =
-                                s05Answer.trim().toLowerCase() === expected;
-                              const nextLog = [
-                                ...s05Log,
-                                {
-                                  locus:
-                                    S03_DEMO_SURFACES[s05Index]?.label ?? "",
-                                  expected,
-                                  given: s05Answer.trim() || "(vuoto)",
-                                  correct: ok,
-                                  assisted: s05HintUsedOnCurrent,
-                                },
-                              ];
-                              setS05Log(nextLog);
-                              setS05Answer("");
-                              setS05HintUsedOnCurrent(false);
-                              setS05Index(s05Index + 1);
-                              if (s05Index + 1 >= 5) {
-                                markPracticeCompleted(
-                                  activeLesson.id,
-                                  "Blind Recall su 5 loci completato con tracciamento indizi"
-                                );
-                              }
-                            }}
-                            className="rounded-full bg-[#E9FF60] px-4 py-1.5 text-xs font-extrabold text-[#2513A4]"
-                          >
-                            Invia tentativo e verifica
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setS05HintUsedOnCurrent(true)}
-                            className="rounded-full border border-white/30 bg-white/10 px-3 py-1.5 text-xs text-white"
-                          >
-                            Chiedi indizio (non assegna grado massimo)
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="space-y-2">
-                        <div className="text-xs font-bold text-[#E9FF60]">
-                          Riepilogo Blind Recall (5/5 tentativi registrati):
-                        </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-5 gap-2">
-                          {s05Log.map((entry, idx) => (
-                            <div
-                              key={idx}
-                              className="rounded-xl border border-white/15 bg-[#2513A4] p-2.5 text-xs"
-                            >
-                              <div className="font-bold text-white">
-                                {entry.locus}
-                              </div>
-                              <div className="text-[#E9FF60]">
-                                Atteso: {entry.expected}
-                              </div>
-                              <div className="text-white/80">
-                                Tuo: {entry.given}
-                              </div>
-                              <div className="mt-1 text-[10px]">
-                                {entry.correct
-                                  ? entry.assisted
-                                    ? "✓ Corretto (Con indizio)"
-                                    : "✓ Autonomo"
-                                  : "✗ Da ripassare"}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setS05Index(0);
-                            setS05Log([]);
-                          }}
-                          className="text-xs underline text-white/80"
-                        >
-                          Ripeti Blind Recall da capo
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                {/* ESERCIZIO SPECIFICO S06: Coda Ripassi & Consolidamento */}
-                {activeLesson.runtimeExerciseKind ===
-                  "s06-due-queue-scheduler" && (
-                  <div className="rounded-2xl border border-white/20 bg-white/5 p-4 space-y-3">
-                    <div className="text-xs text-white/90">
-                      Elementi attualmente in scadenza nella tua <strong>Coda Ripassi (gratuita)</strong>:{" "}
-                      <span className="font-display text-base font-extrabold text-[#E9FF60]">
-                        {dueReviewsCount} target dovuti
-                      </span>{" "}
-                      su {routes.length} percorsi attivi.
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          markPracticeCompleted(
-                            activeLesson.id,
-                            "Coda ripassi consultata e sessione futura pianificata"
-                          );
-                        }}
-                        className="rounded-full bg-[#E9FF60] px-4 py-2 text-xs font-extrabold text-[#2513A4]"
-                      >
-                        Pianifica verifica distribuita (+24h) e segna pratica svolta ✓
-                      </button>
-                      <button
-                        type="button"
-                        onClick={onStartBlindRecallFromAcademy}
-                        className="rounded-full border border-white/30 bg-white/10 px-4 py-2 text-xs font-bold text-white"
-                      >
-                        Apri Coda Ripassi in Recappete ↗
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {/* ESERCIZIO SPECIFICO MAJOR SYSTEM: N01-N05 & Q01-Q04 */}
-                {activeLesson.runtimeExerciseKind === "major-phonetic-drill" && (
-                  <div className="rounded-2xl border border-white/20 bg-white/5 p-4 space-y-4">
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <div className="text-xs font-bold text-[#E9FF60]">
-                        Laboratorio Fonetico Bidirezionale (`major-it-v1`)
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => setMajorHideReferenceTable((v) => !v)}
-                        className="rounded-full bg-white/10 px-3 py-1 text-[11px] text-white"
-                      >
-                        {majorHideReferenceTable
-                          ? "Mostra mini-legenda 0–9"
-                          : "Nascondi legenda per test autonomo"}
-                      </button>
-                    </div>
-
-                    {!majorHideReferenceTable && (
-                      <div className="rounded-xl bg-[#2513A4] p-2.5 text-[11px] text-white/85">
-                        <strong>0</strong>=S/Z/SC dolce (<em>scena</em>=02) ·{" "}
-                        <strong>1</strong>=T/D · <strong>2</strong>=N/GN ·{" "}
-                        <strong>3</strong>=M · <strong>4</strong>=R ·{" "}
-                        <strong>5</strong>=L/GL · <strong>6</strong>=C/G dolce (
-                        <em>ciao</em>=6, <em>micio</em>=36) · <strong>7</strong>
-                        =C/G dura (<em>casa</em>=70, <em>mago</em>=37) ·{" "}
-                        <strong>8</strong>=F/V · <strong>9</strong>=P/B
-                      </div>
-                    )}
-
-                    {/* Trasduttore fonetico live */}
-                    <div className="rounded-xl border border-white/15 bg-[#2513A4] p-3">
-                      <label className="block text-xs font-bold text-white">
-                        Testa qualsiasi parola con il trasduttore fonetico `major-it-v1`:
-                      </label>
-                      <div className="mt-1.5 flex items-center gap-3">
-                        <input
-                          type="text"
-                          value={majorWordInput}
-                          onChange={(e) => setMajorWordInput(e.target.value)}
-                          placeholder="Es. scena, micio, mago, toro, riva..."
-                          className="rounded-lg border border-white/25 bg-black/25 px-3 py-1.5 text-xs text-white"
-                        />
-                        <span className="text-xs text-white/80">
-                          Cifre codificate:{" "}
-                          <strong className="font-display text-lg text-[#E9FF60]">
-                            {encodeItalianWordToMajorDigits(majorWordInput) || "—"}
-                          </strong>
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* 4 prove bidirezionali */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-                      <label className="rounded-xl border border-white/15 bg-[#2513A4] p-2.5">
-                        <div className="font-bold text-[#E9FF60]">
-                          Forward: scrivi una parola valida per 14 (T/D + R):
-                        </div>
-                        <input
-                          type="text"
-                          value={majorForward14}
-                          onChange={(e) => setMajorForward14(e.target.value)}
-                          placeholder="Es. toro"
-                          className="mt-1 w-full rounded bg-black/25 px-2.5 py-1 text-white"
-                        />
-                      </label>
-                      <label className="rounded-xl border border-white/15 bg-[#2513A4] p-2.5">
-                        <div className="font-bold text-[#E9FF60]">
-                          Forward: scrivi una parola valida per 32 (M + N):
-                        </div>
-                        <input
-                          type="text"
-                          value={majorForward32}
-                          onChange={(e) => setMajorForward32(e.target.value)}
-                          placeholder="Es. mano"
-                          className="mt-1 w-full rounded bg-black/25 px-2.5 py-1 text-white"
-                        />
-                      </label>
-                      <label className="rounded-xl border border-white/15 bg-[#2513A4] p-2.5">
-                        <div className="font-bold text-[#E9FF60]">
-                          Reverse: a quale numero corrisponde «micio» (C dolce)?
-                        </div>
-                        <input
-                          type="text"
-                          value={majorReverseMicio}
-                          onChange={(e) => setMajorReverseMicio(e.target.value)}
-                          placeholder="Cifre..."
-                          className="mt-1 w-full rounded bg-black/25 px-2.5 py-1 text-white"
-                        />
-                      </label>
-                      <label className="rounded-xl border border-white/15 bg-[#2513A4] p-2.5">
-                        <div className="font-bold text-[#E9FF60]">
-                          Reverse: a quale numero corrisponde «mago» (G dura)?
-                        </div>
-                        <input
-                          type="text"
-                          value={majorReverseMago}
-                          onChange={(e) => setMajorReverseMago(e.target.value)}
-                          placeholder="Cifre..."
-                          className="mt-1 w-full rounded bg-black/25 px-2.5 py-1 text-white"
-                        />
-                      </label>
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-3">
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setMajorDrillChecked(true);
-                          markPracticeCompleted(
-                            activeLesson.id,
-                            "Drill fonetico major-it-v1 completato"
-                          );
-                        }}
-                        className="rounded-full bg-[#E9FF60] px-4 py-2 text-xs font-extrabold text-[#2513A4]"
-                      >
-                        Controlla conversioni fonetiche ✓
-                      </button>
-                      {majorDrillChecked && (
-                        <span className="text-xs text-white/90">
-                          14:{" "}
-                          {encodeItalianWordToMajorDigits(majorForward14) === "14"
-                            ? "✓ valida"
-                            : "usa es. 'toro'"}{" "}
-                          · 32:{" "}
-                          {encodeItalianWordToMajorDigits(majorForward32) === "32"
-                            ? "✓ valida"
-                            : "usa es. 'mano'"}{" "}
-                          · micio:{" "}
-                          {majorReverseMicio.trim() === "36"
-                            ? "✓ 36"
-                            : "atteso 36"}{" "}
-                          · mago:{" "}
-                          {majorReverseMago.trim() === "37"
-                            ? "✓ 37"
-                            : "atteso 37"}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                )}
-
-                {/* ESERCIZIO SIMULATO PER A01-A04 / ALTRI CORSI: Area di lavoro accessibile */}
-                {activeLesson.id === "A01" && (
-                  <div className="rounded-2xl border border-white/20 bg-white/5 p-4 space-y-3">
-                    <div className="text-xs font-bold text-[#E9FF60]">
-                      Revisione critica di schede estratte da documento demo (individua l&apos;errore):
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs">
-                      <div className="rounded-xl border border-rose-300/40 bg-[#2513A4] p-3">
-                        <div className="font-bold text-white">
-                          Proposta AI #1: «La fotosintesi avviene solo di notte.»
-                        </div>
-                        <div className="text-white/70 mt-1">
-                          Fonte paragrafo 2: «La fase luminosa richiede luce solare.»
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setA01RejectedFalseCard(true)}
-                          className={`mt-2 rounded-full px-3 py-1 font-bold ${
-                            a01RejectedFalseCard
-                              ? "bg-rose-400 text-[#2513A4]"
-                              : "bg-white/15 text-white"
-                          }`}
-                        >
-                          {a01RejectedFalseCard
-                            ? "✗ Rifiutata come errore fattuale"
-                            : "Rifiuta proposta errata"}
-                        </button>
-                      </div>
-                      <div className="rounded-xl border border-emerald-300/40 bg-[#2513A4] p-3">
-                        <div className="font-bold text-white">
-                          Proposta AI #2: «Quale ruolo svolge la clorofilla nella fase luminosa?»
-                        </div>
-                        <div className="text-white/70 mt-1">
-                          Fonte paragrafo 2 verificata e citabile.
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setA01ApprovedVerifiedCard(true)}
-                          className={`mt-2 rounded-full px-3 py-1 font-bold ${
-                            a01ApprovedVerifiedCard
-                              ? "bg-[#E9FF60] text-[#2513A4]"
-                              : "bg-white/15 text-white"
-                          }`}
-                        >
-                          {a01ApprovedVerifiedCard
-                            ? "✓ Approvata con fonte verificata"
-                            : "Approva target verificato"}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Quaderno pratico testuale / accessibile sempre disponibile per ogni lezione */}
-                <div className="rounded-2xl border border-white/15 bg-[#2E1BC4]/70 p-4 space-y-2.5">
-                  <label className="block text-xs font-bold text-[#E9FF60]">
-                    Svolgimento scritto / Alternativa testuale accessibile ({activeLesson.id}):
-                  </label>
-                  <textarea
-                    rows={3}
-                    value={practiceNotes}
-                    onChange={(e) => setPracticeNotes(e.target.value)}
-                    placeholder="Scrivi qui la tua catena, i tuoi target, i tuoi loci o la tua diagnosi per completare l'esercizio in modalità testuale..."
-                    className="w-full rounded-xl border border-white/25 bg-[#2513A4] p-3 text-xs text-white placeholder:text-white/50"
-                  />
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        markPracticeCompleted(
-                          activeLesson.id,
-                          practiceNotes.trim() ||
-                            `Esercizio ${activeLesson.id} completato`
-                        )
-                      }
-                      className="rounded-full bg-white/15 px-4 py-2 text-xs font-bold text-white hover:bg-white/25"
-                    >
-                      Segna esercizio pratico completato (`practice_done`) ✓
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setActiveBlockTab("checkpoint")}
-                      className="rounded-full bg-[#E9FF60] px-5 py-2 text-xs font-extrabold text-[#2513A4]"
-                    >
-                      Vai alla Verifica a Risposta Nascosta →
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* TAB 3: VERIFICA A RISPOSTA NASCOSTA (CHECKPOINT) */}
-            {activeBlockTab === "checkpoint" && (
-              <div className="mt-5 space-y-4">
-                <div className="rounded-2xl border-2 border-[#E9FF60] bg-[#2E1BC4] p-5 space-y-4">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-[#E9FF60]">
-                      Richiama e controlla · Soluzione nascosta fino al tentativo
-                    </span>
-                    <span className="text-[11px] text-white/75">
-                      Tentativi effettuati: {activeProgress.checkpointAttempts} · Indizi usati:{" "}
-                      {activeProgress.checkpointHintsUsed + checkpointHintsUsed}
-                    </span>
-                  </div>
-
-                  <p className="font-display text-lg md:text-xl font-extrabold text-white">
-                    {activeLesson.checkpoint.question}
-                  </p>
-
-                  {/* Opzioni rapide se presenti (A/B, Sì/No, 6/7) */}
-                  {activeLesson.checkpointOptions && (
-                    <div className="flex flex-wrap gap-2.5">
-                      {activeLesson.checkpointOptions.map((opt) => (
+                      {q.options.map((opt) => (
                         <button
                           key={opt.value}
                           type="button"
-                          onClick={() => setCheckpointUserAnswer(opt.value)}
-                          className={`rounded-xl border px-4 py-2.5 text-xs font-extrabold transition ${
-                            checkpointUserAnswer.toLowerCase() ===
-                            opt.value.toLowerCase()
+                          onClick={() => setCheckpointSelectedValue(opt.value)}
+                          className={`w-full rounded-2xl border-2 p-3.5 text-left text-xs font-bold transition ${
+                            checkpointSelectedValue === opt.value
                               ? "border-[#E9FF60] bg-[#E9FF60] text-[#2513A4]"
-                              : "border-white/25 bg-[#2513A4] text-white hover:bg-white/10"
+                              : "border-white/20 bg-[#2E1BC4] text-white"
                           }`}
                         >
                           {opt.label}
                         </button>
                       ))}
                     </div>
-                  )}
-
-                  {/* Input testuale sempre disponibile */}
-                  <div>
-                    <label className="block text-xs text-white/80 mb-1">
-                      La tua risposta (scrivi o seleziona un&apos;opzione qui sopra prima di scoprire la chiave):
-                    </label>
-                    <input
-                      type="text"
-                      value={checkpointUserAnswer}
-                      onChange={(e) => setCheckpointUserAnswer(e.target.value)}
-                      placeholder="Scrivi la tua risposta senza guardare la soluzione..."
-                      className="w-full rounded-xl border border-white/30 bg-[#2513A4] px-4 py-2.5 text-sm text-white placeholder:text-white/50"
-                    />
+                    <button
+                      type="button"
+                      disabled={!checkpointSelectedValue}
+                      onClick={() => {
+                        const isRight = checkpointSelectedValue === "correct";
+                        const nextMistakes = checkpointMistakes + (isRight ? 0 : 1);
+                        setCheckpointMistakes(nextMistakes);
+                        if (
+                          checkpointStepIdx + 1 <
+                          activeCheckpointCourse.checkpointQuestions.length
+                        ) {
+                          setCheckpointStepIdx((i) => i + 1);
+                          setCheckpointSelectedValue(null);
+                        } else {
+                          setCheckpointFinished(true);
+                          if (nextMistakes === 0) {
+                            setGamification((prev) => {
+                              const evId = `xp-checkpoint-${activeCheckpointCourse.courseId}`;
+                              const awarded = awardIdempotentXp(
+                                prev,
+                                evId,
+                                XP_REWARDS.CHECKPOINT_PASSED
+                              );
+                              return {
+                                ...awarded.updated,
+                                completedUnitCheckpoints: Array.from(
+                                  new Set([
+                                    ...awarded.updated.completedUnitCheckpoints,
+                                    activeCheckpointCourse.courseId,
+                                  ])
+                                ),
+                              };
+                            });
+                          }
+                        }
+                      }}
+                      className="w-full rounded-full bg-[#FFD014] py-3 font-display text-sm font-extrabold text-[#181818] disabled:opacity-40"
+                    >
+                      Conferma risposta
+                    </button>
                   </div>
+                );
+              })()
+            ) : (
+              <div className="text-center space-y-4 py-3">
+                <img
+                  src="/assets/figma-curated/academy-mascot-lion.svg"
+                  alt=""
+                  className="mx-auto h-24 w-24 object-contain"
+                />
+                <h4 className="font-display text-2xl font-extrabold text-[#E9FF60]">
+                  {checkpointMistakes === 0
+                    ? `🏆 Checkpoint Superato! +${XP_REWARDS.CHECKPOINT_PASSED} XP`
+                    : `Quasi! Hai commesso ${checkpointMistakes} errori`}
+                </h4>
+                <p className="text-xs text-white/80">
+                  {checkpointMistakes === 0
+                    ? "Hai dimostrato padronanza sui concetti chiave dell'unità senza aiuti."
+                    : "Ripassa le tappe dell'unità e riprova per conquistare il trofeo del Checkpoint."}
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setActiveCheckpointCourse(null)}
+                  className="rounded-full bg-[#E9FF60] px-6 py-2.5 font-display text-sm font-extrabold text-[#2513A4]"
+                >
+                  Torna al Percorso
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
-                  {/* Indizio graduato se richiesto */}
-                  {checkpointHintsUsed > 0 && (
-                    <div className="rounded-xl border border-amber-300/50 bg-amber-500/15 p-3 text-xs text-amber-100">
-                      <strong>Indizio graduato #{checkpointHintsUsed} (registrato):</strong>{" "}
-                      {activeLesson.progressiveHint}
+      {/* =====================================================================
+          SCREENS 3, 4 & 5: INTERACTIVE MULTI-STEP LESSON PLAYER + FEEDBACK + LESSON COMPLETE
+          ===================================================================== */}
+      {activeLesson && activeProgress && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="duolingo-like-lesson-title"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-[#140A5E]/90 p-3 md:p-6 overflow-y-auto"
+        >
+          <div className="my-auto w-full max-w-3xl rounded-[32px] border-2 border-[#E9FF60] bg-[#2513A4] p-5 md:p-8 text-white shadow-2xl">
+            {/* SCREEN 5: LESSON COMPLETE CELEBRATION */}
+            {lessonCompleteSummary ? (
+              <div className="space-y-6 text-center py-4">
+                <img
+                  src="/assets/figma-curated/illustration-finish-runner.svg"
+                  alt="Lezione completata"
+                  className="mx-auto h-36 w-auto object-contain"
+                />
+                <div>
+                  <span className="rounded-full bg-[#E9FF60] px-4 py-1 font-display text-xs font-extrabold text-[#2513A4]">
+                    TAPPA COMPLETATA · {activeLesson.id}
+                  </span>
+                  <h3 className="mt-3 font-display text-3xl font-extrabold text-white">
+                    Ottimo lavoro su «{activeLesson.title}»!
+                  </h3>
+                  <p className="mt-1 text-sm text-white/80">
+                    Criterio allenato: {activeLesson.masteryCriterion}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-3 gap-3 max-w-lg mx-auto">
+                  <div className="rounded-2xl border border-[#E9FF60] bg-[#2E1BC4] p-3">
+                    <div className="text-[10px] uppercase text-white/70">XP Guadagnati</div>
+                    <div className="font-display text-2xl font-extrabold text-[#E9FF60]">
+                      +{lessonCompleteSummary.xpEarnedNow} XP
                     </div>
-                  )}
-
-                  {/* Rivelazione anticipata (se l'utente decide di guardare prima di rispondere) */}
-                  {checkpointViewedAnswerBefore && (
-                    <div className="rounded-xl border border-rose-300/50 bg-rose-950/60 p-3 text-xs text-rose-100">
-                      <strong>Soluzione svelata prima del tentativo (`viewedAnswerBeforeAttempt = true`):</strong>{" "}
-                      Chiave: «{activeLesson.checkpoint.expectedAnswer}». Questo tentativo è registrato come studio assistito e non assegna il superamento autonomo.
+                  </div>
+                  <div className="rounded-2xl border border-[#FFD014] bg-[#2E1BC4] p-3">
+                    <div className="text-[10px] uppercase text-white/70">Bonus Precisione</div>
+                    <div className="font-display text-2xl font-extrabold text-[#FFD014]">
+                      +{lessonCompleteSummary.bonusXpEarned} XP
                     </div>
-                  )}
-
-                  <div className="flex flex-wrap items-center gap-2.5 pt-1">
-                    <button
-                      type="button"
-                      onClick={() => handleVerifyCheckpoint(false)}
-                      className="rounded-full bg-[#E9FF60] px-5 py-2.5 font-display text-sm font-extrabold text-[#2513A4] hover:brightness-105"
-                    >
-                      Verifica risposta
-                    </button>
-
-                    {activeProgress.provisionallyPassedAt &&
-                      activeProgress.status !== "mastered_after_delay" && (
-                        <button
-                          type="button"
-                          onClick={() => handleVerifyCheckpoint(true)}
-                          className="rounded-full bg-[#6CA6FF] px-4 py-2.5 text-xs font-extrabold text-[#170B6E]"
-                        >
-                          Conferma Richiamo Ritardato Autonomo → `mastered`
-                        </button>
-                      )}
-
-                    <button
-                      type="button"
-                      onClick={() => setCheckpointHintsUsed((c) => c + 1)}
-                      className="rounded-full border border-white/30 bg-white/10 px-3.5 py-2 text-xs font-bold text-white hover:bg-white/20"
-                    >
-                      Chiedi indizio (registrato)
-                    </button>
-
-                    {!checkpointSubmittedResult && !checkpointViewedAnswerBefore && (
-                      <button
-                        type="button"
-                        onClick={() => setCheckpointViewedAnswerBefore(true)}
-                        className="text-xs text-white/70 underline hover:text-white"
-                      >
-                        Mostra soluzione (non vale come richiamo autonomo)
-                      </button>
-                    )}
+                  </div>
+                  <div className="rounded-2xl border border-white/20 bg-[#2E1BC4] p-3">
+                    <div className="text-[10px] uppercase text-white/70">Errori in Coda</div>
+                    <div className="font-display text-2xl font-extrabold text-white">
+                      {lessonCompleteSummary.mistakesCount}
+                    </div>
                   </div>
                 </div>
 
-                {/* Feedback post-tentativo (mostra chiave, rubrica ed errore tipico SOLO dopo il tentativo) */}
-                {checkpointSubmittedResult && (
-                  <div
-                    className={`rounded-2xl border-2 p-5 space-y-2 ${
-                      checkpointSubmittedResult.autonomousSuccess
-                        ? "border-[#E9FF60] bg-emerald-950/50"
-                        : "border-amber-300 bg-amber-950/40"
-                    }`}
+                <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => onSelectLesson(null)}
+                    className="rounded-full border border-white/30 bg-white/10 px-6 py-3 text-xs font-extrabold text-white"
                   >
-                    <div className="flex flex-wrap items-center justify-between gap-2">
-                      <span className="font-display text-lg font-extrabold text-[#E9FF60]">
-                        {checkpointSubmittedResult.autonomousSuccess
-                          ? "✓ Richiamo Autonomo Riuscito!"
-                          : checkpointSubmittedResult.isCorrect
-                            ? "✓ Risposta corretta (con assistenza/indizio registrato)"
-                            : "✗ Risposta da correggere"}
+                    Torna alla Mappa
+                  </button>
+                  {nextRecommendedLesson &&
+                    nextRecommendedLesson.id !== activeLesson.id && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          startOrResumeLesson(nextRecommendedLesson.id)
+                        }
+                        className="rounded-full bg-[#E9FF60] px-7 py-3 font-display text-sm font-extrabold text-[#2513A4] shadow-lg"
+                      >
+                        Prossima Tappa: {nextRecommendedLesson.id} →
+                      </button>
+                    )}
+                </div>
+              </div>
+            ) : (
+              /* SCREEN 3: ACTIVE STEP IN THE LESSON PLAYER */
+              (() => {
+                const step = activeLesson.steps[playerStepIndex] ?? activeLesson.steps[0];
+                const progressPct = Math.round(
+                  ((playerStepIndex + 1) / activeLesson.steps.length) * 100
+                );
+
+                return (
+                  <div className="space-y-5">
+                    {/* Top Progress Bar & Navigation */}
+                    <div className="flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => onSelectLesson(null)}
+                        title="Esci e riprendi da questo step più tardi"
+                        className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white hover:bg-white/20"
+                      >
+                        ✕ Esci
+                      </button>
+                      {playerStepIndex > 0 && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const prevIdx = Math.max(0, playerStepIndex - 1);
+                            setPlayerStepIndex(prevIdx);
+                            onUpdateLessonProgress(activeLesson.id, (p) => ({
+                              ...p,
+                              currentStepIndex: prevIdx,
+                            }));
+                            resetStepInteractionState();
+                          }}
+                          className="rounded-full bg-white/10 px-3 py-1.5 text-xs font-bold text-white hover:bg-white/20"
+                        >
+                          ← Indietro
+                        </button>
+                      )}
+
+                      <div className="flex-1 h-3.5 rounded-full bg-white/15 overflow-hidden">
+                        <div
+                          className="h-full rounded-full bg-[#E9FF60] transition-all duration-300"
+                          style={{ width: `${progressPct}%` }}
+                        />
+                      </div>
+
+                      <span className="text-xs font-extrabold text-[#E9FF60]">
+                        {playerStepIndex + 1}/{activeLesson.steps.length}
                       </span>
-                      <span className="rounded-full bg-white/15 px-3 py-0.5 text-xs font-bold text-white">
-                        Nuovo stato:{" "}
-                        {STATUS_LABELS[checkpointSubmittedResult.resultingStatus].label}
-                      </span>
+                      {comboCount >= 2 && (
+                        <span className="rounded-full bg-[#FFD014] px-2.5 py-0.5 text-[11px] font-extrabold text-[#181818]">
+                          🔥 x{comboCount}
+                        </span>
+                      )}
                     </div>
-                    <p className="text-sm text-white/95">
-                      {checkpointSubmittedResult.feedback}
-                    </p>
-                    <div className="pt-2 text-xs text-white/80 space-y-1 border-t border-white/15">
-                      <div>
-                        <strong>Chiave ufficiale:</strong>{" "}
-                        {activeLesson.checkpoint.expectedAnswer}
+
+                    {/* Step Header & LOCO Character */}
+                    <div className="flex flex-col sm:flex-row items-center gap-4 rounded-2xl bg-[#2E1BC4] p-4 border border-white/15">
+                      <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-[#FFF8EC] p-2 shadow">
+                        <img
+                          src={step.illustrationAsset}
+                          alt=""
+                          className="h-full w-full object-contain"
+                        />
                       </div>
                       <div>
-                        <strong>Padronanza osservabile:</strong>{" "}
-                        {activeLesson.masteryCriterion}
-                      </div>
-                      <div>
-                        <strong>Errore tipico:</strong> {activeLesson.commonMistake}
+                        <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#E9FF60]">
+                          {activeLesson.id} · {step.stageLabel}
+                        </span>
+                        <h3
+                          id="duolingo-like-lesson-title"
+                          className="mt-1 font-display text-xl md:text-2xl font-extrabold text-white"
+                        >
+                          {step.title}
+                        </h3>
+                        <p className="mt-1 text-sm leading-relaxed text-white/90">
+                          {step.bodyText}
+                        </p>
+                        {step.expandableFullText &&
+                          step.expandableFullText !== step.bodyText && (
+                            <div className="mt-2">
+                              <button
+                                type="button"
+                                onClick={() => setExpandedExplanation((v) => !v)}
+                                className="text-xs font-bold text-[#E9FF60] underline"
+                              >
+                                {expandedExplanation
+                                  ? "Riduci spiegazione"
+                                  : "Approfondisci spiegazione completa ▾"}
+                              </button>
+                              {expandedExplanation && (
+                                <p className="mt-2 rounded-xl bg-[#2513A4] p-3 text-xs leading-relaxed text-white/90">
+                                  {step.expandableFullText}
+                                </p>
+                              )}
+                            </div>
+                          )}
+                        {step.scientificNote && (
+                          <div className="mt-2 rounded-xl bg-amber-400/15 border border-amber-300/40 px-3 py-1.5 text-xs text-amber-100">
+                            {step.scientificNote}
+                          </div>
+                        )}
                       </div>
                     </div>
 
-                    {!checkpointSubmittedResult.autonomousSuccess && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setCheckpointUserAnswer("");
-                          setCheckpointHintsUsed(0);
-                          setCheckpointViewedAnswerBefore(false);
-                          setCheckpointSubmittedResult(null);
-                        }}
-                        className="mt-2 rounded-full bg-[#E9FF60] px-4 py-1.5 text-xs font-extrabold text-[#2513A4]"
+                    {/* =========================================================
+                        REUSABLE EXERCISE ENGINE (12 INTERACTION TYPES)
+                        ========================================================= */}
+
+                    {/* A, G, J: MULTIPLE CHOICE / IMAGE ASSOCIATION / ERROR CORRECTION */}
+                    {(step.type === "multiple_choice" ||
+                      step.type === "image_association" ||
+                      step.type === "error_correction") &&
+                      step.options && (
+                        <div className="space-y-2.5">
+                          {step.options.map((opt) => (
+                            <button
+                              key={opt.id}
+                              type="button"
+                              onClick={() => setSelectedOptionId(opt.id)}
+                              className={`w-full rounded-2xl border-2 p-4 text-left text-sm font-bold transition ${
+                                selectedOptionId === opt.id
+                                  ? "border-[#E9FF60] bg-[#E9FF60] text-[#2513A4]"
+                                  : "border-white/20 bg-[#2E1BC4] text-white hover:border-white/50"
+                              }`}
+                            >
+                              {opt.label}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+
+                    {/* B: MATCHING PAIRS */}
+                    {step.type === "matching_pairs" && step.pairs && (
+                      <div className="space-y-3">
+                        <div className="text-xs text-white/80">
+                          Tocca prima un elemento a sinistra e poi il suo corrispondente a destra ({matchedPairIds.length}/{step.pairs.length} abbinati):
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-2">
+                            {step.pairs.map((p) => {
+                              const done = matchedPairIds.includes(p.id);
+                              const active = selectedLeftPairId === p.id;
+                              return (
+                                <button
+                                  key={p.id}
+                                  type="button"
+                                  disabled={done}
+                                  onClick={() => setSelectedLeftPairId(p.id)}
+                                  className={`w-full rounded-xl border-2 p-3 font-display text-sm font-extrabold ${
+                                    done
+                                      ? "border-emerald-400 bg-emerald-900/40 text-emerald-200"
+                                      : active
+                                        ? "border-[#E9FF60] bg-[#E9FF60] text-[#2513A4]"
+                                        : "border-white/20 bg-[#2E1BC4] text-white"
+                                  }`}
+                                >
+                                  {p.left}
+                                </button>
+                              );
+                            })}
+                          </div>
+                          <div className="space-y-2">
+                            {[...step.pairs].reverse().map((p) => {
+                              const done = matchedPairIds.includes(p.id);
+                              return (
+                                <button
+                                  key={p.id}
+                                  type="button"
+                                  disabled={done}
+                                  onClick={() => {
+                                    if (selectedLeftPairId === p.id) {
+                                      setMatchedPairIds((prev) => [...prev, p.id]);
+                                      setSelectedLeftPairId(null);
+                                    } else {
+                                      setSelectedLeftPairId(null);
+                                    }
+                                  }}
+                                  className={`w-full rounded-xl border-2 p-3 text-xs font-bold ${
+                                    done
+                                      ? "border-emerald-400 bg-emerald-900/40 text-emerald-200"
+                                      : "border-white/20 bg-[#2E1BC4] text-white hover:border-[#E9FF60]"
+                                  }`}
+                                >
+                                  {p.right}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* C: SEQUENCE ORDERING */}
+                    {step.type === "sequence_ordering" && step.sequenceItems && (
+                      <div className="space-y-3">
+                        <div className="rounded-2xl border border-white/20 bg-black/20 p-3 min-h-[54px] flex flex-wrap gap-2 items-center">
+                          {orderedSequence.length === 0 ? (
+                            <span className="text-xs text-white/50">
+                              Tocca gli elementi qui sotto nell&apos;ordine esatto (1 → {step.sequenceItems.length})...
+                            </span>
+                          ) : (
+                            orderedSequence.map((item, idx) => (
+                              <span
+                                key={item}
+                                className="rounded-xl bg-[#E9FF60] px-3 py-1.5 text-xs font-extrabold text-[#2513A4]"
+                              >
+                                {idx + 1}. {item.replace(/^\d+\.\s*/, "")}
+                              </span>
+                            ))
+                          )}
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {[...step.sequenceItems].reverse().map((item) => {
+                            const used = orderedSequence.includes(item);
+                            return (
+                              <button
+                                key={item}
+                                type="button"
+                                disabled={used}
+                                onClick={() =>
+                                  setOrderedSequence((prev) => [...prev, item])
+                                }
+                                className="rounded-xl border border-white/30 bg-[#2E1BC4] px-3.5 py-2 text-xs font-bold text-white disabled:opacity-35"
+                              >
+                                {item.replace(/^\d+\.\s*/, "")}
+                              </button>
+                            );
+                          })}
+                          {orderedSequence.length > 0 && (
+                            <button
+                              type="button"
+                              onClick={() => setOrderedSequence([])}
+                              className="text-xs underline text-white/75 ml-2"
+                            >
+                              Ricomincia ordine
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* D: MEMORY FLASH */}
+                    {step.type === "memory_flash" && step.flashItems && (
+                      <div className="rounded-2xl border border-white/20 bg-[#2E1BC4] p-4 space-y-3">
+                        {!flashHidden ? (
+                          <div className="space-y-3 text-center">
+                            <div className="text-xs font-bold text-[#E9FF60]">
+                              Osserva i {step.flashItems.length} oggetti nell&apos;ordine originale (nessuna penalità di tempo):
+                            </div>
+                            <div className="flex flex-wrap justify-center gap-2.5">
+                              {step.flashItems.map((w, i) => (
+                                <div
+                                  key={w}
+                                  className="rounded-2xl bg-[#FFF8EC] px-4 py-3 font-display text-base font-extrabold text-[#2513A4] shadow"
+                                >
+                                  {i + 1}. {w}
+                                </div>
+                              ))}
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setFlashHidden(true);
+                                setFlashRecallSelection([]);
+                              }}
+                              className="rounded-full bg-[#FFD014] px-6 py-2.5 font-display text-xs font-extrabold text-[#181818]"
+                            >
+                              Nascondi gli oggetti e prova a ricordarli in ordine →
+                            </button>
+                          </div>
+                        ) : (
+                          <div className="space-y-3">
+                            <div className="text-xs font-bold text-[#E9FF60]">
+                              Oggetti nascosti! Toccali nell&apos;ordine originale (1 → {step.flashItems.length}):
+                            </div>
+                            <div className="rounded-xl bg-black/25 p-3 min-h-[46px] flex flex-wrap gap-2">
+                              {flashRecallSelection.map((w, i) => (
+                                <span
+                                  key={w}
+                                  className="rounded-lg bg-[#E9FF60] px-3 py-1 text-xs font-extrabold text-[#2513A4]"
+                                >
+                                  {i + 1}. {w}
+                                </span>
+                              ))}
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {[...step.flashItems].reverse().map((w) => {
+                                const picked = flashRecallSelection.includes(w);
+                                return (
+                                  <button
+                                    key={w}
+                                    type="button"
+                                    disabled={picked}
+                                    onClick={() =>
+                                      setFlashRecallSelection((prev) => [...prev, w])
+                                    }
+                                    className="rounded-xl border border-white/30 bg-[#2513A4] px-4 py-2 text-xs font-bold text-white disabled:opacity-35"
+                                  >
+                                    {w}
+                                  </button>
+                                );
+                              })}
+                              <button
+                                type="button"
+                                onClick={() => setFlashRecallSelection([])}
+                                className="text-xs underline text-white/70"
+                              >
+                                Ripristina
+                              </button>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* E: FILL IN THE BLANK */}
+                    {step.type === "fill_in_blank" && step.blankSentence && (
+                      <div className="space-y-3 rounded-2xl border border-white/20 bg-[#2E1BC4] p-4">
+                        <p className="text-sm leading-relaxed">
+                          {step.blankSentence.before}{" "}
+                          <span className="inline-block min-w-[110px] border-b-2 border-[#E9FF60] px-2 font-extrabold text-[#E9FF60]">
+                            {blankChoice || "______"}
+                          </span>{" "}
+                          {step.blankSentence.after}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {step.blankSentence.wordBank.map((w) => (
+                            <button
+                              key={w}
+                              type="button"
+                              onClick={() => setBlankChoice(w)}
+                              className={`rounded-xl px-4 py-2 text-xs font-extrabold ${
+                                blankChoice === w
+                                  ? "bg-[#E9FF60] text-[#2513A4]"
+                                  : "bg-[#2513A4] text-white border border-white/25"
+                              }`}
+                            >
+                              {w}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* H: LOCI PLACEMENT (IN-SCENE) */}
+                    {step.type === "loci_placement" && step.lociPlacementSpec && (
+                      <div className="rounded-2xl border border-white/20 bg-[#2E1BC4] p-4 space-y-3">
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <span className="text-xs font-bold text-[#E9FF60]">
+                            Tocca i 5 punti della stanza in ordine per collocare/recuperare i ricordi ({placedLociCount}/5):
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => onOpenSceneForLesson(activeLesson.id)}
+                            className="rounded-full bg-[#6CA6FF] px-3 py-1 text-[11px] font-extrabold text-[#170B6E]"
+                          >
+                            Apri Stanza 3D Interattiva ↗
+                          </button>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                          {step.lociPlacementSpec.roomObjects.map((obj, idx) => {
+                            const isActivated = idx < placedLociCount;
+                            const itemInfo = step.lociPlacementSpec?.itemsToPlace[idx];
+                            return (
+                              <button
+                                key={obj.id}
+                                type="button"
+                                onClick={() => {
+                                  if (idx === placedLociCount) {
+                                    setPlacedLociCount((c) => c + 1);
+                                  }
+                                }}
+                                className={`rounded-2xl border-2 p-3 text-center transition ${
+                                  isActivated
+                                    ? "border-[#E9FF60] bg-[#E9FF60]/20 text-white"
+                                    : idx === placedLociCount
+                                      ? "border-[#FFD014] bg-[#2513A4] animate-pulse"
+                                      : "border-white/15 bg-[#2513A4]/60 opacity-70"
+                                }`}
+                              >
+                                <img
+                                  src={obj.asset}
+                                  alt={obj.label}
+                                  className="mx-auto h-10 w-10 object-contain"
+                                />
+                                <div className="mt-1.5 text-xs font-extrabold">
+                                  {idx + 1}. {obj.label}
+                                </div>
+                                {isActivated && itemInfo && (
+                                  <div className="mt-1 text-[10px] text-[#E9FF60] font-bold">
+                                    ✓ {itemInfo.item}
+                                  </div>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* I: MNEMONIC BUILDER */}
+                    {step.type === "mnemonic_builder" && step.mnemonicBuilderSpec && (
+                      <div className="rounded-2xl border border-white/20 bg-[#2E1BC4] p-4 space-y-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                          <div>
+                            <div className="font-bold text-[#E9FF60] mb-1">
+                              1. Immagine concreta:
+                            </div>
+                            {step.mnemonicBuilderSpec.suggestedObjects.map((o) => (
+                              <button
+                                key={o}
+                                type="button"
+                                onClick={() => setBuilderObj(o)}
+                                className={`mb-1.5 w-full rounded-xl p-2 text-left font-bold ${
+                                  builderObj === o
+                                    ? "bg-[#E9FF60] text-[#2513A4]"
+                                    : "bg-[#2513A4] text-white"
+                                }`}
+                              >
+                                {o}
+                              </button>
+                            ))}
+                          </div>
+                          <div>
+                            <div className="font-bold text-[#E9FF60] mb-1">
+                              2. Azione fisica:
+                            </div>
+                            {step.mnemonicBuilderSpec.suggestedActions.map((a) => (
+                              <button
+                                key={a}
+                                type="button"
+                                onClick={() => setBuilderAct(a)}
+                                className={`mb-1.5 w-full rounded-xl p-2 text-left font-bold ${
+                                  builderAct === a
+                                    ? "bg-[#E9FF60] text-[#2513A4]"
+                                    : "bg-[#2513A4] text-white"
+                                }`}
+                              >
+                                {a}
+                              </button>
+                            ))}
+                          </div>
+                          <div>
+                            <div className="font-bold text-[#E9FF60] mb-1">
+                              3. Punto stabile (Locus):
+                            </div>
+                            {step.mnemonicBuilderSpec.suggestedLoci.map((l) => (
+                              <button
+                                key={l}
+                                type="button"
+                                onClick={() => setBuilderLoc(l)}
+                                className={`mb-1.5 w-full rounded-xl p-2 text-left font-bold ${
+                                  builderLoc === l
+                                    ? "bg-[#E9FF60] text-[#2513A4]"
+                                    : "bg-[#2513A4] text-white"
+                                }`}
+                              >
+                                {l}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                        {builderObj && builderAct && builderLoc && (
+                          <div className="rounded-xl bg-[#FFF8EC] p-3 text-xs font-extrabold text-[#2513A4]">
+                            Associazione creata: «{builderObj} {builderAct} {builderLoc}.»
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* K & L: NUMBER ENCODING & REVERSE DECODING */}
+                    {(step.type === "number_encoding" ||
+                      step.type === "reverse_decoding") && (
+                      <div className="rounded-2xl border border-white/20 bg-[#2E1BC4] p-4 space-y-3">
+                        <div className="text-xs font-bold text-[#E9FF60]">
+                          {step.type === "number_encoding"
+                            ? `Numero da codificare: ${step.numberEncodingSpec?.targetNumber} (${step.numberEncodingSpec?.phoneticHint})`
+                            : `Parola da decodificare: «${step.reverseDecodingSpec?.stimulusWord}»`}
+                        </div>
+                        <input
+                          type="text"
+                          value={majorInputText}
+                          onChange={(e) => setMajorInputText(e.target.value)}
+                          placeholder={
+                            step.type === "number_encoding"
+                              ? "Scrivi una parola italiana valida (es. toro, mano)..."
+                              : "Scrivi le cifre corrispondenti (es. 02, 37)..."
+                          }
+                          className="w-full rounded-xl border border-white/30 bg-[#2513A4] px-4 py-2.5 text-sm text-white"
+                        />
+                        {step.type === "number_encoding" && majorInputText && (
+                          <div className="text-xs text-white/80">
+                            Cifre lette dal trasduttore `major-it-v1`:{" "}
+                            <strong className="text-[#E9FF60]">
+                              {encodeItalianWordToMajorDigits(majorInputText) || "—"}
+                            </strong>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* F: FREE RECALL (Risposta nascosta) */}
+                    {step.type === "free_recall" && step.freeRecallPrompt && (
+                      <div className="rounded-2xl border border-white/20 bg-[#2E1BC4] p-4 space-y-3">
+                        <input
+                          type="text"
+                          value={freeRecallInput}
+                          onChange={(e) => setFreeRecallInput(e.target.value)}
+                          placeholder="Scrivi la tua risposta senza guardare la soluzione..."
+                          className="w-full rounded-xl border border-white/30 bg-[#2513A4] px-4 py-2.5 text-sm text-white"
+                        />
+                        <div className="flex items-center justify-between">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setFreeRecallHintShown(true);
+                              setLessonHintsCount((h) => h + 1);
+                            }}
+                            className="text-xs font-bold text-[#FFD014] underline"
+                          >
+                            Chiedi un indizio graduato (registrato)
+                          </button>
+                        </div>
+                        {freeRecallHintShown && (
+                          <div className="rounded-xl bg-amber-400/15 border border-amber-300/40 p-2.5 text-xs text-amber-100">
+                            Indizio: {step.freeRecallPrompt.progressiveHint}
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {/* SCREEN 4: IMMEDIATE ANSWER FEEDBACK SHEET + PRIMARY ACTION */}
+                    {stepFeedback ? (
+                      <div
+                        className={`rounded-2xl border-2 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 ${
+                          stepFeedback.isCorrect
+                            ? "border-[#E9FF60] bg-emerald-950/70"
+                            : "border-rose-300 bg-rose-950/70"
+                        }`}
                       >
-                        Riprova ora a risposta nascosta e senza indizi
-                      </button>
+                        <div>
+                          <div className="font-display text-lg font-extrabold text-[#E9FF60]">
+                            {stepFeedback.headline}
+                          </div>
+                          <p className="text-xs text-white/95 mt-0.5">
+                            {stepFeedback.detail}
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={handleAdvanceToNextStep}
+                          className="shrink-0 rounded-full bg-[#E9FF60] px-7 py-3 font-display text-sm font-extrabold text-[#2513A4] shadow-lg"
+                        >
+                          CONTINUA →
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="flex justify-end pt-2">
+                        <button
+                          type="button"
+                          onClick={handleVerifyCurrentStep}
+                          className="w-full sm:w-auto rounded-full bg-[#E9FF60] px-8 py-3.5 font-display text-sm font-extrabold text-[#2513A4] shadow-lg hover:brightness-105 transition"
+                        >
+                          {step.type === "hook" ||
+                          step.type === "explanation" ||
+                          step.type === "demonstration"
+                            ? "CONTINUA →"
+                            : "VERIFICA RISPOSTA"}
+                        </button>
+                      </div>
                     )}
                   </div>
-                )}
-              </div>
+                );
+              })()
             )}
           </div>
         </div>

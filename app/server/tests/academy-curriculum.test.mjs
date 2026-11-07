@@ -1,21 +1,29 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  ACADEMY_BADGES,
   ACADEMY_COURSES,
   ACADEMY_LESSONS_BY_ID,
   ENRICHED_ACADEMY_LESSONS,
   LEGACY_LESSON_MAP,
+  LOCO_LEVELS,
   MAJOR_IT_V1_TABLE,
   MAJOR_IT_V1_VERSION,
   TIER_NAMING,
+  XP_REWARDS,
+  awardIdempotentXp,
   computeAdaptiveAcademyRecommendations,
+  computeUnlockedBadgeIds,
   createDefaultAcademyProgressMap,
-   createInitialLessonProgress,
+  createDefaultGamificationState,
+  createInitialLessonProgress,
   encodeItalianWordToMajorDigits,
   evaluateLessonCheckpointAnswer,
   migrateLegacyCourseProgress,
   reconcileAcademyProgressVersion,
   recordAcademyCheckpointAttempt,
+  resolveLocoLevel,
+  resolvePathNodeVisualState,
 } from "../../components/webapp/loco-academy-curriculum.ts";
 import { MAJOR_SYSTEM_TABLE, INITIAL_COURSES } from "../../components/webapp/loco-webapp-data.ts";
 
@@ -252,4 +260,137 @@ test("Fallback transparency for unimplemented AI/Street View/3D scan and adaptiv
   assert.equal(evalN02.isCorrect, true);
   const evalN04 = evaluateLessonCheckpointAnswer(ACADEMY_LESSONS_BY_ID["N04"], "no, 37");
   assert.equal(evalN04.isCorrect, true);
+});
+
+test("Duolingo-like Lesson Engine: 5-9 interactive steps per lesson, flagship S01 sequence, and all 12 exercise types", () => {
+  const seenStepTypes = new Set();
+
+  for (const lesson of ENRICHED_ACADEMY_LESSONS) {
+    assert.ok(
+      Array.isArray(lesson.steps) && lesson.steps.length >= 6 && lesson.steps.length <= 9,
+      `Lesson ${lesson.id} must have 6-9 playable steps (got ${lesson.steps?.length})`
+    );
+    for (const step of lesson.steps) {
+      seenStepTypes.add(step.type);
+      assert.ok(step.stepId, `Step in ${lesson.id} must have stepId`);
+      assert.ok(step.title, `Step in ${lesson.id} must have title`);
+      assert.ok(
+        step.illustrationAsset.startsWith("/assets/figma-curated/"),
+        `Step in ${lesson.id} must reference a curated LOCO asset`
+      );
+    }
+  }
+
+  // Verify all 12 reusable interactive exercise types exist across the curriculum
+  const requiredExerciseTypes = [
+    "multiple_choice",
+    "matching_pairs",
+    "sequence_ordering",
+    "memory_flash",
+    "fill_in_blank",
+    "free_recall",
+    "image_association",
+    "loci_placement",
+    "mnemonic_builder",
+    "error_correction",
+    "number_encoding",
+    "reverse_decoding",
+  ];
+  for (const exType of requiredExerciseTypes) {
+    assert.ok(
+      seenStepTypes.has(exType),
+      `Curriculum Lesson Engine must include reusable exercise type '${exType}'`
+    );
+  }
+
+  // Flagship S01 Lesson 9-screen sequence verification
+  const s01 = ACADEMY_LESSONS_BY_ID["S01"];
+  assert.equal(
+    s01.steps.length,
+    7,
+    "S01 has 7 interactive step specs (including two-phase flash/recall + Lesson Complete = 9 screens)"
+  );
+  const s01Types = s01.steps.map((s) => s.type);
+  assert.ok(s01Types.includes("memory_flash"), "S01 must include memory_flash (5 objects)");
+  assert.ok(s01Types.includes("mnemonic_builder"), "S01 must include mnemonic_builder");
+  assert.ok(s01Types.includes("loci_placement"), "S01 must include loci_placement");
+
+  const flashStep = s01.steps.find((s) => s.type === "memory_flash");
+  assert.deepEqual(flashStep.flashItems, ["banana", "chiave", "gatto", "orologio", "bicicletta"]);
+
+  const lociStep = s01.steps.find((s) => s.type === "loci_placement");
+  assert.ok(
+    lociStep.scientificNote && lociStep.scientificNote.includes("illustrativo"),
+    "S01 loci placement must state that the comparison is illustrative, not a controlled experiment"
+  );
+});
+
+test("Gamification & Idempotent XP: no XP farming on refresh, 5 LOCO levels, 6 badges, and node visual states", () => {
+  const initialGam = createDefaultGamificationState();
+  assert.equal(initialGam.totalXp, 0);
+  assert.equal(LOCO_LEVELS.length, 5);
+  assert.equal(ACADEMY_BADGES.length, 6);
+
+  // 1. Awarding XP for lesson S01 completion (+10 XP)
+  const firstAward = awardIdempotentXp(
+    initialGam,
+    "xp-lesson-complete-S01",
+    XP_REWARDS.LESSON_COMPLETED,
+    "2026-11-07"
+  );
+  assert.equal(firstAward.awardedNow, 10);
+  assert.equal(firstAward.updated.totalXp, 10);
+  assert.equal(firstAward.updated.todayXp, 10);
+  assert.equal(firstAward.updated.streakDays, 1);
+
+  // 2. Refresh / duplicate call with the same eventId must award 0 XP (anti-farming)
+  const duplicateAward = awardIdempotentXp(
+    firstAward.updated,
+    "xp-lesson-complete-S01",
+    XP_REWARDS.LESSON_COMPLETED,
+    "2026-11-07"
+  );
+  assert.equal(duplicateAward.awardedNow, 0, "Duplicate eventId must never farm XP");
+  assert.equal(duplicateAward.updated.totalXp, 10);
+
+  // 3. Awarding unit checkpoint (+20 XP) reaches Daily Goal (30/20 XP)
+  const checkpointAward = awardIdempotentXp(
+    duplicateAward.updated,
+    "xp-unit-checkpoint-course-0",
+    XP_REWARDS.CHECKPOINT_PASSED,
+    "2026-11-07"
+  );
+  assert.equal(checkpointAward.awardedNow, 20);
+  assert.equal(checkpointAward.updated.totalXp, 30);
+
+  // 4. Level resolution
+  assert.equal(resolveLocoLevel(30).current.title, "Esploratore");
+  assert.equal(resolveLocoLevel(75).current.title, "Costruttore");
+  assert.equal(resolveLocoLevel(200).current.title, "Architetto");
+  assert.equal(resolveLocoLevel(380).current.title, "Mnemonista");
+  assert.equal(resolveLocoLevel(650).current.title, "Maestro dei Loci");
+
+  // 5. Path node visual states (available, in_progress, completed, premium)
+  const progMap = createDefaultAcademyProgressMap();
+  const s01Node = resolvePathNodeVisualState(ACADEMY_LESSONS_BY_ID["S01"], progMap, "free");
+  assert.equal(s01Node.state, "available");
+
+  // Step progress -> in_progress
+  progMap["S01"].currentStepIndex = 3;
+  const s01InProgress = resolvePathNodeVisualState(ACADEMY_LESSONS_BY_ID["S01"], progMap, "free");
+  assert.equal(s01InProgress.state, "in_progress");
+
+  // Provisionally passed -> completed
+  progMap["S01"].status = "provisionally_passed";
+  const s01Completed = resolvePathNodeVisualState(ACADEMY_LESSONS_BY_ID["S01"], progMap, "free");
+  assert.equal(s01Completed.state, "completed");
+
+  // Plus/Pro lesson on free tier -> premium preview state
+  const p01Premium = resolvePathNodeVisualState(ACADEMY_LESSONS_BY_ID["P01"], progMap, "free");
+  assert.equal(p01Premium.state, "premium");
+
+  // Badge unlock check ("badge-first-memory" unlocked when S01 is passed)
+  const badges = computeUnlockedBadgeIds(progMap, checkpointAward.updated, 12);
+  assert.ok(badges.includes("badge-first-memory"));
+  assert.ok(badges.includes("badge-10-loci"));
 });

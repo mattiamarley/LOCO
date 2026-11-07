@@ -83,7 +83,7 @@ export function LocoWebApp() {
   // Navigation & Core State
   const [activeTab, setActiveTab] = useState<PrimaryTab>("home");
   const [routes, setRoutes] = useState<WebAppRoute[]>(INITIAL_ROUTES);
-  const [courses, setCourses] = useState<WebAppCourse[]>(INITIAL_COURSES);
+  const [courses] = useState<WebAppCourse[]>(INITIAL_COURSES);
   const [challenges, setChallenges] = useState<WebAppChallenge[]>(INITIAL_CHALLENGES);
   const [reviewHistory, setReviewHistory] =
     useState<ReviewHistoryEntry[]>(INITIAL_REVIEW_HISTORY);
@@ -92,10 +92,6 @@ export function LocoWebApp() {
   const [editingRouteId, setEditingRouteId] = useState<string | null>(null);
   const [selectedLocusId, setSelectedLocusId] = useState<string | null>(null);
   const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
-  const [activeLessonModal, setActiveLessonModal] = useState<{
-    courseId: number;
-    lessonId: string;
-  } | null>(null);
   const [activeAcademyLessonId, setActiveAcademyLessonId] = useState<string | null>(
     null
   );
@@ -331,11 +327,6 @@ export function LocoWebApp() {
   const editingRoute = useMemo(
     () => routes.find((r) => r.id === editingRouteId) ?? null,
     [routes, editingRouteId]
-  );
-
-  const selectedCourse = useMemo(
-    () => courses.find((c) => c.id === selectedCourseId) ?? null,
-    [courses, selectedCourseId]
   );
 
   const dueReviewsCount = useMemo(
@@ -1038,7 +1029,16 @@ export function LocoWebApp() {
 
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
                     {courses.map((course) => {
-                      const doneCount = course.lessons.filter((l) => l.completed).length;
+                      const doneCount = course.lessons.filter((l) => {
+                        const acadSt = l.primaryAcademyLessonId
+                          ? academyProgress[l.primaryAcademyLessonId]?.status
+                          : undefined;
+                        return (
+                          acadSt === "provisionally_passed" ||
+                          acadSt === "mastered_after_delay" ||
+                          l.completed
+                        );
+                      }).length;
                       return (
                         <div
                           key={course.id}
@@ -1054,14 +1054,34 @@ export function LocoWebApp() {
                             {course.title}
                           </h3>
                           <div className="mt-3 flex items-center gap-3">
-                            {course.lessons.map((lesson) => (
-                              <span
-                                key={lesson.id}
-                                className={`h-[30px] w-[30px] rounded-full border border-[#613BE0] ${
-                                  lesson.completed ? "bg-[#FFD014]" : "bg-white"
-                                }`}
-                              />
-                            ))}
+                            {course.lessons.map((lesson) => {
+                              const acadSt = lesson.primaryAcademyLessonId
+                                ? academyProgress[lesson.primaryAcademyLessonId]?.status
+                                : undefined;
+                              const isDone =
+                                acadSt === "provisionally_passed" ||
+                                acadSt === "mastered_after_delay" ||
+                                lesson.completed;
+                              return (
+                                <button
+                                  key={lesson.id}
+                                  type="button"
+                                  title={`Gioca ${lesson.title} (${lesson.primaryAcademyLessonId ?? "S01"})`}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setActiveTab("corsi");
+                                    setCoursesSubView("corsi");
+                                    setSelectedCourseId(course.id);
+                                    setActiveAcademyLessonId(
+                                      lesson.primaryAcademyLessonId ?? "S01"
+                                    );
+                                  }}
+                                  className={`h-[30px] w-[30px] rounded-full border border-[#613BE0] transition hover:scale-110 ${
+                                    isDone ? "bg-[#FFD014]" : "bg-white"
+                                  }`}
+                                />
+                              );
+                            })}
                           </div>
                           <p className="mt-2.5 text-[14px] text-[#181818]">
                             Lezioni svolte &nbsp; <strong>{doneCount}/3</strong>
@@ -1366,37 +1386,19 @@ export function LocoWebApp() {
             </div>
           ) : activeTab === "corsi" ? (
             /* ============================================================
-               SCREEN 3 & 4: CORSI, CORSO SINGOLO + PALESTRA & ARENA V2
+               SCREEN 3 & 4: LOCO ACADEMY LEARNING PATH + PALESTRA & ARENA V2
                ============================================================ */
             <div className="flex flex-col gap-6">
-              {/* Sub-navigation bar to keep Figma Corsi untouched while adapting Palestra & Arena */}
+              {/* Sub-navigation bar: Percorso Academy (12 Unità) · Palestra · Arena */}
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
-                  {selectedCourse && coursesSubView === "corsi" ? (
-                    <div className="flex items-center gap-4">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedCourseId(null)}
-                        aria-label="Torna ai corsi"
-                        className="flex h-9 w-9 items-center justify-center rounded-full bg-[#613BE0] text-white"
-                      >
-                        ←
-                      </button>
-                      <h1 className="loco-display text-[36px] font-bold leading-none text-[#181818]">
-                        {selectedCourse.numberLabel}: {selectedCourse.title}
-                      </h1>
-                    </div>
-                  ) : (
-                    <>
-                      <h1 className="loco-display text-[36px] font-bold leading-none text-[#181818]">
-                        Corsi
-                      </h1>
-                      <p className="mt-2 max-w-[460px] text-[16px] leading-snug text-[#181818]">
-                        Segui i nostri corsi per imparare nuove tecniche di memorizzazione e
-                        allenare la tua mente!
-                      </p>
-                    </>
-                  )}
+                  <h1 className="loco-display text-[36px] font-bold leading-none text-[#181818]">
+                    Corsi &amp; Percorso Academy
+                  </h1>
+                  <p className="mt-2 max-w-[540px] text-[16px] leading-snug text-[#181818]">
+                    Percorso interattivo a tappe con 12 Unità, 56 microlezioni giocabili, sfide di
+                    fine unità e ripasso intelligente degli errori.
+                  </p>
                 </div>
 
                 <div className="inline-flex rounded-full bg-[#D0C4F6] p-1">
@@ -1412,7 +1414,7 @@ export function LocoWebApp() {
                         : "text-[#181818] hover:bg-white/50"
                     }`}
                   >
-                    Videocorsi (3)
+                    Percorso Academy (56)
                   </button>
                   <button
                     type="button"
@@ -1423,7 +1425,7 @@ export function LocoWebApp() {
                         : "text-[#181818] hover:bg-white/50"
                     }`}
                   >
-                    Palestra Fonetica & Carte
+                    Palestra Fonetica &amp; Carte
                   </button>
                   <button
                     type="button"
@@ -1439,142 +1441,73 @@ export function LocoWebApp() {
                 </div>
               </div>
 
-              {coursesSubView === "corsi" && !selectedCourse && (
-                /* Exact Figma Corsi.png 3-Column View */
-                <div className="mt-2 grid grid-cols-1 gap-8 md:grid-cols-3">
-                  {courses.map((course) => (
-                    <div
-                      key={course.id}
-                      className="flex flex-col justify-between rounded-[24px] p-2"
-                    >
-                      <div>
-                        <p className="text-[16px] text-[#181818]">{course.numberLabel}</p>
-                        <h2 className="loco-display text-[24px] font-bold text-[#181818]">
-                          {course.title}
-                        </h2>
-                        <p className="mt-2 text-[16px] leading-snug text-[#181818]/85">
-                          {course.description}
-                        </p>
-                      </div>
-
-                      <div className="my-6 flex h-[280px] items-center justify-center">
-                        <img
-                          src={course.illustration}
-                          alt={course.title}
-                          className="max-h-full w-auto object-contain"
-                        />
-                      </div>
-
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setSelectedCourseId(course.id)}
-                          className="rounded-[15px] bg-[#613BE0] px-10 py-2 text-[16px] font-bold text-white transition hover:opacity-95"
-                        >
-                          Inizia
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {coursesSubView === "corsi" && selectedCourse && (
-                /* Exact Figma `secondo livello corso - alias corso singolo.png` View */
-                <div className="mt-4 grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2">
-                  {selectedCourse.lessons.map((lesson) => (
-                    <div
-                      key={lesson.id}
-                      className="flex flex-col items-start gap-4 sm:flex-row sm:items-center"
-                    >
-                      <img
-                        src={lesson.illustration}
-                        alt={lesson.title}
-                        className="h-[210px] w-[210px] shrink-0 object-contain"
-                      />
-                      <div className="flex flex-col items-start">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[16px] text-[#181818]">{lesson.numberLabel}</span>
-                          {lesson.completed && (
-                            <span className="rounded-full bg-[#FFD014] px-2.5 py-0.5 text-[11px] font-bold text-[#181818]">
-                              Completata
-                            </span>
-                          )}
-                        </div>
-                        <h2 className="loco-display mt-1 text-[24px] font-bold leading-tight text-[#181818]">
-                          {lesson.title}
-                        </h2>
-                        <p className="mt-2 line-clamp-3 text-xs text-[#181818]/75">
-                          {lesson.summary}
-                        </p>
-                        <div className="mt-4 flex flex-wrap gap-2">
-                          <button
-                            type="button"
-                            onClick={() =>
-                              setActiveLessonModal({
-                                courseId: selectedCourse.id,
-                                lessonId: lesson.id,
-                              })
-                            }
-                            className="rounded-[15px] bg-[#613BE0] px-7 py-2 text-[16px] font-bold text-white transition hover:opacity-95"
-                          >
-                            Guarda ora
-                          </button>
-                          {lesson.primaryAcademyLessonId && (
-                            <button
-                              type="button"
-                              onClick={() =>
-                                setActiveAcademyLessonId(
-                                  lesson.primaryAcademyLessonId ?? "S01"
-                                )
-                              }
-                              className="rounded-[15px] border-2 border-[#613BE0] bg-white px-4 py-2 text-xs font-extrabold text-[#613BE0] transition hover:bg-[#D0C4F6]/40"
-                            >
-                              Apri in Academy ({lesson.primaryAcademyLessonId})
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
               {coursesSubView === "corsi" && (
-                <LocoAcademySection
-                  progressMap={academyProgress}
-                  onUpdateLessonProgress={handleUpdateAcademyLessonProgress}
-                  activeLessonId={activeAcademyLessonId}
-                  onSelectLesson={setActiveAcademyLessonId}
-                  routes={routes}
-                  dueReviewsCount={dueReviewsCount}
-                  adaptiveRecommendations={adaptiveAcademyRecommendations}
-                  onOpenSceneForLesson={() => {
-                    setActiveAcademyLessonId(null);
-                    setActiveTab("recappete");
-                    openRouteInScene(routes[0]?.id ?? "route-tesi");
-                  }}
-                  onStartBlindRecallFromAcademy={() => {
-                    setActiveAcademyLessonId(null);
-                    const targetRoute = routes[0];
-                    if (targetRoute) {
-                      setNowReferenceMs(Date.now());
-                      setReviewSession({
-                        routeId: targetRoute.id,
-                        locusIndex: 0,
-                        userAttemptText: "",
-                        hintCount: 0,
-                        viewedAnswerBeforeAttempt: false,
-                        answerRevealed: false,
-                        algorithmVersion: "fsrs-7",
-                        lastResultBanner: null,
-                      });
+                <>
+                  {/* Quick Course Focus Bar (connects Home's 3 core courses with the 12-Unit Path) */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedCourseId(null)}
+                      className={`rounded-full px-4 py-1.5 text-xs font-extrabold transition ${
+                        selectedCourseId === null
+                          ? "bg-[#2513A4] text-[#E9FF60]"
+                          : "bg-[#D0C4F6] text-[#181818] hover:bg-[#D0C4F6]/80"
+                      }`}
+                    >
+                      🗺️ Tutte le 12 Unità (Percorso Completo)
+                    </button>
+                    {courses.map((course) => (
+                      <button
+                        key={course.id}
+                        type="button"
+                        onClick={() => setSelectedCourseId(course.id)}
+                        className={`rounded-full px-4 py-1.5 text-xs font-extrabold transition ${
+                          selectedCourseId === course.id
+                            ? "bg-[#FFD014] text-[#181818] ring-2 ring-[#2513A4]"
+                            : "bg-[#D0C4F6]/70 text-[#181818] hover:bg-[#D0C4F6]"
+                        }`}
+                      >
+                        {course.numberLabel}: {course.title}
+                      </button>
+                    ))}
+                  </div>
+
+                  <LocoAcademySection
+                    progressMap={academyProgress}
+                    onUpdateLessonProgress={handleUpdateAcademyLessonProgress}
+                    activeLessonId={activeAcademyLessonId}
+                    onSelectLesson={setActiveAcademyLessonId}
+                    routes={routes}
+                    dueReviewsCount={dueReviewsCount}
+                    adaptiveRecommendations={adaptiveAcademyRecommendations}
+                    focusedCourseNumber={selectedCourseId}
+                    onOpenSceneForLesson={() => {
+                      setActiveAcademyLessonId(null);
+                      setActiveTab("recappete");
+                      openRouteInScene(routes[0]?.id ?? "route-tesi");
+                    }}
+                    onStartBlindRecallFromAcademy={() => {
+                      setActiveAcademyLessonId(null);
+                      const targetRoute = routes[0];
+                      if (targetRoute) {
+                        setNowReferenceMs(Date.now());
+                        setReviewSession({
+                          routeId: targetRoute.id,
+                          locusIndex: 0,
+                          userAttemptText: "",
+                          hintCount: 0,
+                          viewedAnswerBeforeAttempt: false,
+                          answerRevealed: false,
+                          algorithmVersion: "fsrs-7",
+                          lastResultBanner: null,
+                        });
+                      }
+                    }}
+                    onCreateOnboardingRouteFromAcademy={
+                      handleCreateOnboardingRouteFromAcademy
                     }
-                  }}
-                  onCreateOnboardingRouteFromAcademy={
-                    handleCreateOnboardingRouteFromAcademy
-                  }
-                />
+                  />
+                </>
               )}
 
               {coursesSubView === "palestra" && (
@@ -2748,102 +2681,6 @@ export function LocoWebApp() {
                     </div>
                   </div>
                 )}
-              </div>
-            </div>
-          );
-        })()}
-
-      {/* =================================================================
-          LESSON INTERACTIVE MODAL ("Guarda ora" from Corso Singolo)
-          ================================================================= */}
-      {activeLessonModal &&
-        (() => {
-          const course = courses.find((c) => c.id === activeLessonModal.courseId);
-          const lesson = course?.lessons.find((l) => l.id === activeLessonModal.lessonId);
-          if (!course || !lesson) return null;
-
-          return (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#181818]/65 p-4">
-              <div className="relative w-full max-w-[680px] rounded-[25px] bg-white p-6 shadow-2xl md:p-8">
-                <div className="flex items-center justify-between">
-                  <span className="rounded-full bg-[#D0C4F6] px-3.5 py-1 text-xs font-bold text-[#613BE0]">
-                    {course.numberLabel} • {lesson.numberLabel}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setActiveLessonModal(null)}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-[#613BE0] text-white"
-                  >
-                    ✕
-                  </button>
-                </div>
-
-                <div className="mt-4 flex flex-col items-center gap-6 sm:flex-row">
-                  <img
-                    src={lesson.illustration}
-                    alt={lesson.title}
-                    className="h-[160px] w-[160px] object-contain"
-                  />
-                  <div>
-                    <h2 className="loco-display text-[28px] font-bold leading-tight text-[#181818]">
-                      {lesson.title}
-                    </h2>
-                    <p className="mt-2 text-sm leading-relaxed text-[#181818]/85">
-                      {lesson.summary}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-5 rounded-[18px] bg-[#D0C4F6] p-4">
-                  <p className="text-xs font-bold uppercase text-[#613BE0]">
-                    Laboratorio Pratico Immediato
-                  </p>
-                  <p className="mt-1 text-sm font-medium text-[#181818]">{lesson.exercise}</p>
-                </div>
-
-                <div className="mt-5 flex flex-wrap justify-end gap-3">
-                  {lesson.primaryAcademyLessonId && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        const targetAcademyId =
-                          lesson.primaryAcademyLessonId ?? "S01";
-                        setActiveLessonModal(null);
-                        setActiveAcademyLessonId(targetAcademyId);
-                      }}
-                      className="rounded-[15px] border-2 border-[#613BE0] bg-[#FFD014] px-6 py-2.5 text-sm font-extrabold text-[#181818]"
-                    >
-                      Apri Modulo Interattivo Academy (
-                      {lesson.mappedAcademyLessonIds?.join(" + ") ??
-                        lesson.primaryAcademyLessonId}
-                      ) →
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setCourses((prev) =>
-                        prev.map((c) =>
-                          c.id === course.id
-                            ? {
-                                ...c,
-                                lessons: c.lessons.map((l) =>
-                                  l.id === lesson.id ? { ...l, completed: true } : l
-                                ),
-                              }
-                            : c
-                        )
-                      );
-                      setAcademyProgress((prev) =>
-                        migrateLegacyCourseProgress([lesson.id], prev)
-                      );
-                      setActiveLessonModal(null);
-                    }}
-                    className="rounded-[15px] bg-[#613BE0] px-7 py-2.5 text-sm font-bold text-white"
-                  >
-                    ✓ Segna lettura legacy (`reading`)
-                  </button>
-                </div>
               </div>
             </div>
           );
