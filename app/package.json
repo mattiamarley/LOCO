@@ -12,6 +12,7 @@
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "dev:local": "node server/dev.mjs",
     "test:local": "node --test server/tests/*.test.mjs prototype/tests/*.test.mjs",
+    "test:academy-content": "python3 server/data/academy-v2/10_CONTENT_TESTS.py && python3 server/data/academy-v2/14_FIXTURE_TESTS.py",
     "dev:next": "node scripts/prepare-marketing-assets.mjs && next dev",
     "build:vercel": "node scripts/prepare-marketing-assets.mjs && next build",
     "check:marketing": "node scripts/check-marketing.mjs"

@@ -276,6 +276,13 @@ export function AcademyCoursePath({
                     </p>
                   )}
 
+                  {prog?.status === "practice_done" &&
+                    prog?.lastVerifiedBy === "learner_self_check" && (
+                      <p className="mt-1.5 rounded-[10px] bg-[#D2C4F5]/35 px-2.5 py-1 text-[11px] font-semibold text-[#613BE0]">
+                        Pratica completata con autovalutazione guidata (skill_practiced)
+                      </p>
+                    )}
+
                   {missingPrerequisites.length > 0 && (
                     <p className="mt-2 rounded-[12px] bg-[#D2C4F5]/30 px-3 py-2 text-xs text-[#181818]/80">
                       Consigliato prima:{" "}

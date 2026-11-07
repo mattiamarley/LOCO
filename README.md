@@ -75,7 +75,7 @@ Store secrets only in the deployment environment, never in tracked source, examp
 
 ## Working with AI coding agents
 
-Start with [AGENTS.md](AGENTS.md). Brand and UI/UX guidelines: [docs/BRAND-UX-GUIDELINES.md](docs/BRAND-UX-GUIDELINES.md); product outcomes: [docs/PRODUCT.md](docs/PRODUCT.md); actual system boundaries: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); learning rules: [docs/LEARNING.md](docs/LEARNING.md); asset handling: [docs/ASSETS.md](docs/ASSETS.md); established decisions: [docs/DECISIONS.md](docs/DECISIONS.md); next steps: [docs/ROADMAP.md](docs/ROADMAP.md).
+Start with [AGENTS.md](AGENTS.md). Brand and UI/UX guidelines: [docs/BRAND-UX-GUIDELINES.md](docs/BRAND-UX-GUIDELINES.md); Academy 2.0 pedagogy: [docs/ACADEMY_PEDAGOGY.md](docs/ACADEMY_PEDAGOGY.md); Academy game engine & grading: [docs/ACADEMY_GAME_ENGINE.md](docs/ACADEMY_GAME_ENGINE.md); product outcomes: [docs/PRODUCT.md](docs/PRODUCT.md); actual system boundaries: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md); learning rules: [docs/LEARNING.md](docs/LEARNING.md); asset handling: [docs/ASSETS.md](docs/ASSETS.md); established decisions: [docs/DECISIONS.md](docs/DECISIONS.md); next steps: [docs/ROADMAP.md](docs/ROADMAP.md).
 
 **Design source:** [LOCO — loco nuovo in Figma](https://www.figma.com/design/FeZKyO6xCZtjmQ1uEef4kx/loco-nuovo?node-id=310-887). The owner's definitive *Portale / Area riservata* is the **bottom-right group**, not all exported frames. The owner will supply a hand-curated set of visual assets separately.
 

@@ -13,7 +13,8 @@ Develop LOCO into a responsive, reliable learning app built around **verified kn
 3. `docs/ROADMAP.md` — status by maturity, and high-priority integration gaps.
 4. `docs/DECISIONS.md` — approved UX and architecture boundaries.
 5. `docs/BRAND-UX-GUIDELINES.md` — authoritative brand palette, typography, original navigation, course catalog, Duolingo-like learning path, and focused lesson player rules.
-6. `docs/ASSETS.md` when touching media; `docs/LEARNING.md` when touching teaching, recall, metrics, mnemonics or SRS.
+6. `docs/ACADEMY_PEDAGOGY.md` & `docs/ACADEMY_GAME_ENGINE.md` — canonical 8-stage lesson architecture, honest scoring rules, and 56-lesson grading matrix.
+7. `docs/ASSETS.md` when touching media; `docs/LEARNING.md` when touching teaching, recall, metrics, mnemonics or SRS.
 
 Before any UI or visual implementation, read `docs/BRAND-UX-GUIDELINES.md`. Preserve the original LOCO marketing visual identity and five-destination application navigation. Do not introduce new dominant colors, unrelated illustration styles or unapproved navigation systems.
 

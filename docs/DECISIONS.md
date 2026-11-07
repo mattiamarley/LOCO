@@ -27,6 +27,10 @@
 | D19 | Gamification and analytics must not overwhelm the learning journey | Keep XP, levels, streaks, and badges functional in the engine, but avoid dashboard clutter on `I nostri corsi`; detailed stats live in `Profilo` |
 | D20 | New screens must reuse original LOCO visual language | Use `Baloo 2`, `Inter Tight`, and approved flat 2D LOCO artwork (`docs/BRAND-UX-GUIDELINES.md`) |
 | D21 | Figma is unavailable to the coding agent; provided specifications and approved assets are authoritative | Follow `docs/BRAND-UX-GUIDELINES.md` and existing curated/marketing assets without blocking on Figma access |
+| D22 | LOCO Academy 2.0 8-Stage Pedagogical Architecture | Every lesson executes 8 distinct stages: hook, explanation, expert walkthrough, demonstration check, guided practice (Set A), independent challenge (Set B), diagnostic feedback, and reflection/next (`docs/ACADEMY_PEDAGOGY.md`) |
+| D23 | Honest Scoring & Mastery Invariant | Solutions remain hidden before submit (`blindBeforeReveal: true`). Revealing solutions or using hints (`hintsUsed > 0`) caps attempts as `assisted`, never granting autonomous mastery. In builder tasks, scene creation $\neq$ recall: Phase 2 blind retrieval is mandatory |
+| D24 | Rubric Tasks Practice Crediting | Open-ended rubric tasks (`structured_plus_rubric`) grant `practice_done` / `skill_practiced`, never automatic mastery. Merely providing non-empty or copied text is rejected (`docs/ACADEMY_GAME_ENGINE.md`) |
+| D25 | Major System `major-it-v1` Standard | Italian phonetic conversion strictly enforces `major-it-v1`, with verified phoneme mappings, phonetic zero preservation, and unambiguous consonant encoding across all numeric lessons |
 
 ## Current engineering realities to preserve
 

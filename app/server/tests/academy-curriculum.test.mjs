@@ -22,9 +22,22 @@ import {
   migrateLegacyCourseProgress,
   reconcileAcademyProgressVersion,
   recordAcademyCheckpointAttempt,
+  recordAcademyV2Attempt,
   resolveLocoLevel,
   resolvePathNodeVisualState,
 } from "../../components/webapp/loco-academy-curriculum.ts";
+import {
+  ACADEMY_V2_MISSIONS,
+  ACADEMY_V2_SCHEMA_VERSION,
+  evaluateBuilderThenBlindRecallAttempt,
+  evaluateLociRouteAttempt,
+  evaluateMultiCaseClassificationAttempt,
+  evaluateOrderedWordsAttempt,
+  evaluatePairsBlindRecallAttempt,
+  evaluatePhoneticDecodeWordsAttempt,
+  evaluatePhoneticWordForNumbersAttempt,
+  evaluateStructuredPlusRubricAttempt,
+} from "../../components/webapp/loco-academy-engine-v2.ts";
 import { MAJOR_SYSTEM_TABLE, INITIAL_COURSES } from "../../components/webapp/loco-webapp-data.ts";
 
 test("LOCO Academy Catalog: exact 12 courses, 56 lessons, unique IDs, and 32/20/4 tier split", () => {
@@ -262,16 +275,47 @@ test("Fallback transparency for unimplemented AI/Street View/3D scan and adaptiv
   assert.equal(evalN04.isCorrect, true);
 });
 
-test("Duolingo-like Lesson Engine: 5-9 interactive steps per lesson, flagship S01 sequence, and all 12 exercise types", () => {
-  const seenStepTypes = new Set();
+test("LOCO Academy 2.0 Engine: 8 canonical stages per lesson, unique game IDs, and curated assets", () => {
+  const canonicalStages = [
+    "hook",
+    "explanation",
+    "expert_walkthrough",
+    "demonstration",
+    "guided_practice",
+    "independent_challenge",
+    "diagnostic_feedback",
+    "reflection_and_next",
+  ];
+
+  assert.equal(ENRICHED_ACADEMY_LESSONS.length, 56);
 
   for (const lesson of ENRICHED_ACADEMY_LESSONS) {
-    assert.ok(
-      Array.isArray(lesson.steps) && lesson.steps.length >= 6 && lesson.steps.length <= 9,
-      `Lesson ${lesson.id} must have 6-9 playable steps (got ${lesson.steps?.length})`
+    assert.equal(
+      lesson.contentVersion,
+      ACADEMY_V2_SCHEMA_VERSION,
+      `Lesson ${lesson.id} must be on version ${ACADEMY_V2_SCHEMA_VERSION}`
     );
+    assert.equal(
+      lesson.steps.length,
+      8,
+      `Lesson ${lesson.id} must have exactly 8 canonical steps`
+    );
+
+    const stepTypes = lesson.steps.map((s) => s.type);
+    assert.deepEqual(
+      stepTypes,
+      canonicalStages,
+      `Lesson ${lesson.id} steps must match the 8 canonical stages in order`
+    );
+
+    assert.ok(lesson.v2Mission, `Lesson ${lesson.id} must have v2Mission`);
+    assert.equal(
+      lesson.v2Mission.gameId,
+      `${lesson.id}-lab-v2`,
+      `Lesson ${lesson.id} must have unique gameId ${lesson.id}-lab-v2`
+    );
+
     for (const step of lesson.steps) {
-      seenStepTypes.add(step.type);
       assert.ok(step.stepId, `Step in ${lesson.id} must have stepId`);
       assert.ok(step.title, `Step in ${lesson.id} must have title`);
       assert.ok(
@@ -281,48 +325,272 @@ test("Duolingo-like Lesson Engine: 5-9 interactive steps per lesson, flagship S0
     }
   }
 
-  // Verify all 12 reusable interactive exercise types exist across the curriculum
-  const requiredExerciseTypes = [
-    "multiple_choice",
-    "matching_pairs",
-    "sequence_ordering",
-    "memory_flash",
-    "fill_in_blank",
-    "free_recall",
-    "image_association",
-    "loci_placement",
-    "mnemonic_builder",
-    "error_correction",
-    "number_encoding",
-    "reverse_decoding",
+  // Verify all widget archetypes are represented across the 56 missions
+  const seenArchetypes = new Set(
+    ENRICHED_ACADEMY_LESSONS.map((l) => l.v2Mission.widgetKind)
+  );
+  const expectedArchetypes = [
+    "ordered_flash_recall",
+    "unordered_flash_recall",
+    "loci_route_and_blind_order",
+    "builder_then_blind_recall",
+    "pairs_blind_recall",
+    "missing_link_diagnosis",
+    "phonetic_word_for_numbers",
+    "phonetic_decode_words",
+    "phonetic_year_blocks",
+    "pao_scene_codec",
+    "long_number_chunks",
+    "multi_case_classification",
+    "numeric_transfer_lab",
+    "metrics_and_trials_lab",
+    "cards_and_names_dual_lab",
+    "source_fact_check_lab",
+    "structured_plus_rubric",
   ];
-  for (const exType of requiredExerciseTypes) {
+  for (const arch of expectedArchetypes) {
     assert.ok(
-      seenStepTypes.has(exType),
-      `Curriculum Lesson Engine must include reusable exercise type '${exType}'`
+      seenArchetypes.has(arch),
+      `Academy 2.0 must include widget archetype '${arch}'`
     );
   }
+});
 
-  // Flagship S01 Lesson 9-screen sequence verification
-  const s01 = ACADEMY_LESSONS_BY_ID["S01"];
+test("Academy 2.0 Honest Scoring & Evaluators: S01–S06 end-to-end, builder != recall, rubric honesty", () => {
+  // 1. S01: Ordered words recall on Set B ("faro", "miele", "aquila", "tamburo", "sciarpa", "razzo")
+  const s01Spec = ACADEMY_V2_MISSIONS["S01"].orderedFlashSpec;
+  const s01Perfect = evaluateOrderedWordsAttempt({
+    lessonId: "S01",
+    expectedWords: s01Spec.targetWords,
+    submittedWords: ["faro", "miele", "aquila", "tamburo", "sciarpa", "razzo"],
+    minOrderedPassCount: s01Spec.minOrderedPassCount,
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(s01Perfect.correct, true);
+  assert.equal(s01Perfect.autonomousMasteryEligible, true);
+  assert.equal(s01Perfect.verifiedBy, "deterministic");
+
+  // Revealing answer before attempt -> autonomous mastery ineligible
+  const s01Revealed = evaluateOrderedWordsAttempt({
+    lessonId: "S01",
+    expectedWords: s01Spec.targetWords,
+    submittedWords: ["faro", "miele", "aquila", "tamburo", "sciarpa", "razzo"],
+    minOrderedPassCount: s01Spec.minOrderedPassCount,
+    submittedBeforeReveal: false,
+    hintsUsed: 0,
+  });
+  assert.equal(s01Revealed.autonomousMasteryEligible, false);
+
+  // Inversion detection: swapping pairs so exact matches drop below threshold
+  const s01Inverted = evaluateOrderedWordsAttempt({
+    lessonId: "S01",
+    expectedWords: s01Spec.targetWords,
+    submittedWords: ["miele", "faro", "tamburo", "aquila", "razzo", "sciarpa"],
+    minOrderedPassCount: s01Spec.minOrderedPassCount,
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(s01Inverted.correct, false);
+  assert.equal(s01Inverted.errorCategory, "order_omission_inversion");
+
+  // 2. S03: Loci Route selection and blind order verification
+  const s03Spec = ACADEMY_V2_MISSIONS["S03"].lociRouteSpec;
+  const s03Attempt = evaluateLociRouteAttempt({
+    lessonId: "S03",
+    selectedLocusIdsInOrder: [
+      "ingresso",
+      "specchio",
+      "lavandino",
+      "tappeto",
+      "terrazzo",
+    ],
+    blindReconstructedOrderIds: [
+      "ingresso",
+      "specchio",
+      "lavandino",
+      "tappeto",
+      "terrazzo",
+    ],
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(s03Attempt.correct, true);
+  assert.equal(s03Attempt.autonomousMasteryEligible, true);
+
+  // S03 rejecting duplicate / ambiguous candidate ("sedia-a")
+  const s03BadLocus = evaluateLociRouteAttempt({
+    lessonId: "S03",
+    selectedLocusIdsInOrder: [
+      "ingresso",
+      "specchio",
+      "sedia-a",
+      "tappeto",
+      "terrazzo",
+    ],
+    blindReconstructedOrderIds: [
+      "ingresso",
+      "specchio",
+      "sedia-a",
+      "tappeto",
+      "terrazzo",
+    ],
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(s03BadLocus.correct, false);
+
+  // 3. S04: Builder != Recall! Building scenes alone without blind recall must FAIL
+  const s04AttemptBuilderOnly = evaluateBuilderThenBlindRecallAttempt({
+    lessonId: "S04",
+    builtScenesByCue: {
+      frigorifero: { actionVerb: "fischia rumorosamente", sensoryDetail: "suono acuto" },
+      tappeto: { actionVerb: "ruota e gira", sensoryDetail: "ago magnetico" },
+      finestra: { actionVerb: "si chiude con cerniera", sensoryDetail: "denti metallici" },
+    },
+    recalledTargetByCue: {
+      frigorifero: "", // not recalled
+      tappeto: "",
+      finestra: "",
+    },
+    rubricCheckedIndices: [0, 1, 2, 3],
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
   assert.equal(
-    s01.steps.length,
-    7,
-    "S01 has 7 interactive step specs (including two-phase flash/recall + Lesson Complete = 9 screens)"
+    s04AttemptBuilderOnly.correct,
+    false,
+    "Completing builder without blind recall must NEVER pass"
   );
-  const s01Types = s01.steps.map((s) => s.type);
-  assert.ok(s01Types.includes("memory_flash"), "S01 must include memory_flash (5 objects)");
-  assert.ok(s01Types.includes("mnemonic_builder"), "S01 must include mnemonic_builder");
-  assert.ok(s01Types.includes("loci_placement"), "S01 must include loci_placement");
 
-  const flashStep = s01.steps.find((s) => s.type === "memory_flash");
-  assert.deepEqual(flashStep.flashItems, ["banana", "chiave", "gatto", "orologio", "bicicletta"]);
+  const s04FullSuccess = evaluateBuilderThenBlindRecallAttempt({
+    lessonId: "S04",
+    builtScenesByCue: {
+      frigorifero: { actionVerb: "fischia rumorosamente", sensoryDetail: "suono acuto" },
+      tappeto: { actionVerb: "ruota e gira", sensoryDetail: "ago magnetico" },
+      finestra: { actionVerb: "si chiude con cerniera", sensoryDetail: "denti metallici" },
+    },
+    recalledTargetByCue: {
+      frigorifero: "fischietto",
+      tappeto: "bussola",
+      finestra: "cerniera",
+    },
+    rubricCheckedIndices: [0, 1, 2, 3],
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(s04FullSuccess.correct, true);
+  assert.equal(s04FullSuccess.autonomousMasteryEligible, true);
 
-  const lociStep = s01.steps.find((s) => s.type === "loci_placement");
-  assert.ok(
-    lociStep.scientificNote && lociStep.scientificNote.includes("illustrativo"),
-    "S01 loci placement must state that the comparison is illustrative, not a controlled experiment"
+  // 4. S05: Pairs Blind Recall
+  const s05Spec = ACADEMY_V2_MISSIONS["S05"].pairsRecallSpec;
+  const s05Success = evaluatePairsBlindRecallAttempt({
+    lessonId: "S05",
+    expectedPairs: s05Spec.studyPairs.map((p) => ({
+      cue: p.cue,
+      target: p.target,
+    })),
+    submittedByCue: {
+      insegna: "balena",
+      finestra: "bussola",
+      pianoforte: "zucca",
+      fontana: "satellite",
+    },
+    minCorrectCount: s05Spec.minCorrectCount,
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(s05Success.correct, true);
+  assert.equal(s05Success.autonomousMasteryEligible, true);
+
+  // 5. S06: Structured plus rubric (spacing & delayed testing verification)
+  const s06Success = evaluateStructuredPlusRubricAttempt({
+    lessonId: "S06",
+    structuredAnswers: {
+      "s06-ic-1": "prov",
+      "s06-ic-2": "assist",
+    },
+    openResponseText:
+      "Oggi radice e marea sono provisionally_passed perché corrette senza aiuti. Prisma ed estuario sono assisted perché hanno richiesto un indizio. Domani si verifica prima la tenuta degli item assisted.",
+    rubricCheckedIndices: [0, 1, 2, 3],
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(s06Success.scoreRatio, 1);
+  assert.equal(s06Success.verifiedBy, "learner_self_check");
+  assert.equal(
+    s06Success.autonomousMasteryEligible,
+    false,
+    "S06 rubric self-check awards practice credit, not automatic mastery"
   );
+
+  // Multi-case classification evaluator test (T04 error taxonomy)
+  const t04Success = evaluateMultiCaseClassificationAttempt({
+    lessonId: "T04",
+    selectedCategoryByCaseId: {
+      c1: "omissione",
+      c2: "inversione",
+      c3: "interferenza",
+      c4: "misconception",
+    },
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(t04Success.correct, true);
+  assert.equal(t04Success.autonomousMasteryEligible, true);
+
+  // 6. Open rubric tasks (`nonEmpty = correct` is strictly forbidden)
+  const rubricAttempt = evaluateStructuredPlusRubricAttempt({
+    lessonId: "S02",
+    structuredAnswers: {
+      "s02-ic-1": "fact",
+      "s02-ic-2": "causal",
+    },
+    openResponseText:
+      "Per verificare se conosco la definizione formulo una domanda di richiamo attivo senza guardare il foglio. In questo modo elimino l'illusione di competenza.",
+    rubricCheckedIndices: [0, 1, 2, 3],
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(rubricAttempt.verifiedBy, "learner_self_check");
+  assert.equal(
+    rubricAttempt.autonomousMasteryEligible,
+    false,
+    "Open rubric tasks must grant practice credit, never automatic mastery"
+  );
+  assert.equal(rubricAttempt.scoreRatio, 1);
+
+  // Reject verbatim copying or non-substantive text
+  const rubricCopied = evaluateStructuredPlusRubricAttempt({
+    lessonId: "S02",
+    structuredAnswers: {
+      "s02-ic-1": "fact",
+      "s02-ic-2": "causal",
+    },
+    openResponseText: "test", // too short
+    rubricCheckedIndices: [],
+    submittedBeforeReveal: true,
+    hintsUsed: 0,
+  });
+  assert.equal(rubricCopied.correct, false);
+});
+
+test("Major System `major-it-v1` verified lexicon additions (zucchero, teca, rupe, tubo, etc.)", () => {
+  assert.equal(encodeItalianWordToMajorDigits("zucchero"), "074");
+  assert.equal(encodeItalianWordToMajorDigits("teca"), "17");
+  assert.equal(encodeItalianWordToMajorDigits("rupe"), "49");
+  assert.equal(encodeItalianWordToMajorDigits("tubo"), "19");
+  assert.equal(encodeItalianWordToMajorDigits("raso"), "40");
+  assert.equal(encodeItalianWordToMajorDigits("tiro"), "14");
+  assert.equal(encodeItalianWordToMajorDigits("fumo"), "83");
+  assert.equal(encodeItalianWordToMajorDigits("tana"), "12");
+  assert.equal(encodeItalianWordToMajorDigits("nero"), "24");
+  assert.equal(encodeItalianWordToMajorDigits("lupo"), "59");
+  assert.equal(encodeItalianWordToMajorDigits("gemma"), "63");
+  assert.equal(encodeItalianWordToMajorDigits("faccia"), "86");
+  assert.equal(encodeItalianWordToMajorDigits("botte"), "91");
+  assert.equal(encodeItalianWordToMajorDigits("fiaba"), "89");
+  assert.equal(encodeItalianWordToMajorDigits("cippo"), "69");
 });
 
 test("Gamification & Idempotent XP: no XP farming on refresh, 5 LOCO levels, 6 badges, and node visual states", () => {

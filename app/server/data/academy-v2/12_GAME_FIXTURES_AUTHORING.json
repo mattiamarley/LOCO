@@ -1,0 +1,1348 @@
+{
+  "schemaVersion": "2.0",
+  "fixtures": {
+    "S01": {
+      "id": "S01-lab-v2",
+      "lessonId": "S01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "ordered_words",
+        "exposure": [
+          "faro",
+          "miele",
+          "aquila",
+          "tamburo",
+          "sciarpa",
+          "razzo"
+        ],
+        "answer": [
+          "faro",
+          "miele",
+          "aquila",
+          "tamburo",
+          "sciarpa",
+          "razzo"
+        ],
+        "hideAfterSeconds": 12
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "S02": {
+      "id": "S02-lab-v2",
+      "lessonId": "S02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Testo: «L’acqua evapora quando le molecole passano dallo stato liquido a quello gassoso; il calore favorisce il processo».",
+        "requestedOutput": "Produci una domanda fattuale, una causale e una variazione di contesto; rubrica: specificità, correttezza, verificabilità.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "S03": {
+      "id": "S03-lab-v2",
+      "lessonId": "S03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Stanza nuova: ingresso, specchio, lavandino, tappeto, terrazzo; quattro distrattori: due sedie identiche, due cuscini uguali.",
+        "requestedOutput": "Crea cinque ancore stabili; prova avanti, indietro e una domanda casuale senza etichette.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "S04": {
+      "id": "S04-lab-v2",
+      "lessonId": "S04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Parole target: fischietto, bussola, cerniera; loci: frigorifero, tappeto, finestra.",
+        "requestedOutput": "Costruisci tre scene d’azione; dopo una pausa recupera la parola esatta dal solo luogo.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "S05": {
+      "id": "S05-lab-v2",
+      "lessonId": "S05",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "pairs",
+        "pairs": [
+          [
+            "insegna",
+            "balena"
+          ],
+          [
+            "finestra",
+            "bussola"
+          ],
+          [
+            "pianoforte",
+            "zucca"
+          ],
+          [
+            "fontana",
+            "satellite"
+          ]
+        ],
+        "answer": {
+          "insegna": "balena",
+          "finestra": "bussola",
+          "pianoforte": "zucca",
+          "fontana": "satellite"
+        }
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "S06": {
+      "id": "S06-lab-v2",
+      "lessonId": "S06",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Quattro item imparati oggi: radice, marea, prisma, estuario. Due risposte perfette oggi, due con hint.",
+        "requestedOutput": "Distingui padronanza provvisoria, review dovuto e verifiche a distanza; simula giorni virtuali senza attribuire mastery reale.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "L01": {
+      "id": "L01-lab-v2",
+      "lessonId": "L01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Percorso A: otto fotografie di castelli sconosciuti. Percorso B: otto ancore distinte di un tragitto quotidiano.",
+        "requestedOutput": "Spiega la scelta e ricostruisci otto fermate di un percorso tuo.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "L02": {
+      "id": "L02-lab-v2",
+      "lessonId": "L02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Rota originale: sedia rossa A, sedia rossa B, tavolo, sedia rossa C, lavello, finestra.",
+        "requestedOutput": "Sostituisci almeno tre punti ambigui e prova accesso casuale senza etichette.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "L03": {
+      "id": "L03-lab-v2",
+      "lessonId": "L03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "ordered_words",
+        "exposure": [
+          "portone",
+          "specchio",
+          "cucina",
+          "balcone",
+          "camera"
+        ],
+        "answer": [
+          "portone",
+          "specchio",
+          "cucina",
+          "balcone",
+          "camera"
+        ],
+        "hideAfterSeconds": 8
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "L04": {
+      "id": "L04-lab-v2",
+      "lessonId": "L04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Fonte: «Il barometro misura la pressione atmosferica». Locus: armadio.",
+        "requestedOutput": "Crea un cue per «pressione atmosferica» e dimostra che non richiama soltanto «barometro».",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "L05": {
+      "id": "L05-lab-v2",
+      "lessonId": "L05",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Fatto: «L’osmosi è movimento del solvente attraverso una membrana semipermeabile». Cue A: semplice bicchiere blu; cue B: membrana che lascia passare acqua ma trattiene palline.",
+        "requestedOutput": "Valuta decodificabilità, poi crea un cue alternativo che conservi la definizione.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "L06": {
+      "id": "L06-lab-v2",
+      "lessonId": "L06",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "ordered_words",
+        "exposure": [
+          "pianeta",
+          "imbarcazione",
+          "quercia",
+          "lanterna",
+          "calamita",
+          "origami",
+          "cigno",
+          "cono",
+          "bicicletta",
+          "faro"
+        ],
+        "answer": [
+          "pianeta",
+          "imbarcazione",
+          "quercia",
+          "lanterna",
+          "calamita",
+          "origami",
+          "cigno",
+          "cono",
+          "bicicletta",
+          "faro"
+        ],
+        "hideAfterSeconds": 25
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "L07": {
+      "id": "L07-lab-v2",
+      "lessonId": "L07",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Palazzo predisposto con 9 voci da un set segreto di botanica; mostra solo numeri 7, 2, 8, 4 e 9.",
+        "requestedOutput": "Recupera il target per posizione senza attraversare tutti i primi loci.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "K01": {
+      "id": "K01-lab-v2",
+      "lessonId": "K01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "ordered_words",
+        "exposure": [
+          "corno",
+          "sapone",
+          "telescopio",
+          "valigia",
+          "ananas",
+          "tenda"
+        ],
+        "answer": [
+          "corno",
+          "sapone",
+          "telescopio",
+          "valigia",
+          "ananas",
+          "tenda"
+        ],
+        "hideAfterSeconds": 20
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "K02": {
+      "id": "K02-lab-v2",
+      "lessonId": "K02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Catena incompleta: barca→pinguino→lampadina→chitarra→cuscino. Il legame lampadina→chitarra è descritto solo come «sono vicini».",
+        "requestedOutput": "Proponi un’azione specifica che leghi i due oggetti, poi recupera tutta la catena.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "K03": {
+      "id": "K03-lab-v2",
+      "lessonId": "K03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Tre incarichi: ricordare 4 cose da portare, 15 definizioni da interrogare fuori ordine, 7 fasi di un processo cronologico.",
+        "requestedOutput": "Scegli e giustifica Link, Loci, mappa causale o combinazione; trasferisci a un quarto caso.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "K04": {
+      "id": "K04-lab-v2",
+      "lessonId": "K04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "missing_link",
+        "exposure": [
+          "martello",
+          "sirena",
+          "sedia",
+          "mongolfiera",
+          "mappa",
+          "asino",
+          "violino"
+        ],
+        "answer": {
+          "omitted": "mongolfiera",
+          "brokenAfter": "sedia"
+        }
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "N01": {
+      "id": "N01-lab-v2",
+      "lessonId": "N01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "phonetic_numbers",
+        "numbers": [
+          "48",
+          "92",
+          "70",
+          "52",
+          "37"
+        ],
+        "examples": {
+          "48": "riva",
+          "92": "pane",
+          "70": "casa",
+          "52": "luna",
+          "37": "mago"
+        },
+        "answerStrategy": "major-it-v1 accept any phoneme-valid word"
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "N02": {
+      "id": "N02-lab-v2",
+      "lessonId": "N02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "phonetic_decode",
+        "words": [
+          "casa",
+          "ciao",
+          "scena",
+          "gnomo",
+          "foglia",
+          "tuffo",
+          "mago",
+          "micio",
+          "sci",
+          "zucchero"
+        ],
+        "answer": [
+          "70",
+          "6",
+          "02",
+          "23",
+          "85",
+          "18",
+          "37",
+          "36",
+          "0",
+          "074"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "N03": {
+      "id": "N03-lab-v2",
+      "lessonId": "N03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "phonetic_blocks",
+        "numbers": [
+          "1749",
+          "1926"
+        ],
+        "examples": {
+          "1749": [
+            "teca",
+            "rupe"
+          ],
+          "1926": [
+            "tubo",
+            "noce"
+          ]
+        },
+        "answerStrategy": "major-it-v1 accept any phoneme-valid two-block code"
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "N04": {
+      "id": "N04-lab-v2",
+      "lessonId": "N04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "phonetic_decode",
+        "words": [
+          "riva",
+          "raso",
+          "pane",
+          "luna",
+          "mago",
+          "scena",
+          "gnomo",
+          "foglia",
+          "tuffo",
+          "casa",
+          "tiro",
+          "fumo"
+        ],
+        "answer": [
+          "48",
+          "40",
+          "92",
+          "52",
+          "37",
+          "02",
+          "23",
+          "85",
+          "18",
+          "70",
+          "14",
+          "83"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "N05": {
+      "id": "N05-lab-v2",
+      "lessonId": "N05",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "pairs",
+        "pairs": [
+          [
+            "Statuto Albertino",
+            "1848"
+          ],
+          [
+            "Unità d’Italia proclamata",
+            "1861"
+          ],
+          [
+            "Caduta del muro di Berlino",
+            "1989"
+          ],
+          [
+            "Primo uomo sulla Luna",
+            "1969"
+          ]
+        ],
+        "answer": {
+          "Statuto Albertino": "1848",
+          "Unità d’Italia proclamata": "1861",
+          "Caduta del muro di Berlino": "1989",
+          "Primo uomo sulla Luna": "1969"
+        }
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "T01": {
+      "id": "T01-lab-v2",
+      "lessonId": "T01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Dati: perché il ghiaccio galleggia; capitale del Portogallo; legge di Ohm; data di un evento locale non fornita.",
+        "requestedOutput": "Separa informazioni deducibili, conoscenza di base e fatti che richiedono verifica; motivazione per ciascuna.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "T02": {
+      "id": "T02-lab-v2",
+      "lessonId": "T02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Set: termometro, cronometro, barometro, altimetro, orologio, igrometro, sonda di temperatura, timer, manometro.",
+        "requestedOutput": "Raggruppa per ciò che misurano, con eccezioni motivate; poi recupera tutti i membri.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "T03": {
+      "id": "T03-lab-v2",
+      "lessonId": "T03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Testo: «Le placche terrestri si muovono lentamente. In alcuni margini una scivola sotto l’altra e può causare terremoti».",
+        "requestedOutput": "Crea 2 domande di fatto, 1 spiegazione e 1 previsione su un caso differente.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "T04": {
+      "id": "T04-lab-v2",
+      "lessonId": "T04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "error_classification",
+        "exposure": [
+          "elemento dimenticato",
+          "due posizioni scambiate",
+          "termine simile sostituito",
+          "causa scientifica errata"
+        ],
+        "answer": [
+          "omissione",
+          "inversione",
+          "interferenza",
+          "misconception"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "T05": {
+      "id": "T05-lab-v2",
+      "lessonId": "T05",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "status_classification",
+        "exposure": [
+          "corretto oggi autonomo",
+          "corretto oggi dopo hint",
+          "errato oggi",
+          "corretto oggi e tra due giorni"
+        ],
+        "answer": [
+          "provisional",
+          "assisted",
+          "incorrect",
+          "delayed_success"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "T06": {
+      "id": "T06-lab-v2",
+      "lessonId": "T06",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Problemi nuovi: memorizzare il numero 6042; spiegare perché un metallo si dilata; ricordare ordine di 7 attività; tradurre un termine.",
+        "requestedOutput": "Scegli tecnica e rispondi a un esempio per categoria senza etichette di suggerimento.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "X01": {
+      "id": "X01-lab-v2",
+      "lessonId": "X01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Mini presentazione: problema delle isole di calore, conseguenze, misura, intervento, limite e conclusione.",
+        "requestedOutput": "Crea sei ancore e registra o scrivi un intervento di 90 secondi; controlla le idee coperte.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "X02": {
+      "id": "X02-lab-v2",
+      "lessonId": "X02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Lingua bersaglio: inglese; parole da fonte verificata: bridge, kettle, cloud, drawer.",
+        "requestedOutput": "Crea un cue personale, poi completa una frase nuova appropriata per almeno 3/4 parole.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "X03": {
+      "id": "X03-lab-v2",
+      "lessonId": "X03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "unordered_words",
+        "exposure": [
+          "dentifricio",
+          "uova",
+          "arance",
+          "pasta",
+          "quaderno",
+          "olio",
+          "pane",
+          "batterie",
+          "sapone"
+        ],
+        "answer": [
+          "dentifricio",
+          "uova",
+          "arance",
+          "pasta",
+          "quaderno",
+          "olio",
+          "pane",
+          "batterie",
+          "sapone"
+        ],
+        "hideAfterSeconds": 30
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "X04": {
+      "id": "X04-lab-v2",
+      "lessonId": "X04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "pairs",
+        "pairs": [
+          [
+            "Marta",
+            "libreria"
+          ],
+          [
+            "Elia",
+            "piscina"
+          ],
+          [
+            "Chiara",
+            "museo"
+          ],
+          [
+            "Omar",
+            "stazione"
+          ],
+          [
+            "Adele",
+            "orto"
+          ]
+        ],
+        "answer": {
+          "libreria": "Marta",
+          "piscina": "Elia",
+          "museo": "Chiara",
+          "stazione": "Omar",
+          "orto": "Adele"
+        }
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "P01": {
+      "id": "P01-lab-v2",
+      "lessonId": "P01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Cinque zone a scelta, ciascuna con 5 punti; imposta richiami casuali 4, 11, 18, 23.",
+        "requestedOutput": "Costruisci una mappa 25 senza duplicati e recupera a salto su almeno 4 posizioni.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "P02": {
+      "id": "P02-lab-v2",
+      "lessonId": "P02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Palazzo A memorizza spezie; Palazzo B memorizza strumenti musicali. In seconda prova le scene vengono sovrapposte volutamente.",
+        "requestedOutput": "Individua intrusioni e decidi quando riusare o separare i palazzi.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "P03": {
+      "id": "P03-lab-v2",
+      "lessonId": "P03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Tema: ecosistema→produttori/consumatori/decompositori→3 dettagli ciascuno.",
+        "requestedOutput": "Assegna zone, sottoloci e indici gerarchici; prova accesso diretto a 2.3 e 3.1.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "P04": {
+      "id": "P04-lab-v2",
+      "lessonId": "P04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Rota con tre ancore quasi uguali nella cucina; dati su due categorie che si confondono.",
+        "requestedOutput": "Identifica collisione spaziale, collisione semantica e ordine invertito; prova una riparazione per volta.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "Q01": {
+      "id": "Q01-lab-v2",
+      "lessonId": "Q01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "phonetic_numbers",
+        "numbers": [
+          "05",
+          "12",
+          "24",
+          "37",
+          "48",
+          "59",
+          "63",
+          "70",
+          "86",
+          "91"
+        ],
+        "examples": {
+          "05": "sole",
+          "12": "tana",
+          "24": "nero",
+          "37": "mago",
+          "48": "riva",
+          "59": "lupo",
+          "63": "gemma",
+          "70": "casa",
+          "86": "faccia",
+          "91": "botte"
+        },
+        "answerStrategy": "major-it-v1 accept any phoneme-valid word"
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "Q02": {
+      "id": "Q02-lab-v2",
+      "lessonId": "Q02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Peg 1–5 scelti dall’utente e testati separatamente; lista nuova: faro, sciarpa, moneta, volpe, violino.",
+        "requestedOutput": "Aggancia i cinque elementi, poi chiedi 4°, 2°, 5° a salto senza mostrare gli altri.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "Q03": {
+      "id": "Q03-lab-v2",
+      "lessonId": "Q03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "pao_units",
+        "codebook": {
+          "12": {
+            "person": "violinista"
+          },
+          "24": {
+            "action": "lancia"
+          },
+          "37": {
+            "object": "lanterna"
+          }
+        },
+        "challenge": [
+          "12",
+          "24",
+          "37"
+        ],
+        "answer": [
+          "violinista",
+          "lancia",
+          "lanterna"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "Q04": {
+      "id": "Q04-lab-v2",
+      "lessonId": "Q04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "number_sequences",
+        "sequences": [
+          "640281",
+          "729540",
+          "183762"
+        ],
+        "answer": [
+          [
+            "64",
+            "02",
+            "81"
+          ],
+          [
+            "72",
+            "95",
+            "40"
+          ],
+          [
+            "18",
+            "37",
+            "62"
+          ]
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "R01": {
+      "id": "R01-lab-v2",
+      "lessonId": "R01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Testo verificato su tettonica a tre frasi; 2 fatti causali e 2 termini arbitrari.",
+        "requestedOutput": "Disegna schema causale e crea due target fattuali con risposta e fonte.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "R02": {
+      "id": "R02-lab-v2",
+      "lessonId": "R02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Fonte breve su ciclo dell’acqua: preparare una domanda orale, una a risposta breve e un problema applicativo.",
+        "requestedOutput": "Costruisci tre prove diverse e rispondi su variante di contesto; non premiare sola ripetizione verbatim.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "R03": {
+      "id": "R03-lab-v2",
+      "lessonId": "R03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Calendario simulato: esame tra 6 giorni, 12 target, 4 scaduti, 3 errati, 5 solidi.",
+        "requestedOutput": "Alloca 20 minuti di ripasso motivando priorità e test di copertura finale.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "R04": {
+      "id": "R04-lab-v2",
+      "lessonId": "R04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "numeric_transfer",
+        "input": {
+          "fluidDensityGcm3": 1,
+          "materialA": {
+            "massG": 200,
+            "volumeCm3": 100
+          },
+          "materialB": {
+            "massG": 80,
+            "volumeCm3": 100
+          }
+        },
+        "answer": {
+          "densityA": 2,
+          "densityB": 0.8,
+          "floats": "B"
+        },
+        "note": "modello semplificato: galleggiamento in acqua, senza bolle/effetti di superficie"
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "W01": {
+      "id": "W01-lab-v2",
+      "lessonId": "W01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Confronta percorso di casa conosciuto e museo virtuale appena visitato, ognuno con 6 punti.",
+        "requestedOutput": "Predici qual è più facile, prova entrambi e registra risultati distinti senza universalizzare.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "W02": {
+      "id": "W02-lab-v2",
+      "lessonId": "W02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "classification",
+        "elements": [
+          "arco",
+          "portone",
+          "scala",
+          "auto parcheggiata",
+          "passante",
+          "cartellone temporaneo"
+        ],
+        "answer": {
+          "stable": [
+            "arco",
+            "portone",
+            "scala"
+          ],
+          "unstable": [
+            "auto parcheggiata",
+            "passante",
+            "cartellone temporaneo"
+          ]
+        }
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "W03": {
+      "id": "W03-lab-v2",
+      "lessonId": "W03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Tre rappresentazioni della stessa stanza: foto, lista testuale, schematico 2D.",
+        "requestedOutput": "Crea cinque loci e recuperali da una rappresentazione differente; nessuna dipendenza da scansione o API.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "W04": {
+      "id": "W04-lab-v2",
+      "lessonId": "W04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Locus 3 «divano» sostituito da «libreria» dopo trasloco; target resta «clorofilla».",
+        "requestedOutput": "Aggiorna la posizione senza alterare il fatto; verifica dal nuovo cue e conserva revisione.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "U01": {
+      "id": "U01-lab-v2",
+      "lessonId": "U01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "metric_interpretation",
+        "input": {
+          "wordsCorrect": 9,
+          "wordsTotal": 10,
+          "namesCorrect": 5,
+          "namesTotal": 10,
+          "digitsCorrect": 8,
+          "digitsTotal": 10
+        },
+        "answer": {
+          "wordsAccuracy": 0.9,
+          "namesAccuracy": 0.5,
+          "digitsAccuracy": 0.8,
+          "globalMemoryScore": "not supported"
+        }
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "U02": {
+      "id": "U02-lab-v2",
+      "lessonId": "U02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "speed_accuracy",
+        "trials": [
+          {
+            "seconds": 60,
+            "total": 10,
+            "correct": 10
+          },
+          {
+            "seconds": 35,
+            "total": 10,
+            "correct": 6
+          },
+          {
+            "seconds": 50,
+            "total": 10,
+            "correct": 10
+          }
+        ],
+        "answer": {
+          "mostAccurateTrials": [
+            0,
+            2
+          ],
+          "fastestTrial": 1,
+          "speedAccuracyBestCompromiseTrial": 2,
+          "caveat": "Set di difficoltà controllata richiesti"
+        }
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "U03": {
+      "id": "U03-lab-v2",
+      "lessonId": "U03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "cards_and_names",
+        "cards": [
+          "4♠",
+          "9♥",
+          "A♦",
+          "Q♣",
+          "2♥"
+        ],
+        "names": {
+          "Marta": "libreria",
+          "Elia": "piscina",
+          "Chiara": "museo"
+        },
+        "answer": {
+          "cards": [
+            "4♠",
+            "9♥",
+            "A♦",
+            "Q♣",
+            "2♥"
+          ],
+          "names": {
+            "libreria": "Marta",
+            "piscina": "Elia",
+            "museo": "Chiara"
+          }
+        }
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "U04": {
+      "id": "U04-lab-v2",
+      "lessonId": "U04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "10 tentativi fittizi: 4 inversioni fra loci 6 e 7, 2 errori su /tʃ/, 4 successi.",
+        "requestedOutput": "Formula ipotesi specifica, scegli una correzione e definisci una prova futura che la falsifichi.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "A01": {
+      "id": "A01-lab-v2",
+      "lessonId": "A01",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "source_error",
+        "source": "L’azoto costituisce circa il 78% dell’atmosfera terrestre.",
+        "proposedFact": "L’azoto costituisce circa l’87% dell’atmosfera terrestre.",
+        "answer": {
+          "incorrect": true,
+          "correctApproxPercent": 78,
+          "needsSourceApproval": true
+        }
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "A02": {
+      "id": "A02-lab-v2",
+      "lessonId": "A02",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Tre proposte di cue per «permeabilità»: una estetica, una imprecisa, una ancorata al passaggio attraverso filtro.",
+        "requestedOutput": "Scegli o modifica la cue e dimostra che riporta alla definizione corretta.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "A03": {
+      "id": "A03-lab-v2",
+      "lessonId": "A03",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "rubric_with_manual_or_qualified_review",
+      "data": {
+        "kind": "rubric_task",
+        "stimulus": "Domanda: «Quale organello genera la maggior parte dell’ATP nella respirazione cellulare aerobica?» Indizi graduali, risposta finale separata.",
+        "requestedOutput": "Tenta prima; usa hint non rivelatori solo se necessario, quindi classifica successo autonomo o assistito.",
+        "evaluationRubric": [
+          "task addressed in full",
+          "technically correct content and reasoning",
+          "answer does not merely repeat the example",
+          "when memory is required, result is independently recalled after hiding"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    },
+    "A04": {
+      "id": "A04-lab-v2",
+      "lessonId": "A04",
+      "datasetVersion": "2.0.0-a",
+      "authoringOnly": true,
+      "scoringMode": "deterministic_or_hybrid",
+      "data": {
+        "kind": "evidence_classification",
+        "claims": [
+          "4 errori su 12 codifiche con /tʃ/ negli ultimi 14 giorni",
+          "sei una persona con cattiva memoria"
+        ],
+        "answer": [
+          "sample_based_observation",
+          "unsupported_personal_label"
+        ]
+      },
+      "note": "Never ship answer/model answer to UI before valid submitted attempt."
+    }
+  }
+}

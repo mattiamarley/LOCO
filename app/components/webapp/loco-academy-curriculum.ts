@@ -1,4 +1,31 @@
 import rawCurriculum from "./loco-academy-lessons.json" with { type: "json" };
+import {
+  ACADEMY_V2_MISSIONS,
+  ACADEMY_V2_SCHEMA_VERSION,
+  ERROR_DIAGNOSIS_CATALOG,
+  MAJOR_IT_V1_VERIFIED_LEXICON_V2,
+  RAW_PLAYER_CONTENT_V2,
+  encodeItalianWordToMajorDigitsV2,
+  type AssessmentMode,
+  type AttemptEvidence,
+  type ErrorDiagnosisCategory,
+  type LessonGradingReliability,
+  type V2LessonMissionSpec,
+  type VerificationAuthority,
+} from "./loco-academy-engine-v2.ts";
+
+export {
+  ACADEMY_V2_MISSIONS,
+  ACADEMY_V2_SCHEMA_VERSION,
+  ERROR_DIAGNOSIS_CATALOG,
+  RAW_PLAYER_CONTENT_V2,
+  type AssessmentMode,
+  type AttemptEvidence,
+  type ErrorDiagnosisCategory,
+  type LessonGradingReliability,
+  type V2LessonMissionSpec,
+  type VerificationAuthority,
+};
 
 export type LessonTier = "free" | "plus" | "pro";
 
@@ -45,13 +72,18 @@ export type RuntimeExerciseKind =
   | "guided-simulation-fallback";
 
 /**
- * I 12 tipi di esercizi riutilizzabili del Lesson Engine (Sezione 4)
- * più gli step narrativi brevi (`hook`, `explanation`, `demonstration`).
+ * Gli 8 stage canonici di LOCO Academy 2.0 (`06_PROMPT_ARGON_FINAL.md`)
+ * più i 12 tipi di esercizi di compatibilità.
  */
 export type InteractiveStepType =
   | "hook"
   | "explanation"
+  | "expert_walkthrough"
   | "demonstration"
+  | "guided_practice"
+  | "independent_challenge"
+  | "diagnostic_feedback"
+  | "reflection_and_next"
   | "multiple_choice" // A. Multiple Choice
   | "matching_pairs" // B. Matching Pairs
   | "sequence_ordering" // C. Sequence Ordering
@@ -75,7 +107,7 @@ export interface LessonStepSpec {
   expandableFullText?: string;
   illustrationAsset: string;
   scientificNote?: string;
-  // Configurazioni specifiche per i 12 tipi di esercizio
+  // Configurazioni specifiche per i 12 tipi di esercizio + v2 stages
   options?: { id: string; label: string; isCorrect: boolean; explanation: string }[];
   pairs?: { id: string; left: string; right: string }[];
   sequenceItems?: string[];
@@ -151,6 +183,13 @@ export interface EnrichedAcademyLesson extends LessonEditorial {
   checkpointOptions?: { label: string; value: string }[];
   progressiveHint: string;
   steps: LessonStepSpec[];
+  // LOCO Academy 2.0 fields (`04_LESSONS_PLAYER_CONTENT.json` + `05_GAME_ENGINE_SPEC.md`)
+  v2Mission: V2LessonMissionSpec;
+  v2LearningObjective: string;
+  v2SkillType: string;
+  v2ExpertWalkthrough: string;
+  v2CommonMistakes: string[];
+  gradingReliability: LessonGradingReliability;
 }
 
 export interface UnitCheckpointQuestion {
@@ -199,6 +238,11 @@ export interface AcademyLessonProgress {
   masteredAfterDelayAt: string | null;
   nextReviewDueAt: string | null;
   legacyMigratedFrom: string[];
+  // LOCO Academy 2.0 AttemptEvidence audit trail (`05_GAME_ENGINE_SPEC.md`)
+  attemptHistory?: AttemptEvidence[];
+  lastVerifiedBy?: VerificationAuthority | null;
+  lastErrorCategory?: ErrorDiagnosisCategory | null;
+  lastRepairAction?: string | null;
 }
 
 export type AcademyProgressMap = Record<string, AcademyLessonProgress>;
@@ -538,206 +582,11 @@ export const MAJOR_IT_V1_TABLE: MajorItV1Row[] = [
   },
 ];
 
-export const MAJOR_IT_V1_VERIFIED_LEXICON: Record<string, string> = {
-  scena: "02",
-  sci: "0",
-  scia: "0",
-  scimmia: "03",
-  sasso: "00",
-  sole: "05",
-  zaino: "02",
-  zero: "04",
-  toro: "14",
-  tenda: "121",
-  dado: "11",
-  dito: "11",
-  tuffo: "18",
-  nave: "28",
-  nido: "21",
-  gnomo: "23",
-  ragno: "42",
-  bagno: "92",
-  noce: "26",
-  mano: "32",
-  mela: "35",
-  mare: "34",
-  micio: "36",
-  mago: "37",
-  moneta: "321",
-  riva: "48",
-  rana: "42",
-  remo: "43",
-  rosa: "40",
-  re: "4",
-  luna: "52",
-  leone: "52",
-  foglia: "85",
-  aglio: "5",
-  figlio: "85",
-  limone: "532",
-  libro: "594",
-  ciao: "6",
-  cielo: "65",
-  cena: "62",
-  gelato: "651",
-  gioco: "67",
-  ciliegia: "656",
-  orologio: "456",
-  casa: "70",
-  cane: "72",
-  gatto: "71",
-  cuore: "74",
-  chiave: "78",
-  ghiaccio: "76",
-  schermo: "0743",
-  casco: "707",
-  faro: "84",
-  vela: "85",
-  fuoco: "87",
-  violino: "852",
-  pane: "92",
-  ponte: "921",
-  banca: "927",
-  barca: "947",
-  bussola: "905",
-  banana: "922",
-  bicicletta: "96751",
-};
+export const MAJOR_IT_V1_VERIFIED_LEXICON: Record<string, string> =
+  MAJOR_IT_V1_VERIFIED_LEXICON_V2;
 
 export function encodeItalianWordToMajorDigits(rawWord: string): string {
-  const cleaned = rawWord
-    .trim()
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z]/g, "");
-
-  if (!cleaned) return "";
-
-  if (MAJOR_IT_V1_VERIFIED_LEXICON[cleaned] !== undefined) {
-    return MAJOR_IT_V1_VERIFIED_LEXICON[cleaned];
-  }
-
-  const digits: string[] = [];
-  let i = 0;
-  const n = cleaned.length;
-
-  while (i < n) {
-    const ch = cleaned[i];
-    const next = i + 1 < n ? cleaned[i + 1] : "";
-    const next2 = i + 2 < n ? cleaned[i + 2] : "";
-
-    if ("aeioujwyh".includes(ch)) {
-      i += 1;
-      continue;
-    }
-
-    if (ch === "s" && next === "c" && next2 === "h") {
-      digits.push("0", "7");
-      i += 3;
-      continue;
-    }
-
-    if (ch === "s" && next === "c" && (next2 === "e" || next2 === "i")) {
-      digits.push("0");
-      i += 2;
-      continue;
-    }
-
-    if (ch === "g" && next === "n") {
-      digits.push("2");
-      i += 2;
-      continue;
-    }
-
-    if (ch === "g" && next === "l" && next2 === "i") {
-      digits.push("5");
-      i += 2;
-      continue;
-    }
-
-    if (ch === "c" && next === "q") {
-      digits.push("7");
-      i += 2;
-      continue;
-    }
-
-    if (next === ch && !"aeiou".includes(ch)) {
-      if (ch === "c" || ch === "g") {
-        if (next2 === "h") {
-          digits.push("7");
-          i += 3;
-          continue;
-        }
-        if (next2 === "e" || next2 === "i") {
-          digits.push("6");
-          i += 2;
-          continue;
-        }
-        digits.push("7");
-        i += 2;
-        continue;
-      }
-      i += 1;
-      continue;
-    }
-
-    if (ch === "c" || ch === "g") {
-      if (next === "h") {
-        digits.push("7");
-        i += 2;
-        continue;
-      }
-      if (next === "e" || next === "i") {
-        digits.push("6");
-        i += 1;
-        continue;
-      }
-      digits.push("7");
-      i += 1;
-      continue;
-    }
-
-    switch (ch) {
-      case "s":
-      case "z":
-        digits.push("0");
-        break;
-      case "t":
-      case "d":
-        digits.push("1");
-        break;
-      case "n":
-        digits.push("2");
-        break;
-      case "m":
-        digits.push("3");
-        break;
-      case "r":
-        digits.push("4");
-        break;
-      case "l":
-        digits.push("5");
-        break;
-      case "k":
-      case "q":
-        digits.push("7");
-        break;
-      case "f":
-      case "v":
-        digits.push("8");
-        break;
-      case "p":
-      case "b":
-        digits.push("9");
-        break;
-      default:
-        break;
-    }
-    i += 1;
-  }
-
-  return digits.join("");
+  return encodeItalianWordToMajorDigitsV2(rawWord);
 }
 
 export interface LegacyLessonMapping {
@@ -1134,486 +983,237 @@ const DEFAULT_ROOM_OBJECTS = [
   { id: "loc-acquario", label: "Boccia con pesce", asset: "/assets/figma-curated/academy-item-fishbowl.svg", zone: "Mensola Sud" },
 ];
 
+interface RawPlayerLessonStep {
+  stepId?: string;
+  type: string;
+  title?: string;
+  studentText?: string;
+  body?: string;
+  bullets?: string[];
+  prompt?: string;
+  interactive?: Record<string, unknown>;
+}
+
+interface RawPlayerLesson {
+  id: string;
+  legacyId?: string;
+  courseId: string;
+  courseName: string;
+  title: string;
+  previousTitle?: string;
+  tier: string;
+  estimatedMinutes?: number;
+  prerequisites?: string[];
+  contentVersion?: string;
+  lessonKind?: string;
+  learningTarget?: string;
+  learningObjective?: string;
+  masteryCriterion?: string;
+  masteryGate?: string;
+  pitfall?: string;
+  commonMistake?: string;
+  commonMistakes?: string[];
+  skillType?: string;
+  expertExplanation?: string;
+  steps: RawPlayerLessonStep[];
+  game?: Record<string, unknown>;
+}
+
+const V2_LESSONS_BY_ID: Record<string, RawPlayerLesson> = Object.fromEntries(
+  (RAW_PLAYER_CONTENT_V2.lessons as unknown as RawPlayerLesson[]).map((l) => [l.id, l])
+);
+
+const STAGE_LABELS_IT: Record<string, string> = {
+  hook: "STAGE 1 · SFIDA INIZIALE (HOOK)",
+  explanation: "STAGE 2 · IL PRINCIPIO SCIENTIFICO",
+  expert_walkthrough: "STAGE 3 · RAGIONAMENTO DELL'ESPERTO",
+  demonstration: "STAGE 4 · DIMOSTRAZIONE CONCRETA",
+  guided_practice: "STAGE 5 · PRATICA GUIDATA (SET A)",
+  independent_challenge: "STAGE 6 · PROVA VERA AUTONOMA (SET B)",
+  diagnostic_feedback: "STAGE 7 · DIAGNOSI E RIPARAZIONE",
+  reflection_and_next: "STAGE 8 · CONSOLIDAMENTO E PASSO SUCCESSIVO",
+};
+
+const STAGE_ILLUSTRATIONS: Record<string, string> = {
+  hook: "/assets/figma-curated/academy-scene-relax-night.svg",
+  explanation: "/assets/figma-curated/academy-mascot-zen-book.svg",
+  expert_walkthrough: "/assets/figma-curated/academy-mascot-tablet.svg",
+  demonstration: "/assets/figma-curated/academy-scene-study-desk.svg",
+  guided_practice: "/assets/figma-curated/academy-item-lamp.svg",
+  independent_challenge: "/assets/figma-curated/academy-mascot-goose.svg",
+  diagnostic_feedback: "/assets/figma-curated/academy-mascot-lion.svg",
+  reflection_and_next: "/assets/figma-curated/academy-scene-explorer.svg",
+};
+
 /**
- * LESSON ENGINE: genera la sequenza giocabile di 6–9 schermate per ciascuna delle 56 lezioni.
- * Per S01 implementa la sequenza completa di riferimento (Sezione 12 del prompt).
+ * LESSON ENGINE 2.0: costruisce gli 8 stage canonici di ciascuna delle 56 lezioni
+ * a partire da `04_LESSONS_PLAYER_CONTENT.json` (`RAW_PLAYER_CONTENT_V2`) e
+ * dalla missione dedicata in `ACADEMY_V2_MISSIONS` (`05_GAME_ENGINE_SPEC.md`).
+ * Nessun template generico identico viene usato per le 56 lezioni.
  */
 export function buildInteractiveStepsForLesson(
   lesson: LessonEditorial,
   cpMeta: { acceptedKeywords: string[]; options?: { label: string; value: string }[]; progressiveHint: string },
   fallbackNoticeText?: string | null
 ): LessonStepSpec[] {
-  const { shortText, fullText } = splitShortAndFullReading(lesson.reading);
+  const v2Raw = V2_LESSONS_BY_ID[lesson.id];
+  const mission = ACADEMY_V2_MISSIONS[lesson.id];
 
-  // SEQUENZA DI RIFERIMENTO COMPLETA PER LA PRIMA LEZIONE (S01 — Sezione 12)
-  if (lesson.id === "S01") {
-    return [
-      {
-        stepId: "S01-step-1",
-        stepIndex: 0,
-        type: "hook",
-        stageLabel: "STEP 1 · SFIDA INIZIALE",
-        title: "Ti sfido a ricordare cinque oggetti senza ripeterli dieci volte.",
-        bodyText:
-          "Quando rileggi un appunto ti sembra tutto familiare. Ma cosa succede quando chiudi il foglio? Mettiamolo subito alla prova con un piccolo esperimento pratico.",
-        illustrationAsset: "/assets/figma-curated/academy-scene-relax-night.svg",
-        explanationOnSuccess: "Iniziamo l'esperimento!",
-        explanationOnMistake: "",
-      },
-      {
-        stepId: "S01-step-2",
-        stepIndex: 1,
-        type: "memory_flash",
-        stageLabel: "STEP 2 & 3 · MEMORY FLASH",
-        title: "Osserva questi 5 oggetti, poi nascondili e ricordali in ordine",
-        bodyText:
-          "Osserva la sequenza: banana, chiave, gatto, orologio, bicicletta (oltre alla lista classica limone, violino, ponte, bussola, moneta). Quando sei pronto, nascondi le carte e ricostruisci l'ordine!",
-        illustrationAsset: "/assets/figma-curated/academy-item-clock.svg",
-        flashItems: ["banana", "chiave", "gatto", "orologio", "bicicletta"],
-        flashDurationSeconds: 10,
-        explanationOnSuccess:
-          "Hai completato il primo tentativo a lista nascosta! Ora vediamo perché la mente fa fatica con le liste astratte.",
-        explanationOnMistake:
-          "Nessun problema se qualche oggetto è sfuggito: serve proprio a mostrare la differenza tra vedere e recuperare.",
-      },
-      {
-        stepId: "S01-step-3",
-        stepIndex: 2,
-        type: "explanation",
-        stageLabel: "STEP 4 · IL PRINCIPIO SCIENTIFICO",
-        title: "Riconoscere quando leggi non è recuperare dalla memoria",
-        bodyText: shortText,
-        expandableFullText: fullText,
-        illustrationAsset: "/assets/figma-curated/academy-mascot-zen-book.svg",
-        explanationOnSuccess: "Concetto chiave acquisito: il vero test avviene solo a risposta nascosta.",
-        explanationOnMistake: "",
-      },
-      {
-        stepId: "S01-step-4",
-        stepIndex: 3,
-        type: "demonstration",
-        stageLabel: "STEP 5 & 6 · DIMOSTRAZIONE VISIVA",
-        title: "Trasforma l'oggetto astratto in un'azione dentro una stanza",
-        bodyText:
-          "Invece di ripetere «banana, chiave, gatto...» nel vuoto, immagina una BANANA GIGANTE incastrata nella maniglia che apre la porta della tua stanza. Esempio LOCO: " +
-          lesson.workedExample,
-        illustrationAsset: "/assets/figma-curated/academy-scene-study-desk.svg",
-        explanationOnSuccess: "Un'azione concreta in un punto preciso (locus) crea un aggancio di recupero.",
-        explanationOnMistake: "",
-      },
-      {
-        stepId: "S01-step-5",
-        stepIndex: 4,
-        type: "mnemonic_builder",
-        stageLabel: "STEP 7 · COSTRUISCI IL LEGAME",
-        title: "Collega tu uno degli oggetti a un luogo della stanza",
-        bodyText:
-          "Scegli un oggetto, un verbo d'azione fisico e un punto della stanza per creare la tua associazione personale.",
-        illustrationAsset: "/assets/figma-curated/academy-item-lamp.svg",
-        mnemonicBuilderSpec: {
-          targetConcept: "Chiave / Gatto / Orologio",
-          suggestedObjects: ["Una chiave dorata gigante", "Il gatto nero con il becco", "Un orologio sveglia giallo"],
-          suggestedActions: ["fa scattare e accende", "graffia rumorosamente", "suona facendo vibrare"],
-          suggestedLoci: ["la Lampada sulla scrivania", "lo Sgabello giallo", "la Libreria a parete"],
-        },
-        explanationOnSuccess: "Associazione personale creata! Il legame funziona perché unisce oggetto, azione e luogo.",
-        explanationOnMistake: "Scegli tutti e tre gli elementi (oggetto, azione, luogo) o scrivi la tua frase.",
-      },
-      {
-        stepId: "S01-step-6",
-        stepIndex: 5,
-        type: "loci_placement",
-        stageLabel: "STEP 8 · PROVA CON I LOCI (SENZA IMMAGINI)",
-        title: "Recupera gli oggetti associati ai 5 punti della stanza",
-        bodyText:
-          "Ora ripercorri i 5 punti della stanza in ordine e richiama l'oggetto ancorato a ciascun locus senza guardare i suggerimenti.",
+  if (v2Raw && Array.isArray(v2Raw.steps) && v2Raw.steps.length === 8) {
+    return v2Raw.steps.map((rawStep, idx) => {
+      const stepType = rawStep.type as InteractiveStepType;
+      const rawBody =
+        typeof rawStep.body === "string"
+          ? rawStep.body
+          : Array.isArray(rawStep.bullets)
+            ? rawStep.bullets.map((b: string) => `• ${b}`).join("\n")
+            : typeof rawStep.prompt === "string"
+              ? rawStep.prompt
+              : lesson.reading;
+
+      const { shortText, fullText } = splitShortAndFullReading(rawBody);
+      const isExplanation = stepType === "explanation";
+
+      return {
+        stepId: rawStep.stepId || `${lesson.id}-step-${idx + 1}`,
+        stepIndex: idx,
+        type: stepType,
+        stageLabel:
+          STAGE_LABELS_IT[rawStep.type] ??
+          `STAGE ${idx + 1} · ${rawStep.type.toUpperCase()}`,
+        title: rawStep.title || `${lesson.id} · ${lesson.title}`,
+        bodyText: isExplanation ? shortText : rawBody,
+        expandableFullText:
+          isExplanation && fullText.length > shortText.length ? fullText : undefined,
+        illustrationAsset:
+          STAGE_ILLUSTRATIONS[rawStep.type] ??
+          "/assets/figma-curated/academy-mascot-goose.svg",
         scientificNote:
-          "Nota metodologica: questo secondo tentativo è illustrativo del funzionamento di LOCO, non un esperimento controllato.",
-        illustrationAsset: "/assets/figma-curated/academy-scene-zen-room.svg",
-        lociPlacementSpec: {
-          roomObjects: DEFAULT_ROOM_OBJECTS,
-          itemsToPlace: [
-            { item: "banana", defaultAction: "Una banana gigante blocca la Porta d'ingresso" },
-            { item: "chiave", defaultAction: "Una chiave accende la Lampada da tavolo" },
-            { item: "gatto", defaultAction: "Un gatto salta sullo Sgabello giallo" },
-            { item: "orologio", defaultAction: "Un orologio ticchetta tra i libri della Libreria" },
-            { item: "bicicletta", defaultAction: "Una bicicletta gira intorno alla Boccia con pesce" },
-          ],
-        },
-        explanationOnSuccess: "Hai ripercorso i 5 punti della stanza recuperando la sequenza ordinata!",
-        explanationOnMistake: "Associa ciascuno dei 5 oggetti al suo punto in ordine (1→5).",
-      },
-      {
-        stepId: "S01-step-7",
-        stepIndex: 6,
-        type: "multiple_choice",
-        stageLabel: "STEP 9 · VERIFICA FINALE",
-        title: lesson.checkpoint.question,
-        bodyText: `Verifica finale della lezione ${lesson.id} senza risposta visibile. Evita l'errore tipico: ${lesson.commonMistake}`,
-        illustrationAsset: "/assets/figma-curated/academy-mascot-goose.svg",
-        options: [
-          {
-            id: "opt-no",
-            label: "No: capire mentre leggo è riconoscimento, non dimostra il recupero autonomo.",
-            isCorrect: true,
-            explanation: `Esatto! Chiave: ${lesson.checkpoint.expectedAnswer} ${lesson.masteryCriterion}`,
-          },
-          {
-            id: "opt-si",
-            label: "Sì: se la risposta mi sembra familiare quando la vedo, la so sicuramente ripetere.",
-            isCorrect: false,
-            explanation: `Attenzione: questo è proprio l'errore di familiarità (${lesson.commonMistake}).`,
-          },
-          {
-            id: "opt-img",
-            label: "Sì, basta che la pagina abbia un bel colore o un'immagine divertente.",
-            isCorrect: false,
-            explanation: "Un'immagine bella non sostituisce una prova di richiamo senza guardare.",
-          },
-        ],
-        explanationOnSuccess: `Perfetto! ${lesson.masteryCriterion}`,
-        explanationOnMistake: `Ripassa questo punto: non ${lesson.commonMistake}`,
-      },
-    ];
-  }
-
-  // GENERAZIONE STRUTTURATA E DIVERSIFICATA PER TUTTE LE ALTRE 55 LEZIONI
-  const steps: LessonStepSpec[] = [];
-
-  // STEP 1: HOOK
-  steps.push({
-    stepId: `${lesson.id}-step-1`,
-    stepIndex: 0,
-    type: "hook",
-    stageLabel: "STEP 1 · HOOK",
-    title: `${lesson.id} · ${lesson.title}`,
-    bodyText: `Domanda di partenza: ${lesson.checkpoint.question.replace(/[«»]/g, "")} Scopriamolo in pochi passaggi interattivi.`,
-    illustrationAsset:
-      lesson.courseId === "course-3" || lesson.courseId === "course-7"
-        ? "/assets/figma-curated/academy-mascot-headphones.svg"
-        : lesson.courseId === "course-2"
-          ? "/assets/figma-curated/academy-mascot-cat.svg"
-          : "/assets/figma-curated/academy-mascot-tablet.svg",
-    explanationOnSuccess: "Andiamo al principio chiave!",
-    explanationOnMistake: "",
-  });
-
-  // STEP 2: SPIEGAZIONE BREVE + ESPANDIBILE
-  steps.push({
-    stepId: `${lesson.id}-step-2`,
-    stepIndex: 1,
-    type: "explanation",
-    stageLabel: "STEP 2 · SPIEGAZIONE",
-    title: "Il principio in parole semplici",
-    bodyText: shortText,
-    expandableFullText: fullText,
-    illustrationAsset: "/assets/figma-curated/academy-mascot-zen-book.svg",
-    explanationOnSuccess: "Passiamo a un esempio concreto.",
-    explanationOnMistake: "",
-  });
-
-  // STEP 3: DIMOSTRAZIONE CONCRETA
-  steps.push({
-    stepId: `${lesson.id}-step-3`,
-    stepIndex: 2,
-    type: "demonstration",
-    stageLabel: "STEP 3 · ESEMPIO LOCO",
-    title: "Come funziona nella pratica",
-    bodyText: lesson.workedExample,
-    scientificNote: fallbackNoticeText
-      ? fallbackNoticeText
-      : `Errore comune da evitare: non ${lesson.commonMistake}`,
-    illustrationAsset: "/assets/figma-curated/academy-scene-study-desk.svg",
-    explanationOnSuccess: "Ora tocca a te con una prova guidata!",
-    explanationOnMistake: "",
-  });
-
-  // STEP 4: PROVA GUIDATA (specifica per dominio della lezione)
-  if (lesson.courseId === "course-3" || lesson.courseId === "course-7") {
-    // Major System / Numeri -> Matching Pairs + Number Encoding + Reverse Decoding
-    steps.push({
-      stepId: `${lesson.id}-step-4`,
-      stepIndex: 3,
-      type: "matching_pairs",
-      stageLabel: "STEP 4 · PROVA GUIDATA (ABBINAMENTO FONETICO)",
-      title: "Abbina ciascuna cifra alla sua famiglia di suoni (major-it-v1)",
-      bodyText: "Ricorda: conta il suono consonantico pronunciato, non la semplice lettera scritta.",
-      illustrationAsset: "/assets/figma-curated/academy-head-headphones.svg",
-      pairs: [
-        { id: "p0", left: "0", right: "S, Z, SC dolce (scena)" },
-        { id: "p1", left: "1", right: "T, D (toro)" },
-        { id: "p3", left: "3", right: "M (mano)" },
-        { id: "p6", left: "6", right: "C/G dolce (ciao, micio)" },
-        { id: "p7", left: "7", right: "C/G dura (casa, mago)" },
-      ],
-      explanationOnSuccess: "Ottimo! Hai distinto anche lo 0 (SC dolce) e la coppia 6 (dolce) vs 7 (dura).",
-      explanationOnMistake: "Controlla bene il suono dolce (6: ciao) rispetto al suono duro (7: casa).",
-    });
-
-    steps.push({
-      stepId: `${lesson.id}-step-5`,
-      stepIndex: 4,
-      type: "number_encoding",
-      stageLabel: "STEP 5 · CODIFICA (NUMERO → PAROLA)",
-      title: "Trasforma il numero 14 o 32 in una parola italiana valida",
-      bodyText: lesson.exercise.prompt,
-      illustrationAsset: "/assets/figma-curated/academy-mascot-headphones.svg",
-      numberEncodingSpec: {
-        targetNumber: lesson.id === "N01" ? "14" : "32",
-        phoneticHint: lesson.id === "N01" ? "1 = T/D, 4 = R (es. toro)" : "3 = M, 2 = N (es. mano)",
-        exampleValidWords: lesson.id === "N01" ? ["toro", "tiro", "doro"] : ["mano", "mina", "menu"],
-      },
-      explanationOnSuccess: "Codifica Numero → Parola verificata con il trasduttore fonetico major-it-v1!",
-      explanationOnMistake: "Le consonanti della parola devono produrre esattamente le cifre richieste (le vocali non contano).",
-    });
-
-    steps.push({
-      stepId: `${lesson.id}-step-6`,
-      stepIndex: 5,
-      type: "reverse_decoding",
-      stageLabel: "STEP 6 · DECODIFICA INVERSA (PAROLA → NUMERO)",
-      title: "Decodifica la parola nei suoi numeri",
-      bodyText:
-        lesson.id === "N04"
-          ? "Pronuncia ad alta voce «mago» e scrivi le due cifre corrispondenti."
-          : "Pronuncia ad alta voce «scena» e scrivi le due cifre corrispondenti.",
-      illustrationAsset: "/assets/figma-curated/academy-item-lightbulb.svg",
-      reverseDecodingSpec:
-        lesson.id === "N04"
-          ? {
-              stimulusWord: "mago",
-              expectedDigits: "37",
-              phoneticBreakdown: "M = 3, G dura (/g/) = 7 → 37 (non 36!)",
-            }
-          : {
-              stimulusWord: "scena",
-              expectedDigits: "02",
-              phoneticBreakdown: "SC dolce (/ʃ/) = 0, N = 2 → 02",
-            },
-      explanationOnSuccess: "Decodifica inversa perfetta! Competenza Reverse registrata separatamente.",
-      explanationOnMistake: "Ascolta il suono consonantico: M=3, G dura=7 (mago=37); SC dolce=0, N=2 (scena=02).",
-    });
-  } else if (lesson.id === "S03" || lesson.courseId === "course-1" || lesson.courseId === "course-6" || lesson.courseId === "course-9") {
-    // Loci / Palazzi -> Loci Placement + Sequence Ordering + Error Correction
-    steps.push({
-      stepId: `${lesson.id}-step-4`,
-      stepIndex: 3,
-      type: "loci_placement",
-      stageLabel: "STEP 4 · PROVA NELLA SCENA",
-      title: "Seleziona e ordina i loci distinti nella stanza",
-      bodyText: lesson.exercise.prompt,
-      illustrationAsset: "/assets/figma-curated/academy-scene-study-desk.svg",
-      lociPlacementSpec: {
-        roomObjects: DEFAULT_ROOM_OBJECTS,
-        itemsToPlace: [
-          { item: "Locus 1: Porta", defaultAction: "Punto di partenza fisso all'ingresso" },
-          { item: "Locus 2: Lampada", defaultAction: "Punto luminoso sulla scrivania" },
-          { item: "Locus 3: Sgabello", defaultAction: "Seduta gialla al centro" },
-          { item: "Locus 4: Libreria", defaultAction: "Scaffale verticale a parete" },
-          { item: "Locus 5: Acquario", defaultAction: "Boccia di vetro sul mobile" },
-        ],
-      },
-      explanationOnSuccess: "5 loci distinti e non ambigui confermati nella scena!",
-      explanationOnMistake: "Conferma tutti i 5 punti seguendo l'ordine del percorso.",
-    });
-
-    steps.push({
-      stepId: `${lesson.id}-step-5`,
-      stepIndex: 4,
-      type: "sequence_ordering",
-      stageLabel: "STEP 5 · ORDINE SENZA ETICHETTE",
-      title: "Ricostruisci l'ordine esatto del percorso dal punto 1 al punto 5",
-      bodyText: "Un palazzo funziona se l'ordine di percorrenza è stabile anche quando chiudi gli occhi.",
-      illustrationAsset: "/assets/figma-curated/academy-mascot-elephant.svg",
-      sequenceItems: [
-        "1. Porta d'ingresso",
-        "2. Lampada da tavolo",
-        "3. Sgabello giallo",
-        "4. Libreria a parete",
-        "5. Boccia con pesce",
-      ],
-      explanationOnSuccess: "Sequenza spaziale 5/5 ricostruita nell'ordine esatto!",
-      explanationOnMistake: "Controlla quale coppia di loci è stata invertita e ripeti il giro.",
-    });
-
-    steps.push({
-      stepId: `${lesson.id}-step-6`,
-      stepIndex: 5,
-      type: "error_correction",
-      stageLabel: "STEP 6 · CORREGGI L'ERRORE TIPICO",
-      title: "Individua e correggi l'errore di progettazione del palazzo",
-      bodyText: `Uno studente ha commesso questo errore: «${lesson.commonMistake}». Quale correzione applichi?`,
-      illustrationAsset: "/assets/figma-curated/academy-item-lamp.svg",
-      options: [
-        {
-          id: "fix-good",
-          label: `Applico il criterio: ${lesson.masteryCriterion}`,
-          isCorrect: true,
-          explanation: "Perfetto: punti ben distinguibili, ordine fisso e un bersaglio chiaro per ancora.",
-        },
-        {
-          id: "fix-bad",
-          label: "Aggiungo altre 20 immagini decorative nello stesso angolo senza ordine.",
-          isCorrect: false,
-          explanation: "Sovrapporre immagini nello stesso punto aumenta l'interferenza.",
-        },
-      ],
-      explanationOnSuccess: "Ottima diagnosi spaziale!",
-      explanationOnMistake: `Ricorda il criterio di padronanza: ${lesson.masteryCriterion}`,
-    });
-  } else if (lesson.id === "S04" || lesson.courseId === "course-2" || lesson.courseId === "course-5") {
-    // Associazioni / Linked Method / Vita reale -> Image Association + Mnemonic Builder + Sequence Ordering
-    steps.push({
-      stepId: `${lesson.id}-step-4`,
-      stepIndex: 3,
-      type: "image_association",
-      stageLabel: "STEP 4 · SCEGLI L'IMMAGINE EFFICACE",
-      title: "Quale associazione ti riporta davvero alla risposta?",
-      bodyText:
-        "Un'immagine strana ma scollegata dalla risposta è solo una decorazione. Scegli il legame che contiene un indizio interpretabile.",
-      illustrationAsset: "/assets/figma-curated/academy-mascot-cat.svg",
-      options: [
-        {
-          id: "img-functional",
-          label: "Un'azione concreta in cui l'oggetto interagisce fisicamente con il locus o con l'elemento successivo.",
-          isCorrect: true,
-          explanation: "Esatto! L'azione fisica lega la risposta al punto di recupero.",
-        },
-        {
-          id: "img-decorative",
-          label: "Una nuvola astratta bellissima ma priva di collegamento con la parola da ricordare.",
-          isCorrect: false,
-          explanation: `Evita di ${lesson.commonMistake}`,
-        },
-      ],
-      explanationOnSuccess: "Hai scelto un indizio funzionale e interpretabile!",
-      explanationOnMistake: "Chiediti sempre: questa immagine mi fa venire in mente la parola esatta?",
-    });
-
-    steps.push({
-      stepId: `${lesson.id}-step-5`,
-      stepIndex: 4,
-      type: "mnemonic_builder",
-      stageLabel: "STEP 5 · COSTRUISCI L'ASSOCIAZIONE",
-      title: "Componi la tua catena o associazione d'azione",
-      bodyText: lesson.exercise.prompt,
-      illustrationAsset: "/assets/figma-curated/academy-item-fishbowl.svg",
-      mnemonicBuilderSpec: {
-        targetConcept: lesson.title,
-        suggestedObjects: ["Limone gigante", "Violino sonoro", "Ponte di pietra"],
-        suggestedActions: ["blocca e spruzza", "suona vibrando contro", "collega fisicamente"],
-        suggestedLoci: ["la maniglia della Porta", "l'Attaccapanni", "il Tavolo centrale"],
-      },
-      explanationOnSuccess: "Catena d'azione costruita con successo!",
-      explanationOnMistake: "Seleziona gli elementi per comporre il legame.",
-    });
-
-    steps.push({
-      stepId: `${lesson.id}-step-6`,
-      stepIndex: 5,
-      type: "sequence_ordering",
-      stageLabel: "STEP 6 · RICHIAMO DELLA CATENA",
-      title: "Rimetti in ordine gli anelli della sequenza senza guardare",
-      bodyText: "Ogni immagine chiama la successiva: ricostruisci i 5 anelli nell'ordine corretto.",
-      illustrationAsset: "/assets/figma-curated/academy-scene-runner.svg",
-      sequenceItems: ["1. Limone", "2. Violino", "3. Ponte", "4. Bussola", "5. Moneta"],
-      explanationOnSuccess: "Catena ricostruita dal primo all'ultimo anello!",
-      explanationOnMistake: "Individua il primo legame interrotto e riprova.",
-    });
-  } else {
-    // Studio / Esami / Palestra / AI Memory Studio -> Fill in Blank + Error Correction + Guided Matching
-    steps.push({
-      stepId: `${lesson.id}-step-4`,
-      stepIndex: 3,
-      type: "fill_in_blank",
-      stageLabel: "STEP 4 · COMPLETA LA REGOLA CHIAVE",
-      title: "Completa il principio operativo di questa lezione",
-      bodyText: lesson.exercise.prompt,
-      illustrationAsset: "/assets/figma-curated/academy-scene-library.svg",
-      blankSentence: {
-        before: "Per padroneggiare davvero questo passaggio bisogna evitare di",
-        after: `e verificare invece: ${lesson.masteryCriterion}`,
-        expectedWord: lesson.commonMistake.split(" ")[0] || "improvvisare",
-        wordBank: [
-          lesson.commonMistake.split(" ")[0] || "improvvisare",
-          "dormire",
-          "colorare",
-        ],
-      },
-      explanationOnSuccess: `Esatto: evita di ${lesson.commonMistake}`,
-      explanationOnMistake: "Rileggi l'errore tipico evidenziato nella dimostrazione.",
-    });
-
-    steps.push({
-      stepId: `${lesson.id}-step-5`,
-      stepIndex: 4,
-      type: "error_correction",
-      stageLabel: "STEP 5 · DIAGNOSI E CORREZIONE",
-      title: "Quale comportamento applica correttamente il metodo LOCO?",
-      bodyText: lesson.exercise.prompt,
-      illustrationAsset: "/assets/figma-curated/academy-mascot-lion.svg",
-      options: [
-        {
-          id: "ec-right",
-          label: `Verificare la fonte e applicare: ${lesson.masteryCriterion}`,
-          isCorrect: true,
-          explanation: "Comportamento rigoroso e verificabile!",
-        },
-        {
-          id: "ec-wrong",
-          label: `Commettere l'errore tipico: ${lesson.commonMistake}`,
-          isCorrect: false,
-          explanation: "Questo approccio dà un'illusione di competenza ma non regge alla prova.",
-        },
-      ],
-      explanationOnSuccess: "Diagnosi corretta!",
-      explanationOnMistake: `Attenzione a non ${lesson.commonMistake}`,
+          stepType === "demonstration" && fallbackNoticeText
+            ? fallbackNoticeText
+            : stepType === "diagnostic_feedback" && Array.isArray(rawStep.bullets)
+              ? rawStep.bullets.join(" · ")
+              : undefined,
+        options:
+          stepType === "demonstration" && mission
+            ? mission.demonstrationOptions.map((o) => ({
+                id: o.id,
+                label: o.label,
+                isCorrect: o.isCorrect,
+                explanation: mission.demonstrationModelReveal,
+              }))
+            : undefined,
+        freeRecallPrompt:
+          stepType === "independent_challenge"
+            ? {
+                question: mission?.independentPrompt ?? lesson.checkpoint.question,
+                expectedAnswer: lesson.checkpoint.expectedAnswer,
+                acceptedKeywords: cpMeta.acceptedKeywords,
+                progressiveHint:
+                  mission?.progressiveHints[0] ?? cpMeta.progressiveHint,
+              }
+            : undefined,
+        explanationOnSuccess:
+          mission?.demonstrationModelReveal ?? lesson.masteryCriterion,
+        explanationOnMistake: `Evita l'errore tipico: ${lesson.commonMistake}`,
+      };
     });
   }
 
-  // STEP FINALE (STEP 6 o 7): FREE RECALL / CHECKPOINT UFFICIALE A RISPOSTA NASCOSTA
-  steps.push({
-    stepId: `${lesson.id}-step-checkpoint`,
-    stepIndex: steps.length,
-    type: cpMeta.options ? "multiple_choice" : "free_recall",
-    stageLabel: `STEP ${steps.length + 1} · MINI CHALLENGE FINALE`,
-    title: lesson.checkpoint.question,
-    bodyText:
-      "Rispondi senza aiuti per superare la verifica della lezione. La soluzione viene mostrata solo dopo il tuo tentativo.",
-    illustrationAsset: "/assets/figma-curated/academy-mascot-goose.svg",
-    options: cpMeta.options
-      ? cpMeta.options.map((o) => {
-          const isOk =
-            o.value.toLowerCase() ===
-            lesson.checkpoint.expectedAnswer.trim().replace(/\.$/, "").toLowerCase();
-          return {
-            id: `cp-${o.value}`,
-            label: o.label,
-            isCorrect: isOk,
-            explanation: isOk
-              ? `Risposta esatta! Chiave: ${lesson.checkpoint.expectedAnswer}`
-              : `Risposta errata. Chiave: ${lesson.checkpoint.expectedAnswer} (Evita: ${lesson.commonMistake})`,
-          };
-        })
-      : undefined,
-    freeRecallPrompt: {
-      question: lesson.checkpoint.question,
-      expectedAnswer: lesson.checkpoint.expectedAnswer,
-      acceptedKeywords: cpMeta.acceptedKeywords,
-      progressiveHint: cpMeta.progressiveHint,
+  // Fallback di sicurezza se un ID non fosse nel file v2
+  const { shortText, fullText } = splitShortAndFullReading(lesson.reading);
+  return [
+    {
+      stepId: `${lesson.id}-step-1`,
+      stepIndex: 0,
+      type: "hook",
+      stageLabel: STAGE_LABELS_IT.hook,
+      title: `${lesson.id} · ${lesson.title}`,
+      bodyText: lesson.reading,
+      illustrationAsset: STAGE_ILLUSTRATIONS.hook,
+      explanationOnSuccess: lesson.masteryCriterion,
+      explanationOnMistake: lesson.commonMistake,
     },
-    explanationOnSuccess: `Ottimo recupero! Chiave: ${lesson.checkpoint.expectedAnswer} — ${lesson.masteryCriterion}`,
-    explanationOnMistake: `Chiave di riferimento: «${lesson.checkpoint.expectedAnswer}». Ripasseremo questo punto!`,
-  });
-
-  return steps;
+    {
+      stepId: `${lesson.id}-step-2`,
+      stepIndex: 1,
+      type: "explanation",
+      stageLabel: STAGE_LABELS_IT.explanation,
+      title: "Perché funziona",
+      bodyText: shortText,
+      expandableFullText: fullText,
+      illustrationAsset: STAGE_ILLUSTRATIONS.explanation,
+      explanationOnSuccess: lesson.masteryCriterion,
+      explanationOnMistake: lesson.commonMistake,
+    },
+  ];
 }
 
-export const RAW_ACADEMY_LESSONS: LessonEditorial[] =
-  rawCurriculum.lessons as LessonEditorial[];
+export const RAW_ACADEMY_LESSONS: LessonEditorial[] = (
+  rawCurriculum.lessons as LessonEditorial[]
+).map((v1Lesson) => {
+  const v2 = V2_LESSONS_BY_ID[v1Lesson.id];
+  if (!v2) return v1Lesson;
+
+  const stepByType = Object.fromEntries(v2.steps.map((s) => [s.type, s]));
+  const explanationText =
+    typeof stepByType.explanation?.body === "string"
+      ? stepByType.explanation.body
+      : v1Lesson.reading;
+  const walkthroughText =
+    typeof stepByType.expert_walkthrough?.body === "string"
+      ? stepByType.expert_walkthrough.body
+      : "";
+  const demoText =
+    typeof stepByType.demonstration?.body === "string"
+      ? stepByType.demonstration.body
+      : v1Lesson.workedExample;
+  const guidedPrompt =
+    typeof stepByType.guided_practice?.prompt === "string"
+      ? stepByType.guided_practice.prompt
+      : v1Lesson.exercise.prompt;
+  const challengePrompt =
+    typeof stepByType.independent_challenge?.prompt === "string"
+      ? stepByType.independent_challenge.prompt
+      : v1Lesson.checkpoint.question;
+  const commonMistakesJoined =
+    Array.isArray(v2.commonMistakes) && v2.commonMistakes.length > 0
+      ? v2.commonMistakes.join(" · ")
+      : v1Lesson.commonMistake;
+
+  return {
+    ...v1Lesson,
+    title: v2.title || v1Lesson.title,
+    contentVersion: v2.contentVersion || ACADEMY_V2_SCHEMA_VERSION,
+    planTier: (v2.tier as LessonTier) || v1Lesson.planTier,
+    prerequisites: Array.isArray(v2.prerequisites)
+      ? v2.prerequisites
+      : v1Lesson.prerequisites,
+    estimatedMinutes:
+      typeof v2.estimatedMinutes === "number"
+        ? v2.estimatedMinutes
+        : v1Lesson.estimatedMinutes,
+    reading: explanationText,
+    workedExample: walkthroughText
+      ? `${walkthroughText}\n\n${demoText}`
+      : demoText,
+    exercise: {
+      prompt: guidedPrompt,
+      mode: v2.skillType || v1Lesson.exercise.mode,
+    },
+    checkpoint: {
+      question: challengePrompt,
+      expectedAnswer: v1Lesson.checkpoint.expectedAnswer,
+    },
+    masteryCriterion: v2.masteryGate || v1Lesson.masteryCriterion,
+    commonMistake: commonMistakesJoined,
+  };
+});
 
 export const ENRICHED_ACADEMY_LESSONS: EnrichedAcademyLesson[] =
   RAW_ACADEMY_LESSONS.map((lesson) => {
+    const v2 = V2_LESSONS_BY_ID[lesson.id];
+    const mission = ACADEMY_V2_MISSIONS[lesson.id];
     const courseMeta = COURSE_METADATA[lesson.courseId] ?? {
       unitNumber: 1,
       unitTitle: lesson.courseName,
@@ -1632,6 +1232,9 @@ export const ENRICHED_ACADEMY_LESSONS: EnrichedAcademyLesson[] =
       cpMeta,
       runtimeSpec.fallbackNoticeText
     );
+    const stepByType = v2
+      ? Object.fromEntries(v2.steps.map((s) => [s.type, s]))
+      : {};
 
     return {
       ...lesson,
@@ -1644,8 +1247,21 @@ export const ENRICHED_ACADEMY_LESSONS: EnrichedAcademyLesson[] =
       fallbackNoticeText: runtimeSpec.fallbackNoticeText,
       checkpointAcceptedKeywords: cpMeta.acceptedKeywords,
       checkpointOptions: cpMeta.options,
-      progressiveHint: cpMeta.progressiveHint,
+      progressiveHint:
+        mission?.progressiveHints[0] ?? cpMeta.progressiveHint,
       steps,
+      v2Mission: mission,
+      v2LearningObjective: v2?.learningObjective ?? lesson.masteryCriterion,
+      v2SkillType: v2?.skillType ?? lesson.exercise.mode,
+      v2ExpertWalkthrough:
+        typeof stepByType.expert_walkthrough?.body === "string"
+          ? stepByType.expert_walkthrough.body
+          : lesson.workedExample,
+      v2CommonMistakes: Array.isArray(v2?.commonMistakes)
+        ? v2.commonMistakes
+        : [lesson.commonMistake],
+      gradingReliability:
+        mission?.gradingReliability ?? "deterministic_verified",
     };
   });
 
@@ -1733,6 +1349,10 @@ export function createInitialLessonProgress(
     masteredAfterDelayAt: null,
     nextReviewDueAt: null,
     legacyMigratedFrom: [],
+    attemptHistory: [],
+    lastVerifiedBy: null,
+    lastErrorCategory: null,
+    lastRepairAction: null,
   };
 }
 
@@ -2094,6 +1714,132 @@ export function recordAcademyCheckpointAttempt(
   };
 }
 
+/**
+ * Registra un tentativo completo di LOCO Academy 2.0 (`AttemptEvidence`, `05_GAME_ENGINE_SPEC.md`).
+ * Applica rigorosamente le regole di valutazione onesta:
+ * - `!submittedBeforeReveal` -> mai `provisionally_passed` o `mastered_after_delay`
+ * - `hintsUsed > 0` -> richiamo assistito (`practice_done`), mai mastery autonoma
+ * - `verifiedBy === "learner_self_check"` (rubrica aperta senza recall deterministico) -> `practice_done` (`skill_practiced`), mai `provisionally_passed` automatico
+ * - `verifiedBy === "deterministic"` + `autonomousMasteryEligible` -> `provisionally_passed` (o `mastered_after_delay` se follow-up a distanza)
+ */
+export function recordAcademyV2Attempt(
+  current: AcademyLessonProgress,
+  lesson: EnrichedAcademyLesson,
+  evidence: AttemptEvidence,
+  options?: {
+    isDelayedFollowUp?: boolean;
+    nowIso?: string;
+  }
+): {
+  updated: AcademyLessonProgress;
+  autonomousSuccess: boolean;
+} {
+  const nowIso = options?.nowIso ?? evidence.createdAt ?? new Date().toISOString();
+  const autonomousSuccess =
+    (evidence.verifiedBy === "deterministic" ||
+      evidence.verifiedBy === "qualified_review") &&
+    evidence.correct === true &&
+    evidence.submittedBeforeReveal &&
+    evidence.hintsUsed === 0 &&
+    evidence.autonomousMasteryEligible;
+
+  let nextStatus: LessonStatus = current.status;
+  let provisionallyPassedAt = current.provisionallyPassedAt;
+  let masteredAfterDelayAt = current.masteredAfterDelayAt;
+  let nextReviewDueAt = current.nextReviewDueAt;
+  let practiceCompletedAt = current.practiceCompletedAt;
+
+  if (!evidence.submittedBeforeReveal) {
+    nextStatus =
+      current.status === "mastered_after_delay" ||
+      current.status === "provisionally_passed"
+        ? "needs_review"
+        : current.practiceCompletedAt
+          ? "practice_done"
+          : "reading";
+  } else if (evidence.verifiedBy === "learner_self_check") {
+    // Open rubric tasks: self-check grants `practice_done` (`skill_practiced`) when valid, NEVER automatic mastery!
+    if (evidence.scoreRatio >= 1) {
+      practiceCompletedAt = practiceCompletedAt ?? nowIso;
+      if (
+        current.status !== "provisionally_passed" &&
+        current.status !== "mastered_after_delay"
+      ) {
+        nextStatus = "practice_done";
+      }
+      const nextDate = new Date(Date.parse(nowIso) + 48 * 60 * 60 * 1000);
+      nextReviewDueAt = nextReviewDueAt ?? nextDate.toISOString();
+    } else {
+      nextStatus = "needs_review";
+    }
+  } else if (autonomousSuccess) {
+    practiceCompletedAt = practiceCompletedAt ?? nowIso;
+    const canPromoteToMastered =
+      Boolean(current.provisionallyPassedAt) &&
+      (options?.isDelayedFollowUp === true || current.checkpointAttempts >= 1);
+
+    if (canPromoteToMastered) {
+      nextStatus = "mastered_after_delay";
+      masteredAfterDelayAt = masteredAfterDelayAt ?? nowIso;
+      const nextDate = new Date(Date.parse(nowIso) + 7 * 24 * 60 * 60 * 1000);
+      nextReviewDueAt = nextDate.toISOString();
+    } else {
+      nextStatus = "provisionally_passed";
+      provisionallyPassedAt = provisionallyPassedAt ?? nowIso;
+      const nextDate = new Date(Date.parse(nowIso) + 24 * 60 * 60 * 1000);
+      nextReviewDueAt = nextDate.toISOString();
+    }
+  } else if (evidence.correct === true && evidence.hintsUsed > 0) {
+    // Assisted recall -> `practice_done`, never autonomous mastery
+    practiceCompletedAt = practiceCompletedAt ?? nowIso;
+    if (
+      current.status === "available" ||
+      current.status === "reading" ||
+      current.status === "needs_review"
+    ) {
+      nextStatus = "practice_done";
+    }
+  } else {
+    nextStatus = "needs_review";
+  }
+
+  const history = Array.isArray(current.attemptHistory)
+    ? [...current.attemptHistory, evidence]
+    : [evidence];
+
+  const updated: AcademyLessonProgress = {
+    ...current,
+    contentVersion: lesson.contentVersion,
+    status: nextStatus,
+    openedAt: current.openedAt ?? nowIso,
+    practiceCompletedAt,
+    practiceSummary: evidence.summaryHeadline,
+    checkpointAttempts: current.checkpointAttempts + 1,
+    checkpointHintsUsed:
+      current.checkpointHintsUsed + Math.max(0, evidence.hintsUsed),
+    viewedAnswerBeforeAttempt:
+      current.viewedAnswerBeforeAttempt || !evidence.submittedBeforeReveal,
+    lastAttemptAnswer:
+      typeof evidence.submittedAnswer === "string"
+        ? evidence.submittedAnswer
+        : JSON.stringify(evidence.submittedAnswer),
+    lastAttemptCorrect: evidence.correct,
+    lastAttemptAt: nowIso,
+    provisionallyPassedAt,
+    masteredAfterDelayAt,
+    nextReviewDueAt,
+    attemptHistory: history,
+    lastVerifiedBy: evidence.verifiedBy,
+    lastErrorCategory: evidence.errorCategory,
+    lastRepairAction: evidence.repairAction,
+  };
+
+  return {
+    updated,
+    autonomousSuccess,
+  };
+}
+
 export function reconcileAcademyProgressVersion(
   record: AcademyLessonProgress,
   lesson: Pick<LessonEditorial, "contentVersion">
@@ -2102,6 +1848,10 @@ export function reconcileAcademyProgressVersion(
     ...record,
     currentStepIndex: typeof record.currentStepIndex === "number" ? record.currentStepIndex : 0,
     completedStepIds: Array.isArray(record.completedStepIds) ? record.completedStepIds : [],
+    attemptHistory: Array.isArray(record.attemptHistory) ? record.attemptHistory : [],
+    lastVerifiedBy: record.lastVerifiedBy ?? null,
+    lastErrorCategory: record.lastErrorCategory ?? null,
+    lastRepairAction: record.lastRepairAction ?? null,
   };
 
   if (normalized.contentVersion === lesson.contentVersion) {
