@@ -26,7 +26,8 @@
 | `/v1` due reviews and attempts | **Implemented in source** | `app/server`, `srs.ts`, tests, and interactive Blind Recall session in `/app` |
 | FSRS-7 + simple-v1 scheduler | **Implemented in source** | `app/server/src/srs.ts`; wired into both server tests and `/app` Blind Recall |
 | Learning metrics (18 families) | **Implemented in source** | `memoryMetrics.ts`, v2 tests, and 18-metric profile dashboard in `/app` |
-| Adaptive recommendations | **Implemented in source** | `adaptiveRecommendations.ts` + explainable Coach UI in `/app` |
+| Adaptive recommendations | **Implemented in source** | `adaptiveRecommendations.ts` + explainable Coach UI and Academy error-driven routing in `/app` |
+| LOCO Academy curriculum (12 courses, 56 lessons) | **Implemented in source** | `loco-academy-lessons.json`, `loco-academy-curriculum.ts`, `loco-academy-section.tsx`, and `academy-curriculum.test.mjs` (32 Free / 20 Plus / 4 Pro, `major-it-v1` phonetic transducer, hidden-answer checkpoints, legacy `c1-l1..c3-l3` migration, and labeled fallbacks for unimplemented AI/Maps) |
 | Arena/challenges/leaderboards | **Implemented in source** | `challengeScoring.ts`, `/v1` tests, and Arena UI in `/app` |
 | PostgreSQL schema and optional RLS | **Specified** | `app/server/db/001..007*.sql`; no verified running hosted DB |
 | Owner-curated Figma visuals | **Implemented in source** | 30 curated WebP/SVG assets (`972 KB`) in `app/public/assets/figma-curated/` |

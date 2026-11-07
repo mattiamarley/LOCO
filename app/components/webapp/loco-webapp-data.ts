@@ -2,16 +2,16 @@ import {
   computeAllMemoryMetrics,
   METRIC_DEFINITIONS,
   ALL_MEMORY_METRIC_KEYS,
-} from "@/server/src/memoryMetrics";
-import { generateAdaptiveInterventions } from "@/server/src/adaptiveRecommendations";
-import { computeNextSchedule } from "@/server/src/srs";
-import type { SchedulerGrade, SkillKind } from "@/server/src/models";
+} from "../../server/src/memoryMetrics.ts";
+import { generateAdaptiveInterventions } from "../../server/src/adaptiveRecommendations.ts";
+import { computeNextSchedule } from "../../server/src/srs.ts";
+import type { SchedulerGrade, SkillKind } from "../../server/src/models.ts";
 import type {
   LearningIntervention,
   MemoryMetricKey,
   MetricValueSnapshot,
   TrialDiagnosticRecord,
-} from "@/server/src/models.v2";
+} from "../../server/src/models.v2.ts";
 
 export { METRIC_DEFINITIONS, ALL_MEMORY_METRIC_KEYS };
 export type { LearningIntervention, MemoryMetricKey, MetricValueSnapshot };
@@ -67,6 +67,8 @@ export interface WebAppCourse {
     summary: string;
     exercise: string;
     completed: boolean;
+    primaryAcademyLessonId?: string;
+    mappedAcademyLessonIds?: string[];
   }[];
 }
 
@@ -399,10 +401,12 @@ export const INITIAL_COURSES: WebAppCourse[] = [
         title: "Approccio alle tecniche mnemoniche",
         illustration: "/assets/figma-curated/lesson-1-approccio.webp",
         summary:
-          "La memoria spaziale ed episodica è il sistema più antico e robusto del cervello umano. Invece di ripetere meccanicamente una lista astratta, trasformiamo i concetti in immagini vivide ancorate a luoghi familiari.",
+          "Riconoscere una pagina rileggendola non equivale a saperla recuperare senza guardare. La tecnica dei loci usa punti spaziali stabili come ancore per il richiamo attivo, affiancando comprensione e ripasso distribuito.",
         exercise:
-          "Esercizio pratico: Chiudi gli occhi per 20 secondi e ripercorri mentalmente 5 punti fissi della stanza in cui ti trovi, seguendo sempre il senso orario dalla porta.",
+          "Esercizio pratico: Osserva 5 parole per 15 secondi (limone, violino, ponte, bussola, moneta), nascondi la lista e prova a scriverle senza aiuti (Lezioni Academy S01 + L01).",
         completed: true,
+        primaryAcademyLessonId: "S01",
+        mappedAcademyLessonIds: ["S01", "L01"],
       },
       {
         id: "c1-l2",
@@ -410,10 +414,12 @@ export const INITIAL_COURSES: WebAppCourse[] = [
         title: "Introduzione alla tecnica dei Loci",
         illustration: "/assets/figma-curated/lesson-2-introduzione.webp",
         summary:
-          "Ogni locus deve essere distinto, ordinato in una sequenza non ambigua e ben illuminato mentalmente. Evita di sovrapporre due concetti diversi sullo stesso identico oggetto senza un ordine chiaro.",
+          "Ogni locus deve essere distinto, ordinato in una sequenza non ambigua e ben riconoscibile. Evita di scegliere cinque angoli quasi indistinguibili o sovrapporre due concetti diversi sullo stesso punto.",
         exercise:
-          "Esercizio pratico: Scegli 3 mobili nella Stanza 3D di LOCO e verifica di saperli elencare sia dall'ingresso verso il fondo (forward) sia dal fondo verso l'ingresso (reverse).",
+          "Esercizio pratico: Apri la Stanza 3D di LOCO, seleziona 5 punti non ambigui e verifica di saperli nominare in ordine a etichette chiuse (Lezioni Academy S03 + L02).",
         completed: true,
+        primaryAcademyLessonId: "S03",
+        mappedAcademyLessonIds: ["S03", "L02"],
       },
       {
         id: "c1-l3",
@@ -421,10 +427,12 @@ export const INITIAL_COURSES: WebAppCourse[] = [
         title: "Come utilizzare la tecnica dei Loci",
         illustration: "/assets/figma-curated/lesson-3-utilizzo.webp",
         summary:
-          "Per fissare una nozione nel locus usa il principio PAV (Paradosso, Azione, Vividezza): l'associazione deve interagire fisicamente con la superficie del luogo (es. graffiare, illuminare, bloccare la porta).",
+          "Per fissare un bersaglio nel locus crea un'azione chiara e personale che colleghi la risposta al punto scelto (l'euristica creativa PAV può aiutare, ma conta soprattutto che l'indizio riporti alla risposta esatta).",
         exercise:
-          "Esercizio pratico: Apri il percorso 'Discussione tesi' e svolgi una sessione di Blind Recall senza guardare la risposta prima del tentativo.",
+          "Esercizio pratico: Colloca 5 elementi nei tuoi loci con una frase d'azione e svolgi un Blind Recall senza scoprire la soluzione prima del tentativo (Lezioni Academy S04 + L04 + L06).",
         completed: true,
+        primaryAcademyLessonId: "S04",
+        mappedAcademyLessonIds: ["S04", "L04", "L06"],
       },
     ],
   },
@@ -442,10 +450,12 @@ export const INITIAL_COURSES: WebAppCourse[] = [
         title: "Introduzione al Linked method",
         illustration: "/assets/figma-curated/lesson-1-approccio.webp",
         summary:
-          "Il Linked Method concatena più elementi all'interno di uno stesso locus o lungo una sequenza breve: l'elemento A compie un'azione fisica sull'elemento B, e B agisce su C.",
+          "Il Linked Method concatena più elementi in una sequenza breve: la prima immagine compie un'azione fisica sulla seconda, e la seconda agisce sulla terza.",
         exercise:
-          "Esercizio pratico: Collega in una singola scena assurda: Idrogeno (dirigibile) → Litio (batteria) → Sodio (saliera).",
+          "Esercizio pratico: Collega in catena 6 parole verificando ogni singolo ponte binario A→B e B→C (Lezione Academy K01).",
         completed: true,
+        primaryAcademyLessonId: "K01",
+        mappedAcademyLessonIds: ["K01"],
       },
       {
         id: "c2-l2",
@@ -453,10 +463,12 @@ export const INITIAL_COURSES: WebAppCourse[] = [
         title: "Come creare storie per il Linked method",
         illustration: "/assets/figma-curated/lesson-2-introduzione.webp",
         summary:
-          "Il segreto per non spezzare la catena è focalizzarsi solo sul legame binario tra l'elemento corrente e il successivo: esagera proporzioni, suoni e movimento.",
+          "Una buona catena non è un romanzo: il segreto per non spezzarla è mantenere legami brevi e causali tra due elementi consecutivi, evitando dettagli superflui che distraggono.",
         exercise:
-          "Esercizio pratico: Memorizza una sequenza di 5 carte nella Palestra Mnemonica concatenando le loro immagini.",
+          "Esercizio pratico: Semplifica una storia prolissa in soli contatti diretti tra coppie consecutive e ripeti la sequenza (Lezione Academy K02).",
         completed: true,
+        primaryAcademyLessonId: "K02",
+        mappedAcademyLessonIds: ["K02"],
       },
       {
         id: "c2-l3",
@@ -464,10 +476,12 @@ export const INITIAL_COURSES: WebAppCourse[] = [
         title: "Come utilizzare il Linked method",
         illustration: "/assets/figma-curated/lesson-3-utilizzo.webp",
         summary:
-          "Combina Loci + Linked Method: usa i loci come 'capitoli' del tuo discorso o materia e il Linked Method per legare i 3-4 concetti chiave contenuti in ciascun locus.",
+          "Scegli con criterio tra Loci e storie: usa i loci come 'capitoli' stabili quando la lista supera 8–10 voci e il Linked Method per legare 2–3 concetti chiave dentro un singolo locus.",
         exercise:
-          "Esercizio pratico: Completa questa lezione e prova a ripercorrere la catena anche a ritroso.",
+          "Esercizio pratico: Confronta quando usare una catena libera e quando ancorarla ai loci, poi ripara un anello mancante (Lezioni Academy K03 + K04).",
         completed: false,
+        primaryAcademyLessonId: "K03",
+        mappedAcademyLessonIds: ["K03"],
       },
     ],
   },
@@ -485,10 +499,12 @@ export const INITIAL_COURSES: WebAppCourse[] = [
         title: "Introduzione alla Conversione fonetica",
         illustration: "/assets/figma-curated/lesson-1-approccio.webp",
         summary:
-          "I numeri sono astratti e scivolano via facilmente. Il Sistema Fonetico (Major System / Leibniz) trasforma ogni cifra 0-9 in un suono consonantico stabile, permettendo di convertire numeri in parole tangibili.",
+          "Le cifre sono astratte: la conversione fonetica (Major System italiano `major-it-v1`) attribuisce a ciascuna cifra 0–9 una famiglia di suoni consonantici, mentre le vocali non aggiungono cifre.",
         exercise:
-          "Esercizio pratico: Memorizza le prime 5 corrispondenze: 0=S/Z, 1=T/D, 2=N, 3=M, 4=R.",
+          "Esercizio pratico: Collega 1 a T/D e 4 a R per ottenere «toro» (14) e colloca l'immagine in un locus (Lezione Academy N01).",
         completed: false,
+        primaryAcademyLessonId: "N01",
+        mappedAcademyLessonIds: ["N01"],
       },
       {
         id: "c3-l2",
@@ -496,10 +512,12 @@ export const INITIAL_COURSES: WebAppCourse[] = [
         title: "Come imparare l'alfabeto numerico",
         illustration: "/assets/figma-curated/lesson-2-introduzione.webp",
         summary:
-          "Completa la mappa 0-9: 5=L, 6=C/G dolce (Ciliegia), 7=C/G dura (K/Gatto), 8=F/V, 9=P/B. Le vocali non hanno valore numerico e servono come collante per creare parole reali.",
+          "Convenzione fonetica `major-it-v1`: 0=S/Z/SC dolce (scena), 1=T/D, 2=N/GN, 3=M, 4=R, 5=L/GL palatale, 6=C/G dolce (ciao, gelato), 7=C/G dura (casa, mago), 8=F/V, 9=P/B. Conta il suono pronunciato, non la semplice lettera.",
         exercise:
-          "Esercizio pratico: Converti il numero 32 (M-N → MaNo) e il numero 14 (T-R → ToRo) nella Palestra Conversione Fonetica.",
+          "Esercizio pratico: Risolvi 10 associazioni suono↔cifra distinguendo C/G dolce (6: micio=36) e C/G dura (7: mago=37) (Lezione Academy N02).",
         completed: false,
+        primaryAcademyLessonId: "N02",
+        mappedAcademyLessonIds: ["N02"],
       },
       {
         id: "c3-l3",
@@ -507,26 +525,28 @@ export const INITIAL_COURSES: WebAppCourse[] = [
         title: "Come utilizzare la Conversione fonetica",
         illustration: "/assets/figma-curated/lesson-3-utilizzo.webp",
         summary:
-          "L'allenamento bidirezionale è essenziale: devi saper codificare rapidamente Numero → Immagine (Forward) in fase di studio e decodificare Immagine → Numero (Reverse) durante l'esame.",
+          "L'allenamento bidirezionale è essenziale: codifica Numero → Parola (32→mano, 52→luna, 92→pane) e decodifica Parola → Numero (mago→37, scena→02) per poi fissare date storiche verificabili.",
         exercise:
-          "Esercizio pratico: Svolgi 4 prove Forward e 4 prove Reverse nella Palestra per sbloccare la metrica Major System.",
+          "Esercizio pratico: Svolgi le prove Forward (N03) e Reverse (N04) nella Palestra Conversione Fonetica.",
         completed: false,
+        primaryAcademyLessonId: "N03",
+        mappedAcademyLessonIds: ["N03", "N04"],
       },
     ],
   },
 ];
 
 export const MAJOR_SYSTEM_TABLE = [
-  { digit: "0", sounds: "S, Z", mnemonic: "Zero / Sibilo", exampleWord: "Sole (05)" },
-  { digit: "1", sounds: "T, D", mnemonic: "1 asta verticale", exampleWord: "Dado (11)" },
-  { digit: "2", sounds: "N", mnemonic: "2 gambe della N", exampleWord: "Nave (28)" },
-  { digit: "3", sounds: "M", mnemonic: "3 gambe della M", exampleWord: "Mela (35)" },
-  { digit: "4", sounds: "R", mnemonic: "quattRo", exampleWord: "Rana (42)" },
-  { digit: "5", sounds: "L", mnemonic: "L = 50 romano (5 dita)", exampleWord: "Luna (52)" },
-  { digit: "6", sounds: "C/G dolce, SC", mnemonic: "Ciliegia (forma del 6)", exampleWord: "Noce (26)" },
-  { digit: "7", sounds: "C/G dura, K", mnemonic: "7 angolo spigoloso", exampleWord: "Cubo (79)" },
-  { digit: "8", sounds: "F, V", mnemonic: "F corsiva a doppia asola", exampleWord: "Faro (84)" },
-  { digit: "9", sounds: "P, B", mnemonic: "9 specchiato = P/b", exampleWord: "Pera (94)" },
+  { digit: "0", sounds: "S, Z, SC dolce (scena)", mnemonic: "Zero / Sibilo o fruscio (/s/, /z/, /ʃ/)", exampleWord: "Scena (02) · Sole (05)" },
+  { digit: "1", sounds: "T, D", mnemonic: "1 asta verticale (/t/, /d/)", exampleWord: "Toro (14) · Dado (11)" },
+  { digit: "2", sounds: "N, GN (gnomo)", mnemonic: "2 gambe della n (/n/, /ɲ/)", exampleWord: "Nave (28) · Gnomo (23)" },
+  { digit: "3", sounds: "M", mnemonic: "3 gambe della m (/m/)", exampleWord: "Mano (32) · Mela (35)" },
+  { digit: "4", sounds: "R", mnemonic: "quattRo (/r/)", exampleWord: "Riva (48) · Rana (42)" },
+  { digit: "5", sounds: "L, GL palatale (foglia)", mnemonic: "L = 50 romano (/l/, /ʎ/)", exampleWord: "Luna (52) · Foglia (85)" },
+  { digit: "6", sounds: "C/G dolce (ciao, gelato)", mnemonic: "Ciliegia / suono palatale (/tʃ/, /dʒ/)", exampleWord: "Micio (36) · Ciao (6)" },
+  { digit: "7", sounds: "C/G dura (casa, mago), K, Q", mnemonic: "7 spigoloso / suono gutturale (/k/, /g/)", exampleWord: "Mago (37) · Casa (70)" },
+  { digit: "8", sounds: "F, V", mnemonic: "f corsiva a doppia asola (/f/, /v/)", exampleWord: "Tuffo (18) · Faro (84)" },
+  { digit: "9", sounds: "P, B", mnemonic: "9 specchiato = P/b (/p/, /b/)", exampleWord: "Pane (92) · Ponte (921)" },
 ];
 
 export const INITIAL_CHALLENGES: WebAppChallenge[] = [

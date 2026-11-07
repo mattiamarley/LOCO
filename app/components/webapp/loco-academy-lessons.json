@@ -1,0 +1,1737 @@
+{
+  "schemaVersion": "1.0",
+  "curriculumId": "loco-academy-it",
+  "locale": "it-IT",
+  "editorialStatus": "draft-for-review",
+  "tierNaming": {
+    "free": "LOCOMPRO DOPO",
+    "plus": "POCO LOCO",
+    "pro": "PRO LOCO"
+  },
+  "courses": [
+    {
+      "courseId": "course-0",
+      "courseNumber": 0,
+      "title": "Benvenuto in LOCO",
+      "lessonIds": [
+        "S01",
+        "S02",
+        "S03",
+        "S04",
+        "S05",
+        "S06"
+      ]
+    },
+    {
+      "courseId": "course-1",
+      "courseNumber": 1,
+      "title": "Tecnica dei Loci",
+      "lessonIds": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07"
+      ]
+    },
+    {
+      "courseId": "course-2",
+      "courseNumber": 2,
+      "title": "Linked Method: ricordi che si inseguono",
+      "lessonIds": [
+        "K01",
+        "K02",
+        "K03",
+        "K04"
+      ]
+    },
+    {
+      "courseId": "course-3",
+      "courseNumber": 3,
+      "title": "Conversione fonetica: numeri da ricordare",
+      "lessonIds": [
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05"
+      ]
+    },
+    {
+      "courseId": "course-4",
+      "courseNumber": 4,
+      "title": "Studiare davvero: dalla memoria alla conoscenza",
+      "lessonIds": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05",
+        "T06"
+      ]
+    },
+    {
+      "courseId": "course-5",
+      "courseNumber": 5,
+      "title": "LOCO nella vita reale",
+      "lessonIds": [
+        "X01",
+        "X02",
+        "X03",
+        "X04"
+      ]
+    },
+    {
+      "courseId": "course-6",
+      "courseNumber": 6,
+      "title": "Architetto dei palazzi",
+      "lessonIds": [
+        "P01",
+        "P02",
+        "P03",
+        "P04"
+      ]
+    },
+    {
+      "courseId": "course-7",
+      "courseNumber": 7,
+      "title": "Maestria numerica: Peg e PAO",
+      "lessonIds": [
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04"
+      ]
+    },
+    {
+      "courseId": "course-8",
+      "courseNumber": 8,
+      "title": "Stratega dello studio",
+      "lessonIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04"
+      ]
+    },
+    {
+      "courseId": "course-9",
+      "courseNumber": 9,
+      "title": "Spazi del mondo: palazzi reali e virtuali",
+      "lessonIds": [
+        "W01",
+        "W02",
+        "W03",
+        "W04"
+      ]
+    },
+    {
+      "courseId": "course-10",
+      "courseNumber": 10,
+      "title": "Palestra dei campioni",
+      "lessonIds": [
+        "U01",
+        "U02",
+        "U03",
+        "U04"
+      ]
+    },
+    {
+      "courseId": "course-11",
+      "courseNumber": 11,
+      "title": "AI Memory Studio",
+      "lessonIds": [
+        "A01",
+        "A02",
+        "A03",
+        "A04"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "id": "S01",
+      "title": "Conoscere non è ricordare",
+      "contentVersion": "1.0",
+      "courseId": "course-0",
+      "courseName": "Benvenuto in LOCO",
+      "position": 1,
+      "planTier": "free",
+      "requiredInOnboarding": true,
+      "locale": "it-IT",
+      "prerequisites": [],
+      "estimatedMinutes": 5,
+      "reading": "Ti è mai capitato di rileggere una pagina e pensare «questa la so», per poi non riuscire a spiegarla senza guardare? Riconoscere qualcosa quando lo vedi è diverso dal recuperarlo dalla memoria. LOCO costruisce entrambe le fasi, ma verifica soprattutto la seconda. Durante lo studio puoi vedere parole, immagini e associazioni; durante una prova, invece, la risposta deve essere nascosta. Se non ti viene in mente, non è un fallimento personale: è un'informazione utile per scegliere come allenarti. Per sapere se hai davvero imparato, prova a ricostruire l'informazione senza leggere.",
+      "workedExample": "Vedi «Parigi» accanto alla domanda «Capitale della Francia?» e tutto sembra ovvio. Se la domanda appare da sola e rispondi «Parigi», hai eseguito un recupero.",
+      "exercise": {
+        "prompt": "Osserva per 15 secondi: limone, violino, ponte, bussola, moneta. Nascondi la lista, aspetta qualche secondo, prova a scrivere gli elementi senza aiuti; poi confronta.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Aver capito una risposta quando la leggo dimostra di saperla recuperare?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "distingue riconoscimento e richiamo e prova prima di scoprire la risposta.",
+      "commonMistake": "contare come riuscita una risposta già vista.",
+      "rawMarkdown": "**Tempo:** 3 min spiegazione e riflessione + 2 min esercizio. **Prerequisiti:** nessuno.\n\n**Da leggere.** Ti è mai capitato di rileggere una pagina e pensare «questa la so», per poi non riuscire a spiegarla senza guardare? Riconoscere qualcosa quando lo vedi è diverso dal recuperarlo dalla memoria. LOCO costruisce entrambe le fasi, ma verifica soprattutto la seconda. Durante lo studio puoi vedere parole, immagini e associazioni; durante una prova, invece, la risposta deve essere nascosta. Se non ti viene in mente, non è un fallimento personale: è un'informazione utile per scegliere come allenarti. Per sapere se hai davvero imparato, prova a ricostruire l'informazione senza leggere.\n\n**Esempio LOCO.** Vedi «Parigi» accanto alla domanda «Capitale della Francia?» e tutto sembra ovvio. Se la domanda appare da sola e rispondi «Parigi», hai eseguito un recupero.\n\n**Esercizio guidato.** Osserva per 15 secondi: limone, violino, ponte, bussola, moneta. Nascondi la lista, aspetta qualche secondo, prova a scrivere gli elementi senza aiuti; poi confronta.\n\n**Verifica:** «Aver capito una risposta quando la leggo dimostra di saperla recuperare?» **Chiave:** no. **Padronanza osservabile:** distingue riconoscimento e richiamo e prova prima di scoprire la risposta. **Errore tipico:** contare come riuscita una risposta già vista."
+    },
+    {
+      "id": "S02",
+      "title": "Una domanda alla volta",
+      "contentVersion": "1.0",
+      "courseId": "course-0",
+      "courseName": "Benvenuto in LOCO",
+      "position": 2,
+      "planTier": "free",
+      "requiredInOnboarding": true,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S01"
+      ],
+      "estimatedMinutes": 5,
+      "reading": "Il cervello non studia bene un'intera pagina come se fosse un unico oggetto. LOCO ti aiuta a trasformare il materiale in piccoli bersagli di apprendimento, che chiameremo *target*. Un target è una domanda che puoi tentare di risolvere, con una risposta controllabile. «Studiare la Rivoluzione francese» è un obiettivo; «In quale anno iniziò la Rivoluzione francese?» è un target. Ma ricordare solo un anno non equivale a comprendere le cause storiche: per quello servirà un'altra domanda, ad esempio «Spiega due cause e il loro ruolo». Dividere non significa impoverire: significa rendere chiaro che cosa sai e che cosa devi ancora recuperare.",
+      "workedExample": "Dal blocco «fotosintesi» nascono «Quali elementi entrano nel processo?», «Quale ruolo ha la luce?», «Qual è il risultato generale?».",
+      "exercise": {
+        "prompt": "Converti «ripassare i pianeti» in tre domande verificabili, una sull'ordine, una sulle caratteristiche e una di confronto.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quale domanda permette di controllare una conoscenza?» A «Sai tutto sull'energia?»; B «Che differenza c'è tra energia cinetica e potenziale?»",
+        "expectedAnswer": "B."
+      },
+      "masteryCriterion": "formula almeno due domande precise, non tautologiche.",
+      "commonMistake": "creare una scheda che richiede dieci risposte non collegate.",
+      "rawMarkdown": "**Tempo:** 3 + 2 min. **Prerequisiti:** S01.\n\n**Da leggere.** Il cervello non studia bene un'intera pagina come se fosse un unico oggetto. LOCO ti aiuta a trasformare il materiale in piccoli bersagli di apprendimento, che chiameremo *target*. Un target è una domanda che puoi tentare di risolvere, con una risposta controllabile. «Studiare la Rivoluzione francese» è un obiettivo; «In quale anno iniziò la Rivoluzione francese?» è un target. Ma ricordare solo un anno non equivale a comprendere le cause storiche: per quello servirà un'altra domanda, ad esempio «Spiega due cause e il loro ruolo». Dividere non significa impoverire: significa rendere chiaro che cosa sai e che cosa devi ancora recuperare.\n\n**Esempio LOCO.** Dal blocco «fotosintesi» nascono «Quali elementi entrano nel processo?», «Quale ruolo ha la luce?», «Qual è il risultato generale?».\n\n**Esercizio guidato.** Converti «ripassare i pianeti» in tre domande verificabili, una sull'ordine, una sulle caratteristiche e una di confronto.\n\n**Verifica:** «Quale domanda permette di controllare una conoscenza?» A «Sai tutto sull'energia?»; B «Che differenza c'è tra energia cinetica e potenziale?» **Chiave:** B. **Padronanza:** formula almeno due domande precise, non tautologiche. **Errore tipico:** creare una scheda che richiede dieci risposte non collegate."
+    },
+    {
+      "id": "S03",
+      "title": "Il tuo primo percorso",
+      "contentVersion": "1.0",
+      "courseId": "course-0",
+      "courseName": "Benvenuto in LOCO",
+      "position": 3,
+      "planTier": "free",
+      "requiredInOnboarding": true,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S02"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Un *palazzo della memoria* non deve essere un castello. Può essere una stanza, un corridoio o una passeggiata che conosci. La sua funzione è offrirti punti stabili, chiamati *loci* (singolare *locus*), in cui collocare ricordi. Per iniziare bastano cinque punti davvero diversi: porta, attaccapanni, tavolo, divano, finestra. Decidi da quale partire e segui sempre lo stesso ordine. Prima di inserire contenuti, ripercorri mentalmente gli oggetti. Se non ricordi il secondo punto senza guardare, rendi il percorso più semplice. Il luogo è una mappa: il ricordo arriverà nella prossima lezione.",
+      "workedExample": "Entri nella stanza demo e tocchi cinque superfici in sequenza. Ogni tocco conferma un locus, non ancora un concetto da imparare.",
+      "exercise": {
+        "prompt": "Apri una scena, seleziona e conferma 5 punti non ambigui. Chiudi le etichette e nomina i cinque punti nell'ordine scelto.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Qual è la differenza tra un palazzo e un locus?»",
+        "expectedAnswer": "il palazzo è l'ambiente/il percorso; un locus è un punto stabile al suo interno."
+      },
+      "masteryCriterion": "5/5 loci in ordine senza etichette.",
+      "commonMistake": "scegliere cinque angoli quasi indistinguibili.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** S02.\n\n**Da leggere.** Un *palazzo della memoria* non deve essere un castello. Può essere una stanza, un corridoio o una passeggiata che conosci. La sua funzione è offrirti punti stabili, chiamati *loci* (singolare *locus*), in cui collocare ricordi. Per iniziare bastano cinque punti davvero diversi: porta, attaccapanni, tavolo, divano, finestra. Decidi da quale partire e segui sempre lo stesso ordine. Prima di inserire contenuti, ripercorri mentalmente gli oggetti. Se non ricordi il secondo punto senza guardare, rendi il percorso più semplice. Il luogo è una mappa: il ricordo arriverà nella prossima lezione.\n\n**Esempio LOCO.** Entri nella stanza demo e tocchi cinque superfici in sequenza. Ogni tocco conferma un locus, non ancora un concetto da imparare.\n\n**Esercizio guidato.** Apri una scena, seleziona e conferma 5 punti non ambigui. Chiudi le etichette e nomina i cinque punti nell'ordine scelto.\n\n**Verifica:** «Qual è la differenza tra un palazzo e un locus?» **Chiave:** il palazzo è l'ambiente/il percorso; un locus è un punto stabile al suo interno. **Padronanza:** 5/5 loci in ordine senza etichette. **Errore tipico:** scegliere cinque angoli quasi indistinguibili."
+    },
+    {
+      "id": "S04",
+      "title": "Fai succedere qualcosa",
+      "contentVersion": "1.0",
+      "courseId": "course-0",
+      "courseName": "Benvenuto in LOCO",
+      "position": 4,
+      "planTier": "free",
+      "requiredInOnboarding": true,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S03"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Immagina di dover ricordare «limone». Scrivere la parola «limone» accanto alla porta può essere utile, ma puoi costruire un legame più facile da recuperare: un limone enorme si incastra nella maniglia e, quando provi ad aprire, spruzza succo acido. L'azione collega l'oggetto alla porta. Non devi avere una fantasia cinematografica: basta un'immagine, una frase o una sensazione che ti permetta di risalire chiaramente alla risposta. La regola è: un indizio riconoscibile, un significato preciso e una relazione con il punto scelto. Un'associazione strana ma scollegata dalla risposta è soltanto una decorazione.",
+      "workedExample": "Porta → limone che blocca la serratura. Tavolo → violino che suona da solo; ogni legame è distinto.",
+      "exercise": {
+        "prompt": "Posiziona cinque elementi della lista S01 nei cinque loci di S03. Scrivi una frase d'azione per ciascuno; inventane almeno una tu.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quale immagine è più utile per recuperare 'limone' alla porta?» A «Una nuvola viola senza collegamento»; B «Un limone che blocca la maniglia».",
+        "expectedAnswer": "B."
+      },
+      "masteryCriterion": "sa spiegare per ogni locus perché porta alla risposta.",
+      "commonMistake": "scegliere la proposta AI più bella anziché la più interpretabile.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** S03.\n\n**Da leggere.** Immagina di dover ricordare «limone». Scrivere la parola «limone» accanto alla porta può essere utile, ma puoi costruire un legame più facile da recuperare: un limone enorme si incastra nella maniglia e, quando provi ad aprire, spruzza succo acido. L'azione collega l'oggetto alla porta. Non devi avere una fantasia cinematografica: basta un'immagine, una frase o una sensazione che ti permetta di risalire chiaramente alla risposta. La regola è: un indizio riconoscibile, un significato preciso e una relazione con il punto scelto. Un'associazione strana ma scollegata dalla risposta è soltanto una decorazione.\n\n**Esempio LOCO.** Porta → limone che blocca la serratura. Tavolo → violino che suona da solo; ogni legame è distinto.\n\n**Esercizio guidato.** Posiziona cinque elementi della lista S01 nei cinque loci di S03. Scrivi una frase d'azione per ciascuno; inventane almeno una tu.\n\n**Verifica:** «Quale immagine è più utile per recuperare 'limone' alla porta?» A «Una nuvola viola senza collegamento»; B «Un limone che blocca la maniglia». **Chiave:** B. **Padronanza:** sa spiegare per ogni locus perché porta alla risposta. **Errore tipico:** scegliere la proposta AI più bella anziché la più interpretabile."
+    },
+    {
+      "id": "S05",
+      "title": "Prova prima di guardare",
+      "contentVersion": "1.0",
+      "courseId": "course-0",
+      "courseName": "Benvenuto in LOCO",
+      "position": 5,
+      "planTier": "free",
+      "requiredInOnboarding": true,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S04"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Il momento in cui LOCO verifica la tua memoria deve essere diverso dal momento in cui studi. Durante la prova vedrai la domanda e, se serve, il luogo; non la risposta o un'immagine che la riveli. Cerca il ricordo per qualche secondo. Se non emerge, puoi chiedere un indizio, ma il sistema registrerà che è stato necessario. Solo dopo il tentativo confronterai la risposta corretta. Non valutarti per simpatia verso l'immagine: verifica che parola, ordine e significato siano corretti. È normale che un recupero faticoso sia più informativo del semplice rileggere.",
+      "workedExample": "Vedi la porta senza il limone. Rispondi «limone», poi apri la soluzione; se ricordi solo «un frutto giallo», registri una risposta parziale.",
+      "exercise": {
+        "prompt": "Esegui un Blind Recall per i cinque punti creati. Se chiedi un suggerimento, non assegnarti il massimo livello di riuscita.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Se guardo la soluzione e poi la ripeto, vale come richiamo autonomo?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "completa almeno un tentativo senza risposta visibile e classifica correttamente gli indizi.",
+      "commonMistake": "scoprire la risposta troppo presto.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** S04.\n\n**Da leggere.** Il momento in cui LOCO verifica la tua memoria deve essere diverso dal momento in cui studi. Durante la prova vedrai la domanda e, se serve, il luogo; non la risposta o un'immagine che la riveli. Cerca il ricordo per qualche secondo. Se non emerge, puoi chiedere un indizio, ma il sistema registrerà che è stato necessario. Solo dopo il tentativo confronterai la risposta corretta. Non valutarti per simpatia verso l'immagine: verifica che parola, ordine e significato siano corretti. È normale che un recupero faticoso sia più informativo del semplice rileggere.\n\n**Esempio LOCO.** Vedi la porta senza il limone. Rispondi «limone», poi apri la soluzione; se ricordi solo «un frutto giallo», registri una risposta parziale.\n\n**Esercizio guidato.** Esegui un Blind Recall per i cinque punti creati. Se chiedi un suggerimento, non assegnarti il massimo livello di riuscita.\n\n**Verifica:** «Se guardo la soluzione e poi la ripeto, vale come richiamo autonomo?» **Chiave:** no. **Padronanza:** completa almeno un tentativo senza risposta visibile e classifica correttamente gli indizi. **Errore tipico:** scoprire la risposta troppo presto."
+    },
+    {
+      "id": "S06",
+      "title": "Il ricordo va ritrovato",
+      "contentVersion": "1.0",
+      "courseId": "course-0",
+      "courseName": "Benvenuto in LOCO",
+      "position": 6,
+      "planTier": "free",
+      "requiredInOnboarding": true,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S05"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Un'associazione riuscita oggi non garantisce che tu la ricorderai la prossima settimana. Per consolidare un'informazione è utile provare a recuperarla nuovamente dopo un intervallo. Per questo LOCO propone una coda di ripasso: quando un elemento è in scadenza, lo ritrovi, rispondi senza guardare e ricevi feedback. Gli intervalli non saranno uguali per tutto: un elemento che dimentichi merita attenzioni diverse da uno che recuperi bene più volte. Non esiste una successione di giorni perfetta per tutti; conta osservare risultati reali nel tempo. Lo scopo non è aprire LOCO quotidianamente a qualsiasi costo, ma ricordare quando serve.",
+      "workedExample": "Torni domani e non trovi solo il messaggio «ripassa»: trovi precisamente gli elementi che meritano una nuova prova.",
+      "exercise": {
+        "prompt": "Salva il percorso di cinque loci, consulta la coda dei ripassi e imposta una breve sessione futura; se possibile, crea un secondo target tratto da una tua materia.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Perché non basta ripassare cinque volte di seguito oggi?»",
+        "expectedAnswer": "una riuscita immediata non misura la tenuta dopo un intervallo; sono utili prove distribuite."
+      },
+      "masteryCriterion": "sa interpretare una scadenza e svolgere un secondo tentativo ritardato.",
+      "commonMistake": "confondere una streak con un aumento dimostrato della memoria.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** S05.\n\n**Da leggere.** Un'associazione riuscita oggi non garantisce che tu la ricorderai la prossima settimana. Per consolidare un'informazione è utile provare a recuperarla nuovamente dopo un intervallo. Per questo LOCO propone una coda di ripasso: quando un elemento è in scadenza, lo ritrovi, rispondi senza guardare e ricevi feedback. Gli intervalli non saranno uguali per tutto: un elemento che dimentichi merita attenzioni diverse da uno che recuperi bene più volte. Non esiste una successione di giorni perfetta per tutti; conta osservare risultati reali nel tempo. Lo scopo non è aprire LOCO quotidianamente a qualsiasi costo, ma ricordare quando serve.\n\n**Esempio LOCO.** Torni domani e non trovi solo il messaggio «ripassa»: trovi precisamente gli elementi che meritano una nuova prova.\n\n**Esercizio guidato.** Salva il percorso di cinque loci, consulta la coda dei ripassi e imposta una breve sessione futura; se possibile, crea un secondo target tratto da una tua materia.\n\n**Verifica:** «Perché non basta ripassare cinque volte di seguito oggi?» **Chiave:** una riuscita immediata non misura la tenuta dopo un intervallo; sono utili prove distribuite. **Padronanza:** sa interpretare una scadenza e svolgere un secondo tentativo ritardato. **Errore tipico:** confondere una streak con un aumento dimostrato della memoria.\n\n### Corso 1 — Tecnica dei Loci (7 lezioni, gratuito)"
+    },
+    {
+      "id": "L01",
+      "title": "Un palazzo può essere qualunque luogo",
+      "contentVersion": "1.0",
+      "courseId": "course-1",
+      "courseName": "Tecnica dei Loci",
+      "position": 1,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S06"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "L'immagine del «palazzo» arriva dalla tradizione delle mnemotecniche, ma non serve un edificio maestoso. Serve un posto orientabile. Una cucina piccola e familiare può funzionare meglio di un castello sconosciuto, perché sai già dove sono gli oggetti e non devi imparare contemporaneamente il percorso e il contenuto. Un ambiente digitale funziona se riesci a riconoscerne gli spazi, esplorarli e ricostruirne l'ordine. Prima di memorizzare una materia, osserva il luogo: quali punti attirano l'attenzione? Quali non cambiano se sposti il punto di vista? Non è importante quante superfici puoi cliccare, ma quante sono distinguibili.",
+      "workedExample": "Due percorsi candidati: uno spettacolare con dieci corridoi uguali; una camera con porta, scrivania, libreria e finestra. Per un principiante, scegli la seconda.",
+      "exercise": {
+        "prompt": "confronta due ambienti e spiega quali cinque punti useresti nel più chiaro.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«La bellezza grafica rende necessariamente migliore il palazzo?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "selezione motivata di loci stabili.",
+      "commonMistake": "confondere complessità 3D e facilità mnemonica.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** S06.\n\n**Da leggere.** L'immagine del «palazzo» arriva dalla tradizione delle mnemotecniche, ma non serve un edificio maestoso. Serve un posto orientabile. Una cucina piccola e familiare può funzionare meglio di un castello sconosciuto, perché sai già dove sono gli oggetti e non devi imparare contemporaneamente il percorso e il contenuto. Un ambiente digitale funziona se riesci a riconoscerne gli spazi, esplorarli e ricostruirne l'ordine. Prima di memorizzare una materia, osserva il luogo: quali punti attirano l'attenzione? Quali non cambiano se sposti il punto di vista? Non è importante quante superfici puoi cliccare, ma quante sono distinguibili.\n\n**Esempio LOCO.** Due percorsi candidati: uno spettacolare con dieci corridoi uguali; una camera con porta, scrivania, libreria e finestra. Per un principiante, scegli la seconda.\n\n**Esercizio:** confronta due ambienti e spiega quali cinque punti useresti nel più chiaro. **Verifica:** «La bellezza grafica rende necessariamente migliore il palazzo?» **Chiave:** no. **Padronanza:** selezione motivata di loci stabili. **Errore:** confondere complessità 3D e facilità mnemonica."
+    },
+    {
+      "id": "L02",
+      "title": "Trova loci che non si somigliano",
+      "contentVersion": "1.0",
+      "courseId": "course-1",
+      "courseName": "Tecnica dei Loci",
+      "position": 2,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L01"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "I loci devono comportarsi come indirizzi. «Prima sedia, seconda sedia, terza sedia» sono indirizzi deboli se le sedie sono identiche; «lavandino, frigorifero, forno» sono più diversi. Se due punti sono vicini e somiglianti, puoi confonderli o scambiarne il contenuto. Guarda la scena e cerca forme, funzioni o posizioni differenti. Un buon locus è facile da nominare, raggiungere e ritrovare. Se il tuo ambiente cambia spesso, puoi scegliere ancore più stabili: porta, finestra, pilastro, incrocio. Le coordinate visive nell'app devono restare associate allo stesso punto, anche dopo una rotazione della camera.",
+      "workedExample": "«Sedia rossa» e «sedia rossa» non bastano; «sedia vicino al camino» e «orologio a muro» sono più distinguibili.",
+      "exercise": {
+        "prompt": "segnala tre coppie di loci troppo simili e sostituiscine uno per coppia.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quale coppia riduce il rischio di confusione?» A «Due piastrelle»; B «Lavandino e finestra».",
+        "expectedAnswer": "B."
+      },
+      "masteryCriterion": "riconoscimento autonomo 5/5.",
+      "commonMistake": "usare punti mobili o occasionali come se fossero permanenti.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** L01.\n\n**Da leggere.** I loci devono comportarsi come indirizzi. «Prima sedia, seconda sedia, terza sedia» sono indirizzi deboli se le sedie sono identiche; «lavandino, frigorifero, forno» sono più diversi. Se due punti sono vicini e somiglianti, puoi confonderli o scambiarne il contenuto. Guarda la scena e cerca forme, funzioni o posizioni differenti. Un buon locus è facile da nominare, raggiungere e ritrovare. Se il tuo ambiente cambia spesso, puoi scegliere ancore più stabili: porta, finestra, pilastro, incrocio. Le coordinate visive nell'app devono restare associate allo stesso punto, anche dopo una rotazione della camera.\n\n**Esempio LOCO.** «Sedia rossa» e «sedia rossa» non bastano; «sedia vicino al camino» e «orologio a muro» sono più distinguibili.\n\n**Esercizio:** segnala tre coppie di loci troppo simili e sostituiscine uno per coppia. **Verifica:** «Quale coppia riduce il rischio di confusione?» A «Due piastrelle»; B «Lavandino e finestra». **Chiave:** B. **Padronanza:** riconoscimento autonomo 5/5. **Errore:** usare punti mobili o occasionali come se fossero permanenti."
+    },
+    {
+      "id": "L03",
+      "title": "L'ordine è parte del ricordo",
+      "contentVersion": "1.0",
+      "courseId": "course-1",
+      "courseName": "Tecnica dei Loci",
+      "position": 3,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L02"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Il vantaggio di un percorso è che una posizione richiama la successiva. Decidi una direzione che puoi ripetere: dall'ingresso alla finestra, in senso orario o lungo una strada. Non saltare a caso tra oggetti lontani. Allenati prima senza contenuti: porta, specchio, divano, tavolo, finestra. Solo quando l'ordine è stabile aggiungi i bersagli di studio. Alcune persone riescono anche a ripercorrere il percorso al contrario: è un controllo utile, ma non è obbligatorio per iniziare. Se cambi frequentemente l'ordine, riduci l'affidabilità dell'indizio spaziale.",
+      "workedExample": "Nel ricordo di un discorso, l'ingresso ti introduce al primo punto; la scrivania al secondo; la finestra alla conclusione.",
+      "exercise": {
+        "prompt": "pronuncia gli 8 punti di un percorso prima in avanti; prova il ritorno senza cambiare i punti salvati.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quando inserire il contenuto?»",
+        "expectedAnswer": "preferibilmente dopo aver imparato il percorso."
+      },
+      "masteryCriterion": "8/8 in avanti; inversioni segnalate separatamente.",
+      "commonMistake": "far dipendere la posizione dalla posizione attuale della camera.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** L02.\n\n**Da leggere.** Il vantaggio di un percorso è che una posizione richiama la successiva. Decidi una direzione che puoi ripetere: dall'ingresso alla finestra, in senso orario o lungo una strada. Non saltare a caso tra oggetti lontani. Allenati prima senza contenuti: porta, specchio, divano, tavolo, finestra. Solo quando l'ordine è stabile aggiungi i bersagli di studio. Alcune persone riescono anche a ripercorrere il percorso al contrario: è un controllo utile, ma non è obbligatorio per iniziare. Se cambi frequentemente l'ordine, riduci l'affidabilità dell'indizio spaziale.\n\n**Esempio LOCO.** Nel ricordo di un discorso, l'ingresso ti introduce al primo punto; la scrivania al secondo; la finestra alla conclusione.\n\n**Esercizio:** pronuncia gli 8 punti di un percorso prima in avanti; prova il ritorno senza cambiare i punti salvati. **Verifica:** «Quando inserire il contenuto?» **Chiave:** preferibilmente dopo aver imparato il percorso. **Padronanza:** 8/8 in avanti; inversioni segnalate separatamente. **Errore:** far dipendere la posizione dalla posizione attuale della camera."
+    },
+    {
+      "id": "L04",
+      "title": "Un bersaglio, un'ancora",
+      "contentVersion": "1.0",
+      "courseId": "course-1",
+      "courseName": "Tecnica dei Loci",
+      "position": 4,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L03"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Un locus funziona bene quando sai esattamente quale domanda contiene. Se infili un capitolo intero sul divano, durante il recupero non saprai che cosa cercare. Inizia con un target principale per ogni punto, per esempio «Che cosa misura la massa?», «Qual è il simbolo del sodio?» o «Come si apre il discorso?». Una conoscenza complessa può essere scomposta in domande più piccole, e un concetto può richiedere sia una risposta definitoria sia una spiegazione. L'associazione non deve sostituire la risposta fattuale: è un ponte per raggiungerla. LOCO deve mantenere separati punto, domanda, risposta e immagine.",
+      "workedExample": "Locus tavolo: «Qual è il simbolo del sodio?» → «Na»; una saliera con la scritta Na che esplode sul tavolo. Non aggiungere nello stesso punto altri sette simboli senza struttura.",
+      "exercise": {
+        "prompt": "spezza una scheda con tre domande in tre target e distribuiscili.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«La frase immaginata è la fonte corretta?»",
+        "expectedAnswer": "no; la fonte corretta resta distinta."
+      },
+      "masteryCriterion": "tre accoppiamenti non ambigui.",
+      "commonMistake": "incollare direttamente paragrafi lunghi in un hotspot.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** L03.\n\n**Da leggere.** Un locus funziona bene quando sai esattamente quale domanda contiene. Se infili un capitolo intero sul divano, durante il recupero non saprai che cosa cercare. Inizia con un target principale per ogni punto, per esempio «Che cosa misura la massa?», «Qual è il simbolo del sodio?» o «Come si apre il discorso?». Una conoscenza complessa può essere scomposta in domande più piccole, e un concetto può richiedere sia una risposta definitoria sia una spiegazione. L'associazione non deve sostituire la risposta fattuale: è un ponte per raggiungerla. LOCO deve mantenere separati punto, domanda, risposta e immagine.\n\n**Esempio LOCO.** Locus tavolo: «Qual è il simbolo del sodio?» → «Na»; una saliera con la scritta Na che esplode sul tavolo. Non aggiungere nello stesso punto altri sette simboli senza struttura.\n\n**Esercizio:** spezza una scheda con tre domande in tre target e distribuiscili. **Verifica:** «La frase immaginata è la fonte corretta?» **Chiave:** no; la fonte corretta resta distinta. **Padronanza:** tre accoppiamenti non ambigui. **Errore:** incollare direttamente paragrafi lunghi in un hotspot."
+    },
+    {
+      "id": "L05",
+      "title": "Immagini che portano alla risposta",
+      "contentVersion": "1.0",
+      "courseId": "course-1",
+      "courseName": "Tecnica dei Loci",
+      "position": 5,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L04"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Un buon indizio ha due compiti: ricordarti il punto in cui si trova e ricordarti la risposta collegata. Può essere grande, divertente o impossibile, ma la sua qualità si giudica nel recupero. «Una banana gigante» potrebbe essere sorprendente; se serve a ricordare il potassio, devi sapere perché proprio quella banana rappresenta il potassio. Usa oggetti concreti, movimento e una relazione comprensibile. Se l'associazione funziona meglio come frase o piccola recita, va bene: il metodo dei loci non obbliga a «vedere» immagini nitide nella mente.",
+      "workedExample": "«Finestra → potassio»: una banana sfonda la finestra; per te banana richiama potassio. Se il legame ti sembra debole, annota «banana, alimento noto per contenere potassio».",
+      "exercise": {
+        "prompt": "crea due immagini alternative per uno stesso target e scegli quella che interpreti più rapidamente senza vedere la risposta.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Un'immagine assurda è automaticamente efficace?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "giustifica il legame.",
+      "commonMistake": "confondere il suggerimento visivo con un fatto scientifico.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** L04.\n\n**Da leggere.** Un buon indizio ha due compiti: ricordarti il punto in cui si trova e ricordarti la risposta collegata. Può essere grande, divertente o impossibile, ma la sua qualità si giudica nel recupero. «Una banana gigante» potrebbe essere sorprendente; se serve a ricordare il potassio, devi sapere perché proprio quella banana rappresenta il potassio. Usa oggetti concreti, movimento e una relazione comprensibile. Se l'associazione funziona meglio come frase o piccola recita, va bene: il metodo dei loci non obbliga a «vedere» immagini nitide nella mente.\n\n**Esempio LOCO.** «Finestra → potassio»: una banana sfonda la finestra; per te banana richiama potassio. Se il legame ti sembra debole, annota «banana, alimento noto per contenere potassio».\n\n**Esercizio:** crea due immagini alternative per uno stesso target e scegli quella che interpreti più rapidamente senza vedere la risposta. **Verifica:** «Un'immagine assurda è automaticamente efficace?» **Chiave:** no. **Padronanza:** giustifica il legame. **Errore:** confondere il suggerimento visivo con un fatto scientifico."
+    },
+    {
+      "id": "L06",
+      "title": "Costruisci il tuo primo percorso da 10",
+      "contentVersion": "1.0",
+      "courseId": "course-1",
+      "courseName": "Tecnica dei Loci",
+      "position": 6,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L05"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "È il momento di passare dal tutorial a un percorso che puoi usare davvero. Scegli una materia o un obiettivo concreto, seleziona una stanza o un tragitto disponibile e posiziona dieci loci stabili. Se vuoi usare una strada reale, verifica prima che la scena sia disponibile e che i punti siano distinguibili; la mappa non deve essere obbligatoria. Prepara dieci domande e risposte controllate, inseriscile nei punti e scrivi dieci associazioni personali. Poi entra in modalità studio per esplorare tutto in sequenza. Solo dopo l'esplorazione avvia il test senza suggerimenti. Il percorso non è finito quando appare bello, ma quando produce un ricordo recuperabile.",
+      "workedExample": "«10 concetti di biologia»: 10 domande, 10 risposte, 10 ancore; nessun luogo contiene una pagina intera.",
+      "exercise": {
+        "prompt": "realizza e salva un percorso 10/10, poi esegui un richiamo autonomo.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quale prova indica che il progetto funziona?»",
+        "expectedAnswer": "richiamo corretto senza svelare la risposta, anche dopo un intervallo."
+      },
+      "masteryCriterion": "10 loci ordinati, almeno 8/10 associazioni interpretabili, prova di recupero registrata.",
+      "commonMistake": "generare dieci immagini AI senza controllare i fatti.",
+      "rawMarkdown": "**Tempo:** 3 + 6 min. **Prerequisiti:** L05.\n\n**Da leggere.** È il momento di passare dal tutorial a un percorso che puoi usare davvero. Scegli una materia o un obiettivo concreto, seleziona una stanza o un tragitto disponibile e posiziona dieci loci stabili. Se vuoi usare una strada reale, verifica prima che la scena sia disponibile e che i punti siano distinguibili; la mappa non deve essere obbligatoria. Prepara dieci domande e risposte controllate, inseriscile nei punti e scrivi dieci associazioni personali. Poi entra in modalità studio per esplorare tutto in sequenza. Solo dopo l'esplorazione avvia il test senza suggerimenti. Il percorso non è finito quando appare bello, ma quando produce un ricordo recuperabile.\n\n**Esempio LOCO.** «10 concetti di biologia»: 10 domande, 10 risposte, 10 ancore; nessun luogo contiene una pagina intera.\n\n**Esercizio:** realizza e salva un percorso 10/10, poi esegui un richiamo autonomo. **Verifica:** «Quale prova indica che il progetto funziona?» **Chiave:** richiamo corretto senza svelare la risposta, anche dopo un intervallo. **Padronanza:** 10 loci ordinati, almeno 8/10 associazioni interpretabili, prova di recupero registrata. **Errore:** generare dieci immagini AI senza controllare i fatti."
+    },
+    {
+      "id": "L07",
+      "title": "Recuperare il percorso, non solo la lista",
+      "contentVersion": "1.0",
+      "courseId": "course-1",
+      "courseName": "Tecnica dei Loci",
+      "position": 7,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L06"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "A volte ricorderai una risposta ma non il punto in cui l'hai messa. Altre volte saprai che cosa c'era sul tavolo ma non la nozione associata. Sono errori diversi. Prova tre forme di recupero: percorri i loci in ordine e ricorda i contenuti; ricevi una domanda e individua il locus; infine racconta la sequenza senza vedere l'ambiente. Questo aiuta a distinguere il ricordo del percorso dalla forza dell'associazione. Se salti sempre lo stesso punto, rinforza il tragitto. Se il punto è chiaro ma la risposta non arriva, cambia l'associazione o chiarisci la domanda.",
+      "workedExample": "«La libreria viene dopo la scrivania» è memoria spaziale; «sulla libreria ricordo l'anno 1848» è recupero del bersaglio.",
+      "exercise": {
+        "prompt": "prova percorso→risposta e domanda→locus su cinque target.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Se scambio due punti ma ricordo le nozioni, qual è il problema principale?»",
+        "expectedAnswer": "ordine/spazialità, non necessariamente contenuto."
+      },
+      "masteryCriterion": "diagnostica correttamente almeno tre errori.",
+      "commonMistake": "presentare un unico punteggio indistinto.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** L06.\n\n**Da leggere.** A volte ricorderai una risposta ma non il punto in cui l'hai messa. Altre volte saprai che cosa c'era sul tavolo ma non la nozione associata. Sono errori diversi. Prova tre forme di recupero: percorri i loci in ordine e ricorda i contenuti; ricevi una domanda e individua il locus; infine racconta la sequenza senza vedere l'ambiente. Questo aiuta a distinguere il ricordo del percorso dalla forza dell'associazione. Se salti sempre lo stesso punto, rinforza il tragitto. Se il punto è chiaro ma la risposta non arriva, cambia l'associazione o chiarisci la domanda.\n\n**Esempio LOCO.** «La libreria viene dopo la scrivania» è memoria spaziale; «sulla libreria ricordo l'anno 1848» è recupero del bersaglio.\n\n**Esercizio:** prova percorso→risposta e domanda→locus su cinque target. **Verifica:** «Se scambio due punti ma ricordo le nozioni, qual è il problema principale?» **Chiave:** ordine/spazialità, non necessariamente contenuto. **Padronanza:** diagnostica correttamente almeno tre errori. **Errore:** presentare un unico punteggio indistinto.\n\n### Corso 2 — Linked Method: ricordi che si inseguono (4 lezioni, gratuito)"
+    },
+    {
+      "id": "K01",
+      "title": "La prima immagine chiama la seconda",
+      "contentVersion": "1.0",
+      "courseId": "course-2",
+      "courseName": "Linked Method: ricordi che si inseguono",
+      "position": 1,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S04"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Il Linked Method collega elementi successivi attraverso una breve scena. Devi ricordare «chiave, libro, lampada»? Immagina una chiave che apre un libro enorme; quando il libro si spalanca, salta fuori una lampada accesa. Ora la chiave richiama il libro e il libro la lampada. Il metodo è rapido quando ti interessa soprattutto una sequenza breve; è meno robusto quando devi raggiungere subito il settimo elemento senza passare dai precedenti. Per questo può integrare il metodo dei loci ma non sempre sostituirlo.",
+      "workedExample": "Idrogeno-dirigibile → batteria al litio → saliera del sodio; ogni elemento agisce sul successivo.",
+      "exercise": {
+        "prompt": "collega chiave, libro, lampada, ombrello, torta in quattro azioni.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Che cosa rende recuperabile la seconda parola?»",
+        "expectedAnswer": "il legame preciso con la prima."
+      },
+      "masteryCriterion": "5/5 parole in sequenza dopo un tentativo senza lista.",
+      "commonMistake": "inventare una sola scena confusa con cinque oggetti immobili.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** S04.\n\n**Da leggere.** Il Linked Method collega elementi successivi attraverso una breve scena. Devi ricordare «chiave, libro, lampada»? Immagina una chiave che apre un libro enorme; quando il libro si spalanca, salta fuori una lampada accesa. Ora la chiave richiama il libro e il libro la lampada. Il metodo è rapido quando ti interessa soprattutto una sequenza breve; è meno robusto quando devi raggiungere subito il settimo elemento senza passare dai precedenti. Per questo può integrare il metodo dei loci ma non sempre sostituirlo.\n\n**Esempio LOCO.** Idrogeno-dirigibile → batteria al litio → saliera del sodio; ogni elemento agisce sul successivo.\n\n**Esercizio:** collega chiave, libro, lampada, ombrello, torta in quattro azioni. **Verifica:** «Che cosa rende recuperabile la seconda parola?» **Chiave:** il legame preciso con la prima. **Padronanza:** 5/5 parole in sequenza dopo un tentativo senza lista. **Errore:** inventare una sola scena confusa con cinque oggetti immobili."
+    },
+    {
+      "id": "K02",
+      "title": "Storie brevi, legami forti",
+      "contentVersion": "1.0",
+      "courseId": "course-2",
+      "courseName": "Linked Method: ricordi che si inseguono",
+      "position": 2,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "K01"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Quando una storia diventa troppo lunga, è facile ricordare l'atmosfera e dimenticare gli oggetti necessari. Il trucco pratico non è scrivere un romanzo, ma creare un passaggio evidente tra coppie successive: A colpisce B, B trasforma C, C apre D. Usa verbi semplici, gesti riconoscibili e immagini che non si somigliano. Se salti da A a C, controlla se il collegamento A→B era debole. Le storie sono strumenti, non riassunti del contenuto: dopo aver ricostruito la sequenza, verifica sempre i dettagli fattuali.",
+      "workedExample": "Gatto → ombrello → orologio: il gatto rompe l'ombrello, l'ombrello si trasforma in lancette d'orologio.",
+      "exercise": {
+        "prompt": "ricevi una catena con un passaggio mancante e aggiungi l'azione che lo rende inequivocabile.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Perché una scena descrittiva non basta?»",
+        "expectedAnswer": "può non specificare l'ordine dei passaggi."
+      },
+      "masteryCriterion": "identifica dove si rompe la catena.",
+      "commonMistake": "legami generici come «sono tutti nella stessa stanza».",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** K01.\n\n**Da leggere.** Quando una storia diventa troppo lunga, è facile ricordare l'atmosfera e dimenticare gli oggetti necessari. Il trucco pratico non è scrivere un romanzo, ma creare un passaggio evidente tra coppie successive: A colpisce B, B trasforma C, C apre D. Usa verbi semplici, gesti riconoscibili e immagini che non si somigliano. Se salti da A a C, controlla se il collegamento A→B era debole. Le storie sono strumenti, non riassunti del contenuto: dopo aver ricostruito la sequenza, verifica sempre i dettagli fattuali.\n\n**Esempio LOCO.** Gatto → ombrello → orologio: il gatto rompe l'ombrello, l'ombrello si trasforma in lancette d'orologio.\n\n**Esercizio:** ricevi una catena con un passaggio mancante e aggiungi l'azione che lo rende inequivocabile. **Verifica:** «Perché una scena descrittiva non basta?» **Chiave:** può non specificare l'ordine dei passaggi. **Padronanza:** identifica dove si rompe la catena. **Errore:** legami generici come «sono tutti nella stessa stanza»."
+    },
+    {
+      "id": "K03",
+      "title": "Loci o storie? Scegli con criterio",
+      "contentVersion": "1.0",
+      "courseId": "course-2",
+      "courseName": "Linked Method: ricordi che si inseguono",
+      "position": 3,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "K02",
+        "L04"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Non scegliere la tecnica che sembra più divertente, ma quella che aiuta il tipo di domanda. Una lista della spesa di sei elementi può diventare una storia; una presentazione di dieci sezioni può richiedere dieci loci; una risposta che devi trovare direttamente senza percorrere un'intera catena beneficia di un'ancora indipendente. Per materie articolate puoi usare i loci come capitoli e brevi legami narrativi all'interno di ogni capitolo. Ricorda però di conservare domande autonome quando ogni elemento sarà interrogato separatamente.",
+      "workedExample": "Discorso: 5 loci per i temi principali, 2–3 parole collegate in ciascuno per ricordare l'ordine degli esempi.",
+      "exercise": {
+        "prompt": "assegna tecnica e ragione a tre casi: lista di 5 parole, 12 passaggi di un discorso, definizione di una legge scientifica.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Una sequenza richiede sempre una storia?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "scelta motivata e coerente.",
+      "commonMistake": "applicare il metodo dei loci a ogni singola informazione.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** K02, L04.\n\n**Da leggere.** Non scegliere la tecnica che sembra più divertente, ma quella che aiuta il tipo di domanda. Una lista della spesa di sei elementi può diventare una storia; una presentazione di dieci sezioni può richiedere dieci loci; una risposta che devi trovare direttamente senza percorrere un'intera catena beneficia di un'ancora indipendente. Per materie articolate puoi usare i loci come capitoli e brevi legami narrativi all'interno di ogni capitolo. Ricorda però di conservare domande autonome quando ogni elemento sarà interrogato separatamente.\n\n**Esempio LOCO.** Discorso: 5 loci per i temi principali, 2–3 parole collegate in ciascuno per ricordare l'ordine degli esempi.\n\n**Esercizio:** assegna tecnica e ragione a tre casi: lista di 5 parole, 12 passaggi di un discorso, definizione di una legge scientifica. **Verifica:** «Una sequenza richiede sempre una storia?» **Chiave:** no. **Padronanza:** scelta motivata e coerente. **Errore:** applicare il metodo dei loci a ogni singola informazione."
+    },
+    {
+      "id": "K04",
+      "title": "Ripara una catena spezzata",
+      "contentVersion": "1.0",
+      "courseId": "course-2",
+      "courseName": "Linked Method: ricordi che si inseguono",
+      "position": 4,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "K03"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Il fallimento di un passaggio non impone di rifare tutto da zero. Individua la prima parola mancante, verifica il legame precedente e ricostruisci solo quel collegamento. Se un elemento è difficile da ricordare anche isolatamente, forse non è concreto: cerca una parola, un suono o un oggetto più rappresentativo. Dopo la correzione, ripeti la catena dall'inizio senza guardare e controllala più tardi. Tieni traccia di che cosa hai cambiato, così saprai se la modifica ha migliorato davvero il recupero.",
+      "workedExample": "Ricordi «chiave, libro, …, torta»? Non ristudiare tutta la lista; rinforza il passaggio dal libro all'oggetto mancante.",
+      "exercise": {
+        "prompt": "un trainer presenta una storia con una lacuna ricorrente; riscrivine solo il ponte e riprova dopo una pausa.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Che cosa correggere prima?»",
+        "expectedAnswer": "il primo legame interrotto o ambiguo."
+      },
+      "masteryCriterion": "correzione localizzata e nuovo richiamo.",
+      "commonMistake": "guardare ripetutamente tutta la lista e chiamarlo test.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** K03.\n\n**Da leggere.** Il fallimento di un passaggio non impone di rifare tutto da zero. Individua la prima parola mancante, verifica il legame precedente e ricostruisci solo quel collegamento. Se un elemento è difficile da ricordare anche isolatamente, forse non è concreto: cerca una parola, un suono o un oggetto più rappresentativo. Dopo la correzione, ripeti la catena dall'inizio senza guardare e controllala più tardi. Tieni traccia di che cosa hai cambiato, così saprai se la modifica ha migliorato davvero il recupero.\n\n**Esempio LOCO.** Ricordi «chiave, libro, …, torta»? Non ristudiare tutta la lista; rinforza il passaggio dal libro all'oggetto mancante.\n\n**Esercizio:** un trainer presenta una storia con una lacuna ricorrente; riscrivine solo il ponte e riprova dopo una pausa. **Verifica:** «Che cosa correggere prima?» **Chiave:** il primo legame interrotto o ambiguo. **Padronanza:** correzione localizzata e nuovo richiamo. **Errore:** guardare ripetutamente tutta la lista e chiamarlo test.\n\n### Corso 3 — Conversione fonetica: numeri da ricordare (5 lezioni, gratuito)\n\n**Convenzione editoriale italiana da fissare prima della pubblicazione.** Il sistema Major si basa sui **suoni**, non sulle lettere, e ha varianti. In queste lezioni si propone una convenzione coerente: 0 = /s/, /z/, /ʃ/ (s, z, «sc» di *scena*); 1 = /t/, /d/; 2 = /n/, /ɲ/ («gn»); 3 = /m/; 4 = /r/; 5 = /l/, /ʎ/ («gl» palatale); 6 = /tʃ/, /dʒ/ (c/g dolci di *ciao*, *gelato*); 7 = /k/, /g/ duro; 8 = /f/, /v/; 9 = /p/, /b/. Le vocali non codificano cifre; «h» grafica non è un valore; consonanti doppie che rappresentano una sola occorrenza consonantica non vanno automaticamente contate due volte. Prestiti, assimilazioni e omografie richiedono un dizionario fonetico verificato. **Attenzione:** il codice demo legacy assegna «SC» a categorie diverse: correggere questa incoerenza, validare esempi/risposte e versionare `major-it-v1` prima del rilascio."
+    },
+    {
+      "id": "N01",
+      "title": "Perché un numero può diventare un'immagine",
+      "contentVersion": "1.0",
+      "courseId": "course-3",
+      "courseName": "Conversione fonetica: numeri da ricordare",
+      "position": 1,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S04"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Le cifre sono segni astratti: per ricordare molte sequenze possiamo convertirle in parole facili da immaginare. Il sistema fonetico, detto anche *Major System*, attribuisce a ciascuna cifra una famiglia di suoni consonantici. Le vocali servono a comporre parole e non aggiungono numeri. Per esempio il numero 14 corrisponde ai suoni T/D e R: «toro» è una parola possibile. Puoi visualizzare un toro che sfonda il tavolo del tuo palazzo. Per recuperare il numero, ritrovi l'immagine, pronunci la parola e risali ai suoni, poi alle cifre. Questa è una tecnica convenzionale, non una proprietà naturale dei numeri.",
+      "workedExample": "Numero 14 → T-R → «toro» → toro che urta la porta → recupero 1-4.",
+      "exercise": {
+        "prompt": "collega 1 a T/D e 4 a R, inventa un'immagine di toro in un locus.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Le vocali in 'toro' aggiungono cifre?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "produce e legge correttamente 14↔toro.",
+      "commonMistake": "applicare regole fonetiche senza sentire la parola.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** S04.\n\n**Da leggere.** Le cifre sono segni astratti: per ricordare molte sequenze possiamo convertirle in parole facili da immaginare. Il sistema fonetico, detto anche *Major System*, attribuisce a ciascuna cifra una famiglia di suoni consonantici. Le vocali servono a comporre parole e non aggiungono numeri. Per esempio il numero 14 corrisponde ai suoni T/D e R: «toro» è una parola possibile. Puoi visualizzare un toro che sfonda il tavolo del tuo palazzo. Per recuperare il numero, ritrovi l'immagine, pronunci la parola e risali ai suoni, poi alle cifre. Questa è una tecnica convenzionale, non una proprietà naturale dei numeri.\n\n**Esempio LOCO.** Numero 14 → T-R → «toro» → toro che urta la porta → recupero 1-4.\n\n**Esercizio:** collega 1 a T/D e 4 a R, inventa un'immagine di toro in un locus. **Verifica:** «Le vocali in 'toro' aggiungono cifre?» **Chiave:** no. **Padronanza:** produce e legge correttamente 14↔toro. **Errore:** applicare regole fonetiche senza sentire la parola."
+    },
+    {
+      "id": "N02",
+      "title": "Le dieci famiglie di suoni",
+      "contentVersion": "1.0",
+      "courseId": "course-3",
+      "courseName": "Conversione fonetica: numeri da ricordare",
+      "position": 2,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "N01"
+      ],
+      "estimatedMinutes": 8,
+      "reading": "Impara per piccoli gruppi: 0 suoni S/Z/SC dolce; 1 T/D; 2 N/GN; 3 M; 4 R. Poi continua: 5 L/GL palatale; 6 C/G dolce; 7 C/G dura; 8 F/V; 9 P/B. Non ricordare la tabella come una sequenza di lettere: ascolta i suoni. La C di «casa» appartiene al 7; quella di «ciao» al 6. «Scena» usa il suono /ʃ/, assegnato qui allo 0. Il fatto che diverse grafie producano gli stessi suoni è il motivo per cui LOCO deve valutare la pronuncia, non sostituire caratteri alla cieca. Pratica entrambe le direzioni, senza pretendere velocità al primo tentativo.",
+      "workedExample": "«Luna» = L-N = 5-2; «mago» = M-G dura = 3-7; «pane» = P-N = 9-2.",
+      "exercise": {
+        "prompt": "risolvi 10 associazioni suono↔cifra, iniziando dai cinque numeri che conosci meglio.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Il suono iniziale di 'ciao' codifica 6 o 7?»",
+        "expectedAnswer": "6."
+      },
+      "masteryCriterion": "almeno 9/10 corrispondenze in entrambe le direzioni in prove separate.",
+      "commonMistake": "confondere grafia e suono.",
+      "rawMarkdown": "**Tempo:** 4 + 4 min. **Prerequisiti:** N01.\n\n**Da leggere.** Impara per piccoli gruppi: 0 suoni S/Z/SC dolce; 1 T/D; 2 N/GN; 3 M; 4 R. Poi continua: 5 L/GL palatale; 6 C/G dolce; 7 C/G dura; 8 F/V; 9 P/B. Non ricordare la tabella come una sequenza di lettere: ascolta i suoni. La C di «casa» appartiene al 7; quella di «ciao» al 6. «Scena» usa il suono /ʃ/, assegnato qui allo 0. Il fatto che diverse grafie producano gli stessi suoni è il motivo per cui LOCO deve valutare la pronuncia, non sostituire caratteri alla cieca. Pratica entrambe le direzioni, senza pretendere velocità al primo tentativo.\n\n**Esempio LOCO.** «Luna» = L-N = 5-2; «mago» = M-G dura = 3-7; «pane» = P-N = 9-2.\n\n**Esercizio:** risolvi 10 associazioni suono↔cifra, iniziando dai cinque numeri che conosci meglio. **Verifica:** «Il suono iniziale di 'ciao' codifica 6 o 7?» **Chiave:** 6. **Padronanza:** almeno 9/10 corrispondenze in entrambe le direzioni in prove separate. **Errore:** confondere grafia e suono."
+    },
+    {
+      "id": "N03",
+      "title": "Dai numeri alle parole",
+      "contentVersion": "1.0",
+      "courseId": "course-3",
+      "courseName": "Conversione fonetica: numeri da ricordare",
+      "position": 3,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "N02"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Per convertire 32 scegli una parola i cui suoni consonantici siano M-N: «mano» è un esempio utile. Per 52 puoi scegliere «luna». Una parola valida non deve aggiungere altre consonanti che producono cifre: se inserisci un suono in più, il numero cambia. All'inizio lavora su due cifre, poi prova tre. Se una conversione ti pare innaturale, non insistere su quella parola: cerca un sinonimo o un'immagine diversa che rispetti la stessa sequenza. Il dizionario personale può diventare una risorsa riutilizzabile nei tuoi percorsi.",
+      "workedExample": "32 → mano; 52 → luna; 92 → pane; 36 → micio.",
+      "exercise": {
+        "prompt": "converti 14, 32, 52, 92 in parole e colloca due parole in loci distinti.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Perché 'mano' rappresenta 32?»",
+        "expectedAnswer": "/m/ = 3, /n/ = 2; le vocali non contano."
+      },
+      "masteryCriterion": "almeno 4/4 conversioni corrette senza tabella.",
+      "commonMistake": "accettare una parola foneticamente incompatibile perché l'immagine è simpatica.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** N02.\n\n**Da leggere.** Per convertire 32 scegli una parola i cui suoni consonantici siano M-N: «mano» è un esempio utile. Per 52 puoi scegliere «luna». Una parola valida non deve aggiungere altre consonanti che producono cifre: se inserisci un suono in più, il numero cambia. All'inizio lavora su due cifre, poi prova tre. Se una conversione ti pare innaturale, non insistere su quella parola: cerca un sinonimo o un'immagine diversa che rispetti la stessa sequenza. Il dizionario personale può diventare una risorsa riutilizzabile nei tuoi percorsi.\n\n**Esempio LOCO.** 32 → mano; 52 → luna; 92 → pane; 36 → micio.\n\n**Esercizio:** converti 14, 32, 52, 92 in parole e colloca due parole in loci distinti. **Verifica:** «Perché 'mano' rappresenta 32?» **Chiave:** /m/ = 3, /n/ = 2; le vocali non contano. **Padronanza:** almeno 4/4 conversioni corrette senza tabella. **Errore:** accettare una parola foneticamente incompatibile perché l'immagine è simpatica."
+    },
+    {
+      "id": "N04",
+      "title": "Dalle parole ai numeri",
+      "contentVersion": "1.0",
+      "courseId": "course-3",
+      "courseName": "Conversione fonetica: numeri da ricordare",
+      "position": 4,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "N03"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Saper trasformare un numero in parola è soltanto metà della competenza. Quando dovrai ricordare un anno o un codice dovrai fare il percorso inverso: immagine → parola → suoni → cifre. Prova a leggere ad alta voce la parola e identifica soltanto le consonanti che hanno valore secondo la convenzione. Se sbagli spesso 6 e 7, fai prove mirate con C e G dolci/dure. Ricorda che in una verifica reale non dovresti vedere la parola già associata alla cifra: prima tenti il recupero, poi controlli.",
+      "workedExample": "La «luna» compare sulla scrivania → L-N → 52. Un «mago» sul divano → M-G dura → 37.",
+      "exercise": {
+        "prompt": "risolvi 8 prove parola→numero, almeno due con C/G di suono diverso.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«'Mago' corrisponde a 36?»",
+        "expectedAnswer": "no, 37."
+      },
+      "masteryCriterion": "7/8 prove inverse corrette.",
+      "commonMistake": "valutare solo l'allenamento numero→immagine.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** N03.\n\n**Da leggere.** Saper trasformare un numero in parola è soltanto metà della competenza. Quando dovrai ricordare un anno o un codice dovrai fare il percorso inverso: immagine → parola → suoni → cifre. Prova a leggere ad alta voce la parola e identifica soltanto le consonanti che hanno valore secondo la convenzione. Se sbagli spesso 6 e 7, fai prove mirate con C e G dolci/dure. Ricorda che in una verifica reale non dovresti vedere la parola già associata alla cifra: prima tenti il recupero, poi controlli.\n\n**Esempio LOCO.** La «luna» compare sulla scrivania → L-N → 52. Un «mago» sul divano → M-G dura → 37.\n\n**Esercizio:** risolvi 8 prove parola→numero, almeno due con C/G di suono diverso. **Verifica:** «'Mago' corrisponde a 36?» **Chiave:** no, 37. **Padronanza:** 7/8 prove inverse corrette. **Errore:** valutare solo l'allenamento numero→immagine."
+    },
+    {
+      "id": "N05",
+      "title": "Ricorda una data senza confonderla",
+      "contentVersion": "1.0",
+      "courseId": "course-3",
+      "courseName": "Conversione fonetica: numeri da ricordare",
+      "position": 5,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "N04",
+        "L04"
+      ],
+      "estimatedMinutes": 8,
+      "reading": "Una data non è solo una stringa di cifre: è un fatto associato a un evento. Prendi il 1848 dello Statuto Albertino. Per ricordare l'anno puoi codificare i blocchi 18 e 48 con parole coerenti con la tua tabella, poi collocarle in un locus legato all'evento. Ma devi recuperare due cose: quali cifre compongono l'anno e a quale evento appartengono. Se memorizzi l'immagine senza aver verificato la data, rischi un ricordo preciso ma falso. Per date con secoli o formati incerti, esplicita sempre l'ordine e le quattro cifre prima della trasformazione.",
+      "workedExample": "18 = «tuffo» non è valido in questa tabella se pronunci /tuffo/ (T-F = 18 sì, ma /ff/ vale una occorrenza fonetica di F); 48 = «riva» (R-V = 48). «Tuffo alla riva» può richiamare 1848 solo se il discente ha fissato 18|48, l'ordine e l'evento.",
+      "exercise": {
+        "prompt": "scegli un anno verificato in una tua fonte, spezzalo in due blocchi, codificalo e prova a recuperare anche l'evento.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Ricordare 1848 senza sapere che cosa accadde dimostra comprensione storica?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "anno ed evento corretti, ripetuti dopo un intervallo.",
+      "commonMistake": "comprimere la data senza conservare l'associazione semantica.",
+      "rawMarkdown": "**Tempo:** 4 + 4 min. **Prerequisiti:** N04, L04.\n\n**Da leggere.** Una data non è solo una stringa di cifre: è un fatto associato a un evento. Prendi il 1848 dello Statuto Albertino. Per ricordare l'anno puoi codificare i blocchi 18 e 48 con parole coerenti con la tua tabella, poi collocarle in un locus legato all'evento. Ma devi recuperare due cose: quali cifre compongono l'anno e a quale evento appartengono. Se memorizzi l'immagine senza aver verificato la data, rischi un ricordo preciso ma falso. Per date con secoli o formati incerti, esplicita sempre l'ordine e le quattro cifre prima della trasformazione.\n\n**Esempio LOCO.** 18 = «tuffo» non è valido in questa tabella se pronunci /tuffo/ (T-F = 18 sì, ma /ff/ vale una occorrenza fonetica di F); 48 = «riva» (R-V = 48). «Tuffo alla riva» può richiamare 1848 solo se il discente ha fissato 18|48, l'ordine e l'evento.\n\n**Esercizio:** scegli un anno verificato in una tua fonte, spezzalo in due blocchi, codificalo e prova a recuperare anche l'evento. **Verifica:** «Ricordare 1848 senza sapere che cosa accadde dimostra comprensione storica?» **Chiave:** no. **Padronanza:** anno ed evento corretti, ripetuti dopo un intervallo. **Errore:** comprimere la data senza conservare l'associazione semantica.\n\n### Corso 4 — Studiare davvero: dalla memoria alla conoscenza (6 lezioni, gratuito)"
+    },
+    {
+      "id": "T01",
+      "title": "Prima capisci, poi codifica",
+      "contentVersion": "1.0",
+      "courseId": "course-4",
+      "courseName": "Studiare davvero: dalla memoria alla conoscenza",
+      "position": 1,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S02"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Una mnemotecnica può aiutarti a dire una parola giusta senza capire che cosa significhi. Per uno studente, spesso non basta. Prima leggi il contenuto e chiediti: «Qual è l'idea principale? Come la spiegherei a qualcuno?». Poi decidi quali elementi richiedono un ancoraggio: definizioni, passaggi, classificazioni, parole chiave, esempi. Se stai studiando un teorema, ricordare il nome non dimostra di saperlo applicare; serviranno problemi. Se studi storia, ricordare l'ordine degli eventi non spiega automaticamente cause e conseguenze. LOCO deve aiutarti a combinare codifica e comprensione, non a scegliere una delle due.",
+      "workedExample": "«Evaporazione»: prima spieghi il passaggio di fase e le condizioni; poi usi un'immagine per ricordare il termine o una classificazione.",
+      "exercise": {
+        "prompt": "su una breve spiegazione, evidenzia un fatto da ricordare, una relazione da spiegare, un caso da applicare.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«La memoria di una formula dimostra che so risolvere un problema?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "classifica correttamente tre tipi di obiettivo.",
+      "commonMistake": "usare immagini per sostituire ragionamenti.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** S02.\n\n**Da leggere.** Una mnemotecnica può aiutarti a dire una parola giusta senza capire che cosa significhi. Per uno studente, spesso non basta. Prima leggi il contenuto e chiediti: «Qual è l'idea principale? Come la spiegherei a qualcuno?». Poi decidi quali elementi richiedono un ancoraggio: definizioni, passaggi, classificazioni, parole chiave, esempi. Se stai studiando un teorema, ricordare il nome non dimostra di saperlo applicare; serviranno problemi. Se studi storia, ricordare l'ordine degli eventi non spiega automaticamente cause e conseguenze. LOCO deve aiutarti a combinare codifica e comprensione, non a scegliere una delle due.\n\n**Esempio LOCO.** «Evaporazione»: prima spieghi il passaggio di fase e le condizioni; poi usi un'immagine per ricordare il termine o una classificazione.\n\n**Esercizio:** su una breve spiegazione, evidenzia un fatto da ricordare, una relazione da spiegare, un caso da applicare. **Verifica:** «La memoria di una formula dimostra che so risolvere un problema?» **Chiave:** no. **Padronanza:** classifica correttamente tre tipi di obiettivo. **Errore:** usare immagini per sostituire ragionamenti."
+    },
+    {
+      "id": "T02",
+      "title": "Chunking: trovare pezzi con significato",
+      "contentVersion": "1.0",
+      "courseId": "course-4",
+      "courseName": "Studiare davvero: dalla memoria alla conoscenza",
+      "position": 2,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "T01"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Quando dieci informazioni sembrano un elenco caotico, cerca una struttura utile: categorie, fasi, cause, funzioni. Un *chunk* è un gruppo che ha senso per chi lo studia. Per ricordare gli organi di un apparato, potresti separarli per funzione; per la storia, distinguere cause, svolgimento e conseguenze. Ma attenzione: nominare una categoria non significa ricordare tutto quello che contiene. Allenati a muoverti in due direzioni: dal gruppo agli elementi e dagli elementi al gruppo. La dimensione del chunk non è una regola fissa: dipende da quanto conosci l'argomento.",
+      "workedExample": "Sei argomenti di una presentazione diventano tre blocchi: problema, soluzione, impatto; ogni blocco contiene due punti.",
+      "exercise": {
+        "prompt": "raggruppa otto termini in categorie motivate, poi ricostruisci tutti i termini senza la lista.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Se ricordo il titolo di un gruppo ma non i suoi componenti, ho memorizzato tutto?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "ricostruzione di gruppi e membri.",
+      "commonMistake": "comprimere fino a perdere dettagli esaminabili.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** T01.\n\n**Da leggere.** Quando dieci informazioni sembrano un elenco caotico, cerca una struttura utile: categorie, fasi, cause, funzioni. Un *chunk* è un gruppo che ha senso per chi lo studia. Per ricordare gli organi di un apparato, potresti separarli per funzione; per la storia, distinguere cause, svolgimento e conseguenze. Ma attenzione: nominare una categoria non significa ricordare tutto quello che contiene. Allenati a muoverti in due direzioni: dal gruppo agli elementi e dagli elementi al gruppo. La dimensione del chunk non è una regola fissa: dipende da quanto conosci l'argomento.\n\n**Esempio LOCO.** Sei argomenti di una presentazione diventano tre blocchi: problema, soluzione, impatto; ogni blocco contiene due punti.\n\n**Esercizio:** raggruppa otto termini in categorie motivate, poi ricostruisci tutti i termini senza la lista. **Verifica:** «Se ricordo il titolo di un gruppo ma non i suoi componenti, ho memorizzato tutto?» **Chiave:** no. **Padronanza:** ricostruzione di gruppi e membri. **Errore:** comprimere fino a perdere dettagli esaminabili."
+    },
+    {
+      "id": "T03",
+      "title": "Fare domande che insegnano",
+      "contentVersion": "1.0",
+      "courseId": "course-4",
+      "courseName": "Studiare davvero: dalla memoria alla conoscenza",
+      "position": 3,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "T01"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Una buona domanda ti costringe a recuperare una risposta precisa. «Che cosa dice il capitolo?» è troppo ampia per molte verifiche. «Quali sono le due cause principali di questo fenomeno?» è più utile, purché la fonte permetta di giudicare la risposta. Puoi creare domande di fatto («Quale anno?»), spiegazione («Perché accade?»), confronto («In che cosa differiscono?») e applicazione («Che cosa faresti in questo caso?»). Non tutte devono vivere in un locus: alcune funzionano meglio come una scheda o un problema. LOCO dovrebbe scegliere lo strumento in base alla natura del target, non forzare ogni domanda dentro un ambiente tridimensionale.",
+      "workedExample": "«Qual è la definizione di feedback?» + «Come useresti il feedback dopo un errore?» sono target diversi.",
+      "exercise": {
+        "prompt": "genera quattro domande da un paragrafo: una fattuale, una causale, una comparativa, una applicativa.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quale domanda valuta applicazione?»",
+        "expectedAnswer": "quella che richiede usare il concetto in una situazione."
+      },
+      "masteryCriterion": "quattro domande distinte e verificabili.",
+      "commonMistake": "porre solo domande a risposta singola quando l'esame richiede ragionare.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** T01.\n\n**Da leggere.** Una buona domanda ti costringe a recuperare una risposta precisa. «Che cosa dice il capitolo?» è troppo ampia per molte verifiche. «Quali sono le due cause principali di questo fenomeno?» è più utile, purché la fonte permetta di giudicare la risposta. Puoi creare domande di fatto («Quale anno?»), spiegazione («Perché accade?»), confronto («In che cosa differiscono?») e applicazione («Che cosa faresti in questo caso?»). Non tutte devono vivere in un locus: alcune funzionano meglio come una scheda o un problema. LOCO dovrebbe scegliere lo strumento in base alla natura del target, non forzare ogni domanda dentro un ambiente tridimensionale.\n\n**Esempio LOCO.** «Qual è la definizione di feedback?» + «Come useresti il feedback dopo un errore?» sono target diversi.\n\n**Esercizio:** genera quattro domande da un paragrafo: una fattuale, una causale, una comparativa, una applicativa. **Verifica:** «Quale domanda valuta applicazione?» **Chiave:** quella che richiede usare il concetto in una situazione. **Padronanza:** quattro domande distinte e verificabili. **Errore:** porre solo domande a risposta singola quando l'esame richiede ragionare."
+    },
+    {
+      "id": "T04",
+      "title": "Feedback: il momento che corregge",
+      "contentVersion": "1.0",
+      "courseId": "course-4",
+      "courseName": "Studiare davvero: dalla memoria alla conoscenza",
+      "position": 4,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S05",
+        "T03"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Dopo una prova devi sapere non solo se hai risposto giusto, ma *perché*. Hai sbagliato il fatto? Hai recuperato la parola sbagliata? Hai interpretato male la domanda? O l'immagine associata al locus era ambigua? Il feedback migliore è concreto: mostra la risposta corretta e, quando conta, la spiegazione e la fonte. Se ricevi un indizio, prova a ricordare il resto e registra che il tentativo era assistito. Correggere l'errore subito è utile, ma il vero controllo arriva quando ritenti più tardi senza aiuti.",
+      "workedExample": "Domanda: «Simbolo del sodio?». Risposta «So»; feedback: «Na», derivato dal latino *natrium*. Qui è sbagliata la risposta, non necessariamente il percorso.",
+      "exercise": {
+        "prompt": "classifica cinque errori simulati: contenuto, percorso, associazione, comprensione della domanda, distrazione.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Che cosa correggo se il locus è giusto ma la risposta non esce?»",
+        "expectedAnswer": "indizio o conoscenza collegata."
+      },
+      "masteryCriterion": "diagnosi motivata.",
+      "commonMistake": "mostrare solo una croce rossa senza correzione.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** S05, T03.\n\n**Da leggere.** Dopo una prova devi sapere non solo se hai risposto giusto, ma *perché*. Hai sbagliato il fatto? Hai recuperato la parola sbagliata? Hai interpretato male la domanda? O l'immagine associata al locus era ambigua? Il feedback migliore è concreto: mostra la risposta corretta e, quando conta, la spiegazione e la fonte. Se ricevi un indizio, prova a ricordare il resto e registra che il tentativo era assistito. Correggere l'errore subito è utile, ma il vero controllo arriva quando ritenti più tardi senza aiuti.\n\n**Esempio LOCO.** Domanda: «Simbolo del sodio?». Risposta «So»; feedback: «Na», derivato dal latino *natrium*. Qui è sbagliata la risposta, non necessariamente il percorso.\n\n**Esercizio:** classifica cinque errori simulati: contenuto, percorso, associazione, comprensione della domanda, distrazione. **Verifica:** «Che cosa correggo se il locus è giusto ma la risposta non esce?» **Chiave:** indizio o conoscenza collegata. **Padronanza:** diagnosi motivata. **Errore:** mostrare solo una croce rossa senza correzione."
+    },
+    {
+      "id": "T05",
+      "title": "Ripasso distribuito, non ripetizione infinita",
+      "contentVersion": "1.0",
+      "courseId": "course-4",
+      "courseName": "Studiare davvero: dalla memoria alla conoscenza",
+      "position": 5,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S06"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Ripetere una domanda dieci volte in pochi minuti può farti sentire molto sicuro. Ma imparare a lungo termine richiede che il ricordo sopravviva a intervalli di tempo. La pratica distribuita alterna sessioni e consente alla memoria di essere nuovamente messa alla prova. LOCO tiene conto dei tentativi precedenti e propone quando riprovare: elementi difficili tornano prima, quelli ben consolidati possono aspettare più a lungo. Non servono promesse come «ricorderai per sempre» o calendari uguali per tutti. L'obiettivo è ridurre progressivamente la necessità di ristudiare, mantenendo accessibile il recupero.",
+      "workedExample": "Un concetto già richiamato correttamente più volte non occupa la stessa priorità di uno appena dimenticato.",
+      "exercise": {
+        "prompt": "ordina tre elementi per urgenza di revisione sulla base di errori e scadenze già mostrate.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Il calendario di ripasso dovrebbe dipendere dal singolo target?»",
+        "expectedAnswer": "sì."
+      },
+      "masteryCriterion": "sceglie coerentemente il successivo ripasso.",
+      "commonMistake": "pensare che più sessioni immediate equivalgano a ritenzione nel tempo.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** S06.\n\n**Da leggere.** Ripetere una domanda dieci volte in pochi minuti può farti sentire molto sicuro. Ma imparare a lungo termine richiede che il ricordo sopravviva a intervalli di tempo. La pratica distribuita alterna sessioni e consente alla memoria di essere nuovamente messa alla prova. LOCO tiene conto dei tentativi precedenti e propone quando riprovare: elementi difficili tornano prima, quelli ben consolidati possono aspettare più a lungo. Non servono promesse come «ricorderai per sempre» o calendari uguali per tutti. L'obiettivo è ridurre progressivamente la necessità di ristudiare, mantenendo accessibile il recupero.\n\n**Esempio LOCO.** Un concetto già richiamato correttamente più volte non occupa la stessa priorità di uno appena dimenticato.\n\n**Esercizio:** ordina tre elementi per urgenza di revisione sulla base di errori e scadenze già mostrate. **Verifica:** «Il calendario di ripasso dovrebbe dipendere dal singolo target?» **Chiave:** sì. **Padronanza:** sceglie coerentemente il successivo ripasso. **Errore:** pensare che più sessioni immediate equivalgano a ritenzione nel tempo."
+    },
+    {
+      "id": "T06",
+      "title": "Mescolare quando sai già distinguere",
+      "contentVersion": "1.0",
+      "courseId": "course-4",
+      "courseName": "Studiare davvero: dalla memoria alla conoscenza",
+      "position": 6,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "T02",
+        "T04"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Se studi soltanto problemi dello stesso tipo uno dopo l'altro, spesso sai già quale procedura usare prima ancora di leggere la domanda. In una verifica reale dovrai riconoscere il tipo di problema. Per questo, dopo aver capito ciascuna categoria, può essere utile *interleaving*: mescolare esercizi di tipologie diverse. Non significa randomizzare tutto fin dal primo minuto. Prima acquisisci i concetti e le procedure, poi prova a scegliere autonomamente quale applicare. Se la difficoltà sale troppo, torna a pochi esempi guidati e aumenta il mix progressivamente.",
+      "workedExample": "In una sessione trovi una domanda di definizione, una comparazione e un problema applicativo su argomenti già studiati.",
+      "exercise": {
+        "prompt": "risolvi sei quesiti mescolati di due categorie familiari e, per ogni risposta, indica quale strategia hai scelto.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Perché mescolare esercizi prima di aver capito ogni procedura può essere inefficiente?»",
+        "expectedAnswer": "può aggiungere confusione senza supportare la scelta della strategia."
+      },
+      "masteryCriterion": "risposte e selezione corretta del metodo.",
+      "commonMistake": "chiamare «interleaving» la casualità senza obiettivo.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** T02, T04.\n\n**Da leggere.** Se studi soltanto problemi dello stesso tipo uno dopo l'altro, spesso sai già quale procedura usare prima ancora di leggere la domanda. In una verifica reale dovrai riconoscere il tipo di problema. Per questo, dopo aver capito ciascuna categoria, può essere utile *interleaving*: mescolare esercizi di tipologie diverse. Non significa randomizzare tutto fin dal primo minuto. Prima acquisisci i concetti e le procedure, poi prova a scegliere autonomamente quale applicare. Se la difficoltà sale troppo, torna a pochi esempi guidati e aumenta il mix progressivamente.\n\n**Esempio LOCO.** In una sessione trovi una domanda di definizione, una comparazione e un problema applicativo su argomenti già studiati.\n\n**Esercizio:** risolvi sei quesiti mescolati di due categorie familiari e, per ogni risposta, indica quale strategia hai scelto. **Verifica:** «Perché mescolare esercizi prima di aver capito ogni procedura può essere inefficiente?» **Chiave:** può aggiungere confusione senza supportare la scelta della strategia. **Padronanza:** risposte e selezione corretta del metodo. **Errore:** chiamare «interleaving» la casualità senza obiettivo.\n\n### Corso 5 — LOCO nella vita reale (4 lezioni, gratuito)"
+    },
+    {
+      "id": "X01",
+      "title": "Ricordare un discorso senza leggerlo",
+      "contentVersion": "1.0",
+      "courseId": "course-5",
+      "courseName": "LOCO nella vita reale",
+      "position": 1,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L06"
+      ],
+      "estimatedMinutes": 8,
+      "reading": "Un discorso efficace non richiede di memorizzare ogni singola parola. Ti basta spesso ricordare i punti nell'ordine giusto, un esempio importante e un passaggio tra sezioni. Scegli cinque o sei ancore del tuo palazzo come capitoli del discorso. Ogni locus contiene una domanda: «Che cosa devo dire qui?» oppure «Qual è la prova a sostegno del punto?». Durante la prova, attraversa mentalmente la stanza e parla con parole tue. Dopo, ascolta o annota dove hai saltato un passaggio. Se devi recitare una citazione esatta, usa un target specifico separato dai concetti.",
+      "workedExample": "Porta = problema; specchio = obiettivo; scrivania = soluzione; finestra = benefici; uscita = conclusione.",
+      "exercise": {
+        "prompt": "prepara un mini-discorso di 90 secondi con cinque ancore e recitalo senza copione.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Il palazzo sostituisce la comprensione del discorso?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "5 sezioni in ordine e passaggi comprensibili.",
+      "commonMistake": "tentare di incollare interi paragrafi parola per parola nello stesso punto.",
+      "rawMarkdown": "**Tempo:** 3 + 5 min. **Prerequisiti:** L06.\n\n**Da leggere.** Un discorso efficace non richiede di memorizzare ogni singola parola. Ti basta spesso ricordare i punti nell'ordine giusto, un esempio importante e un passaggio tra sezioni. Scegli cinque o sei ancore del tuo palazzo come capitoli del discorso. Ogni locus contiene una domanda: «Che cosa devo dire qui?» oppure «Qual è la prova a sostegno del punto?». Durante la prova, attraversa mentalmente la stanza e parla con parole tue. Dopo, ascolta o annota dove hai saltato un passaggio. Se devi recitare una citazione esatta, usa un target specifico separato dai concetti.\n\n**Esempio LOCO.** Porta = problema; specchio = obiettivo; scrivania = soluzione; finestra = benefici; uscita = conclusione.\n\n**Esercizio:** prepara un mini-discorso di 90 secondi con cinque ancore e recitalo senza copione. **Verifica:** «Il palazzo sostituisce la comprensione del discorso?» **Chiave:** no. **Padronanza:** 5 sezioni in ordine e passaggi comprensibili. **Errore:** tentare di incollare interi paragrafi parola per parola nello stesso punto."
+    },
+    {
+      "id": "X02",
+      "title": "Vocaboli stranieri con un'immagine-ponte",
+      "contentVersion": "1.0",
+      "courseId": "course-5",
+      "courseName": "LOCO nella vita reale",
+      "position": 2,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S04"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Una parola straniera può essere difficile perché non ti richiama subito un significato. Prova a creare una parola-ponte foneticamente simile e a collegarla alla traduzione con un'azione. Per esempio, per il termine inglese «bridge» (ponte), puoi immaginare un ponte che sorregge un grande *badge* se la somiglianza ti aiuta. Poi però pratica anche il percorso inverso, italiano→inglese, e usa il vocabolo in una frase: sapere che «bridge» significa «ponte» non garantisce di saperlo usare correttamente. L'immagine è un sostegno provvisorio, non deve diventare un ostacolo alla fluidità.",
+      "workedExample": "«Bridge» → ponte con un badge gigante; poi frase: «We crossed the bridge».",
+      "exercise": {
+        "prompt": "inventa un ponte per tre parole nuove, prova traduzione in entrambe le direzioni e scrivi una frase.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Ricordare solo la traduzione basta per usare una parola?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "traduzione bidirezionale + frase sensata.",
+      "commonMistake": "usare associazioni sonore che producono una pronuncia sbagliata senza accorgersene.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** S04.\n\n**Da leggere.** Una parola straniera può essere difficile perché non ti richiama subito un significato. Prova a creare una parola-ponte foneticamente simile e a collegarla alla traduzione con un'azione. Per esempio, per il termine inglese «bridge» (ponte), puoi immaginare un ponte che sorregge un grande *badge* se la somiglianza ti aiuta. Poi però pratica anche il percorso inverso, italiano→inglese, e usa il vocabolo in una frase: sapere che «bridge» significa «ponte» non garantisce di saperlo usare correttamente. L'immagine è un sostegno provvisorio, non deve diventare un ostacolo alla fluidità.\n\n**Esempio LOCO.** «Bridge» → ponte con un badge gigante; poi frase: «We crossed the bridge».\n\n**Esercizio:** inventa un ponte per tre parole nuove, prova traduzione in entrambe le direzioni e scrivi una frase. **Verifica:** «Ricordare solo la traduzione basta per usare una parola?» **Chiave:** no. **Padronanza:** traduzione bidirezionale + frase sensata. **Errore:** usare associazioni sonore che producono una pronuncia sbagliata senza accorgersene."
+    },
+    {
+      "id": "X03",
+      "title": "Liste, commissioni e piccole sequenze",
+      "contentVersion": "1.0",
+      "courseId": "course-5",
+      "courseName": "LOCO nella vita reale",
+      "position": 3,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "K01"
+      ],
+      "estimatedMinutes": 6,
+      "reading": "Per una lista breve puoi usare una storia invece di costruire un nuovo palazzo. Cinque commissioni possono trasformarsi in una catena: farmacia, posta, biblioteca, ferramenta, supermercato. Ma per appuntamenti e scadenze serve anche uno strumento esterno affidabile: LOCO non sostituisce notifiche, calendari o liste quando dimenticare un'azione ha conseguenze importanti. La mnemotecnica può aiutarti a ricordare l'ordine mentre sei in movimento, non promettere che eliminerà ogni dimenticanza.",
+      "workedExample": "Un pacco della posta cade su un libro della biblioteca; dal libro esce un martello della ferramenta.",
+      "exercise": {
+        "prompt": "collega cinque commissioni, richiamale senza guardare e confronta la lista.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Per ricordare l'ora di una visita importante basta una storia?»",
+        "expectedAnswer": "meglio anche un promemoria affidabile."
+      },
+      "masteryCriterion": "sequenza completa e ordinata.",
+      "commonMistake": "impiegare dieci minuti di codifica per ricordare tre oggetti banali.",
+      "rawMarkdown": "**Tempo:** 3 + 3 min. **Prerequisiti:** K01.\n\n**Da leggere.** Per una lista breve puoi usare una storia invece di costruire un nuovo palazzo. Cinque commissioni possono trasformarsi in una catena: farmacia, posta, biblioteca, ferramenta, supermercato. Ma per appuntamenti e scadenze serve anche uno strumento esterno affidabile: LOCO non sostituisce notifiche, calendari o liste quando dimenticare un'azione ha conseguenze importanti. La mnemotecnica può aiutarti a ricordare l'ordine mentre sei in movimento, non promettere che eliminerà ogni dimenticanza.\n\n**Esempio LOCO.** Un pacco della posta cade su un libro della biblioteca; dal libro esce un martello della ferramenta.\n\n**Esercizio:** collega cinque commissioni, richiamale senza guardare e confronta la lista. **Verifica:** «Per ricordare l'ora di una visita importante basta una storia?» **Chiave:** meglio anche un promemoria affidabile. **Padronanza:** sequenza completa e ordinata. **Errore:** impiegare dieci minuti di codifica per ricordare tre oggetti banali."
+    },
+    {
+      "id": "X04",
+      "title": "Nomi e volti: osservare prima di associare",
+      "contentVersion": "1.0",
+      "courseId": "course-5",
+      "courseName": "LOCO nella vita reale",
+      "position": 4,
+      "planTier": "free",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S04"
+      ],
+      "estimatedMinutes": 7,
+      "reading": "Quando incontri qualcuno, il primo passo per ricordarne il nome è prestare attenzione mentre viene pronunciato. Ripetilo mentalmente e, se è appropriato, usalo una volta nella conversazione. Poi puoi creare un'associazione rispettosa fra il suono del nome e un dettaglio neutro che tu abbia notato. Evita immagini umilianti, stereotipi o inferenze su caratteristiche personali. Nella vita reale l'informazione più utile non è soltanto «chi si chiama come», ma anche da quale contesto conosci quella persona. I dati di volti e nomi devono essere trattati con cura.",
+      "workedExample": "«Marta» ti ricorda una *mappa*: immagini una piccola mappa appoggiata alla sua cartellina, senza giudicarne l'aspetto.",
+      "exercise": {
+        "prompt": "su personaggi fittizi con nomi dichiarati, collega nome e contesto; prova dopo qualche minuto senza etichette.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«È opportuno basare la mnemotecnica su stereotipi della persona?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "recupera nomi e contesti con indizi rispettosi.",
+      "commonMistake": "scambiare un tratto osservato per un'identità o una caratteristica sensibile.",
+      "rawMarkdown": "**Tempo:** 3 + 4 min. **Prerequisiti:** S04.\n\n**Da leggere.** Quando incontri qualcuno, il primo passo per ricordarne il nome è prestare attenzione mentre viene pronunciato. Ripetilo mentalmente e, se è appropriato, usalo una volta nella conversazione. Poi puoi creare un'associazione rispettosa fra il suono del nome e un dettaglio neutro che tu abbia notato. Evita immagini umilianti, stereotipi o inferenze su caratteristiche personali. Nella vita reale l'informazione più utile non è soltanto «chi si chiama come», ma anche da quale contesto conosci quella persona. I dati di volti e nomi devono essere trattati con cura.\n\n**Esempio LOCO.** «Marta» ti ricorda una *mappa*: immagini una piccola mappa appoggiata alla sua cartellina, senza giudicarne l'aspetto.\n\n**Esercizio:** su personaggi fittizi con nomi dichiarati, collega nome e contesto; prova dopo qualche minuto senza etichette. **Verifica:** «È opportuno basare la mnemotecnica su stereotipi della persona?» **Chiave:** no. **Padronanza:** recupera nomi e contesti con indizi rispettosi. **Errore:** scambiare un tratto osservato per un'identità o una caratteristica sensibile.\n\n### Corso 6 — Architetto dei palazzi (4 lezioni, POCO LOCO)"
+    },
+    {
+      "id": "P01",
+      "title": "Progetta un palazzo da 25 loci",
+      "contentVersion": "1.0",
+      "courseId": "course-6",
+      "courseName": "Architetto dei palazzi",
+      "position": 1,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L06"
+      ],
+      "estimatedMinutes": 11,
+      "reading": "Quando dieci punti non bastano, l'errore è aggiungere hotspot ovunque. Progetta prima il tragitto e raggruppa i loci in zone riconoscibili: ingresso, soggiorno, cucina, studio, balcone. Ogni zona può contenere cinque ancore, purché non diventino tutte uguali. Crea un indice mentale delle zone e verifica che tu sappia raggiungere la numero 18 senza perderti. Un palazzo capiente non è necessariamente efficiente: misura il tempo per costruirlo e la precisione del richiamo, non soltanto il numero di punti creati.",
+      "workedExample": "Cinque stanze con cinque ancore, ciascuna nominata e collocata nell'ordine deciso.",
+      "exercise": {
+        "prompt": "disegna e costruisci 25 loci, poi richiama il numero e il nome dei punti 4, 11, 18 e 24.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Aggiungere loci identici aumenta sempre la capacità utile?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "minimo 23/25 punti in ordine e recupero diretto delle quattro posizioni campione.",
+      "commonMistake": "espandere senza consolidare la geografia.",
+      "rawMarkdown": "**Tempo:** 4 + 7 min. **Prerequisiti:** L06.\n\n**Da leggere.** Quando dieci punti non bastano, l'errore è aggiungere hotspot ovunque. Progetta prima il tragitto e raggruppa i loci in zone riconoscibili: ingresso, soggiorno, cucina, studio, balcone. Ogni zona può contenere cinque ancore, purché non diventino tutte uguali. Crea un indice mentale delle zone e verifica che tu sappia raggiungere la numero 18 senza perderti. Un palazzo capiente non è necessariamente efficiente: misura il tempo per costruirlo e la precisione del richiamo, non soltanto il numero di punti creati.\n\n**Esempio LOCO.** Cinque stanze con cinque ancore, ciascuna nominata e collocata nell'ordine deciso.\n\n**Esercizio:** disegna e costruisci 25 loci, poi richiama il numero e il nome dei punti 4, 11, 18 e 24. **Verifica:** «Aggiungere loci identici aumenta sempre la capacità utile?» **Chiave:** no. **Padronanza:** minimo 23/25 punti in ordine e recupero diretto delle quattro posizioni campione. **Errore:** espandere senza consolidare la geografia."
+    },
+    {
+      "id": "P02",
+      "title": "Riusare un palazzo senza confondere i ricordi",
+      "contentVersion": "1.0",
+      "courseId": "course-6",
+      "courseName": "Architetto dei palazzi",
+      "position": 2,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "P01"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "Puoi decidere di riutilizzare uno stesso ambiente per contenuti diversi, ma le associazioni precedenti potrebbero interferire. Se sulla porta avevi una banana per il potassio e ora metti un leone per un discorso, quale immagine comparirà durante la prova? Per contenuti da conservare a lungo conviene spesso mantenere punti o palazzi dedicati; per allenamenti temporanei si può sperimentare il riuso, purché tu sappia quale versione stai usando. LOCO deve distinguere progetto, versione del percorso e collocazioni, evitando di cancellare silenziosamente la cronologia di studio.",
+      "workedExample": "«Casa — Storia» e «Casa — Biologia» condividono la geometria ma non gli stessi target, associazioni e prove.",
+      "exercise": {
+        "prompt": "crea una seconda variante di un palazzo e misura le confusioni su cinque loci.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Se due associazioni competono nello stesso posto, la seconda sostituisce automaticamente la prima?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "recupero consapevole di entrambi i contesti senza confusione su quattro dei cinque test.",
+      "commonMistake": "riciclare contenuti stabili senza traccia di versione.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** P01.\n\n**Da leggere.** Puoi decidere di riutilizzare uno stesso ambiente per contenuti diversi, ma le associazioni precedenti potrebbero interferire. Se sulla porta avevi una banana per il potassio e ora metti un leone per un discorso, quale immagine comparirà durante la prova? Per contenuti da conservare a lungo conviene spesso mantenere punti o palazzi dedicati; per allenamenti temporanei si può sperimentare il riuso, purché tu sappia quale versione stai usando. LOCO deve distinguere progetto, versione del percorso e collocazioni, evitando di cancellare silenziosamente la cronologia di studio.\n\n**Esempio LOCO.** «Casa — Storia» e «Casa — Biologia» condividono la geometria ma non gli stessi target, associazioni e prove.\n\n**Esercizio:** crea una seconda variante di un palazzo e misura le confusioni su cinque loci. **Verifica:** «Se due associazioni competono nello stesso posto, la seconda sostituisce automaticamente la prima?» **Chiave:** no. **Padronanza:** recupero consapevole di entrambi i contesti senza confusione su quattro dei cinque test. **Errore:** riciclare contenuti stabili senza traccia di versione."
+    },
+    {
+      "id": "P03",
+      "title": "Sottopercorsi: capitoli e sezioni",
+      "contentVersion": "1.0",
+      "courseId": "course-6",
+      "courseName": "Architetto dei palazzi",
+      "position": 3,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "P01",
+        "T02"
+      ],
+      "estimatedMinutes": 10,
+      "reading": "Una materia articolata ha una struttura: capitoli, sottoargomenti, esempi. Puoi rappresentarla spazialmente con un percorso principale e sottopercorsi tematici, mantenendo chiaro il livello a cui appartiene ciascun target. Il rischio è costruire un labirinto con troppe diramazioni. Parti da tre stanze, assegna un capitolo a ciascuna e usa loci interni per i suoi contenuti. Crea poi domande che partono da un concetto e chiedono a quale sezione appartiene. Non scambiare la gerarchia visiva con la reale organizzazione concettuale: verifica sempre la struttura con la fonte.",
+      "workedExample": "«Sistema nervoso» → stanza «centrale» e stanza «periferico»; dentro, ancore per funzioni e componenti.",
+      "exercise": {
+        "prompt": "struttura tre sezioni con tre target ciascuna e ricostruisci la mappa in assenza di etichette.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quanti livelli conviene aggiungere all'inizio?»",
+        "expectedAnswer": "pochi e chiaramente navigabili."
+      },
+      "masteryCriterion": "ricostruzione dei rami e almeno 8/9 target.",
+      "commonMistake": "ramificazioni così profonde da far perdere orientamento.",
+      "rawMarkdown": "**Tempo:** 4 + 6 min. **Prerequisiti:** P01, T02.\n\n**Da leggere.** Una materia articolata ha una struttura: capitoli, sottoargomenti, esempi. Puoi rappresentarla spazialmente con un percorso principale e sottopercorsi tematici, mantenendo chiaro il livello a cui appartiene ciascun target. Il rischio è costruire un labirinto con troppe diramazioni. Parti da tre stanze, assegna un capitolo a ciascuna e usa loci interni per i suoi contenuti. Crea poi domande che partono da un concetto e chiedono a quale sezione appartiene. Non scambiare la gerarchia visiva con la reale organizzazione concettuale: verifica sempre la struttura con la fonte.\n\n**Esempio LOCO.** «Sistema nervoso» → stanza «centrale» e stanza «periferico»; dentro, ancore per funzioni e componenti.\n\n**Esercizio:** struttura tre sezioni con tre target ciascuna e ricostruisci la mappa in assenza di etichette. **Verifica:** «Quanti livelli conviene aggiungere all'inizio?» **Chiave:** pochi e chiaramente navigabili. **Padronanza:** ricostruzione dei rami e almeno 8/9 target. **Errore:** ramificazioni così profonde da far perdere orientamento."
+    },
+    {
+      "id": "P04",
+      "title": "Diagnostica la confusione tra loci",
+      "contentVersion": "1.0",
+      "courseId": "course-6",
+      "courseName": "Architetto dei palazzi",
+      "position": 4,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L07",
+        "P02"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "La confusione tra due posizioni può dipendere da vicinanza, somiglianza visiva, ordine incerto o associazioni che si assomigliano. Invece di rifare l'intero percorso, esamina la coppia che produce più scambi. Cambia un'ancora, aggiungi un dettaglio stabile o modifica l'azione della scena. Poi confronta tentativi dello stesso tipo in condizioni simili. Un miglioramento dopo una sola prova è incoraggiante, ma non dimostra che la soluzione funzioni per sempre. Registra il numero di tentativi e la distanza temporale, non solo la percentuale.",
+      "workedExample": "Confondi «libreria grande» e «libreria piccola»: sostituisci la seconda con «lampada a terra» quando possibile.",
+      "exercise": {
+        "prompt": "individua due loci confusi, proponi una correzione e verifica in una prova ritardata.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quale metrica guardo?»",
+        "expectedAnswer": "scambi specifici tra loci, con campione e intervallo."
+      },
+      "masteryCriterion": "diagnosi e correzione tracciata.",
+      "commonMistake": "proclamare efficacia dopo una sola ripetizione immediata.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** L07, P02.\n\n**Da leggere.** La confusione tra due posizioni può dipendere da vicinanza, somiglianza visiva, ordine incerto o associazioni che si assomigliano. Invece di rifare l'intero percorso, esamina la coppia che produce più scambi. Cambia un'ancora, aggiungi un dettaglio stabile o modifica l'azione della scena. Poi confronta tentativi dello stesso tipo in condizioni simili. Un miglioramento dopo una sola prova è incoraggiante, ma non dimostra che la soluzione funzioni per sempre. Registra il numero di tentativi e la distanza temporale, non solo la percentuale.\n\n**Esempio LOCO.** Confondi «libreria grande» e «libreria piccola»: sostituisci la seconda con «lampada a terra» quando possibile.\n\n**Esercizio:** individua due loci confusi, proponi una correzione e verifica in una prova ritardata. **Verifica:** «Quale metrica guardo?» **Chiave:** scambi specifici tra loci, con campione e intervallo. **Padronanza:** diagnosi e correzione tracciata. **Errore:** proclamare efficacia dopo una sola ripetizione immediata.\n\n### Corso 7 — Maestria numerica: Peg e PAO (4 lezioni, POCO LOCO)"
+    },
+    {
+      "id": "Q01",
+      "title": "Il tuo dizionario 00–99",
+      "contentVersion": "1.0",
+      "courseId": "course-7",
+      "courseName": "Maestria numerica: Peg e PAO",
+      "position": 1,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "N05"
+      ],
+      "estimatedMinutes": 10,
+      "reading": "Con il Major System puoi creare un'immagine stabile per ogni numero da 00 a 99. È come costruire un vocabolario personale: invece di inventare ogni volta che vedi 52, puoi richiamare automaticamente la tua «luna». Ma non serve compilare tutto in una sera. Parti da dieci numeri e scegli parole concrete, facilmente distinguibili, foneticamente coerenti. Verifica anche il recupero inverso: se «mano» è 32, quando vedi il numero 32 deve arrivarti «mano», e quando vedi «mano» devi tornare a 32. Le due direzioni si allenano separatamente.",
+      "workedExample": "14=toro; 32=mano; 52=luna; 92=pane. Ogni parola ha una scheda personalizzabile e una pronuncia verificata.",
+      "exercise": {
+        "prompt": "crea dieci voci del dizionario, esegui dieci prove forward e dieci reverse.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Posso contare una parola come acquisita se la ricordo solo quando leggo il numero?»",
+        "expectedAnswer": "no, verifica entrambe le direzioni."
+      },
+      "masteryCriterion": "almeno 9/10 per direzione a distanza di tempo.",
+      "commonMistake": "parole simili o con consonanti aggiuntive.",
+      "rawMarkdown": "**Tempo:** 4 + 6 min. **Prerequisiti:** N05.\n\n**Da leggere.** Con il Major System puoi creare un'immagine stabile per ogni numero da 00 a 99. È come costruire un vocabolario personale: invece di inventare ogni volta che vedi 52, puoi richiamare automaticamente la tua «luna». Ma non serve compilare tutto in una sera. Parti da dieci numeri e scegli parole concrete, facilmente distinguibili, foneticamente coerenti. Verifica anche il recupero inverso: se «mano» è 32, quando vedi il numero 32 deve arrivarti «mano», e quando vedi «mano» devi tornare a 32. Le due direzioni si allenano separatamente.\n\n**Esempio LOCO.** 14=toro; 32=mano; 52=luna; 92=pane. Ogni parola ha una scheda personalizzabile e una pronuncia verificata.\n\n**Esercizio:** crea dieci voci del dizionario, esegui dieci prove forward e dieci reverse. **Verifica:** «Posso contare una parola come acquisita se la ricordo solo quando leggo il numero?» **Chiave:** no, verifica entrambe le direzioni. **Padronanza:** almeno 9/10 per direzione a distanza di tempo. **Errore:** parole simili o con consonanti aggiuntive."
+    },
+    {
+      "id": "Q02",
+      "title": "Peg system: agganci stabili",
+      "contentVersion": "1.0",
+      "courseId": "course-7",
+      "courseName": "Maestria numerica: Peg e PAO",
+      "position": 2,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "Q01"
+      ],
+      "estimatedMinutes": 8,
+      "reading": "Un *peg* è un gancio mentale che occupa una posizione nota. Se 1 richiama una candela, 2 un cigno e 3 un tridente, puoi «appendere» un oggetto nuovo a ciascun aggancio. È utile per brevi elenchi numerati e accessi diretti: «Qual era il terzo elemento?» ti porta all'immagine del tridente senza ripercorrere tutta la lista. Questo è diverso dal Major System, che codifica le cifre attraverso suoni. Esistono vari sistemi di agganci: LOCO ne propone uno come esercizio e ti permette di sostituirlo. L'importante è mantenere stabile il dizionario.",
+      "workedExample": "Posizione 2 = cigno: un cigno suona un violino; il secondo elemento era «violino».",
+      "exercise": {
+        "prompt": "costruisci cinque peg fissi e recupera gli elementi in ordine casuale.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Che cosa deve restare stabile?»",
+        "expectedAnswer": "il rapporto posizione→aggancio."
+      },
+      "masteryCriterion": "5/5 richiami su domanda numerata casuale.",
+      "commonMistake": "cambiare il peg tra una prova e l'altra.",
+      "rawMarkdown": "**Tempo:** 4 + 4 min. **Prerequisiti:** Q01.\n\n**Da leggere.** Un *peg* è un gancio mentale che occupa una posizione nota. Se 1 richiama una candela, 2 un cigno e 3 un tridente, puoi «appendere» un oggetto nuovo a ciascun aggancio. È utile per brevi elenchi numerati e accessi diretti: «Qual era il terzo elemento?» ti porta all'immagine del tridente senza ripercorrere tutta la lista. Questo è diverso dal Major System, che codifica le cifre attraverso suoni. Esistono vari sistemi di agganci: LOCO ne propone uno come esercizio e ti permette di sostituirlo. L'importante è mantenere stabile il dizionario.\n\n**Esempio LOCO.** Posizione 2 = cigno: un cigno suona un violino; il secondo elemento era «violino».\n\n**Esercizio:** costruisci cinque peg fissi e recupera gli elementi in ordine casuale. **Verifica:** «Che cosa deve restare stabile?» **Chiave:** il rapporto posizione→aggancio. **Padronanza:** 5/5 richiami su domanda numerata casuale. **Errore:** cambiare il peg tra una prova e l'altra."
+    },
+    {
+      "id": "Q03",
+      "title": "PAO: persona, azione, oggetto",
+      "contentVersion": "1.0",
+      "courseId": "course-7",
+      "courseName": "Maestria numerica: Peg e PAO",
+      "position": 3,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "Q01",
+        "Q02"
+      ],
+      "estimatedMinutes": 10,
+      "reading": "PAO significa *Person–Action–Object*: per ciascun codice prepari una persona, un'azione e un oggetto coerenti. Per combinare più codici puoi prendere la persona del primo, l'azione del secondo e l'oggetto del terzo, formando una scena unica. Per esempio, una persona convenzionalmente associata al codice A potrebbe compiere l'azione del codice B sull'oggetto del codice C. L'operazione è potente solo se i tuoi tre dizionari sono stabili e la regola di lettura è chiara. Non usare persone reali senza cura per privacy e contesto, e non attribuire al PAO miglioramenti generali dell'intelligenza.",
+      "workedExample": "Tre token fittizi: A=astronauta, B=salta, C=ombrello; scena: un astronauta salta su un ombrello. Nella versione numerica ogni token deve corrispondere a cifre note e verificabili.",
+      "exercise": {
+        "prompt": "crea sei token con persona/azione/oggetto, ricombina tre token e recupera la sequenza originaria.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Che cosa permette di decodificare la scena?»",
+        "expectedAnswer": "dizionari stabili e ordine P-A-O."
+      },
+      "masteryCriterion": "decodifica completa di tre gruppi senza indizi.",
+      "commonMistake": "scambiare le posizioni dei tre ruoli.",
+      "rawMarkdown": "**Tempo:** 4 + 6 min. **Prerequisiti:** Q01, Q02.\n\n**Da leggere.** PAO significa *Person–Action–Object*: per ciascun codice prepari una persona, un'azione e un oggetto coerenti. Per combinare più codici puoi prendere la persona del primo, l'azione del secondo e l'oggetto del terzo, formando una scena unica. Per esempio, una persona convenzionalmente associata al codice A potrebbe compiere l'azione del codice B sull'oggetto del codice C. L'operazione è potente solo se i tuoi tre dizionari sono stabili e la regola di lettura è chiara. Non usare persone reali senza cura per privacy e contesto, e non attribuire al PAO miglioramenti generali dell'intelligenza.\n\n**Esempio LOCO.** Tre token fittizi: A=astronauta, B=salta, C=ombrello; scena: un astronauta salta su un ombrello. Nella versione numerica ogni token deve corrispondere a cifre note e verificabili.\n\n**Esercizio:** crea sei token con persona/azione/oggetto, ricombina tre token e recupera la sequenza originaria. **Verifica:** «Che cosa permette di decodificare la scena?» **Chiave:** dizionari stabili e ordine P-A-O. **Padronanza:** decodifica completa di tre gruppi senza indizi. **Errore:** scambiare le posizioni dei tre ruoli."
+    },
+    {
+      "id": "Q04",
+      "title": "Numeri lunghi e interferenze",
+      "contentVersion": "1.0",
+      "courseId": "course-7",
+      "courseName": "Maestria numerica: Peg e PAO",
+      "position": 4,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "Q03"
+      ],
+      "estimatedMinutes": 10,
+      "reading": "Per sequenze lunghe hai bisogno di blocchi ripetibili, un ordine chiaro e criteri di controllo. Puoi usare parole del Major, peg o PAO, ma non cambiare metodo a metà senza registrarlo. Una stringa di sei cifre potrebbe diventare tre blocchi di due; con PAO puoi combinare tre codici in una scena. Conserva zeri iniziali e lunghezza totale: 012345 non è 12345. Dopo la codifica, fai una prova cieca e confronta cifra per cifra, perché un'immagine ricostruita «quasi giusta» può contenere un errore grave. Non utilizzare la tecnica come unico sistema di sicurezza per password, PIN o credenziali critiche.",
+      "workedExample": "014852 diventa 01|48|52; il formatter conserva «01» e non perde lo zero iniziale.",
+      "exercise": {
+        "prompt": "ricorda due stringhe fittizie di sei cifre, riportale esattamente e registra sostituzioni/inversioni.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Qual è l'errore se 014852 diventa 14852?»",
+        "expectedAnswer": "perdita dello zero iniziale."
+      },
+      "masteryCriterion": "due prove esatte, una differita.",
+      "commonMistake": "mostrare il codice prima della risposta.",
+      "rawMarkdown": "**Tempo:** 4 + 6 min. **Prerequisiti:** Q03.\n\n**Da leggere.** Per sequenze lunghe hai bisogno di blocchi ripetibili, un ordine chiaro e criteri di controllo. Puoi usare parole del Major, peg o PAO, ma non cambiare metodo a metà senza registrarlo. Una stringa di sei cifre potrebbe diventare tre blocchi di due; con PAO puoi combinare tre codici in una scena. Conserva zeri iniziali e lunghezza totale: 012345 non è 12345. Dopo la codifica, fai una prova cieca e confronta cifra per cifra, perché un'immagine ricostruita «quasi giusta» può contenere un errore grave. Non utilizzare la tecnica come unico sistema di sicurezza per password, PIN o credenziali critiche.\n\n**Esempio LOCO.** 014852 diventa 01|48|52; il formatter conserva «01» e non perde lo zero iniziale.\n\n**Esercizio:** ricorda due stringhe fittizie di sei cifre, riportale esattamente e registra sostituzioni/inversioni. **Verifica:** «Qual è l'errore se 014852 diventa 14852?» **Chiave:** perdita dello zero iniziale. **Padronanza:** due prove esatte, una differita. **Errore:** mostrare il codice prima della risposta.\n\n### Corso 8 — Stratega dello studio (4 lezioni, POCO LOCO)"
+    },
+    {
+      "id": "R01",
+      "title": "Dal capitolo alle domande verificabili",
+      "contentVersion": "1.0",
+      "courseId": "course-8",
+      "courseName": "Stratega dello studio",
+      "position": 1,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "T03"
+      ],
+      "estimatedMinutes": 10,
+      "reading": "Prima di trasformare un capitolo in cento immagini, chiediti quali conoscenze dovrai dimostrare. Leggi titoli, definizioni, esempi e relazioni; poi crea una mappa degli obiettivi. Alcune informazioni richiedono precisione verbale, altre richiedono spiegazioni, altre ancora si verificano con problemi. Solo allora costruisci i target. Conserva, per ciascuno, il riferimento alla fonte e distingui chiaramente ciò che hai verificato da ciò che un sistema automatico ha suggerito. Una buona preparazione può generare meno schede di quanto pensi, ma migliori.",
+      "workedExample": "Dal capitolo «domanda e offerta» emergono definizione, fattori che spostano le curve, interpretazione di grafici e caso numerico: non tutti sono loci.",
+      "exercise": {
+        "prompt": "su un testo di una pagina, genera otto target divisi in fatto, spiegazione e applicazione, tutti riconducibili al testo.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Una sintesi AI non controllata è una fonte?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "otto target verificabili con citazioni.",
+      "commonMistake": "produrre schede su dettagli marginali senza priorità.",
+      "rawMarkdown": "**Tempo:** 4 + 6 min. **Prerequisiti:** T03.\n\n**Da leggere.** Prima di trasformare un capitolo in cento immagini, chiediti quali conoscenze dovrai dimostrare. Leggi titoli, definizioni, esempi e relazioni; poi crea una mappa degli obiettivi. Alcune informazioni richiedono precisione verbale, altre richiedono spiegazioni, altre ancora si verificano con problemi. Solo allora costruisci i target. Conserva, per ciascuno, il riferimento alla fonte e distingui chiaramente ciò che hai verificato da ciò che un sistema automatico ha suggerito. Una buona preparazione può generare meno schede di quanto pensi, ma migliori.\n\n**Esempio LOCO.** Dal capitolo «domanda e offerta» emergono definizione, fattori che spostano le curve, interpretazione di grafici e caso numerico: non tutti sono loci.\n\n**Esercizio:** su un testo di una pagina, genera otto target divisi in fatto, spiegazione e applicazione, tutti riconducibili al testo. **Verifica:** «Una sintesi AI non controllata è una fonte?» **Chiave:** no. **Padronanza:** otto target verificabili con citazioni. **Errore:** produrre schede su dettagli marginali senza priorità."
+    },
+    {
+      "id": "R02",
+      "title": "Esame orale, scritto e a problemi",
+      "contentVersion": "1.0",
+      "courseId": "course-8",
+      "courseName": "Stratega dello studio",
+      "position": 2,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "R01",
+        "X01"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "La tecnica di recupero deve assomigliare alla prestazione che ti sarà richiesta. Per un orale sono importanti esposizione, ordine e collegamenti; per uno scritto fattuale, precisione e tempi; per un esame a problemi, scelta della procedura e applicazione. Un palazzo può aiutarti a ricordare la struttura di un ragionamento, ma non sostituisce l'esercizio di risolvere problemi nuovi. Pianifica quindi prove diverse: una risposta breve, una spiegazione parlata, un esercizio applicato. Valuta la preparazione in ciascuna modalità e non con una sola percentuale complessiva.",
+      "workedExample": "Economia: richiamo definizione di elasticità, spiegazione del significato, applicazione a un caso numerico con dati nuovi.",
+      "exercise": {
+        "prompt": "configura tre modalità di verifica per uno stesso argomento e prova almeno una domanda per tipo.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quale prova testa meglio un esame a problemi?»",
+        "expectedAnswer": "un problema nuovo, oltre al ricordo di formule e definizioni."
+      },
+      "masteryCriterion": "risultati per tre abilità distinti.",
+      "commonMistake": "chiamare «preparato» chi sa recitare risposte senza applicarle.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** R01, X01.\n\n**Da leggere.** La tecnica di recupero deve assomigliare alla prestazione che ti sarà richiesta. Per un orale sono importanti esposizione, ordine e collegamenti; per uno scritto fattuale, precisione e tempi; per un esame a problemi, scelta della procedura e applicazione. Un palazzo può aiutarti a ricordare la struttura di un ragionamento, ma non sostituisce l'esercizio di risolvere problemi nuovi. Pianifica quindi prove diverse: una risposta breve, una spiegazione parlata, un esercizio applicato. Valuta la preparazione in ciascuna modalità e non con una sola percentuale complessiva.\n\n**Esempio LOCO.** Economia: richiamo definizione di elasticità, spiegazione del significato, applicazione a un caso numerico con dati nuovi.\n\n**Esercizio:** configura tre modalità di verifica per uno stesso argomento e prova almeno una domanda per tipo. **Verifica:** «Quale prova testa meglio un esame a problemi?» **Chiave:** un problema nuovo, oltre al ricordo di formule e definizioni. **Padronanza:** risultati per tre abilità distinti. **Errore:** chiamare «preparato» chi sa recitare risposte senza applicarle."
+    },
+    {
+      "id": "R03",
+      "title": "Ripasso selettivo prima della scadenza",
+      "contentVersion": "1.0",
+      "courseId": "course-8",
+      "courseName": "Stratega dello studio",
+      "position": 3,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "T05",
+        "R02"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "Quando una data d'esame si avvicina, non tutto merita lo stesso tempo. Parti dai target in scadenza, da quelli recuperati con errori, dai concetti fondamentali e dai tipi di domanda che compariranno davvero. Se hai 30 minuti, non riempirli con ciò che sai già perfettamente solo per ottenere una sensazione di produttività. Dedica una parte alle prove autonome, una alle correzioni e una ai contenuti da chiarire. Ricalcola le priorità dopo aver osservato gli esiti; non promettere una probabilità di voto sulla base della cronologia di clic.",
+      "workedExample": "Coda di 20 target: prima 6 scaduti con errori, poi 8 in scadenza, poi 6 stabili se resta tempo.",
+      "exercise": {
+        "prompt": "ordina dieci target simulati per rilevanza, scadenza e affidabilità del richiamo; giustifica la top 3.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Il numero di ripassi è una prova sufficiente di preparazione?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "priorità trasparenti e uso di recupero autonomo.",
+      "commonMistake": "strategie che premiano solo la quantità di attività.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** T05, R02.\n\n**Da leggere.** Quando una data d'esame si avvicina, non tutto merita lo stesso tempo. Parti dai target in scadenza, da quelli recuperati con errori, dai concetti fondamentali e dai tipi di domanda che compariranno davvero. Se hai 30 minuti, non riempirli con ciò che sai già perfettamente solo per ottenere una sensazione di produttività. Dedica una parte alle prove autonome, una alle correzioni e una ai contenuti da chiarire. Ricalcola le priorità dopo aver osservato gli esiti; non promettere una probabilità di voto sulla base della cronologia di clic.\n\n**Esempio LOCO.** Coda di 20 target: prima 6 scaduti con errori, poi 8 in scadenza, poi 6 stabili se resta tempo.\n\n**Esercizio:** ordina dieci target simulati per rilevanza, scadenza e affidabilità del richiamo; giustifica la top 3. **Verifica:** «Il numero di ripassi è una prova sufficiente di preparazione?» **Chiave:** no. **Padronanza:** priorità trasparenti e uso di recupero autonomo. **Errore:** strategie che premiano solo la quantità di attività."
+    },
+    {
+      "id": "R04",
+      "title": "Metti alla prova il trasferimento",
+      "contentVersion": "1.0",
+      "courseId": "course-8",
+      "courseName": "Stratega dello studio",
+      "position": 4,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "R02"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "Il trasferimento è la capacità di usare ciò che hai imparato quando cambia la forma della domanda. Dopo aver imparato una regola, prova un esercizio che non hai già visto. Dopo aver studiato un fenomeno, spiega un esempio nuovo. Il metodo dei loci può averti aiutato a richiamare parti importanti, ma da solo non garantisce che tu sappia adattarle. Se fallisci la prova, torna al significato: forse conosci la definizione ma non i limiti, i passaggi o le condizioni di applicazione. Questa distinzione è una delle più utili per studiare in modo maturo.",
+      "workedExample": "Sai definire costo opportunità; ora scegli tra due offerte con vincoli nuovi e spiega che cosa stai sacrificando.",
+      "exercise": {
+        "prompt": "risolvi due varianti inedite di un esercizio già studiato, con rubriche di spiegazione.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Ripetere un esempio identico misura trasferimento?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "almeno una soluzione corretta a un caso nuovo, con motivazione.",
+      "commonMistake": "equiparare velocità di richiamo e abilità generale.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** R02.\n\n**Da leggere.** Il trasferimento è la capacità di usare ciò che hai imparato quando cambia la forma della domanda. Dopo aver imparato una regola, prova un esercizio che non hai già visto. Dopo aver studiato un fenomeno, spiega un esempio nuovo. Il metodo dei loci può averti aiutato a richiamare parti importanti, ma da solo non garantisce che tu sappia adattarle. Se fallisci la prova, torna al significato: forse conosci la definizione ma non i limiti, i passaggi o le condizioni di applicazione. Questa distinzione è una delle più utili per studiare in modo maturo.\n\n**Esempio LOCO.** Sai definire costo opportunità; ora scegli tra due offerte con vincoli nuovi e spiega che cosa stai sacrificando.\n\n**Esercizio:** risolvi due varianti inedite di un esercizio già studiato, con rubriche di spiegazione. **Verifica:** «Ripetere un esempio identico misura trasferimento?» **Chiave:** no. **Padronanza:** almeno una soluzione corretta a un caso nuovo, con motivazione. **Errore:** equiparare velocità di richiamo e abilità generale.\n\n### Corso 9 — Spazi del mondo: palazzi reali e virtuali (4 lezioni, POCO LOCO)"
+    },
+    {
+      "id": "W01",
+      "title": "Un luogo familiare o uno esplorato online?",
+      "contentVersion": "1.0",
+      "courseId": "course-9",
+      "courseName": "Spazi del mondo: palazzi reali e virtuali",
+      "position": 1,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L06"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "Un percorso conosciuto di persona offre indizi ricchi e immediati. Una scena virtuale consente invece di esplorare luoghi che non hai visitato, ma prima devi impararne la struttura. Confronta le due opzioni in base all'obiettivo: un elenco rapido forse vive bene nella tua camera; un progetto ambientato in una città potrebbe essere più coinvolgente lungo una strada. Non sacrificare però la stabilità delle ancore alla spettacolarità dell'ambiente. Se un servizio di mappe non è disponibile o il suo costo è alto, il percorso deve poter esistere anche in una scena semplice.",
+      "workedExample": "Camera familiare per dieci formule; strada esplorata e compresa per dieci tappe di un discorso storico.",
+      "exercise": {
+        "prompt": "crea un minipercorso in due ambienti disponibili e confronta confusione, tempo di preparazione e richiamo.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Un panorama più realistico implica automaticamente più memoria?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "confronto motivato basato su prove.",
+      "commonMistake": "attribuire efficacia al realismo senza misurare recupero.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** L06.\n\n**Da leggere.** Un percorso conosciuto di persona offre indizi ricchi e immediati. Una scena virtuale consente invece di esplorare luoghi che non hai visitato, ma prima devi impararne la struttura. Confronta le due opzioni in base all'obiettivo: un elenco rapido forse vive bene nella tua camera; un progetto ambientato in una città potrebbe essere più coinvolgente lungo una strada. Non sacrificare però la stabilità delle ancore alla spettacolarità dell'ambiente. Se un servizio di mappe non è disponibile o il suo costo è alto, il percorso deve poter esistere anche in una scena semplice.\n\n**Esempio LOCO.** Camera familiare per dieci formule; strada esplorata e compresa per dieci tappe di un discorso storico.\n\n**Esercizio:** crea un minipercorso in due ambienti disponibili e confronta confusione, tempo di preparazione e richiamo. **Verifica:** «Un panorama più realistico implica automaticamente più memoria?» **Chiave:** no. **Padronanza:** confronto motivato basato su prove. **Errore:** attribuire efficacia al realismo senza misurare recupero."
+    },
+    {
+      "id": "W02",
+      "title": "Street View: scegliere ancore che rimangono",
+      "contentVersion": "1.0",
+      "courseId": "course-9",
+      "courseName": "Spazi del mondo: palazzi reali e virtuali",
+      "position": 2,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "W01"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "In un percorso stradale puoi scegliere punti come un ingresso riconoscibile, una fontana, un monumento, una fermata o un incrocio. Evita dettagli effimeri come un'auto parcheggiata o un cartellone temporaneo: potrebbero cambiare tra panorami o versioni. Decidi in quale direzione percorrere la strada e verifica la riconoscibilità delle tappe. Le viste del servizio di mappe restano soggette alle sue condizioni d'uso; LOCO può salvare le tue ancore, le domande e le associazioni senza trattare i panorami di terzi come contenuti liberamente scaricabili. Se la mappa non si carica, il ripasso dei target deve comunque funzionare.",
+      "workedExample": "Una passeggiata di 10 tappe: portone, fontana, portico, chiesa, piazza; ogni punto ha un nome autonomo.",
+      "exercise": {
+        "prompt": "seleziona sei landmark stabili in una scena autorizzata o nel mockup, motivandone la permanenza.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Un'auto casuale è un ottimo locus permanente?»",
+        "expectedAnswer": "di solito no."
+      },
+      "masteryCriterion": "sei ancore distinte e ordinabili.",
+      "commonMistake": "dipendere da immagini terze copiate localmente senza diritti.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** W01.\n\n**Da leggere.** In un percorso stradale puoi scegliere punti come un ingresso riconoscibile, una fontana, un monumento, una fermata o un incrocio. Evita dettagli effimeri come un'auto parcheggiata o un cartellone temporaneo: potrebbero cambiare tra panorami o versioni. Decidi in quale direzione percorrere la strada e verifica la riconoscibilità delle tappe. Le viste del servizio di mappe restano soggette alle sue condizioni d'uso; LOCO può salvare le tue ancore, le domande e le associazioni senza trattare i panorami di terzi come contenuti liberamente scaricabili. Se la mappa non si carica, il ripasso dei target deve comunque funzionare.\n\n**Esempio LOCO.** Una passeggiata di 10 tappe: portone, fontana, portico, chiesa, piazza; ogni punto ha un nome autonomo.\n\n**Esercizio:** seleziona sei landmark stabili in una scena autorizzata o nel mockup, motivandone la permanenza. **Verifica:** «Un'auto casuale è un ottimo locus permanente?» **Chiave:** di solito no. **Padronanza:** sei ancore distinte e ordinabili. **Errore:** dipendere da immagini terze copiate localmente senza diritti."
+    },
+    {
+      "id": "W03",
+      "title": "La tua stanza: foto, 3D e alternative semplici",
+      "contentVersion": "1.0",
+      "courseId": "course-9",
+      "courseName": "Spazi del mondo: palazzi reali e virtuali",
+      "position": 3,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "W01"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "La tua camera ha un vantaggio: conosci già molti dei suoi oggetti. Puoi partire con una semplice foto di cui hai i diritti o con un ambiente base; una scansione 3D è un'opzione più complessa, non un prerequisito. Qualunque formato utilizzi, l'obiettivo è lo stesso: individuare loci, stabilire un ordine e legare target. Una scansione può contenere informazioni private su casa e abitudini, quindi va gestita con consenso, protezioni e controllo su esportazione e cancellazione. Chi non desidera condividere immagini deve poter creare un palazzo manualmente.",
+      "workedExample": "Foto della cucina: loci su tavolo e frigorifero; versione 3D, se disponibile, con gli stessi nomi e bersagli.",
+      "exercise": {
+        "prompt": "struttura cinque ancore in una scena demo o foto personale, controlla che siano utilizzabili senza funzione 3D.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«La scansione 3D è necessaria per usare i loci?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "percorso operativo indipendente dalla tecnologia di cattura.",
+      "commonMistake": "bloccare un progetto per ottenere un modello tridimensionale.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** W01.\n\n**Da leggere.** La tua camera ha un vantaggio: conosci già molti dei suoi oggetti. Puoi partire con una semplice foto di cui hai i diritti o con un ambiente base; una scansione 3D è un'opzione più complessa, non un prerequisito. Qualunque formato utilizzi, l'obiettivo è lo stesso: individuare loci, stabilire un ordine e legare target. Una scansione può contenere informazioni private su casa e abitudini, quindi va gestita con consenso, protezioni e controllo su esportazione e cancellazione. Chi non desidera condividere immagini deve poter creare un palazzo manualmente.\n\n**Esempio LOCO.** Foto della cucina: loci su tavolo e frigorifero; versione 3D, se disponibile, con gli stessi nomi e bersagli.\n\n**Esercizio:** struttura cinque ancore in una scena demo o foto personale, controlla che siano utilizzabili senza funzione 3D. **Verifica:** «La scansione 3D è necessaria per usare i loci?» **Chiave:** no. **Padronanza:** percorso operativo indipendente dalla tecnologia di cattura. **Errore:** bloccare un progetto per ottenere un modello tridimensionale."
+    },
+    {
+      "id": "W04",
+      "title": "Quando il percorso cambia",
+      "contentVersion": "1.0",
+      "courseId": "course-9",
+      "courseName": "Spazi del mondo: palazzi reali e virtuali",
+      "position": 4,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "P02",
+        "W02"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "Un negozio chiude, una strada viene aggiornata, una stanza cambia mobili. I tuoi punti di riferimento potrebbero non corrispondere più alla vista corrente. LOCO deve conservare le ancore come dati dell'utente e registrare a quale versione della scena si riferiscono. Se un landmark sparisce, puoi riconciliarlo con un punto stabile nuovo oppure scegliere una modalità di ripasso testuale. Non cancellare automaticamente risposte, tentativi o associazioni solo perché una visualizzazione è cambiata. Quando l'ancora modifica il significato dell'indizio, documenta la revisione e testa di nuovo il richiamo.",
+      "workedExample": "La libreria non è più nella stanza: sposti l'ancora alla finestra e registri una nuova revisione del percorso.",
+      "exercise": {
+        "prompt": "simula l'assenza di due landmark e ripristina il percorso senza perdere i target.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«La modifica della scena deve azzerare silenziosamente lo storico?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "migrazione verificabile e recupero funzionante.",
+      "commonMistake": "associare ogni target soltanto a coordinate senza identità persistente.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** P02, W02.\n\n**Da leggere.** Un negozio chiude, una strada viene aggiornata, una stanza cambia mobili. I tuoi punti di riferimento potrebbero non corrispondere più alla vista corrente. LOCO deve conservare le ancore come dati dell'utente e registrare a quale versione della scena si riferiscono. Se un landmark sparisce, puoi riconciliarlo con un punto stabile nuovo oppure scegliere una modalità di ripasso testuale. Non cancellare automaticamente risposte, tentativi o associazioni solo perché una visualizzazione è cambiata. Quando l'ancora modifica il significato dell'indizio, documenta la revisione e testa di nuovo il richiamo.\n\n**Esempio LOCO.** La libreria non è più nella stanza: sposti l'ancora alla finestra e registri una nuova revisione del percorso.\n\n**Esercizio:** simula l'assenza di due landmark e ripristina il percorso senza perdere i target. **Verifica:** «La modifica della scena deve azzerare silenziosamente lo storico?» **Chiave:** no. **Padronanza:** migrazione verificabile e recupero funzionante. **Errore:** associare ogni target soltanto a coordinate senza identità persistente.\n\n### Corso 10 — Palestra dei campioni (4 lezioni, POCO LOCO)"
+    },
+    {
+      "id": "U01",
+      "title": "Allenati su una capacità, non su un punteggio magico",
+      "contentVersion": "1.0",
+      "courseId": "course-10",
+      "courseName": "Palestra dei campioni",
+      "position": 1,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "S06"
+      ],
+      "estimatedMinutes": 8,
+      "reading": "La memoria non è un numero unico. Puoi diventare più rapido nel codificare immagini e restare lento con i numeri; puoi ricordare liste e avere ancora difficoltà con i problemi astratti. Per questo LOCO distingue abilità come memoria spaziale, sequenze, conversione numerica e recupero concettuale. Un allenamento deve dichiarare cosa misura, in quale direzione e con quali difficoltà. Migliorare in un minigioco è un risultato reale per quel compito, non la prova di un aumento generale dell'intelligenza. Confronta prove simili e guarda anche gli errori.",
+      "workedExample": "«Number Master: numero→parola» e «parola→numero» sono abilità distinte, anche se appartengono allo stesso modulo.",
+      "exercise": {
+        "prompt": "scegli due abilità e svolgi cinque tentativi equivalenti per una prima baseline.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Un punteggio alto sui numeri garantisce ottimi risultati in storia?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "interpreta risultati e limiti per compito.",
+      "commonMistake": "presentare il profilo come IQ o età cerebrale.",
+      "rawMarkdown": "**Tempo:** 4 + 4 min. **Prerequisiti:** S06.\n\n**Da leggere.** La memoria non è un numero unico. Puoi diventare più rapido nel codificare immagini e restare lento con i numeri; puoi ricordare liste e avere ancora difficoltà con i problemi astratti. Per questo LOCO distingue abilità come memoria spaziale, sequenze, conversione numerica e recupero concettuale. Un allenamento deve dichiarare cosa misura, in quale direzione e con quali difficoltà. Migliorare in un minigioco è un risultato reale per quel compito, non la prova di un aumento generale dell'intelligenza. Confronta prove simili e guarda anche gli errori.\n\n**Esempio LOCO.** «Number Master: numero→parola» e «parola→numero» sono abilità distinte, anche se appartengono allo stesso modulo.\n\n**Esercizio:** scegli due abilità e svolgi cinque tentativi equivalenti per una prima baseline. **Verifica:** «Un punteggio alto sui numeri garantisce ottimi risultati in storia?» **Chiave:** no. **Padronanza:** interpreta risultati e limiti per compito. **Errore:** presentare il profilo come IQ o età cerebrale."
+    },
+    {
+      "id": "U02",
+      "title": "Velocità contro precisione",
+      "contentVersion": "1.0",
+      "courseId": "course-10",
+      "courseName": "Palestra dei campioni",
+      "position": 2,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "U01"
+      ],
+      "estimatedMinutes": 8,
+      "reading": "Rispondere velocemente può essere utile, ma soltanto se la risposta resta corretta. Nei giochi di memoria è facile accelerare e commettere più errori. Allenati in due fasi: prima stabilizza la correttezza, poi riduci gradualmente il tempo. Valuta la velocità su prove comparabili per numero di elementi e difficoltà. Un esercizio di dieci cifre non si confronta ingenuamente con uno di quaranta. Le classifiche possono premiare accuracy e tempo, ma l'apprendimento personale deve restare separato dalla competizione.",
+      "workedExample": "10 immagini in 60 secondi con 10/10 corrette contro 10 in 35 secondi con 5/10: la seconda prova non è automaticamente migliore.",
+      "exercise": {
+        "prompt": "ripeti lo stesso formato in due condizioni, calma e cronometrata, registrando correttezza e tempo.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Quando aumentare la velocità?»",
+        "expectedAnswer": "dopo aver consolidato l'accuratezza."
+      },
+      "masteryCriterion": "report di compromesso tempo/errori.",
+      "commonMistake": "attribuire superiorità al tempo senza pesare gli errori.",
+      "rawMarkdown": "**Tempo:** 4 + 4 min. **Prerequisiti:** U01.\n\n**Da leggere.** Rispondere velocemente può essere utile, ma soltanto se la risposta resta corretta. Nei giochi di memoria è facile accelerare e commettere più errori. Allenati in due fasi: prima stabilizza la correttezza, poi riduci gradualmente il tempo. Valuta la velocità su prove comparabili per numero di elementi e difficoltà. Un esercizio di dieci cifre non si confronta ingenuamente con uno di quaranta. Le classifiche possono premiare accuracy e tempo, ma l'apprendimento personale deve restare separato dalla competizione.\n\n**Esempio LOCO.** 10 immagini in 60 secondi con 10/10 corrette contro 10 in 35 secondi con 5/10: la seconda prova non è automaticamente migliore.\n\n**Esercizio:** ripeti lo stesso formato in due condizioni, calma e cronometrata, registrando correttezza e tempo. **Verifica:** «Quando aumentare la velocità?» **Chiave:** dopo aver consolidato l'accuratezza. **Padronanza:** report di compromesso tempo/errori. **Errore:** attribuire superiorità al tempo senza pesare gli errori."
+    },
+    {
+      "id": "U03",
+      "title": "Carte, nomi e sequenze difficili",
+      "contentVersion": "1.0",
+      "courseId": "course-10",
+      "courseName": "Palestra dei campioni",
+      "position": 3,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "U01",
+        "K04"
+      ],
+      "estimatedMinutes": 10,
+      "reading": "Alcuni esercizi servono ad allenare abilità specifiche e hanno regole proprie. Le carte richiedono associazioni che distinguano valori e semi; nomi e volti richiedono attenzione, un contesto e immagini rispettose; una catena di parole richiede collegamenti consecutivi solidi. Parti con set brevi e verifica la direzione del richiamo. Se vuoi partecipare a una sfida classificata, la prova deve avere regole chiare, un set di stimoli validato e un risultato che non dipenda dall'autovalutazione. Non usare immagini di persone reali senza titolarità o consenso appropriati.",
+      "workedExample": "Sei carte fittizie e un percorso di sei loci; per ogni carta una rappresentazione non confondibile.",
+      "exercise": {
+        "prompt": "scegli una specialità e completa tre prove con set di difficoltà crescente.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«La classifica può usare soltanto un clic 'mi ricordo'?»",
+        "expectedAnswer": "no, richiede scoring verificabile."
+      },
+      "masteryCriterion": "riproduce sequenze esatte nel formato dichiarato.",
+      "commonMistake": "valutare con indizi rivelatori in modalità competitiva.",
+      "rawMarkdown": "**Tempo:** 4 + 6 min. **Prerequisiti:** U01, K04.\n\n**Da leggere.** Alcuni esercizi servono ad allenare abilità specifiche e hanno regole proprie. Le carte richiedono associazioni che distinguano valori e semi; nomi e volti richiedono attenzione, un contesto e immagini rispettose; una catena di parole richiede collegamenti consecutivi solidi. Parti con set brevi e verifica la direzione del richiamo. Se vuoi partecipare a una sfida classificata, la prova deve avere regole chiare, un set di stimoli validato e un risultato che non dipenda dall'autovalutazione. Non usare immagini di persone reali senza titolarità o consenso appropriati.\n\n**Esempio LOCO.** Sei carte fittizie e un percorso di sei loci; per ogni carta una rappresentazione non confondibile.\n\n**Esercizio:** scegli una specialità e completa tre prove con set di difficoltà crescente. **Verifica:** «La classifica può usare soltanto un clic 'mi ricordo'?» **Chiave:** no, richiede scoring verificabile. **Padronanza:** riproduce sequenze esatte nel formato dichiarato. **Errore:** valutare con indizi rivelatori in modalità competitiva."
+    },
+    {
+      "id": "U04",
+      "title": "Diventare il coach della propria memoria",
+      "contentVersion": "1.0",
+      "courseId": "course-10",
+      "courseName": "Palestra dei campioni",
+      "position": 4,
+      "planTier": "plus",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "U02",
+        "P04"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "Dopo alcune sessioni avrai dati su errori, tempi, indizi e ripassi. Usali per fare ipotesi, non per etichettarti. Se confondi frequentemente loci vicini, prova ad aumentarne la distanza; se sbagli sempre il numero→parola, verifica il tuo dizionario; se ricordi subito ma dimentichi dopo giorni, segui le prove dilazionate. Ogni intervento deve dichiarare perché viene suggerito e mostrare se i risultati successivi lo sostengono. Con pochi tentativi la risposta più corretta può essere «dati insufficienti». L'obiettivo non è sentirsi valutati, ma prendere buone decisioni di studio.",
+      "workedExample": "Coach: «Negli ultimi 12 tentativi la tua confusione principale riguarda 6↔7 nel Major System. Prova 8 esercizi di discriminazione».",
+      "exercise": {
+        "prompt": "leggi un report con campione e intervallo, scegli una correzione e definisci una prova successiva comparabile.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Da tre tentativi posso concludere che una tecnica è superiore?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "formula ipotesi prudenti e verificabili.",
+      "commonMistake": "presentare inferenze incerte come verità definitive.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** U02, P04.\n\n**Da leggere.** Dopo alcune sessioni avrai dati su errori, tempi, indizi e ripassi. Usali per fare ipotesi, non per etichettarti. Se confondi frequentemente loci vicini, prova ad aumentarne la distanza; se sbagli sempre il numero→parola, verifica il tuo dizionario; se ricordi subito ma dimentichi dopo giorni, segui le prove dilazionate. Ogni intervento deve dichiarare perché viene suggerito e mostrare se i risultati successivi lo sostengono. Con pochi tentativi la risposta più corretta può essere «dati insufficienti». L'obiettivo non è sentirsi valutati, ma prendere buone decisioni di studio.\n\n**Esempio LOCO.** Coach: «Negli ultimi 12 tentativi la tua confusione principale riguarda 6↔7 nel Major System. Prova 8 esercizi di discriminazione».\n\n**Esercizio:** leggi un report con campione e intervallo, scegli una correzione e definisci una prova successiva comparabile. **Verifica:** «Da tre tentativi posso concludere che una tecnica è superiore?» **Chiave:** no. **Padronanza:** formula ipotesi prudenti e verificabili. **Errore:** presentare inferenze incerte come verità definitive.\n\n### Corso 11 — AI Memory Studio (4 lezioni, PRO LOCO)\n\n**Nota per il prodotto:** questi laboratori sono teoricamente fruibili anche senza AI. PRO LOCO sblocca flussi di automazione assistita e quote di utilizzo, non un sapere segreto. Ogni lezione ha una variante manuale gratuita o una demo; fonti e ragionamento critico non vanno dietro a un paywall."
+    },
+    {
+      "id": "A01",
+      "title": "Importa un documento, non importare errori",
+      "contentVersion": "1.0",
+      "courseId": "course-11",
+      "courseName": "AI Memory Studio",
+      "position": 1,
+      "planTier": "pro",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "T03",
+        "R01"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "Quando un sistema AI legge un PDF, può individuare titoli, parole importanti e possibili domande di studio. Ma un testo generato non diventa vero perché è ordinato bene. Dopo un import, controlla la fonte di ciascun target: pagina, paragrafo o estratto originale. Approva solo le domande con risposta corretta, modifica quelle ambigue e scarta le invenzioni. Se il documento contiene una tabella o una formula, verifica che i simboli siano stati interpretati correttamente. Conserva sempre il controllo sui dati personali e sulle condizioni d'uso del servizio. L'AI serve a ridurre il lavoro meccanico, non la tua responsabilità di capire cosa studi.",
+      "workedExample": "Il sistema propone «La fotosintesi avviene solo di notte». L'utente apre il paragrafo, riconosce l'errore e rifiuta la proposta.",
+      "exercise": {
+        "prompt": "revisiona otto schede proposte da un documento demo, con due errori intenzionali e due domande ambigue.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«È corretto attivare automaticamente tutti i target estratti?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "individua tutti gli errori simulati e approva solo target citabili.",
+      "commonMistake": "trattare il PDF come se fosse una verità senza verificarne provenienza e qualità.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** T03, R01.\n\n**Da leggere.** Quando un sistema AI legge un PDF, può individuare titoli, parole importanti e possibili domande di studio. Ma un testo generato non diventa vero perché è ordinato bene. Dopo un import, controlla la fonte di ciascun target: pagina, paragrafo o estratto originale. Approva solo le domande con risposta corretta, modifica quelle ambigue e scarta le invenzioni. Se il documento contiene una tabella o una formula, verifica che i simboli siano stati interpretati correttamente. Conserva sempre il controllo sui dati personali e sulle condizioni d'uso del servizio. L'AI serve a ridurre il lavoro meccanico, non la tua responsabilità di capire cosa studi.\n\n**Esempio LOCO.** Il sistema propone «La fotosintesi avviene solo di notte». L'utente apre il paragrafo, riconosce l'errore e rifiuta la proposta.\n\n**Esercizio:** revisiona otto schede proposte da un documento demo, con due errori intenzionali e due domande ambigue. **Verifica:** «È corretto attivare automaticamente tutti i target estratti?» **Chiave:** no. **Padronanza:** individua tutti gli errori simulati e approva solo target citabili. **Errore:** trattare il PDF come se fosse una verità senza verificarne provenienza e qualità."
+    },
+    {
+      "id": "A02",
+      "title": "Chiedere all'AI un indizio che puoi modificare",
+      "contentVersion": "1.0",
+      "courseId": "course-11",
+      "courseName": "AI Memory Studio",
+      "position": 2,
+      "planTier": "pro",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "L05",
+        "A01"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "L'AI può proporti associazioni per un target difficile, ma la migliore è quella che *tu* capisci e riesci a recuperare. Non delegare tutta la codifica: scegli tra due o tre proposte, riscrivine una e spiegane il legame. Se il target è «sodio = Na», una saliera sul tuo tavolo può essere un buon punto di partenza, ma devi rendere esplicito il passaggio alla sigla. Puoi chiedere di rendere l'immagine più concreta o di eliminare dettagli che distraggono. La proposta deve mantenere invariata la risposta verificata. Un'immagine generata è facoltativa e non deve bloccare la lezione o la revisione.",
+      "workedExample": "Da «saliera sul tavolo» a «saliera con due grandi lettere Na incise sul tappo che batte sul tavolo».",
+      "exercise": {
+        "prompt": "confronta tre indizi, motivane uno, correggilo e testalo senza immagine.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Se la proposta AI è più scenografica della tua, è per forza migliore?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "scelta personale motivata e recupero corretto.",
+      "commonMistake": "assumere che la generazione sostituisca il richiamo autonomo.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** L05, A01.\n\n**Da leggere.** L'AI può proporti associazioni per un target difficile, ma la migliore è quella che *tu* capisci e riesci a recuperare. Non delegare tutta la codifica: scegli tra due o tre proposte, riscrivine una e spiegane il legame. Se il target è «sodio = Na», una saliera sul tuo tavolo può essere un buon punto di partenza, ma devi rendere esplicito il passaggio alla sigla. Puoi chiedere di rendere l'immagine più concreta o di eliminare dettagli che distraggono. La proposta deve mantenere invariata la risposta verificata. Un'immagine generata è facoltativa e non deve bloccare la lezione o la revisione.\n\n**Esempio LOCO.** Da «saliera sul tavolo» a «saliera con due grandi lettere Na incise sul tappo che batte sul tavolo».\n\n**Esercizio:** confronta tre indizi, motivane uno, correggilo e testalo senza immagine. **Verifica:** «Se la proposta AI è più scenografica della tua, è per forza migliore?» **Chiave:** no. **Padronanza:** scelta personale motivata e recupero corretto. **Errore:** assumere che la generazione sostituisca il richiamo autonomo."
+    },
+    {
+      "id": "A03",
+      "title": "Tutor socratico: aiutare senza svelare",
+      "contentVersion": "1.0",
+      "courseId": "course-11",
+      "courseName": "AI Memory Studio",
+      "position": 3,
+      "planTier": "pro",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "T04",
+        "A02"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "Un buon tutor non recita subito la soluzione: aiuta a capire quale passo manca. LOCO può iniziare chiedendo «Che cosa ricordi già?», poi offrire un suggerimento generale, quindi uno più specifico se richiesto. Gli indizi devono essere graduati e tracciati, perché una risposta data dopo un aiuto non equivale a una risposta autonoma. Se l'utente chiede di vedere la soluzione, il sistema la mostra con un feedback chiaro e registra la rivelazione. Per domande concettuali il tutor può chiedere una spiegazione, proporre un controesempio o invitare ad aprire la fonte. Non deve inventare fatti per sostenere una correzione.",
+      "workedExample": "Domanda «Quale simbolo ha il sodio?». Primo indizio «Ricordi la saliera?». Secondo «La sigla deriva dal nome latino». Dopo il tentativo, risposta «Na».",
+      "exercise": {
+        "prompt": "ordina quattro indizi dal meno al più rivelatore e indica quale rende non più autonomo il tentativo.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Se il tutor dice 'Na' prima del tentativo posso assegnare pieno successo?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "gestione corretta di indizi e rivelazione.",
+      "commonMistake": "nascondere l'assistenza nei risultati.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** T04, A02.\n\n**Da leggere.** Un buon tutor non recita subito la soluzione: aiuta a capire quale passo manca. LOCO può iniziare chiedendo «Che cosa ricordi già?», poi offrire un suggerimento generale, quindi uno più specifico se richiesto. Gli indizi devono essere graduati e tracciati, perché una risposta data dopo un aiuto non equivale a una risposta autonoma. Se l'utente chiede di vedere la soluzione, il sistema la mostra con un feedback chiaro e registra la rivelazione. Per domande concettuali il tutor può chiedere una spiegazione, proporre un controesempio o invitare ad aprire la fonte. Non deve inventare fatti per sostenere una correzione.\n\n**Esempio LOCO.** Domanda «Quale simbolo ha il sodio?». Primo indizio «Ricordi la saliera?». Secondo «La sigla deriva dal nome latino». Dopo il tentativo, risposta «Na».\n\n**Esercizio:** ordina quattro indizi dal meno al più rivelatore e indica quale rende non più autonomo il tentativo. **Verifica:** «Se il tutor dice 'Na' prima del tentativo posso assegnare pieno successo?» **Chiave:** no. **Padronanza:** gestione corretta di indizi e rivelazione. **Errore:** nascondere l'assistenza nei risultati."
+    },
+    {
+      "id": "A04",
+      "title": "L'AI ti conosce? Impara a leggere i suggerimenti",
+      "contentVersion": "1.0",
+      "courseId": "course-11",
+      "courseName": "AI Memory Studio",
+      "position": 4,
+      "planTier": "pro",
+      "requiredInOnboarding": false,
+      "locale": "it-IT",
+      "prerequisites": [
+        "U04",
+        "A03"
+      ],
+      "estimatedMinutes": 9,
+      "reading": "Un coach AI può sintetizzare dati di allenamento e suggerire esercizi, ma non può dedurre con certezza come funziona tutta la tua memoria da poche sessioni. Chiedigli sempre su quale evidenza basa il consiglio: quanti tentativi, quale abilità, quale periodo, quali errori? Una spiegazione come «hai dimenticato spesso numeri con C/G dolci» è verificabile; «sei una persona con scarsa memoria» non lo è. Preferisci suggerimenti che puoi rifiutare, modificare e mettere alla prova. L'AI non deve cambiare di nascosto le scadenze impostate dal sistema di ripasso né esporre dati di studio a terzi senza base legittima e protezioni.",
+      "workedExample": "Suggerimento: «Hai chiesto un indizio in 6 prove su 12 negli ultimi 14 giorni: prova il modulo N04». Non: «Il tuo cervello funziona peggio degli altri».",
+      "exercise": {
+        "prompt": "rivedi tre raccomandazioni automatiche e rifiuta quelle senza campione o nesso plausibile.",
+        "mode": "guided-unimplemented"
+      },
+      "checkpoint": {
+        "question": "«Un consiglio AI motivato equivale a una prova scientifica personalizzata?»",
+        "expectedAnswer": "no."
+      },
+      "masteryCriterion": "distingue osservazione, ipotesi e risultato verificato.",
+      "commonMistake": "introdurre diagnosi o profili psicologici non supportati.",
+      "rawMarkdown": "**Tempo:** 4 + 5 min. **Prerequisiti:** U04, A03.\n\n**Da leggere.** Un coach AI può sintetizzare dati di allenamento e suggerire esercizi, ma non può dedurre con certezza come funziona tutta la tua memoria da poche sessioni. Chiedigli sempre su quale evidenza basa il consiglio: quanti tentativi, quale abilità, quale periodo, quali errori? Una spiegazione come «hai dimenticato spesso numeri con C/G dolci» è verificabile; «sei una persona con scarsa memoria» non lo è. Preferisci suggerimenti che puoi rifiutare, modificare e mettere alla prova. L'AI non deve cambiare di nascosto le scadenze impostate dal sistema di ripasso né esporre dati di studio a terzi senza base legittima e protezioni.\n\n**Esempio LOCO.** Suggerimento: «Hai chiesto un indizio in 6 prove su 12 negli ultimi 14 giorni: prova il modulo N04». Non: «Il tuo cervello funziona peggio degli altri».\n\n**Esercizio:** rivedi tre raccomandazioni automatiche e rifiuta quelle senza campione o nesso plausibile. **Verifica:** «Un consiglio AI motivato equivale a una prova scientifica personalizzata?» **Chiave:** no. **Padronanza:** distingue osservazione, ipotesi e risultato verificato. **Errore:** introdurre diagnosi o profili psicologici non supportati."
+    }
+  ]
+}

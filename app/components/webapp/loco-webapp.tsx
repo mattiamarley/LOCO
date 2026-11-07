@@ -21,6 +21,18 @@ import {
 } from "./loco-webapp-data";
 import type { SchedulerGrade } from "@/server/src/models";
 import { Room3DViewer } from "./room-3d-viewer";
+import { LocoAcademySection } from "./loco-academy-section";
+import {
+  ACADEMY_LESSONS_BY_ID,
+  LOCO_ACADEMY_STORAGE_KEY,
+  computeAdaptiveAcademyRecommendations,
+  createDefaultAcademyProgressMap,
+  encodeItalianWordToMajorDigits,
+  migrateLegacyCourseProgress,
+  reconcileAcademyProgressVersion,
+  type AcademyLessonProgress,
+  type AcademyProgressMap,
+} from "./loco-academy-curriculum";
 
 type PrimaryTab = "home" | "recappete" | "corsi" | "profilo" | "login";
 
@@ -84,6 +96,66 @@ export function LocoWebApp() {
     courseId: number;
     lessonId: string;
   } | null>(null);
+  const [activeAcademyLessonId, setActiveAcademyLessonId] = useState<string | null>(
+    null
+  );
+
+  // LOCO Academy 56-Lesson Progress State (with legacy c1-l1..c3-l3 migration to reading, never mastered)
+  const [academyProgress, setAcademyProgress] = useState<AcademyProgressMap>(() => {
+    const initialCompletedLegacyIds = INITIAL_COURSES.flatMap((c) =>
+      c.lessons.filter((l) => l.completed).map((l) => l.id)
+    );
+    let stored: AcademyProgressMap | undefined;
+    if (typeof window !== "undefined") {
+      try {
+        const raw = window.localStorage.getItem(LOCO_ACADEMY_STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw) as AcademyProgressMap;
+          const reconciled: AcademyProgressMap = {
+            ...createDefaultAcademyProgressMap(),
+          };
+          for (const [id, rec] of Object.entries(parsed)) {
+            const lesson = ACADEMY_LESSONS_BY_ID[id];
+            if (lesson && rec) {
+              reconciled[id] = reconcileAcademyProgressVersion(rec, lesson);
+            }
+          }
+          stored = reconciled;
+        }
+      } catch {
+        stored = undefined;
+      }
+    }
+    return migrateLegacyCourseProgress(initialCompletedLegacyIds, stored);
+  });
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      window.localStorage.setItem(
+        LOCO_ACADEMY_STORAGE_KEY,
+        JSON.stringify(academyProgress)
+      );
+    } catch {
+      // ignore storage quota errors
+    }
+  }, [academyProgress]);
+
+  const handleUpdateAcademyLessonProgress = (
+    lessonId: string,
+    updater: (prev: AcademyLessonProgress) => AcademyLessonProgress
+  ) => {
+    setAcademyProgress((prev) => {
+      const lesson = ACADEMY_LESSONS_BY_ID[lessonId];
+      if (!lesson) return prev;
+      const current = prev[lessonId];
+      if (!current) return prev;
+      return {
+        ...prev,
+        [lessonId]: updater(current),
+      };
+    });
+  };
 
   // Blind Recall SRS Modal State
   const sessionStartRef = useRef<number>(0);
@@ -265,6 +337,98 @@ export function LocoWebApp() {
     () => courses.find((c) => c.id === selectedCourseId) ?? null,
     [courses, selectedCourseId]
   );
+
+  const dueReviewsCount = useMemo(
+    () =>
+      routes.reduce(
+        (acc, r) =>
+          acc +
+          r.loci.filter((l) => new Date(l.dueAt).getTime() <= nowReferenceMs)
+            .length,
+        0
+      ),
+    [routes, nowReferenceMs]
+  );
+
+  const adaptiveAcademyRecommendations = useMemo(() => {
+    const totalTrialsCount = reviewHistory.length + majorTrials.length;
+    const viewedAnswerBeforeAttemptCount = reviewHistory.filter(
+      (h) => h.viewedAnswerBeforeAttempt
+    ).length;
+    const hintAssistedTrialsCount = reviewHistory.filter(
+      (h) => h.hintCount > 0
+    ).length;
+    const locusRecognizedButAnswerMissingCount = reviewHistory.filter(
+      (h) => !h.correct
+    ).length;
+    const majorSoftHardConfusionCount = majorTrials.filter(
+      (t) => !t.correct
+    ).length;
+
+    return computeAdaptiveAcademyRecommendations({
+      totalTrialsCount,
+      viewedAnswerBeforeAttemptCount,
+      locusOrderSwapCount: 1,
+      locusRecognizedButAnswerMissingCount,
+      majorSoftHardConfusionCount,
+      immediatePassDelayedFailCount: 1,
+      hintAssistedTrialsCount,
+    });
+  }, [reviewHistory, majorTrials]);
+
+  const handleCreateOnboardingRouteFromAcademy = (
+    customAssociations: {
+      locusLabel: string;
+      itemWord: string;
+      actionCue: string;
+    }[]
+  ) => {
+    const nowIso = new Date().toISOString();
+    const newRouteId = "route-academy-s04";
+    const builtLoci: WebAppLocus[] = customAssociations.map((item, idx) => ({
+      id: `loc-s04-${idx + 1}`,
+      position: idx + 1,
+      label: item.locusLabel,
+      surface: item.locusLabel,
+      x: 20 + idx * 14,
+      y: 35 + (idx % 2) * 20,
+      point3d: { x: -1.6 + idx * 0.8, y: 1.0, z: -1.2 + (idx % 2) * 0.7 },
+      question: `Quale elemento avevi collocato nel locus #${idx + 1} (${item.locusLabel})?`,
+      answer: item.itemWord,
+      association: item.actionCue,
+      confirmationState: "confirmed",
+      repetitionCount: 1,
+      intervalDays: 1,
+      easeFactor: 2.5,
+      stability: 2.5,
+      difficulty: 4.5,
+      streak: 1,
+      lapsesCount: 0,
+      dueAt: nowIso,
+      lastReviewedAt: nowIso,
+    }));
+
+    setRoutes((prev) => {
+      const exists = prev.some((r) => r.id === newRouteId);
+      const routeObj: WebAppRoute = {
+        id: newRouteId,
+        title: "Primo Percorso Academy (S01–S06)",
+        description:
+          "5 loci costruiti nel percorso iniziale LOCO Academy con associazioni d'azione.",
+        topic: "ONBOARDING",
+        environment: "3D SCAN",
+        status: "ready",
+        progress: 60,
+        thumbnail: "/assets/figma-curated/route-thumb-3dscan.webp",
+        locationLabel: "Stanza Demo LOCO",
+        sceneVersion: 1,
+        loci: builtLoci,
+      };
+      return exists
+        ? prev.map((r) => (r.id === newRouteId ? routeObj : r))
+        : [routeObj, ...prev];
+    });
+  };
 
   // Handlers for In-Scene Locus Authoring
   const openRouteInScene = (routeId: string) => {
@@ -1343,22 +1507,74 @@ export function LocoWebApp() {
                         <p className="mt-2 line-clamp-3 text-xs text-[#181818]/75">
                           {lesson.summary}
                         </p>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setActiveLessonModal({
-                              courseId: selectedCourse.id,
-                              lessonId: lesson.id,
-                            })
-                          }
-                          className="mt-4 rounded-[15px] bg-[#613BE0] px-7 py-2 text-[16px] font-bold text-white transition hover:opacity-95"
-                        >
-                          Guarda ora
-                        </button>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setActiveLessonModal({
+                                courseId: selectedCourse.id,
+                                lessonId: lesson.id,
+                              })
+                            }
+                            className="rounded-[15px] bg-[#613BE0] px-7 py-2 text-[16px] font-bold text-white transition hover:opacity-95"
+                          >
+                            Guarda ora
+                          </button>
+                          {lesson.primaryAcademyLessonId && (
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setActiveAcademyLessonId(
+                                  lesson.primaryAcademyLessonId ?? "S01"
+                                )
+                              }
+                              className="rounded-[15px] border-2 border-[#613BE0] bg-white px-4 py-2 text-xs font-extrabold text-[#613BE0] transition hover:bg-[#D0C4F6]/40"
+                            >
+                              Apri in Academy ({lesson.primaryAcademyLessonId})
+                            </button>
+                          )}
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
+              )}
+
+              {coursesSubView === "corsi" && (
+                <LocoAcademySection
+                  progressMap={academyProgress}
+                  onUpdateLessonProgress={handleUpdateAcademyLessonProgress}
+                  activeLessonId={activeAcademyLessonId}
+                  onSelectLesson={setActiveAcademyLessonId}
+                  routes={routes}
+                  dueReviewsCount={dueReviewsCount}
+                  adaptiveRecommendations={adaptiveAcademyRecommendations}
+                  onOpenSceneForLesson={() => {
+                    setActiveAcademyLessonId(null);
+                    setActiveTab("recappete");
+                    openRouteInScene(routes[0]?.id ?? "route-tesi");
+                  }}
+                  onStartBlindRecallFromAcademy={() => {
+                    setActiveAcademyLessonId(null);
+                    const targetRoute = routes[0];
+                    if (targetRoute) {
+                      setNowReferenceMs(Date.now());
+                      setReviewSession({
+                        routeId: targetRoute.id,
+                        locusIndex: 0,
+                        userAttemptText: "",
+                        hintCount: 0,
+                        viewedAnswerBeforeAttempt: false,
+                        answerRevealed: false,
+                        algorithmVersion: "fsrs-7",
+                        lastResultBanner: null,
+                      });
+                    }
+                  }}
+                  onCreateOnboardingRouteFromAcademy={
+                    handleCreateOnboardingRouteFromAcademy
+                  }
+                />
               )}
 
               {coursesSubView === "palestra" && (
@@ -1437,9 +1653,12 @@ export function LocoWebApp() {
                               type="button"
                               onClick={() => {
                                 const clean = majorInput.trim().toLowerCase();
+                                const encodedDigits = encodeItalianWordToMajorDigits(clean);
                                 const isOk =
                                   majorDirection === "forward"
-                                    ? currentRow.sounds
+                                    ? encodedDigits === currentRow.digit ||
+                                      encodedDigits.startsWith(currentRow.digit) ||
+                                      currentRow.sounds
                                         .toLowerCase()
                                         .split(",")
                                         .some((s) => clean.includes(s.trim())) ||
@@ -2583,6 +2802,23 @@ export function LocoWebApp() {
                 </div>
 
                 <div className="mt-5 flex flex-wrap justify-end gap-3">
+                  {lesson.primaryAcademyLessonId && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const targetAcademyId =
+                          lesson.primaryAcademyLessonId ?? "S01";
+                        setActiveLessonModal(null);
+                        setActiveAcademyLessonId(targetAcademyId);
+                      }}
+                      className="rounded-[15px] border-2 border-[#613BE0] bg-[#FFD014] px-6 py-2.5 text-sm font-extrabold text-[#181818]"
+                    >
+                      Apri Modulo Interattivo Academy (
+                      {lesson.mappedAcademyLessonIds?.join(" + ") ??
+                        lesson.primaryAcademyLessonId}
+                      ) →
+                    </button>
+                  )}
                   <button
                     type="button"
                     onClick={() => {
@@ -2598,11 +2834,14 @@ export function LocoWebApp() {
                             : c
                         )
                       );
+                      setAcademyProgress((prev) =>
+                        migrateLegacyCourseProgress([lesson.id], prev)
+                      );
                       setActiveLessonModal(null);
                     }}
                     className="rounded-[15px] bg-[#613BE0] px-7 py-2.5 text-sm font-bold text-white"
                   >
-                    ✓ Segna lezione come completata
+                    ✓ Segna lettura legacy (`reading`)
                   </button>
                 </div>
               </div>

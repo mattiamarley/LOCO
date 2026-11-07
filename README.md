@@ -19,7 +19,7 @@ The same user-owned data should eventually work across desktop and mobile. Immer
 
 | Path | Purpose |
 | --- | --- |
-| `app/app/` | Next.js App Router: public marketing pages and the interactive `/app` WebApp (`Home`, `Recappete`, `Mappete`, `Corsi`, `Profilo`, `Login`, in-scene 3D/Street-View editor, Blind Recall FSRS-7, and 18 Memory Metrics) |
+| `app/app/` | Next.js App Router: public marketing pages and the interactive `/app` WebApp (`Home`, `Recappete`, `Mappete`, `Corsi` + **LOCO Academy 12 courses / 56 micro-lessons**, `Profilo`, `Login`, in-scene 3D/Street-View editor, Blind Recall FSRS-7, and 18 Memory Metrics) |
 | `app/components/`, `app/lib/`, `app/hooks/` | UI components (including `app/components/webapp/`), hooks, and shared frontend modules |
 | `app/assets/fonts/` | Canonical tracked source for licensed brand fonts (`baloo-variable.ttf`, `inter-tight-variable.ttf`) and OFL licenses |
 | `app/public/marketing/` | Current production marketing illustrations and imagery; **do not remove** |
