@@ -32,115 +32,176 @@ export interface CatalogCoursePresentation {
  * foundational & advanced courses (`Corso 4`..`Corso 11`).
  */
 export const CATALOG_COURSE_ORDER: string[] = [
-  "course-1", // Corso 1 — Tecnica dei Loci (original card 1)
-  "course-2", // Corso 2 — Linked Method (original card 2)
-  "course-3", // Corso 3 — Conversione Fonetica (original card 3)
-  "course-0", // Percorso Iniziale — Il primo ricordo (S01–S06)
-  "course-4", // Corso 4 — Studiare davvero
-  "course-5", // Corso 5 — LOCO nella vita reale
-  "course-6", // Corso 6 — Architetto dei palazzi (POCO LOCO)
-  "course-7", // Corso 7 — Maestria numerica (POCO LOCO)
-  "course-8", // Corso 8 — Stratega dello studio (POCO LOCO)
-  "course-9", // Corso 9 — Spazi del mondo (POCO LOCO)
-  "course-10", // Corso 10 — Palestra dei campioni (POCO LOCO)
-  "course-11", // Corso 11 — AI Memory Studio (PRO LOCO)
+  "course-fondamenta", // Unità 1 — Fondamenta della memoria (F01–F05)
+  "course-associazioni", // Unità 2 — L'arte dell'associazione (A01–A06)
+  "course-palazzi", // Unità 3 — Palazzi della memoria (P01–P07)
+  "course-numeri", // Unità 4 — Conversione fonetica e cifre (N01–N07)
+  "course-vita-reale", // Unità 5 — LOCO nella vita reale (E01–E06)
+  "course-studio", // Unità 6 — Dalla memoria alla comprensione (S01–S06)
+  "course-carte", // Unità 7 — La lingua delle carte (C01–C05)
+  "course-specializzazioni", // Unità 8 — Specializzazioni e protocolli (X01–X06)
 ];
 
 export const CATALOG_COURSE_PRESENTATION: Record<string, CatalogCoursePresentation> = {
+  "course-fondamenta": {
+    courseId: "course-fondamenta",
+    catalogLabel: "Unità 1",
+    shortTitle: "Fondamenta della memoria",
+    cardDescription:
+      "Cinque lezioni per imparare a guardare, costruire indizi efficaci e riconoscere il recupero autentico.",
+    illustration: "/assets/figma-curated/illustration-home-desk.svg",
+  },
+  "course-associazioni": {
+    courseId: "course-associazioni",
+    catalogLabel: "Unità 2",
+    shortTitle: "L'arte dell'associazione",
+    cardDescription:
+      "Sei lezioni su azioni visive dinamiche, catene Linked che si raccontano da sole e riparazione di anelli deboli.",
+    illustration: "/assets/figma-curated/course-2-linked.webp",
+  },
+  "course-palazzi": {
+    courseId: "course-palazzi",
+    catalogLabel: "Unità 3",
+    shortTitle: "Palazzi della memoria",
+    cardDescription:
+      "Sette lezioni per progettare luoghi familiari, rotte coerenti dalla porta e recupero senza mappa.",
+    illustration: "/assets/figma-curated/course-1-loci.webp",
+  },
+  "course-numeri": {
+    courseId: "course-numeri",
+    catalogLabel: "Unità 4",
+    shortTitle: "Conversione fonetica e cifre",
+    cardDescription:
+      "Sette lezioni dal codice major-it-v1 al lessico 00–99 e memorizzazione di date storiche verificabili.",
+    illustration: "/assets/figma-curated/course-3-phonetic.webp",
+  },
+  "course-vita-reale": {
+    courseId: "course-vita-reale",
+    catalogLabel: "Unità 5",
+    shortTitle: "LOCO nella vita reale",
+    cardDescription:
+      "Sei lezioni pratiche su nomi e volti, percorsi stradali, intenzioni future, vocaboli e discorsi.",
+    illustration: "/assets/figma-curated/academy-scene-runner.svg",
+  },
+  "course-studio": {
+    courseId: "course-studio",
+    catalogLabel: "Unità 6",
+    shortTitle: "Dalla memoria allo studio",
+    cardDescription:
+      "Sei lezioni su estrazione di domande dal testo, budget delle immagini, mappe strutturate e ripasso diagnostico.",
+    illustration: "/assets/figma-curated/academy-scene-library.svg",
+  },
+  "course-carte": {
+    courseId: "course-carte",
+    catalogLabel: "Unità 7",
+    shortTitle: "La lingua delle carte",
+    cardDescription:
+      "Cinque lezioni per codificare semi e figure, associare carte a eventi e memorizzare sequenze ordinate.",
+    illustration: "/assets/figma-curated/academy-mascot-lion.svg",
+  },
+  "course-specializzazioni": {
+    courseId: "course-specializzazioni",
+    catalogLabel: "Unità 8",
+    shortTitle: "Specializzazioni e protocolli",
+    cardDescription:
+      "Sei lezioni avanzate su PAO, numeri binari, citazioni letterali, ortografia e protocolli di gara.",
+    illustration: "/assets/figma-curated/academy-scene-explorer.svg",
+  },
+  // Legacy aliases
+  "course-0": {
+    courseId: "course-0",
+    catalogLabel: "Unità 1",
+    shortTitle: "Fondamenta della memoria",
+    cardDescription:
+      "Cinque lezioni per imparare a guardare, costruire indizi efficaci e riconoscere il recupero autentico.",
+    illustration: "/assets/figma-curated/illustration-home-desk.svg",
+  },
   "course-1": {
     courseId: "course-1",
-    catalogLabel: "Corso 1",
-    shortTitle: "Tecnica dei Loci",
+    catalogLabel: "Unità 3",
+    shortTitle: "Palazzi della memoria",
     cardDescription:
-      "Tre lezioni fondamentali e laboratori per conoscere al meglio la Tecnica dei Loci e come utilizzarla.",
+      "Sette lezioni per progettare luoghi familiari, rotte coerenti dalla porta e recupero senza mappa.",
     illustration: "/assets/figma-curated/course-1-loci.webp",
   },
   "course-2": {
     courseId: "course-2",
-    catalogLabel: "Corso 2",
-    shortTitle: "Linked Method",
+    catalogLabel: "Unità 2",
+    shortTitle: "L'arte dell'associazione",
     cardDescription:
-      "Impara a collegare concetti in catene di immagini mentali dinamiche che si richiamano in sequenza.",
+      "Sei lezioni su azioni visive dinamiche, catene Linked che si raccontano da sole e riparazione di anelli deboli.",
     illustration: "/assets/figma-curated/course-2-linked.webp",
   },
   "course-3": {
     courseId: "course-3",
-    catalogLabel: "Corso 3",
-    shortTitle: "Conversione Fonetica",
+    catalogLabel: "Unità 4",
+    shortTitle: "Conversione fonetica e cifre",
     cardDescription:
-      "Trasforma numeri, date e codici in suoni consonantici e parole vivide facili da ricordare.",
+      "Sette lezioni dal codice major-it-v1 al lessico 00–99 e memorizzazione di date storiche verificabili.",
     illustration: "/assets/figma-curated/course-3-phonetic.webp",
-  },
-  "course-0": {
-    courseId: "course-0",
-    catalogLabel: "Percorso base",
-    shortTitle: "Il primo ricordo in LOCO",
-    cardDescription:
-      "Sei passi pratici per scoprire la differenza tra rileggere e recuperare creando il tuo primo percorso.",
-    illustration: "/assets/figma-curated/illustration-home-desk.svg",
   },
   "course-4": {
     courseId: "course-4",
-    catalogLabel: "Corso 4",
-    shortTitle: "Studiare davvero",
+    catalogLabel: "Unità 6",
+    shortTitle: "Dalla memoria allo studio",
     cardDescription:
-      "Dal testo grezzo ai concetti verificati: comprensione, richiamo attivo e ripasso distribuito.",
-    illustration: "/assets/figma-curated/academy-scene-study-desk.svg",
+      "Sei lezioni su estrazione di domande dal testo, budget delle immagini, mappe strutturate e ripasso diagnostico.",
+    illustration: "/assets/figma-curated/academy-scene-library.svg",
   },
   "course-5": {
     courseId: "course-5",
-    catalogLabel: "Corso 5",
+    catalogLabel: "Unità 5",
     shortTitle: "LOCO nella vita reale",
     cardDescription:
-      "Applica i loci a discorsi in pubblico, vocaboli stranieri, nomi, volti e procedure.",
-    illustration: "/assets/figma-curated/academy-scene-explorer.svg",
+      "Sei lezioni pratiche su nomi e volti, percorsi stradali, intenzioni future, vocaboli e discorsi.",
+    illustration: "/assets/figma-curated/academy-scene-runner.svg",
   },
   "course-6": {
     courseId: "course-6",
-    catalogLabel: "Corso 6",
-    shortTitle: "Architetto dei palazzi",
+    catalogLabel: "Unità 8",
+    shortTitle: "Specializzazioni e protocolli",
     cardDescription:
-      "Progetta percorsi ampi, organizza stanze per materia e mantieni puliti i tuoi palazzi.",
-    illustration: "/assets/figma-curated/academy-scene-zen-room.svg",
+      "Sei lezioni avanzate su PAO, numeri binari, citazioni letterali, ortografia e protocolli di gara.",
+    illustration: "/assets/figma-curated/academy-scene-explorer.svg",
   },
   "course-7": {
     courseId: "course-7",
-    catalogLabel: "Corso 7",
-    shortTitle: "Maestria numerica",
+    catalogLabel: "Unità 8",
+    shortTitle: "Specializzazioni e protocolli",
     cardDescription:
-      "Schedario fisso, sistema 00–99 e Persona-Azione-Oggetto (PAO) per sequenze numeriche lunghe.",
+      "Sei lezioni avanzate su PAO, numeri binari, citazioni letterali, ortografia e protocolli di gara.",
     illustration: "/assets/figma-curated/academy-mascot-headphones.svg",
   },
   "course-8": {
     courseId: "course-8",
-    catalogLabel: "Corso 8",
-    shortTitle: "Stratega dello studio",
+    catalogLabel: "Unità 6",
+    shortTitle: "Dalla memoria allo studio",
     cardDescription:
-      "Prepara esami complessi combinando mappe concettuali, pratica intercalata e recupero sotto pressione.",
+      "Sei lezioni su estrazione di domande dal testo, budget delle immagini, mappe strutturate e ripasso diagnostico.",
     illustration: "/assets/figma-curated/academy-scene-library.svg",
   },
   "course-9": {
     courseId: "course-9",
-    catalogLabel: "Corso 9",
-    shortTitle: "Spazi del mondo",
+    catalogLabel: "Unità 3",
+    shortTitle: "Palazzi della memoria",
     cardDescription:
-      "Usa tragitti urbani, fotografie personali e stanze 3D come ambienti spaziali ordinati.",
+      "Sette lezioni per progettare luoghi familiari, rotte coerenti dalla porta e recupero senza mappa.",
     illustration: "/assets/figma-curated/academy-mascot-photographer.svg",
   },
   "course-10": {
     courseId: "course-10",
-    catalogLabel: "Corso 10",
-    shortTitle: "Palestra dei campioni",
+    catalogLabel: "Unità 7",
+    shortTitle: "La lingua delle carte",
     cardDescription:
-      "Allenamento su velocità controllata, mazzi di carte, resistenza mentale e analisi degli errori.",
+      "Cinque lezioni per codificare semi e figure, associare carte a eventi e memorizzare sequenze ordinate.",
     illustration: "/assets/figma-curated/academy-scene-runner.svg",
   },
   "course-11": {
     courseId: "course-11",
-    catalogLabel: "Corso 11",
-    shortTitle: "AI Memory Studio",
+    catalogLabel: "Unità 8",
+    shortTitle: "Specializzazioni e protocolli",
     cardDescription:
-      "Estrazione assistita dei concetti, suggerimenti mnemonici e tutoraggio senza svelare la risposta.",
+      "Sei lezioni avanzate su PAO, numeri binari, citazioni letterali, ortografia e protocolli di gara.",
     illustration: "/assets/figma-curated/illustration-plan-poco-loco.svg",
   },
 };

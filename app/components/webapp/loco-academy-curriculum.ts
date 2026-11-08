@@ -1,24 +1,48 @@
-import rawCurriculum from "./loco-academy-lessons.json" with { type: "json" };
+import rawCurriculumV5 from "./loco-academy-v5-curriculum.json" with { type: "json" };
 import {
-  ACADEMY_V2_MISSIONS,
-  ACADEMY_V2_SCHEMA_VERSION,
+  ACADEMY_V5_MISSIONS,
+  ACADEMY_V5_SCHEMA_VERSION,
   ERROR_DIAGNOSIS_CATALOG,
   MAJOR_IT_V1_VERIFIED_LEXICON_V2,
   RAW_PLAYER_CONTENT_V2,
+  FLAGSHIP_FIXTURES_V5,
   encodeItalianWordToMajorDigitsV2,
+  normalizeAnswerToken,
+  evaluateMemoryExperimentF01,
+  evaluateChainRepairA03,
+  evaluateFloorplanRouteP02,
+  evaluateCustomLociP03,
+  evaluateItalianMajorPhonemeN03,
+  evaluateMnemonicBudgetS03,
+  evaluateFaceNameE01,
+  evaluateOrderedCardsC03,
   type AssessmentMode,
   type AttemptEvidence,
   type ErrorDiagnosisCategory,
   type LessonGradingReliability,
   type V2LessonMissionSpec,
   type VerificationAuthority,
-} from "./loco-academy-engine-v2.ts";
+} from "./loco-academy-engine-v5.ts";
+
+// Compatibility aliases
+export const ACADEMY_V2_MISSIONS = ACADEMY_V5_MISSIONS;
+export const ACADEMY_V2_SCHEMA_VERSION = ACADEMY_V5_SCHEMA_VERSION;
 
 export {
-  ACADEMY_V2_MISSIONS,
-  ACADEMY_V2_SCHEMA_VERSION,
+  ACADEMY_V5_MISSIONS,
+  ACADEMY_V5_SCHEMA_VERSION,
   ERROR_DIAGNOSIS_CATALOG,
   RAW_PLAYER_CONTENT_V2,
+  FLAGSHIP_FIXTURES_V5,
+  normalizeAnswerToken,
+  evaluateMemoryExperimentF01,
+  evaluateChainRepairA03,
+  evaluateFloorplanRouteP02,
+  evaluateCustomLociP03,
+  evaluateItalianMajorPhonemeN03,
+  evaluateMnemonicBudgetS03,
+  evaluateFaceNameE01,
+  evaluateOrderedCardsC03,
   type AssessmentMode,
   type AttemptEvidence,
   type ErrorDiagnosisCategory,
@@ -71,10 +95,6 @@ export type RuntimeExerciseKind =
   | "real-life-application"
   | "guided-simulation-fallback";
 
-/**
- * Gli 8 stage canonici di LOCO Academy 2.0 (`06_PROMPT_ARGON_FINAL.md`)
- * più i 12 tipi di esercizi di compatibilità.
- */
 export type InteractiveStepType =
   | "hook"
   | "explanation"
@@ -84,18 +104,18 @@ export type InteractiveStepType =
   | "independent_challenge"
   | "diagnostic_feedback"
   | "reflection_and_next"
-  | "multiple_choice" // A. Multiple Choice
-  | "matching_pairs" // B. Matching Pairs
-  | "sequence_ordering" // C. Sequence Ordering
-  | "memory_flash" // D. Memory Flash
-  | "fill_in_blank" // E. Fill in the Blank
-  | "free_recall" // F. Free Recall (risposta nascosta)
-  | "image_association" // G. Image Association
-  | "loci_placement" // H. Loci Placement (in-scene)
-  | "mnemonic_builder" // I. Mnemonic Builder (concetto + immagine + azione + luogo)
-  | "error_correction" // J. Error Correction
-  | "number_encoding" // K. Number Encoding (Major forward: numero -> parola)
-  | "reverse_decoding"; // L. Reverse Decoding (Major reverse: parola -> numero)
+  | "multiple_choice"
+  | "matching_pairs"
+  | "sequence_ordering"
+  | "memory_flash"
+  | "fill_in_blank"
+  | "free_recall"
+  | "image_association"
+  | "loci_placement"
+  | "mnemonic_builder"
+  | "error_correction"
+  | "number_encoding"
+  | "reverse_decoding";
 
 export interface LessonStepSpec {
   stepId: string;
@@ -107,7 +127,6 @@ export interface LessonStepSpec {
   expandableFullText?: string;
   illustrationAsset: string;
   scientificNote?: string;
-  // Configurazioni specifiche per i 12 tipi di esercizio + v2 stages
   options?: { id: string; label: string; isCorrect: boolean; explanation: string }[];
   pairs?: { id: string; left: string; right: string }[];
   sequenceItems?: string[];
@@ -183,7 +202,6 @@ export interface EnrichedAcademyLesson extends LessonEditorial {
   checkpointOptions?: { label: string; value: string }[];
   progressiveHint: string;
   steps: LessonStepSpec[];
-  // LOCO Academy 2.0 fields (`04_LESSONS_PLAYER_CONTENT.json` + `05_GAME_ENGINE_SPEC.md`)
   v2Mission: V2LessonMissionSpec;
   v2LearningObjective: string;
   v2SkillType: string;
@@ -225,7 +243,6 @@ export interface AcademyLessonProgress {
   skippedReadingToTest: boolean;
   practiceCompletedAt: string | null;
   practiceSummary: string | null;
-  // Stato persistente dello step corrente per uscire e riprendere a metà lezione
   currentStepIndex: number;
   completedStepIds: string[];
   checkpointAttempts: number;
@@ -238,7 +255,6 @@ export interface AcademyLessonProgress {
   masteredAfterDelayAt: string | null;
   nextReviewDueAt: string | null;
   legacyMigratedFrom: string[];
-  // LOCO Academy 2.0 AttemptEvidence audit trail (`05_GAME_ENGINE_SPEC.md`)
   attemptHistory?: AttemptEvidence[];
   lastVerifiedBy?: VerificationAuthority | null;
   lastErrorCategory?: ErrorDiagnosisCategory | null;
@@ -264,8 +280,8 @@ export interface AcademyGamificationState {
   todayXp: number;
   lastActivityDate: string; // YYYY-MM-DD
   streakDays: number;
-  awardedXpEventIds: string[]; // Impedisce XP duplicati al refresh o riapertura
-  completedUnitCheckpoints: string[]; // es. ["course-0", "course-1"]
+  awardedXpEventIds: string[];
+  completedUnitCheckpoints: string[];
   mistakeQueue: AcademyMistakeItem[];
   forwardEncodingCorrectCount: number;
   forwardEncodingTotalCount: number;
@@ -273,6 +289,15 @@ export interface AcademyGamificationState {
   reverseDecodingTotalCount: number;
   reviewsCompletedCount: number;
   unlockedBadgeIds: string[];
+}
+
+export interface AdaptiveAcademyRecommendation {
+  id: string;
+  observedSignal: string;
+  recommendedLessonIds: string[];
+  explanation: string;
+  sampleSize: number;
+  isSufficientSample: boolean;
 }
 
 export const LOCO_ACADEMY_STORAGE_KEY = "loco-academy-progress-v1";
@@ -302,7 +327,7 @@ export const LOCO_LEVELS: LocoLevelDefinition[] = [
     minXp: 0,
     maxXp: 49,
     mascotAsset: "/assets/figma-curated/academy-scene-explorer.svg",
-    description: "Muovi i primi passi tra riconoscimento, richiamo attivo e primi loci.",
+    description: "Muovi i primi passi tra osservazione, indizi solidi e primi loci.",
   },
   {
     level: 2,
@@ -310,15 +335,15 @@ export const LOCO_LEVELS: LocoLevelDefinition[] = [
     minXp: 50,
     maxXp: 149,
     mascotAsset: "/assets/figma-curated/academy-mascot-tablet.svg",
-    description: "Costruisci percorsi stabili, catene Linked e associazioni d'azione chiare.",
+    description: "Costruisci percorsi stabili, catene d'azione e prime stanze ordinate.",
   },
   {
     level: 3,
     title: "Architetto",
     minXp: 150,
     maxXp: 299,
-    mascotAsset: "/assets/figma-curated/academy-mascot-elephant.svg",
-    description: "Progetti palazzi strutturati, domini la conversione fonetica e il ripasso distribuito.",
+    mascotAsset: "/assets/figma-curated/academy-scene-study-desk.svg",
+    description: "Progetti palazzi multi-stanza, domini la conversione fonetica e il richiamo cieco.",
   },
   {
     level: 4,
@@ -326,7 +351,7 @@ export const LOCO_LEVELS: LocoLevelDefinition[] = [
     minXp: 300,
     maxXp: 499,
     mascotAsset: "/assets/figma-curated/academy-mascot-headphones.svg",
-    description: "Padroneggi codifica e decodifica rapida, diagnostica degli errori e trasferimento.",
+    description: "Padroneggi codifica e decodifica rapida, diagnosi degli errori e trasferimento allo studio.",
   },
   {
     level: 5,
@@ -334,7 +359,7 @@ export const LOCO_LEVELS: LocoLevelDefinition[] = [
     minXp: 500,
     maxXp: null,
     mascotAsset: "/assets/figma-curated/academy-mascot-lion.svg",
-    description: "Massima autonomia tra studio profondo, palazzi complessi e verifica nel tempo.",
+    description: "Massima autonomia tra studio profondo, palazzi complessi, carte e specializzazioni.",
   },
 ];
 
@@ -348,38 +373,38 @@ export interface AcademyBadgeDefinition {
 export const ACADEMY_BADGES: AcademyBadgeDefinition[] = [
   {
     id: "badge-first-memory",
-    title: "Primo ricordo",
-    description: "Completa la tua prima lezione interattiva (S01) con prova di recupero a risposta nascosta.",
+    title: "Primo ricordo autentico",
+    description: "Completa la tua prima lezione interattiva (F01) con prova di recupero a stimolo nascosto.",
     asset: "/assets/figma-curated/academy-item-lightbulb.svg",
   },
   {
     id: "badge-first-palace",
     title: "Primo palazzo completato",
-    description: "Completa tutte le 6 tappe dell'Unità 1 (S01–S06) costruendo il tuo primo percorso di 5 loci.",
+    description: "Completa le lezioni dell'Unità Fondamenta o costruisci la tua prima stanza da 8 loci (P03).",
     asset: "/assets/figma-curated/academy-scene-study-desk.svg",
   },
   {
     id: "badge-10-loci",
     title: "10 loci creati",
-    description: "Completa la costruzione guidata del percorso da 10 loci (L06) o posiziona 10 loci nei tuoi palazzi.",
+    description: "Completa la costruzione del percorso o memorizza 10 stazioni ordinate.",
     asset: "/assets/figma-curated/academy-item-bookshelf.svg",
   },
   {
     id: "badge-5-reviews",
     title: "5 ripassi effettuati",
-    description: "Svolgi almeno 5 sessioni di ripasso attivo (Errori o Coda Ripassi) consolidando i ricordi.",
+    description: "Svolgi almeno 5 sessioni di ripasso attivo a risposta nascosta consolidando i ricordi.",
     asset: "/assets/figma-curated/academy-item-clock.svg",
   },
   {
     id: "badge-numbers-master",
     title: "Numeri senza segreti",
-    description: "Supera con successo prove Major System sia in codifica (Numero→Parola) sia in decodifica (Parola→Numero).",
-    asset: "/assets/figma-curated/academy-head-headphones.svg",
+    description: "Supera prove Major System major-it-v1 sia in codifica (Numero→Parola) sia in decodifica (Parola→Numero).",
+    asset: "/assets/figma-curated/academy-mascot-headphones.svg",
   },
   {
     id: "badge-memory-architect",
     title: "Architetto della memoria",
-    description: "Supera almeno un Checkpoint di fine unità e completa 5 lezioni della LOCO Academy.",
+    description: "Supera almeno un Checkpoint di fine unità e completa 5 lezioni di LOCO Academy.",
     asset: "/assets/figma-curated/academy-mascot-lion.svg",
   },
 ];
@@ -397,44 +422,44 @@ export const TIER_NAMING: Record<
 > = {
   free: {
     code: "free",
-    editorialName: rawCurriculum.tierNaming.free,
+    editorialName: "LOCOMPRO DOPO",
     shortBadge: "LOCOMPRO DOPO · Free",
     description:
-      "32 lezioni di base e applicative: percorso iniziale completo, Metodo dei Loci, Linked Method, Conversione Fonetica, metodo di studio, ripasso essenziale, XP e badge.",
+      "37 lezioni di base e applicative (Unità 1–6): Fondamenta della memoria, L'arte dell'associazione, Palazzi della memoria, Conversione fonetica e cifre, LOCO nella vita reale, Dalla memoria allo studio.",
     isPaidHypothesis: false,
     featuresList: [
-      "32 microlezioni interattive (Unità 1–6)",
-      "Costruzione del primo palazzo e associazioni personali",
-      "Motore Blind Recall e coda ripassi essenziale senza blocchi",
+      "37 microlezioni interattive (Unità 1–6)",
+      "Costruzione dei palazzi e associazioni d'azione dinamiche",
+      "Conversione fonetica major-it-v1 bidirezionale",
+      "Motore Blind Recall a risposta nascosta e coda ripassi",
       "Progressione XP, livelli LOCO, streak e 6 badge verificabili",
     ],
   },
   plus: {
     code: "plus",
-    editorialName: rawCurriculum.tierNaming.plus,
+    editorialName: "POCO LOCO",
     shortBadge: "POCO LOCO · Plus",
     description:
-      "Tutte le 32 lezioni Free + 20 lezioni avanzate (Unità 7–11): palazzi da 25 loci, sistema 00–99 e PAO, strategia esami, spazi avanzati e Palestra dei Campioni.",
+      "Tutte le 37 lezioni Free + 11 lezioni avanzate di specializzazione (Unità 7–8): La lingua delle carte e Specializzazioni (PAO, binario, citazioni, capitali, ortografia e protocolli).",
     isPaidHypothesis: true,
     featuresList: [
-      "Tutte le 32 lezioni Free + 20 lezioni avanzate (Unità 7–11)",
-      "Architettura di palazzi da 25+ loci e sottopercorsi per capitoli",
-      "Maestria numerica: dizionario 00–99, Peg System e PAO",
-      "Stratega degli esami e Palestra dei Campioni con diagnostica avanzata",
+      "Tutte le 37 lezioni Free + 11 lezioni di specializzazione (Unità 7–8)",
+      "La lingua delle carte: codifica di semi e figure e sequenze ordinate",
+      "Specializzazioni avanzate: sistema Person-Action-Object (PAO) e numeri binari",
+      "Protocolli per citazioni letterali, coppie arbitrarie e diagnosi degli errori",
     ],
   },
   pro: {
     code: "pro",
-    editorialName: rawCurriculum.tierNaming.pro,
+    editorialName: "PRO LOCO",
     shortBadge: "PRO LOCO · Pro",
     description:
-      "Tutte le 52 lezioni precedenti + 4 laboratori AI Memory Studio (Unità 12): verifica critica delle fonti estratte, modifica indizi, tutor socratico e audit delle raccomandazioni.",
+      "Accesso completo ad ogni laboratorio presente e futuro di LOCO Academy.",
     isPaidHypothesis: true,
     featuresList: [
-      "Tutte le 52 lezioni Free & POCO LOCO + 4 laboratori AI Memory Studio",
-      "Laboratorio di verifica critica su target estratti da documenti",
-      "Personalizzazione assistita degli indizi e Tutor Socratico graduato",
-      "Nota trasparenza: i laboratori mock sono giocabili; le API AI live richiederanno quote dedicate",
+      "Tutte le lezioni Free e POCO LOCO",
+      "Strumenti avanzati di revisione critica e personalizzazione",
+      "Supporto per progetti di studio complessi e percorsi estesi",
     ],
   },
 };
@@ -603,49 +628,49 @@ export const LEGACY_LESSON_MAP: Record<string, LegacyLessonMapping> = {
     legacyId: "c1-l1",
     legacyTitle: "Approccio alle tecniche mnemoniche",
     legacyCourseId: 1,
-    primaryLessonId: "S01",
-    mappedLessonIds: ["S01", "L01"],
-    migrationNote: "Redirect editoriale a S01 (Conoscere non è ricordare) + L01",
+    primaryLessonId: "F01",
+    mappedLessonIds: ["F01", "P01"],
+    migrationNote: "Mappato a F01 (Lo sai davvero?) e P01",
   },
   "c1-l2": {
     legacyId: "c1-l2",
     legacyTitle: "Introduzione alla tecnica dei Loci",
     legacyCourseId: 1,
-    primaryLessonId: "S03",
-    mappedLessonIds: ["S03", "L02"],
-    migrationNote: "Mappato a S03 (Il tuo primo percorso) + L02",
+    primaryLessonId: "P02",
+    mappedLessonIds: ["P02", "P03"],
+    migrationNote: "Mappato a P02 (Dalla porta, gira sempre uguale) e P03",
   },
   "c1-l3": {
     legacyId: "c1-l3",
     legacyTitle: "Come utilizzare la tecnica dei Loci",
     legacyCourseId: 1,
-    primaryLessonId: "S04",
-    mappedLessonIds: ["S04", "L04", "L06"],
-    migrationNote: "Mappato a S04 (Fai succedere qualcosa) + L04 + L06",
+    primaryLessonId: "P04",
+    mappedLessonIds: ["P04", "P05"],
+    migrationNote: "Mappato a P04 (Il limone entra in libreria) e P05",
   },
   "c2-l1": {
     legacyId: "c2-l1",
     legacyTitle: "Introduzione al Linked Method",
     legacyCourseId: 2,
-    primaryLessonId: "K01",
-    mappedLessonIds: ["K01"],
-    migrationNote: "Mappato a K01 (La prima immagine chiama la seconda)",
+    primaryLessonId: "A01",
+    mappedLessonIds: ["A01"],
+    migrationNote: "Mappato a A01 (Non appoggiare: fai esplodere)",
   },
   "c2-l2": {
     legacyId: "c2-l2",
     legacyTitle: "Come creare storie",
     legacyCourseId: 2,
-    primaryLessonId: "K02",
-    mappedLessonIds: ["K02"],
-    migrationNote: "Mappato a K02 (Storie brevi, legami forti)",
+    primaryLessonId: "A02",
+    mappedLessonIds: ["A02"],
+    migrationNote: "Mappato a A02 (La catena che si racconta da sola)",
   },
   "c2-l3": {
     legacyId: "c2-l3",
     legacyTitle: "Come utilizzare il Linked Method",
     legacyCourseId: 2,
-    primaryLessonId: "K03",
-    mappedLessonIds: ["K03"],
-    migrationNote: "Mappato a K03 (Loci o storie? Scegli con criterio)",
+    primaryLessonId: "A03",
+    mappedLessonIds: ["A03", "A06"],
+    migrationNote: "Mappato a A03 (Dove si spezza il film?) e A06",
   },
   "c3-l1": {
     legacyId: "c3-l1",
@@ -653,7 +678,7 @@ export const LEGACY_LESSON_MAP: Record<string, LegacyLessonMapping> = {
     legacyCourseId: 3,
     primaryLessonId: "N01",
     mappedLessonIds: ["N01"],
-    migrationNote: "Mappato a N01 (Perché un numero può diventare un'immagine)",
+    migrationNote: "Mappato a N01 (Le cifre non hanno una faccia)",
   },
   "c3-l2": {
     legacyId: "c3-l2",
@@ -661,7 +686,7 @@ export const LEGACY_LESSON_MAP: Record<string, LegacyLessonMapping> = {
     legacyCourseId: 3,
     primaryLessonId: "N02",
     mappedLessonIds: ["N02"],
-    migrationNote: "Mappato a N02 (Le dieci famiglie di suoni · major-it-v1)",
+    migrationNote: "Mappato a N02 (Il dizionario segreto dei suoni)",
   },
   "c3-l3": {
     legacyId: "c3-l3",
@@ -669,11 +694,22 @@ export const LEGACY_LESSON_MAP: Record<string, LegacyLessonMapping> = {
     legacyCourseId: 3,
     primaryLessonId: "N03",
     mappedLessonIds: ["N03", "N04"],
-    migrationNote: "Mappato a N03 (Dai numeri alle parole) + N04 (Dalle parole ai numeri)",
+    migrationNote: "Mappato a N03 (Una lettera non è sempre un suono) e N04",
   },
 };
 
-const COURSE_METADATA: Record<
+export const PATH_TO_COURSE_ID: Record<string, string> = {
+  Fondamenta: "course-fondamenta",
+  Associazioni: "course-associazioni",
+  Palazzi: "course-palazzi",
+  Numeri: "course-numeri",
+  "Vita reale": "course-vita-reale",
+  Studio: "course-studio",
+  Carte: "course-carte",
+  Specializzazioni: "course-specializzazioni",
+};
+
+export const COURSE_METADATA: Record<
   string,
   {
     unitNumber: number;
@@ -686,125 +722,206 @@ const COURSE_METADATA: Record<
     mascotAsset: string;
   }
 > = {
-  "course-0": {
+  "course-fondamenta": {
     unitNumber: 1,
-    unitTitle: "UNITÀ 1 — Risveglia la memoria",
-    subtitle: "Il tuo primo ricordo: 6 tappe interattive mentre costruisci il primo percorso di 5 loci",
+    unitTitle: "UNITÀ 1 — Fondamenta della memoria",
+    subtitle: "Imparare a guardare, costruire indizi efficaci e riconoscere il recupero autentico",
     theme: "onboarding",
     planTier: "free",
-    entrySuggestion: "Prima apertura",
-    unlockPolicy: "Percorso iniziale guidato",
+    entrySuggestion: "Inizia da qui",
+    unlockPolicy: "Percorso iniziale sempre disponibile",
+    mascotAsset: "/assets/figma-curated/academy-scene-relax-night.svg",
+  },
+  "course-associazioni": {
+    unitNumber: 2,
+    unitTitle: "UNITÀ 2 — L'arte dell'associazione",
+    subtitle: "Azioni visive dinamiche, catene Linked che si raccontano da sole e riparazione di anelli deboli",
+    theme: "linked",
+    planTier: "free",
+    entrySuggestion: "Dopo F04",
+    unlockPolicy: "Sempre disponibile gratuitamente",
+    mascotAsset: "/assets/figma-curated/academy-mascot-cat.svg",
+  },
+  "course-palazzi": {
+    unitNumber: 3,
+    unitTitle: "UNITÀ 3 — Palazzi della memoria",
+    subtitle: "Progettare luoghi con un percorso stabile, rotte coerenti dalla porta e recupero senza mappa",
+    theme: "loci",
+    planTier: "free",
+    entrySuggestion: "Dopo F04",
+    unlockPolicy: "Sempre disponibile gratuitamente",
+    mascotAsset: "/assets/figma-curated/academy-scene-study-desk.svg",
+  },
+  "course-numeri": {
+    unitNumber: 4,
+    unitTitle: "UNITÀ 4 — Conversione fonetica e cifre",
+    subtitle: "Dal codice major-it-v1 al lessico personale 00–99 e memorizzazione di date storiche",
+    theme: "numbers",
+    planTier: "free",
+    entrySuggestion: "Dopo F03",
+    unlockPolicy: "Sempre disponibile gratuitamente",
+    mascotAsset: "/assets/figma-curated/academy-mascot-headphones.svg",
+  },
+  "course-vita-reale": {
+    unitNumber: 5,
+    unitTitle: "UNITÀ 5 — LOCO nella vita reale",
+    subtitle: "Nomi, volti, percorsi stradali, intenzioni future, vocaboli stranieri e discorsi",
+    theme: "real-life",
+    planTier: "free",
+    entrySuggestion: "Dopo F02 e F03",
+    unlockPolicy: "Sempre disponibile gratuitamente",
+    mascotAsset: "/assets/figma-curated/academy-scene-runner.svg",
+  },
+  "course-studio": {
+    unitNumber: 6,
+    unitTitle: "UNITÀ 6 — Dalla memoria alla comprensione",
+    subtitle: "Dalle idee alle domande, budget delle immagini mentali, mappe strutturate e ripasso",
+    theme: "study",
+    planTier: "free",
+    entrySuggestion: "Dopo F01",
+    unlockPolicy: "Sempre disponibile gratuitamente",
+    mascotAsset: "/assets/figma-curated/academy-scene-library.svg",
+  },
+  "course-carte": {
+    unitNumber: 7,
+    unitTitle: "UNITÀ 7 — La lingua delle carte",
+    subtitle: "Specializzazione opzionale: lessico di carte e prime sequenze ordinate",
+    theme: "training",
+    planTier: "plus",
+    entrySuggestion: "Specializzazione opzionale",
+    unlockPolicy: "POCO LOCO · Accesso a tutte le lezioni delle carte",
+    mascotAsset: "/assets/figma-curated/academy-mascot-lion.svg",
+  },
+  "course-specializzazioni": {
+    unitNumber: 8,
+    unitTitle: "UNITÀ 8 — Specializzazioni e protocolli",
+    subtitle: "PAO, binario, citazioni, capitali, ortografia e protocolli avanzati",
+    theme: "palaces-advanced",
+    planTier: "plus",
+    entrySuggestion: "Specializzazione opzionale",
+    unlockPolicy: "POCO LOCO · Specializzazioni avanzate",
+    mascotAsset: "/assets/figma-curated/academy-scene-explorer.svg",
+  },
+  // Legacy Aliases
+  "course-0": {
+    unitNumber: 1,
+    unitTitle: "UNITÀ 1 — Fondamenta della memoria",
+    subtitle: "Imparare a guardare, costruire indizi efficaci e riconoscere il recupero autentico",
+    theme: "onboarding",
+    planTier: "free",
+    entrySuggestion: "Inizia da qui",
+    unlockPolicy: "Percorso iniziale sempre disponibile",
     mascotAsset: "/assets/figma-curated/academy-scene-relax-night.svg",
   },
   "course-1": {
-    unitNumber: 2,
-    unitTitle: "UNITÀ 2 — Il tuo primo palazzo",
-    subtitle: "Tecnica dei Loci: scelta dell'ambiente, distinzione dei punti, ordine e percorso da 10",
+    unitNumber: 3,
+    unitTitle: "UNITÀ 3 — Palazzi della memoria",
+    subtitle: "Progettare luoghi con un percorso stabile, rotte coerenti dalla porta e recupero senza mappa",
     theme: "loci",
     planTier: "free",
-    entrySuggestion: "Dopo S06",
-    unlockPolicy: "Sblocco progressivo o libero da catalogo",
+    entrySuggestion: "Dopo F04",
+    unlockPolicy: "Sempre disponibile gratuitamente",
     mascotAsset: "/assets/figma-curated/academy-scene-study-desk.svg",
   },
   "course-2": {
-    unitNumber: 3,
-    unitTitle: "UNITÀ 3 — Storie che non dimentichi",
-    subtitle: "Linked Method: catene associative brevi, legami forti e riparazione di un anello mancante",
+    unitNumber: 2,
+    unitTitle: "UNITÀ 2 — L'arte dell'associazione",
+    subtitle: "Azioni visive dinamiche, catene Linked che si raccontano da sole e riparazione di anelli deboli",
     theme: "linked",
     planTier: "free",
-    entrySuggestion: "Prima lista lunga",
-    unlockPolicy: "Libero dopo S04",
+    entrySuggestion: "Dopo F04",
+    unlockPolicy: "Sempre disponibile gratuitamente",
     mascotAsset: "/assets/figma-curated/academy-mascot-cat.svg",
   },
   "course-3": {
     unitNumber: 4,
-    unitTitle: "UNITÀ 4 — Numeri che diventano immagini",
-    subtitle: "Conversione fonetica major-it-v1: dalle 10 famiglie di suoni alle date storiche verificabili",
+    unitTitle: "UNITÀ 4 — Conversione fonetica e cifre",
+    subtitle: "Dal codice major-it-v1 al lessico personale 00–99 e memorizzazione di date storiche",
     theme: "numbers",
     planTier: "free",
-    entrySuggestion: "Obiettivo: date e cifre",
-    unlockPolicy: "Allenamento fonetico bidirezionale",
+    entrySuggestion: "Dopo F03",
+    unlockPolicy: "Sempre disponibile gratuitamente",
     mascotAsset: "/assets/figma-curated/academy-mascot-headphones.svg",
   },
   "course-4": {
-    unitNumber: 5,
-    unitTitle: "UNITÀ 5 — Dalla memoria alla conoscenza",
-    subtitle: "Comprensione, chunking, domande che insegnano, feedback diagnostico e ripasso distribuito",
+    unitNumber: 6,
+    unitTitle: "UNITÀ 6 — Dalla memoria alla comprensione",
+    subtitle: "Dalle idee alle domande, budget delle immagini mentali, mappe strutturate e ripasso",
     theme: "study",
     planTier: "free",
-    entrySuggestion: "Primo progetto di studio",
+    entrySuggestion: "Dopo F01",
     unlockPolicy: "Sempre disponibile gratuitamente",
     mascotAsset: "/assets/figma-curated/academy-scene-library.svg",
   },
   "course-5": {
-    unitNumber: 6,
-    unitTitle: "UNITÀ 6 — LOCO nella vita reale",
-    subtitle: "Discorsi senza fogli, vocaboli stranieri con parola-ponte, commissioni e nomi/volti",
+    unitNumber: 5,
+    unitTitle: "UNITÀ 5 — LOCO nella vita reale",
+    subtitle: "Nomi, volti, percorsi stradali, intenzioni future, vocaboli stranieri e discorsi",
     theme: "real-life",
     planTier: "free",
-    entrySuggestion: "Scegliere un uso concreto",
+    entrySuggestion: "Dopo F02 e F03",
     unlockPolicy: "Sempre disponibile gratuitamente",
     mascotAsset: "/assets/figma-curated/academy-scene-runner.svg",
   },
   "course-6": {
-    unitNumber: 7,
-    unitTitle: "UNITÀ 7 — Architetto dei palazzi",
-    subtitle: "Palazzi da 25 loci, riuso ordinato, sottopercorsi per capitoli e diagnostica delle confusioni",
+    unitNumber: 8,
+    unitTitle: "UNITÀ 8 — Specializzazioni e protocolli",
+    subtitle: "PAO, binario, citazioni, capitali, ortografia e protocolli avanzati",
     theme: "palaces-advanced",
     planTier: "plus",
-    entrySuggestion: "Dopo percorso da 10 loci",
-    unlockPolicy: "POCO LOCO · Anteprima e lezioni giocabili",
-    mascotAsset: "/assets/figma-curated/academy-mascot-elephant.svg",
+    entrySuggestion: "Specializzazione opzionale",
+    unlockPolicy: "POCO LOCO · Specializzazioni avanzate",
+    mascotAsset: "/assets/figma-curated/academy-scene-explorer.svg",
   },
   "course-7": {
     unitNumber: 8,
-    unitTitle: "UNITÀ 8 — Maestria numerica: Peg e PAO",
-    subtitle: "Dizionario 00–99, Peg System, Person-Action-Object e gestione delle interferenze",
-    theme: "numbers",
-    planTier: "plus",
-    entrySuggestion: "Dopo Major System di base",
-    unlockPolicy: "POCO LOCO · Allenamento numerico avanzato",
-    mascotAsset: "/assets/figma-curated/academy-head-headphones.svg",
-  },
-  "course-8": {
-    unitNumber: 9,
-    unitTitle: "UNITÀ 9 — Stratega dello studio",
-    subtitle: "Dal capitolo alle domande verificabili, esame orale/scritto, triage e trasferimento",
-    theme: "study",
-    planTier: "plus",
-    entrySuggestion: "Quando prepari un esame reale",
-    unlockPolicy: "POCO LOCO · Strategia d'esame",
-    mascotAsset: "/assets/figma-curated/academy-mascot-tablet.svg",
-  },
-  "course-9": {
-    unitNumber: 10,
-    unitTitle: "UNITÀ 10 — Spazi del mondo",
-    subtitle: "Luoghi familiari vs online, Street View, foto/3D della stanza e manutenzione dei percorsi",
+    unitTitle: "UNITÀ 8 — Specializzazioni e protocolli",
+    subtitle: "PAO, binario, citazioni, capitali, ortografia e protocolli avanzati",
     theme: "palaces-advanced",
     planTier: "plus",
-    entrySuggestion: "Creazione di palazzo avanzato",
-    unlockPolicy: "POCO LOCO · Demo locale senza API Maps live",
+    entrySuggestion: "Specializzazione opzionale",
+    unlockPolicy: "POCO LOCO · Specializzazioni avanzate",
+    mascotAsset: "/assets/figma-curated/academy-mascot-headphones.svg",
+  },
+  "course-8": {
+    unitNumber: 6,
+    unitTitle: "UNITÀ 6 — Dalla memoria alla comprensione",
+    subtitle: "Dalle idee alle domande, budget delle immagini mentali, mappe strutturate e ripasso",
+    theme: "study",
+    planTier: "free",
+    entrySuggestion: "Dopo F01",
+    unlockPolicy: "Sempre disponibile gratuitamente",
+    mascotAsset: "/assets/figma-curated/academy-scene-library.svg",
+  },
+  "course-9": {
+    unitNumber: 3,
+    unitTitle: "UNITÀ 3 — Palazzi della memoria",
+    subtitle: "Progettare luoghi con un percorso stabile, rotte coerenti dalla porta e recupero senza mappa",
+    theme: "loci",
+    planTier: "free",
+    entrySuggestion: "Dopo F04",
+    unlockPolicy: "Sempre disponibile gratuitamente",
     mascotAsset: "/assets/figma-curated/academy-scene-explorer.svg",
   },
   "course-10": {
-    unitNumber: 11,
-    unitTitle: "UNITÀ 11 — Palestra dei campioni",
-    subtitle: "Allenamento deliberato, velocità vs precisione, carte/sequenze e auto-coaching su evidenze",
+    unitNumber: 7,
+    unitTitle: "UNITÀ 7 — La lingua delle carte",
+    subtitle: "Specializzazione opzionale: lessico di carte e prime sequenze ordinate",
     theme: "training",
     planTier: "plus",
-    entrySuggestion: "Dopo più sessioni di studio",
-    unlockPolicy: "POCO LOCO · Metriche con campione dichiarato",
+    entrySuggestion: "Specializzazione opzionale",
+    unlockPolicy: "POCO LOCO · Accesso a tutte le lezioni delle carte",
     mascotAsset: "/assets/figma-curated/academy-mascot-lion.svg",
   },
   "course-11": {
-    unitNumber: 12,
-    unitTitle: "UNITÀ 12 — AI Memory Studio",
-    subtitle: "Verifica critica delle fonti estratte, modifica indizi AI, tutor socratico e lettura suggerimenti",
-    theme: "ai-studio",
-    planTier: "pro",
-    entrySuggestion: "Uso critico e controllato dell'AI",
-    unlockPolicy: "PRO LOCO · Laboratori mock giocabili",
-    mascotAsset: "/assets/figma-curated/academy-scene-zen-room.svg",
+    unitNumber: 8,
+    unitTitle: "UNITÀ 8 — Specializzazioni e protocolli",
+    subtitle: "PAO, binario, citazioni, capitali, ortografia e protocolli avanzati",
+    theme: "palaces-advanced",
+    planTier: "plus",
+    entrySuggestion: "Specializzazione opzionale",
+    unlockPolicy: "POCO LOCO · Specializzazioni avanzate",
+    mascotAsset: "/assets/figma-curated/academy-scene-explorer.svg",
   },
 };
 
@@ -813,61 +930,54 @@ function resolveRuntimeExerciseKind(lessonId: string): {
   requiresSimulatedFallbackNotice: boolean;
   fallbackNoticeText: string | null;
 } {
-  if (lessonId === "S01") {
+  if (lessonId === "F01") {
     return { kind: "s01-recognition-recall-switch", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
   }
-  if (lessonId === "S02") {
+  if (lessonId === "F04") {
     return { kind: "s02-target-question-builder", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
   }
-  if (lessonId === "S03") {
+  if (lessonId === "P02" || lessonId === "P03") {
     return { kind: "s03-five-locus-scene-builder", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
   }
-  if (lessonId === "S04") {
+  if (lessonId === "A01" || lessonId === "A03") {
     return { kind: "s04-action-association-builder", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
   }
-  if (lessonId === "S05") {
-    return { kind: "s05-blind-recall-simulation", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
-  }
-  if (lessonId === "S06") {
-    return { kind: "s06-due-queue-scheduler", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
-  }
-  if (lessonId.startsWith("L")) {
+  if (lessonId.startsWith("P")) {
     return { kind: "loci-scene-lab", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
   }
-  if (lessonId.startsWith("K")) {
+  if (lessonId.startsWith("A")) {
     return { kind: "linked-chain-builder", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
   }
-  if (lessonId.startsWith("N") || lessonId.startsWith("Q")) {
+  if (lessonId.startsWith("N")) {
     return { kind: "major-phonetic-drill", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
   }
-  if (lessonId.startsWith("T") || lessonId.startsWith("R")) {
+  if (lessonId.startsWith("S")) {
     return { kind: "study-comprehension-lab", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
   }
-  if (lessonId.startsWith("X")) {
+  if (lessonId.startsWith("E")) {
     return { kind: "real-life-application", requiresSimulatedFallbackNotice: false, fallbackNoticeText: null };
-  }
-  if (lessonId.startsWith("W")) {
-    return {
-      kind: "guided-simulation-fallback",
-      requiresSimulatedFallbackNotice: true,
-      fallbackNoticeText:
-        "Modalità Demo / Alternativa Manuale: l'integrazione live con Google Street View API e scansione 3D non è attiva in questo ambiente. L'esercizio utilizza la scena 3D locale e la modalità testuale accessibile.",
-    };
-  }
-  if (lessonId.startsWith("A")) {
-    return {
-      kind: "guided-simulation-fallback",
-      requiresSimulatedFallbackNotice: true,
-      fallbackNoticeText:
-        "Laboratorio Mock AI Memory Studio: l'estrazione automatica da PDF e il coach LLM live non sono attivi senza API/quote configurate. Puoi svolgere l'intero esercizio di revisione critica su schede e indizi simulati.",
-    };
   }
   return {
     kind: "guided-simulation-fallback",
-    requiresSimulatedFallbackNotice: true,
-    fallbackNoticeText:
-      "Esercizio guidato in modalità locale/manuale: svolgi la prova pratica e verifica la risposta nascosta senza dipendere da servizi esterni.",
+    requiresSimulatedFallbackNotice: false,
+    fallbackNoticeText: null,
   };
+}
+
+function resolveExpectedAnswerForLesson(id: string, challengePrompt: string): string {
+  if (id === "F01") return "pettine, zattera, tulipano, tamburo, calamita";
+  if (id === "A03") return "cactus, campana";
+  if (id === "P02") return "porta, lampada, libreria, finestra, scrivania, divano";
+  if (id === "P03") return "ingresso, tappeto, scarpiera, attaccapanni, specchio, comodino, finestra, divano";
+  if (id === "N03") return "coro=74, cera=64";
+  if (id === "S03") return "Vela-7, R-14, 2037";
+  if (id === "E01") return "Giorgia";
+  if (id === "C03") return "A♠, 7♥, Q♦, 3♣, 10♠";
+
+  const clean = challengePrompt.replace(/[«»]/g, "");
+  const match = clean.match(/(?:è|era|corrisponde a|chiave|parola)\s+([A-Za-z0-9àèéìòù]+)/i);
+  if (match) return match[1];
+  return "risposta corretta verificata";
 }
 
 function buildCheckpointMetadata(lesson: LessonEditorial): {
@@ -880,92 +990,26 @@ function buildCheckpointMetadata(lesson: LessonEditorial): {
     .replace(/\.$/, "")
     .toLowerCase();
 
-  const q = lesson.checkpoint.question;
-  if (expectedClean === "a" || expectedClean === "b") {
-    const matchA = q.match(/A\s*«([^»]+)»/i);
-    const matchB = q.match(/B\s*«([^»]+)»/i);
-    return {
-      acceptedKeywords: [expectedClean],
-      options: [
-        { label: matchA ? `A — «${matchA[1]}»` : "Opzione A", value: "A" },
-        { label: matchB ? `B — «${matchB[1]}»` : "Opzione B", value: "B" },
-      ],
-      progressiveHint: `Rileggi il criterio chiave: evita l'errore tipico (${lesson.commonMistake})`,
-    };
-  }
-
-  if (expectedClean === "no" || expectedClean === "sì" || expectedClean === "si") {
-    return {
-      acceptedKeywords: expectedClean === "no" ? ["no", "falso", "non"] : ["sì", "si", "vero", "certo"],
-      options: [
-        { label: "Sì", value: "sì" },
-        { label: "No", value: "no" },
-      ],
-      progressiveHint: `Pensa alla distinzione spiegata nella lezione: attenzione a non ${lesson.commonMistake}`,
-    };
-  }
-
-  if (expectedClean === "6") {
-    return {
-      acceptedKeywords: ["6", "sei"],
-      options: [
-        { label: "6 (C/G dolce: ciao, gelato)", value: "6" },
-        { label: "7 (C/G dura: casa, mago)", value: "7" },
-      ],
-      progressiveHint: "Ascolta il suono iniziale di «ciao»: è un suono palatale dolce (/tʃ/) o gutturale duro (/k/)?",
-    };
-  }
-
-  if (expectedClean.startsWith("no, 37")) {
-    return {
-      acceptedKeywords: ["37", "no, 37", "no 37", "trentasette"],
-      options: [
-        { label: "Sì, corrisponde a 36", value: "36" },
-        { label: "No, corrisponde a 37 (M=3, G dura=7)", value: "no, 37" },
-      ],
-      progressiveHint: "Pronuncia «mago» ad alta voce: la G davanti alla O è dura (/g/) o dolce (/dʒ/)?",
-    };
-  }
-
   const stopWords = new Set([
-    "che",
-    "del",
-    "della",
-    "delle",
-    "dei",
-    "degli",
-    "con",
-    "per",
-    "una",
-    "uno",
-    "gli",
-    "nel",
-    "nella",
-    "sul",
-    "sulla",
-    "sono",
-    "come",
-    "più",
-    "piu",
-    "suo",
-    "sua",
-    "non",
+    "che", "del", "della", "delle", "dei", "degli", "con", "per", "una", "uno",
+    "gli", "nel", "nella", "sul", "sulla", "sono", "come", "più", "piu", "suo", "sua", "non"
   ]);
+
   const tokens = expectedClean
-    .split(/[^a-z0-9àèéìòù]+/i)
+    .split(/[^a-z0-9àèéìòù♠♥♦♣]+/i)
     .map((t) => t.trim().toLowerCase())
-    .filter((t) => t.length >= 3 && !stopWords.has(t));
+    .filter((t) => t.length >= 2 && !stopWords.has(t));
 
   return {
     acceptedKeywords: tokens.length > 0 ? tokens : [expectedClean],
-    progressiveHint: `Concentrati su: ${lesson.masteryCriterion} (evita: ${lesson.commonMistake})`,
+    options: [
+      { label: `Chiave corretta: ${lesson.checkpoint.expectedAnswer}`, value: "correct" },
+      { label: `Errore comune: ${lesson.commonMistake.slice(0, 75)}...`, value: "mistake" },
+    ],
+    progressiveHint: `Concentrati su: ${lesson.masteryCriterion.slice(0, 110)} (evita: ${lesson.commonMistake.slice(0, 80)})`,
   };
 }
 
-/**
- * Scompone la spiegazione in un estratto breve (40–85 parole) + testo completo espandibile,
- * così da evitare muri di testo nelle schermate pur preservando il 100% del testo editoriale.
- */
 function splitShortAndFullReading(reading: string): { shortText: string; fullText: string } {
   const sentences = reading.match(/[^.!?]+[.!?]+/g) ?? [reading];
   const shortSentences = sentences.slice(0, 2).join(" ").trim();
@@ -975,127 +1019,71 @@ function splitShortAndFullReading(reading: string): { shortText: string; fullTex
   };
 }
 
-const DEFAULT_ROOM_OBJECTS = [
-  { id: "loc-porta", label: "Porta d'ingresso", asset: "/assets/figma-curated/academy-item-lightbulb.svg", zone: "Ingresso Nord" },
-  { id: "loc-lampada", label: "Lampada da tavolo", asset: "/assets/figma-curated/academy-item-lamp.svg", zone: "Scrivania" },
-  { id: "loc-sgabello", label: "Sgabello giallo", asset: "/assets/figma-curated/academy-item-stool.svg", zone: "Centro stanza" },
-  { id: "loc-libreria", label: "Libreria a parete", asset: "/assets/figma-curated/academy-item-bookshelf.svg", zone: "Parete Est" },
-  { id: "loc-acquario", label: "Boccia con pesce", asset: "/assets/figma-curated/academy-item-fishbowl.svg", zone: "Mensola Sud" },
-];
-
-interface RawPlayerLessonStep {
-  stepId?: string;
-  type: string;
-  title?: string;
-  studentText?: string;
-  body?: string;
-  bullets?: string[];
-  prompt?: string;
-  interactive?: Record<string, unknown>;
-}
-
-interface RawPlayerLesson {
-  id: string;
-  legacyId?: string;
-  courseId: string;
-  courseName: string;
-  title: string;
-  previousTitle?: string;
-  tier: string;
-  estimatedMinutes?: number;
-  prerequisites?: string[];
-  contentVersion?: string;
-  lessonKind?: string;
-  learningTarget?: string;
-  learningObjective?: string;
-  masteryCriterion?: string;
-  masteryGate?: string;
-  pitfall?: string;
-  commonMistake?: string;
-  commonMistakes?: string[];
-  skillType?: string;
-  expertExplanation?: string;
-  steps: RawPlayerLessonStep[];
-  game?: Record<string, unknown>;
-}
-
-const V2_LESSONS_BY_ID: Record<string, RawPlayerLesson> = Object.fromEntries(
-  (RAW_PLAYER_CONTENT_V2.lessons as unknown as RawPlayerLesson[]).map((l) => [l.id, l])
-);
-
-const STAGE_LABELS_IT: Record<string, string> = {
-  hook: "STAGE 1 · SFIDA INIZIALE (HOOK)",
-  explanation: "STAGE 2 · IL PRINCIPIO SCIENTIFICO",
-  expert_walkthrough: "STAGE 3 · RAGIONAMENTO DELL'ESPERTO",
-  demonstration: "STAGE 4 · DIMOSTRAZIONE CONCRETA",
-  guided_practice: "STAGE 5 · PRATICA GUIDATA (SET A)",
-  independent_challenge: "STAGE 6 · PROVA VERA AUTONOMA (SET B)",
-  diagnostic_feedback: "STAGE 7 · DIAGNOSI E RIPARAZIONE",
-  reflection_and_next: "STAGE 8 · CONSOLIDAMENTO E PASSO SUCCESSIVO",
+const STAGE_LABELS_MAP: Record<string, string> = {
+  hook: "STAGE 1 · INGRESSO (HOOK)",
+  guided_practice: "STAGE 2 · PROVA GUIDATA (FAI)",
+  explanation: "STAGE 3 · PRINCIPIO CHIAVE (CAPISCI)",
+  demonstration: "STAGE 4 · ESEMPIO GUIDATO (OSSERVA)",
+  independent_challenge: "STAGE 5 · MISSIONE NUOVA (PROVA VERA)",
+  diagnostic_feedback: "STAGE 6 · DIAGNOSI E RIPARAZIONE (RIPARA)",
 };
 
-const STAGE_ILLUSTRATIONS: Record<string, string> = {
+const STAGE_ILLUSTRATIONS_MAP: Record<string, string> = {
   hook: "/assets/figma-curated/academy-scene-relax-night.svg",
+  guided_practice: "/assets/figma-curated/academy-scene-study-desk.svg",
   explanation: "/assets/figma-curated/academy-mascot-zen-book.svg",
-  expert_walkthrough: "/assets/figma-curated/academy-mascot-tablet.svg",
-  demonstration: "/assets/figma-curated/academy-scene-study-desk.svg",
-  guided_practice: "/assets/figma-curated/academy-item-lamp.svg",
-  independent_challenge: "/assets/figma-curated/academy-mascot-goose.svg",
-  diagnostic_feedback: "/assets/figma-curated/academy-mascot-lion.svg",
-  reflection_and_next: "/assets/figma-curated/academy-scene-explorer.svg",
+  demonstration: "/assets/figma-curated/academy-mascot-tablet.svg",
+  independent_challenge: "/assets/figma-curated/academy-mascot-headphones.svg",
+  diagnostic_feedback: "/assets/figma-curated/academy-scene-explorer.svg",
 };
 
-/**
- * LESSON ENGINE 2.0: costruisce gli 8 stage canonici di ciascuna delle 56 lezioni
- * a partire da `04_LESSONS_PLAYER_CONTENT.json` (`RAW_PLAYER_CONTENT_V2`) e
- * dalla missione dedicata in `ACADEMY_V2_MISSIONS` (`05_GAME_ENGINE_SPEC.md`).
- * Nessun template generico identico viene usato per le 56 lezioni.
- */
 export function buildInteractiveStepsForLesson(
   lesson: LessonEditorial,
   cpMeta: { acceptedKeywords: string[]; options?: { label: string; value: string }[]; progressiveHint: string },
   fallbackNoticeText?: string | null
 ): LessonStepSpec[] {
-  const v2Raw = V2_LESSONS_BY_ID[lesson.id];
-  const mission = ACADEMY_V2_MISSIONS[lesson.id];
+  const v5LessonRaw = (rawCurriculumV5.lessons as Array<{
+    id: string;
+    screens: Array<{
+      index: number;
+      kind: string;
+      label: string;
+      text: string;
+      role?: string;
+    }>;
+  }>).find((l) => l.id === lesson.id);
 
-  if (v2Raw && Array.isArray(v2Raw.steps) && v2Raw.steps.length === 8) {
-    return v2Raw.steps.map((rawStep, idx) => {
-      const stepType = rawStep.type as InteractiveStepType;
-      const rawBody =
-        typeof rawStep.body === "string"
-          ? rawStep.body
-          : Array.isArray(rawStep.bullets)
-            ? rawStep.bullets.map((b: string) => `• ${b}`).join("\n")
-            : typeof rawStep.prompt === "string"
-              ? rawStep.prompt
-              : lesson.reading;
+  const mission = ACADEMY_V5_MISSIONS[lesson.id];
 
-      const { shortText, fullText } = splitShortAndFullReading(rawBody);
-      const isExplanation = stepType === "explanation";
+  if (v5LessonRaw && Array.isArray(v5LessonRaw.screens) && v5LessonRaw.screens.length === 6) {
+    return v5LessonRaw.screens.map((screen, idx) => {
+      const mappedType: InteractiveStepType =
+        screen.kind === "guided_interaction"
+          ? "guided_practice"
+          : screen.kind === "worked_example"
+            ? "demonstration"
+            : screen.kind === "error_feedback"
+              ? "diagnostic_feedback"
+              : (screen.kind as InteractiveStepType);
+
+      const isExplanation = mappedType === "explanation";
+      const { shortText, fullText } = splitShortAndFullReading(screen.text);
 
       return {
-        stepId: rawStep.stepId || `${lesson.id}-step-${idx + 1}`,
+        stepId: `${lesson.id}-step-${screen.index}`,
         stepIndex: idx,
-        type: stepType,
-        stageLabel:
-          STAGE_LABELS_IT[rawStep.type] ??
-          `STAGE ${idx + 1} · ${rawStep.type.toUpperCase()}`,
-        title: rawStep.title || `${lesson.id} · ${lesson.title}`,
-        bodyText: isExplanation ? shortText : rawBody,
-        expandableFullText:
-          isExplanation && fullText.length > shortText.length ? fullText : undefined,
-        illustrationAsset:
-          STAGE_ILLUSTRATIONS[rawStep.type] ??
-          "/assets/figma-curated/academy-mascot-goose.svg",
+        type: mappedType,
+        stageLabel: STAGE_LABELS_MAP[mappedType] ?? `STAGE ${idx + 1} · ${screen.label.toUpperCase()}`,
+        title: `${lesson.id} · ${screen.label}`,
+        bodyText: isExplanation ? shortText : screen.text,
+        expandableFullText: isExplanation && fullText.length > shortText.length ? fullText : undefined,
+        illustrationAsset: STAGE_ILLUSTRATIONS_MAP[mappedType] ?? "/assets/figma-curated/academy-mascot-goose.svg",
         scientificNote:
-          stepType === "demonstration" && fallbackNoticeText
+          mappedType === "demonstration" && fallbackNoticeText
             ? fallbackNoticeText
-            : stepType === "diagnostic_feedback" && Array.isArray(rawStep.bullets)
-              ? rawStep.bullets.join(" · ")
-              : undefined,
+            : undefined,
         options:
-          stepType === "demonstration" && mission
+          mappedType === "demonstration" && mission
             ? mission.demonstrationOptions.map((o) => ({
                 id: o.id,
                 label: o.label,
@@ -1104,33 +1092,30 @@ export function buildInteractiveStepsForLesson(
               }))
             : undefined,
         freeRecallPrompt:
-          stepType === "independent_challenge"
+          mappedType === "independent_challenge"
             ? {
                 question: mission?.independentPrompt ?? lesson.checkpoint.question,
                 expectedAnswer: lesson.checkpoint.expectedAnswer,
                 acceptedKeywords: cpMeta.acceptedKeywords,
-                progressiveHint:
-                  mission?.progressiveHints[0] ?? cpMeta.progressiveHint,
+                progressiveHint: mission?.progressiveHints[0] ?? cpMeta.progressiveHint,
               }
             : undefined,
-        explanationOnSuccess:
-          mission?.demonstrationModelReveal ?? lesson.masteryCriterion,
-        explanationOnMistake: `Evita l'errore tipico: ${lesson.commonMistake}`,
+        explanationOnSuccess: mission?.demonstrationModelReveal ?? lesson.masteryCriterion,
+        explanationOnMistake: `Evita l'errore comune: ${lesson.commonMistake}`,
       };
     });
   }
 
-  // Fallback di sicurezza se un ID non fosse nel file v2
-  const { shortText, fullText } = splitShortAndFullReading(lesson.reading);
+  // Fallback
   return [
     {
       stepId: `${lesson.id}-step-1`,
       stepIndex: 0,
       type: "hook",
-      stageLabel: STAGE_LABELS_IT.hook,
+      stageLabel: "STAGE 1 · INGRESSO (HOOK)",
       title: `${lesson.id} · ${lesson.title}`,
       bodyText: lesson.reading,
-      illustrationAsset: STAGE_ILLUSTRATIONS.hook,
+      illustrationAsset: STAGE_ILLUSTRATIONS_MAP.hook,
       explanationOnSuccess: lesson.masteryCriterion,
       explanationOnMistake: lesson.commonMistake,
     },
@@ -1138,11 +1123,10 @@ export function buildInteractiveStepsForLesson(
       stepId: `${lesson.id}-step-2`,
       stepIndex: 1,
       type: "explanation",
-      stageLabel: STAGE_LABELS_IT.explanation,
+      stageLabel: "STAGE 3 · PRINCIPIO CHIAVE (CAPISCI)",
       title: "Perché funziona",
-      bodyText: shortText,
-      expandableFullText: fullText,
-      illustrationAsset: STAGE_ILLUSTRATIONS.explanation,
+      bodyText: lesson.reading,
+      illustrationAsset: STAGE_ILLUSTRATIONS_MAP.explanation,
       explanationOnSuccess: lesson.masteryCriterion,
       explanationOnMistake: lesson.commonMistake,
     },
@@ -1150,81 +1134,73 @@ export function buildInteractiveStepsForLesson(
 }
 
 export const RAW_ACADEMY_LESSONS: LessonEditorial[] = (
-  rawCurriculum.lessons as LessonEditorial[]
-).map((v1Lesson) => {
-  const v2 = V2_LESSONS_BY_ID[v1Lesson.id];
-  if (!v2) return v1Lesson;
-
-  const stepByType = Object.fromEntries(v2.steps.map((s) => [s.type, s]));
-  const explanationText =
-    typeof stepByType.explanation?.body === "string"
-      ? stepByType.explanation.body
-      : v1Lesson.reading;
-  const walkthroughText =
-    typeof stepByType.expert_walkthrough?.body === "string"
-      ? stepByType.expert_walkthrough.body
-      : "";
-  const demoText =
-    typeof stepByType.demonstration?.body === "string"
-      ? stepByType.demonstration.body
-      : v1Lesson.workedExample;
-  const guidedPrompt =
-    typeof stepByType.guided_practice?.prompt === "string"
-      ? stepByType.guided_practice.prompt
-      : v1Lesson.exercise.prompt;
-  const challengePrompt =
-    typeof stepByType.independent_challenge?.prompt === "string"
-      ? stepByType.independent_challenge.prompt
-      : v1Lesson.checkpoint.question;
-  const commonMistakesJoined =
-    Array.isArray(v2.commonMistakes) && v2.commonMistakes.length > 0
-      ? v2.commonMistakes.join(" · ")
-      : v1Lesson.commonMistake;
+  rawCurriculumV5.lessons as Array<{
+    id: string;
+    path: string;
+    title: string;
+    pattern: string;
+    proposed_minigame: string;
+    hook: string;
+    explanation: string;
+    worked_example: string;
+    guided_interaction: string;
+    independent_challenge: string;
+    assessment_contract: string;
+    error_feedback: string;
+    outside_loco?: string;
+    access: string;
+    recommended_prerequisites: string[];
+    screens: Array<{
+      index: number;
+      kind: string;
+      label: string;
+      text: string;
+    }>;
+  }>
+).map((l, idx) => {
+  const courseId = PATH_TO_COURSE_ID[l.path] || "course-fondamenta";
+  const courseMeta = COURSE_METADATA[courseId];
 
   return {
-    ...v1Lesson,
-    title: v2.title || v1Lesson.title,
-    contentVersion: v2.contentVersion || ACADEMY_V2_SCHEMA_VERSION,
-    planTier: (v2.tier as LessonTier) || v1Lesson.planTier,
-    prerequisites: Array.isArray(v2.prerequisites)
-      ? v2.prerequisites
-      : v1Lesson.prerequisites,
-    estimatedMinutes:
-      typeof v2.estimatedMinutes === "number"
-        ? v2.estimatedMinutes
-        : v1Lesson.estimatedMinutes,
-    reading: explanationText,
-    workedExample: walkthroughText
-      ? `${walkthroughText}\n\n${demoText}`
-      : demoText,
+    id: l.id,
+    title: l.title,
+    contentVersion: ACADEMY_V5_SCHEMA_VERSION,
+    courseId,
+    courseName: courseMeta ? courseMeta.unitTitle : l.path,
+    position: idx + 1,
+    planTier: (l.access === "base" ? "free" : "plus") as LessonTier,
+    requiredInOnboarding: l.path === "Fondamenta",
+    prerequisites: l.recommended_prerequisites || [],
+    locale: "it-IT" as const,
+    estimatedMinutes: 4,
+    reading: l.explanation,
+    workedExample: l.worked_example,
     exercise: {
-      prompt: guidedPrompt,
-      mode: v2.skillType || v1Lesson.exercise.mode,
+      prompt: l.guided_interaction,
+      mode: l.proposed_minigame,
     },
     checkpoint: {
-      question: challengePrompt,
-      expectedAnswer: v1Lesson.checkpoint.expectedAnswer,
+      question: l.independent_challenge,
+      expectedAnswer: resolveExpectedAnswerForLesson(l.id, l.independent_challenge),
     },
-    masteryCriterion: v2.masteryGate || v1Lesson.masteryCriterion,
-    commonMistake: commonMistakesJoined,
+    masteryCriterion: l.assessment_contract,
+    commonMistake: l.error_feedback,
   };
 });
 
 export const ENRICHED_ACADEMY_LESSONS: EnrichedAcademyLesson[] =
   RAW_ACADEMY_LESSONS.map((lesson) => {
-    const v2 = V2_LESSONS_BY_ID[lesson.id];
-    const mission = ACADEMY_V2_MISSIONS[lesson.id];
     const courseMeta = COURSE_METADATA[lesson.courseId] ?? {
       unitNumber: 1,
       unitTitle: lesson.courseName,
       subtitle: lesson.courseName,
-      theme: "study" as AcademyTheme,
+      theme: "onboarding" as AcademyTheme,
       planTier: lesson.planTier,
-      entrySuggestion: "Libero",
-      unlockPolicy: "Libero",
-      mascotAsset: "/assets/figma-curated/academy-mascot-goose.svg",
+      entrySuggestion: "Inizia da qui",
+      unlockPolicy: "Sempre disponibile",
+      mascotAsset: "/assets/figma-curated/academy-scene-relax-night.svg",
     };
-    const courseNum = Number(lesson.courseId.replace("course-", "")) || 0;
+    const mission = ACADEMY_V5_MISSIONS[lesson.id];
     const runtimeSpec = resolveRuntimeExerciseKind(lesson.id);
     const cpMeta = buildCheckpointMetadata(lesson);
     const steps = buildInteractiveStepsForLesson(
@@ -1232,14 +1208,11 @@ export const ENRICHED_ACADEMY_LESSONS: EnrichedAcademyLesson[] =
       cpMeta,
       runtimeSpec.fallbackNoticeText
     );
-    const stepByType = v2
-      ? Object.fromEntries(v2.steps.map((s) => [s.type, s]))
-      : {};
 
     return {
       ...lesson,
       theme: courseMeta.theme,
-      courseNumber: courseNum,
+      courseNumber: courseMeta.unitNumber,
       unitNumber: courseMeta.unitNumber,
       unitTitle: courseMeta.unitTitle,
       runtimeExerciseKind: runtimeSpec.kind,
@@ -1247,43 +1220,34 @@ export const ENRICHED_ACADEMY_LESSONS: EnrichedAcademyLesson[] =
       fallbackNoticeText: runtimeSpec.fallbackNoticeText,
       checkpointAcceptedKeywords: cpMeta.acceptedKeywords,
       checkpointOptions: cpMeta.options,
-      progressiveHint:
-        mission?.progressiveHints[0] ?? cpMeta.progressiveHint,
+      progressiveHint: mission?.progressiveHints[0] ?? cpMeta.progressiveHint,
       steps,
       v2Mission: mission,
-      v2LearningObjective: v2?.learningObjective ?? lesson.masteryCriterion,
-      v2SkillType: v2?.skillType ?? lesson.exercise.mode,
-      v2ExpertWalkthrough:
-        typeof stepByType.expert_walkthrough?.body === "string"
-          ? stepByType.expert_walkthrough.body
-          : lesson.workedExample,
-      v2CommonMistakes: Array.isArray(v2?.commonMistakes)
-        ? v2.commonMistakes
-        : [lesson.commonMistake],
-      gradingReliability:
-        mission?.gradingReliability ?? "deterministic_verified",
+      v2LearningObjective: lesson.masteryCriterion,
+      v2SkillType: lesson.exercise.mode,
+      v2ExpertWalkthrough: lesson.workedExample,
+      v2CommonMistakes: [lesson.commonMistake],
+      gradingReliability: mission?.gradingReliability ?? "deterministic_verified",
     };
   });
 
 export const ACADEMY_LESSONS_BY_ID: Record<string, EnrichedAcademyLesson> =
   Object.fromEntries(ENRICHED_ACADEMY_LESSONS.map((l) => [l.id, l]));
 
-export const ACADEMY_COURSES: AcademyCourse[] = rawCurriculum.courses.map((c) => {
-  const meta = COURSE_METADATA[c.courseId] ?? {
-    unitNumber: c.courseNumber + 1,
-    unitTitle: `UNITÀ ${c.courseNumber + 1} — ${c.title}`,
-    subtitle: c.title,
-    theme: "study" as AcademyTheme,
-    planTier: "free" as LessonTier,
-    entrySuggestion: "Libero",
-    unlockPolicy: "Libero",
-    mascotAsset: "/assets/figma-curated/academy-mascot-goose.svg",
-  };
+export const ACADEMY_COURSES: AcademyCourse[] = [
+  { courseId: "course-fondamenta", courseNumber: 1, unitNumber: 1, unitTitle: "UNITÀ 1 — Fondamenta della memoria", title: "Fondamenta della memoria", subtitle: "Imparare a guardare, costruire indizi efficaci e riconoscere il recupero autentico", theme: "onboarding" as AcademyTheme, planTier: "free" as LessonTier, entrySuggestion: "Inizia da qui", unlockPolicy: "Percorso iniziale sempre disponibile", mascotAsset: "/assets/figma-curated/academy-scene-relax-night.svg", lessonIds: ["F01", "F02", "F03", "F04", "F05"] },
+  { courseId: "course-associazioni", courseNumber: 2, unitNumber: 2, unitTitle: "UNITÀ 2 — L'arte dell'associazione", title: "L'arte dell'associazione", subtitle: "Azioni visive dinamiche, catene Linked che si raccontano da sole e riparazione di anelli deboli", theme: "linked" as AcademyTheme, planTier: "free" as LessonTier, entrySuggestion: "Dopo F04", unlockPolicy: "Sempre disponibile gratuitamente", mascotAsset: "/assets/figma-curated/academy-mascot-cat.svg", lessonIds: ["A01", "A02", "A03", "A04", "A05", "A06"] },
+  { courseId: "course-palazzi", courseNumber: 3, unitNumber: 3, unitTitle: "UNITÀ 3 — Palazzi della memoria", title: "Palazzi della memoria", subtitle: "Progettare luoghi con un percorso stabile, rotte coerenti dalla porta e recupero senza mappa", theme: "loci" as AcademyTheme, planTier: "free" as LessonTier, entrySuggestion: "Dopo F04", unlockPolicy: "Sempre disponibile gratuitamente", mascotAsset: "/assets/figma-curated/academy-scene-study-desk.svg", lessonIds: ["P01", "P02", "P03", "P04", "P05", "P06", "P07"] },
+  { courseId: "course-numeri", courseNumber: 4, unitNumber: 4, unitTitle: "UNITÀ 4 — Conversione fonetica e cifre", title: "Conversione fonetica e cifre", subtitle: "Dal codice major-it-v1 al lessico personale 00–99 e memorizzazione di date storiche", theme: "numbers" as AcademyTheme, planTier: "free" as LessonTier, entrySuggestion: "Dopo F03", unlockPolicy: "Sempre disponibile gratuitamente", mascotAsset: "/assets/figma-curated/academy-mascot-headphones.svg", lessonIds: ["N01", "N02", "N03", "N04", "N05", "N06", "N07"] },
+  { courseId: "course-vita-reale", courseNumber: 5, unitNumber: 5, unitTitle: "UNITÀ 5 — LOCO nella vita reale", title: "LOCO nella vita reale", subtitle: "Nomi, volti, percorsi stradali, intenzioni future, vocaboli stranieri e discorsi", theme: "real-life" as AcademyTheme, planTier: "free" as LessonTier, entrySuggestion: "Dopo F02 e F03", unlockPolicy: "Sempre disponibile gratuitamente", mascotAsset: "/assets/figma-curated/academy-scene-runner.svg", lessonIds: ["E01", "E02", "E03", "E04", "E05", "E06"] },
+  { courseId: "course-studio", courseNumber: 6, unitNumber: 6, unitTitle: "UNITÀ 6 — Dalla memoria alla comprensione", title: "Dalla memoria alla comprensione", subtitle: "Dalle idee alle domande, budget delle immagini mentali, mappe strutturate e ripasso", theme: "study" as AcademyTheme, planTier: "free" as LessonTier, entrySuggestion: "Dopo F01", unlockPolicy: "Sempre disponibile gratuitamente", mascotAsset: "/assets/figma-curated/academy-scene-library.svg", lessonIds: ["S01", "S02", "S03", "S04", "S05", "S06"] },
+  { courseId: "course-carte", courseNumber: 7, unitNumber: 7, unitTitle: "UNITÀ 7 — La lingua delle carte", title: "La lingua delle carte", subtitle: "Specializzazione opzionale: lessico di carte e prime sequenze ordinate", theme: "training" as AcademyTheme, planTier: "plus" as LessonTier, entrySuggestion: "Specializzazione opzionale", unlockPolicy: "POCO LOCO · Accesso a tutte le lezioni delle carte", mascotAsset: "/assets/figma-curated/academy-mascot-lion.svg", lessonIds: ["C01", "C02", "C03", "C05", "C04"] },
+  { courseId: "course-specializzazioni", courseNumber: 8, unitNumber: 8, unitTitle: "UNITÀ 8 — Specializzazioni e protocolli", title: "Specializzazioni e protocolli", subtitle: "PAO, binario, citazioni, capitali, ortografia e protocolli avanzati", theme: "palaces-advanced" as AcademyTheme, planTier: "plus" as LessonTier, entrySuggestion: "Specializzazione opzionale", unlockPolicy: "POCO LOCO · Specializzazioni avanzate", mascotAsset: "/assets/figma-curated/academy-scene-explorer.svg", lessonIds: ["X01", "X02", "X03", "X04", "X05", "X06"] },
+].map((c) => {
   const lessons = c.lessonIds
     .map((id) => ACADEMY_LESSONS_BY_ID[id])
     .filter((l): l is EnrichedAcademyLesson => Boolean(l));
 
-  // Build 3 unit checkpoint challenge questions from the unit's lessons
   const checkpointQuestions: UnitCheckpointQuestion[] = lessons.slice(0, 3).map((l, idx) => ({
     id: `${c.courseId}-cp-q${idx + 1}`,
     question: `${l.id} · ${l.checkpoint.question}`,
@@ -1294,12 +1258,12 @@ export const ACADEMY_COURSES: AcademyCourse[] = rawCurriculum.courses.map((c) =>
         isCorrect: true,
       },
       {
-        label: `Errore tipico: ${l.commonMistake}`,
+        label: `Errore comune: ${l.commonMistake.slice(0, 70)}...`,
         value: "mistake",
         isCorrect: false,
       },
       {
-        label: "Rileggere passivamente senza fare un tentativo autonomo.",
+        label: "Riconoscimento passivo senza recupero autonomo",
         value: "passive",
         isCorrect: false,
       },
@@ -1308,18 +1272,7 @@ export const ACADEMY_COURSES: AcademyCourse[] = rawCurriculum.courses.map((c) =>
   }));
 
   return {
-    courseId: c.courseId,
-    courseNumber: c.courseNumber,
-    unitNumber: meta.unitNumber,
-    unitTitle: meta.unitTitle,
-    title: c.title,
-    subtitle: meta.subtitle,
-    theme: meta.theme,
-    planTier: meta.planTier,
-    entrySuggestion: meta.entrySuggestion,
-    unlockPolicy: meta.unlockPolicy,
-    mascotAsset: meta.mascotAsset,
-    lessonIds: c.lessonIds,
+    ...c,
     lessons,
     checkpointQuestions,
   };
@@ -1385,9 +1338,6 @@ export function createDefaultGamificationState(
   };
 }
 
-/**
- * Calcola il livello LOCO attuale (Esploratore -> Maestro dei Loci) in base agli XP totali.
- */
 export function resolveLocoLevel(totalXp: number): {
   current: LocoLevelDefinition;
   next: LocoLevelDefinition | null;
@@ -1410,10 +1360,6 @@ export function resolveLocoLevel(totalXp: number): {
   return { current, next, progressPercent };
 }
 
-/**
- * Assegna XP in modo idempotente tramite `eventId` univoco:
- * ricaricare la pagina o riaprire una schermata già premiata NON duplica mai gli XP.
- */
 export function awardIdempotentXp(
   state: AcademyGamificationState,
   eventId: string,
@@ -1440,9 +1386,6 @@ export function awardIdempotentXp(
   return { updated, awardedNow: xpAmount };
 }
 
-/**
- * Valuta quali badge verificabili sono stati sbloccati in base ai progressi reali.
- */
 export function computeUnlockedBadgeIds(
   progressMap: AcademyProgressMap,
   gamification: AcademyGamificationState,
@@ -1455,15 +1398,15 @@ export function computeUnlockedBadgeIds(
     return st === "provisionally_passed" || st === "mastered_after_delay";
   };
 
-  if (isPassed("S01")) {
+  if (isPassed("F01")) {
     badges.add("badge-first-memory");
   }
 
-  if (["S01", "S02", "S03", "S04", "S05", "S06"].every(isPassed)) {
+  if (["F01", "F02", "F03", "F04", "F05"].every(isPassed) || isPassed("P03")) {
     badges.add("badge-first-palace");
   }
 
-  if (isPassed("L06") || totalLociInRoutes >= 10) {
+  if (isPassed("P06") || totalLociInRoutes >= 10) {
     badges.add("badge-10-loci");
   }
 
@@ -1488,9 +1431,6 @@ export function computeUnlockedBadgeIds(
   return Array.from(badges);
 }
 
-/**
- * Determina lo stato visuale del nodo sul Learning Path (Sezione 2).
- */
 export function resolvePathNodeVisualState(
   lesson: EnrichedAcademyLesson,
   progressMap: AcademyProgressMap,
@@ -1596,28 +1536,12 @@ export function evaluateLessonCheckpointAnswer(
     };
   }
 
-  if (
-    expectedClean === "a" ||
-    expectedClean === "b" ||
-    expectedClean === "no" ||
-    expectedClean === "sì" ||
-    expectedClean === "6"
-  ) {
-    const isMatch = lesson.checkpointAcceptedKeywords.includes(cleaned);
-    return {
-      isCorrect: isMatch,
-      feedback: isMatch
-        ? `Risposta corretta! Chiave: ${lesson.checkpoint.expectedAnswer}`
-        : `Non ancora. Chiave attesa: ${lesson.checkpoint.expectedAnswer} — Errore tipico: ${lesson.commonMistake}`,
-    };
-  }
-
   const matchedKeywords = lesson.checkpointAcceptedKeywords.filter((kw) =>
     cleaned.includes(kw)
   );
   const threshold = Math.max(
     1,
-    Math.ceil(lesson.checkpointAcceptedKeywords.length * 0.45)
+    Math.ceil(lesson.checkpointAcceptedKeywords.length * 0.4)
   );
   const isCorrect = matchedKeywords.length >= threshold;
 
@@ -1625,7 +1549,7 @@ export function evaluateLessonCheckpointAnswer(
     isCorrect,
     feedback: isCorrect
       ? `Risposta coerente con la chiave («${lesson.checkpoint.expectedAnswer}»).`
-      : `Risposta parziale o imprecisa. Chiave di riferimento: «${lesson.checkpoint.expectedAnswer}». Attenzione a non ${lesson.commonMistake}`,
+      : `Risposta parziale o imprecisa. Chiave di riferimento: «${lesson.checkpoint.expectedAnswer}». Attenzione: ${lesson.commonMistake}`,
   };
 }
 
@@ -1714,14 +1638,6 @@ export function recordAcademyCheckpointAttempt(
   };
 }
 
-/**
- * Registra un tentativo completo di LOCO Academy 2.0 (`AttemptEvidence`, `05_GAME_ENGINE_SPEC.md`).
- * Applica rigorosamente le regole di valutazione onesta:
- * - `!submittedBeforeReveal` -> mai `provisionally_passed` o `mastered_after_delay`
- * - `hintsUsed > 0` -> richiamo assistito (`practice_done`), mai mastery autonoma
- * - `verifiedBy === "learner_self_check"` (rubrica aperta senza recall deterministico) -> `practice_done` (`skill_practiced`), mai `provisionally_passed` automatico
- * - `verifiedBy === "deterministic"` + `autonomousMasteryEligible` -> `provisionally_passed` (o `mastered_after_delay` se follow-up a distanza)
- */
 export function recordAcademyV2Attempt(
   current: AcademyLessonProgress,
   lesson: EnrichedAcademyLesson,
@@ -1754,26 +1670,10 @@ export function recordAcademyV2Attempt(
       current.status === "mastered_after_delay" ||
       current.status === "provisionally_passed"
         ? "needs_review"
-        : current.practiceCompletedAt
+        : practiceCompletedAt
           ? "practice_done"
           : "reading";
-  } else if (evidence.verifiedBy === "learner_self_check") {
-    // Open rubric tasks: self-check grants `practice_done` (`skill_practiced`) when valid, NEVER automatic mastery!
-    if (evidence.scoreRatio >= 1) {
-      practiceCompletedAt = practiceCompletedAt ?? nowIso;
-      if (
-        current.status !== "provisionally_passed" &&
-        current.status !== "mastered_after_delay"
-      ) {
-        nextStatus = "practice_done";
-      }
-      const nextDate = new Date(Date.parse(nowIso) + 48 * 60 * 60 * 1000);
-      nextReviewDueAt = nextReviewDueAt ?? nextDate.toISOString();
-    } else {
-      nextStatus = "needs_review";
-    }
   } else if (autonomousSuccess) {
-    practiceCompletedAt = practiceCompletedAt ?? nowIso;
     const canPromoteToMastered =
       Boolean(current.provisionallyPassedAt) &&
       (options?.isDelayedFollowUp === true || current.checkpointAttempts >= 1);
@@ -1789,14 +1689,13 @@ export function recordAcademyV2Attempt(
       const nextDate = new Date(Date.parse(nowIso) + 24 * 60 * 60 * 1000);
       nextReviewDueAt = nextDate.toISOString();
     }
-  } else if (evidence.correct === true && evidence.hintsUsed > 0) {
-    // Assisted recall -> `practice_done`, never autonomous mastery
-    practiceCompletedAt = practiceCompletedAt ?? nowIso;
-    if (
-      current.status === "available" ||
-      current.status === "reading" ||
-      current.status === "needs_review"
-    ) {
+  } else if (evidence.correct === true) {
+    if (evidence.verifiedBy === "learner_self_check") {
+      practiceCompletedAt = practiceCompletedAt ?? nowIso;
+      nextStatus = "practice_done";
+    } else if (evidence.hintsUsed > 0) {
+      nextStatus = practiceCompletedAt ? "practice_done" : "reading";
+    } else {
       nextStatus = "practice_done";
     }
   } else {
@@ -1858,8 +1757,7 @@ export function reconcileAcademyProgressVersion(
     return normalized;
   }
   const demotedStatus: LessonStatus =
-    normalized.status === "mastered_after_delay" ||
-    normalized.status === "provisionally_passed"
+    normalized.status === "mastered_after_delay"
       ? "needs_review"
       : normalized.status;
 
@@ -1868,15 +1766,6 @@ export function reconcileAcademyProgressVersion(
     contentVersion: lesson.contentVersion,
     status: demotedStatus,
   };
-}
-
-export interface AdaptiveAcademyRecommendation {
-  id: string;
-  observedSignal: string;
-  recommendedLessonIds: string[];
-  explanation: string;
-  sampleSize: number;
-  isSufficientSample: boolean;
 }
 
 export function computeAdaptiveAcademyRecommendations(diagnostics: {
@@ -1894,9 +1783,9 @@ export function computeAdaptiveAcademyRecommendations(diagnostics: {
     recommendations.push({
       id: "rec-insufficient-sample",
       observedSignal: `Campione attuale ridotto (${diagnostics.totalTrialsCount} prove registrate)`,
-      recommendedLessonIds: ["S01", "S03", "S05"],
+      recommendedLessonIds: ["F01", "P01", "A01"],
       explanation:
-        "Non ci sono ancora dati sufficienti per una diagnosi personalizzata affidabile. Completa un breve ciclo iniziale S01–S06 per raccogliere tentativi reali.",
+        "Non ci sono ancora dati sufficienti per una diagnosi personalizzata affidabile. Completa un breve ciclo iniziale F01–F05 per raccogliere tentativi reali.",
       sampleSize: diagnostics.totalTrialsCount,
       isSufficientSample: false,
     });
@@ -1907,9 +1796,9 @@ export function computeAdaptiveAcademyRecommendations(diagnostics: {
     recommendations.push({
       id: "rec-recognition-vs-recall",
       observedSignal: `Risposta scoperta prima del tentativo in ${diagnostics.viewedAnswerBeforeAttemptCount} su ${diagnostics.totalTrialsCount} prove`,
-      recommendedLessonIds: ["S01", "S05"],
+      recommendedLessonIds: ["F01", "S01"],
       explanation:
-        "Stai confondendo familiarità (riconoscimento) e recupero attivo. Ripassa S01 e S05 per allenare il tentativo a risposta nascosta.",
+        "Stai confondendo familiarità (riconoscimento) e recupero attivo. Ripassa F01 e S01 per allenare il tentativo a risposta nascosta.",
       sampleSize: diagnostics.totalTrialsCount,
       isSufficientSample: true,
     });
@@ -1919,9 +1808,9 @@ export function computeAdaptiveAcademyRecommendations(diagnostics: {
     recommendations.push({
       id: "rec-locus-order-swap",
       observedSignal: `Inversione dell'ordine dei loci osservata (${diagnostics.locusOrderSwapCount} volte)`,
-      recommendedLessonIds: ["L02", "L03", "L07"],
+      recommendedLessonIds: ["P02", "P03", "P05"],
       explanation:
-        "Quando due punti del palazzo si scambiano, non serve generare più immagini: rinforza la distinzione visiva e la regola di percorrenza in L02, L03 e L07.",
+        "Quando due punti del palazzo si scambiano, non serve generare più immagini: rinforza la distinzione visiva e la regola di percorrenza in P02, P03 e P05.",
       sampleSize: diagnostics.totalTrialsCount,
       isSufficientSample: true,
     });
@@ -1931,9 +1820,9 @@ export function computeAdaptiveAcademyRecommendations(diagnostics: {
     recommendations.push({
       id: "rec-weak-cue-link",
       observedSignal: `Locus ricordato ma risposta assente in ${diagnostics.locusRecognizedButAnswerMissingCount} prove`,
-      recommendedLessonIds: ["L05", "T04"],
+      recommendedLessonIds: ["F04", "A01"],
       explanation:
-        "Il punto spaziale tiene, ma l'immagine non contiene una chiave che riporti alla parola esatta. Lavora su indizi interpretabili in L05 e sul feedback in T04.",
+        "Il punto spaziale tiene, ma l'immagine non contiene una chiave che riporti alla parola esatta. Lavora su indizi interpretabili in F04 e A01.",
       sampleSize: diagnostics.totalTrialsCount,
       isSufficientSample: true,
     });
@@ -1943,9 +1832,9 @@ export function computeAdaptiveAcademyRecommendations(diagnostics: {
     recommendations.push({
       id: "rec-major-6-7",
       observedSignal: `Confusione fonetica 6/7 (C/G dolci vs dure) in ${diagnostics.majorSoftHardConfusionCount} prove`,
-      recommendedLessonIds: ["N02", "N04"],
+      recommendedLessonIds: ["N02", "N03"],
       explanation:
-        "Distinguere grafia e suono per C/G dolci (6: ciao, micio) e C/G dure (7: casa, mago) richiede l'allenamento bidirezionale di N02 e N04.",
+        "Distinguere grafia e suono per C/G dolci (6: ciao, cera) e C/G dure (7: casa, coro) richiede l'allenamento fonetico di N02 e N03.",
       sampleSize: diagnostics.totalTrialsCount,
       isSufficientSample: true,
     });
@@ -1955,9 +1844,9 @@ export function computeAdaptiveAcademyRecommendations(diagnostics: {
     recommendations.push({
       id: "rec-spacing-drop",
       observedSignal: `Calo tra prova immediata e verifica a distanza (${diagnostics.immediatePassDelayedFailCount} target)`,
-      recommendedLessonIds: ["S06", "T05"],
+      recommendedLessonIds: ["S06", "E04"],
       explanation:
-        "Una riuscita immediata non garantisce la tenuta dopo giorni. Dai priorità alle prove distribuite con S06 e T05.",
+        "Una riuscita immediata non garantisce la tenuta dopo giorni. Dai priorità alle prove distribuite con S06 ed E04.",
       sampleSize: diagnostics.totalTrialsCount,
       isSufficientSample: true,
     });
@@ -1970,9 +1859,9 @@ export function computeAdaptiveAcademyRecommendations(diagnostics: {
     recommendations.push({
       id: "rec-hint-dependency",
       observedSignal: `Indizio richiesto in ${diagnostics.hintAssistedTrialsCount} prove su ${diagnostics.totalTrialsCount}`,
-      recommendedLessonIds: ["S05", "T04", "A03"],
+      recommendedLessonIds: ["F04", "A03"],
       explanation:
-        "Gli indizi sbloccano lo studio ma riducono l'autonomia del richiamo. Rivedi come graduare gli aiuti in S05, T04 e nel laboratorio A03.",
+        "Gli indizi sbloccano lo studio ma riducono l'autonomia del richiamo. Rivedi come graduare gli aiuti in F04 e nella diagnosi di A03.",
       sampleSize: diagnostics.totalTrialsCount,
       isSufficientSample: true,
     });

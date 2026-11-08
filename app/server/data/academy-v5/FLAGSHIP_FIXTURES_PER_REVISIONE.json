@@ -1,0 +1,164 @@
+{
+  "status": "editorial_game_design_not_implemented",
+  "fixtures": {
+    "F01": {
+      "type": "memory_experiment",
+      "guided_study": [
+        "elica",
+        "pera",
+        "violino",
+        "foca",
+        "lanterna"
+      ],
+      "independent_study": [
+        "pettine",
+        "zattera",
+        "tulipano",
+        "tamburo",
+        "calamita"
+      ],
+      "distractors": [
+        "granchio",
+        "pianola",
+        "cascata",
+        "candela",
+        "matita"
+      ],
+      "validation": "exact_token_recall_and_order",
+      "hidden_during": "independent_recall"
+    },
+    "A03": {
+      "type": "chain_repair",
+      "guided_chain": [
+        "gatto",
+        "razzo",
+        "sapone",
+        "martello"
+      ],
+      "guided_weak_edge_index": 2,
+      "guided_fix_example": "un martello frantuma la saponetta",
+      "independent_chain": [
+        "gelato",
+        "treno",
+        "cactus",
+        "campana"
+      ],
+      "independent_flaw_description": "cactus e campana appaiono semplicemente vicini, senza azione",
+      "validation": "detect_edge+repair+free_recall"
+    },
+    "P02": {
+      "type": "floorplan_route",
+      "map_setup": "porta in basso al centro; lampada in basso a sinistra; libreria a sinistra; finestra in alto; scrivania in alto a destra; divano in basso a destra",
+      "guided_route": [
+        "porta",
+        "lampada",
+        "libreria",
+        "finestra",
+        "scrivania",
+        "divano"
+      ],
+      "convention": "dalla porta, inizia dalla parete sinistra, prosegui sempre nello stesso senso",
+      "allow_equivalent_valid_routes": true,
+      "blind_test": "recover_locus_names_without_map"
+    },
+    "P03": {
+      "type": "custom_loci",
+      "demo_room": [
+        "ingresso",
+        "tappeto",
+        "scarpiera",
+        "attaccapanni",
+        "specchio",
+        "comodino",
+        "finestra",
+        "divano"
+      ],
+      "must_match_asset_geometry": true,
+      "target_loci_count": 8,
+      "independent_test": "recall_all_in_order_and_positions_3_7_1",
+      "validator": "compare_to_users_own_saved_route"
+    },
+    "N03": {
+      "type": "italian_major_phoneme",
+      "supported_dictionary": {
+        "giro": "64",
+        "gara": "74",
+        "cera": "64",
+        "cara": "74",
+        "coro": "74"
+      },
+      "independent_stimuli": [
+        "coro",
+        "cera"
+      ],
+      "answers": {
+        "coro": "74",
+        "cera": "64"
+      },
+      "unsupported": "do not automatically validate gn gli sc double-consonant ambiguities without tested parser"
+    },
+    "S03": {
+      "type": "mnemonic_budget",
+      "number_of_tokens": 3,
+      "guided_items": [
+        {
+          "id": "g1",
+          "kind": "causal",
+          "text": "La molla restituisce energia quando si distende"
+        },
+        {
+          "id": "g2",
+          "kind": "arbitrary",
+          "text": "La navetta fittizia è chiamata Vela-7"
+        },
+        {
+          "id": "g3",
+          "kind": "causal",
+          "text": "La luce intensa aumenta la temperatura di una superficie scura"
+        },
+        {
+          "id": "g4",
+          "kind": "arbitrary",
+          "text": "Il rapporto di prova immaginario porta sigla R-14"
+        },
+        {
+          "id": "g5",
+          "kind": "classification",
+          "text": "I materiali si dividono in due famiglie nella simulazione"
+        },
+        {
+          "id": "g6",
+          "kind": "arbitrary",
+          "text": "Il prototipo inventato è stato inaugurato nel 2037"
+        }
+      ],
+      "evaluation": "human_or_rubric_with_reasoned_alternatives; no single arbitrary answer"
+    },
+    "C03": {
+      "type": "ordered_cards",
+      "example_study": [
+        "A♠",
+        "7♥",
+        "Q♦",
+        "3♣",
+        "10♠"
+      ],
+      "draw_constraint": "independent deck draws only from user verified distinct codes; if fewer than 5, return to C02",
+      "study_seconds_default": 10,
+      "user_can_adjust_time": true,
+      "recall_input": "free notation or entire 52-card shuffled deck, never only the 5 targets",
+      "evaluation": "exact_card_and_exact_position"
+    },
+    "E01": {
+      "type": "face_name",
+      "fictional_portrait": {
+        "asset_id": "fictional-portrait-giorgia",
+        "display_name": "Giorgia",
+        "distinctive_neutral_feature": "orecchino triangolare"
+      },
+      "independent_display_name": "Giorgia",
+      "hidden_during": "name_recall",
+      "evaluation": "exact_name_normalized; reveal marks practice-assisted"
+    }
+  }
+}

@@ -110,19 +110,40 @@ export function LocoAcademySection({
     }
   }, [gamification, progressMap, totalLociInRoutes]);
 
+  const LEGACY_COURSE_ALIAS: Record<string, string> = {
+    "course-0": "course-fondamenta",
+    "course-1": "course-palazzi",
+    "course-2": "course-associazioni",
+    "course-3": "course-numeri",
+    "course-4": "course-studio",
+    "course-5": "course-vita-reale",
+    "course-6": "course-specializzazioni",
+    "course-7": "course-specializzazioni",
+    "course-8": "course-studio",
+    "course-9": "course-palazzi",
+    "course-10": "course-carte",
+    "course-11": "course-specializzazioni",
+  };
+
+  const resolveCourseId = (id: string | null): string | null => {
+    if (!id) return null;
+    if (ACADEMY_COURSES.some((c) => c.courseId === id)) return id;
+    if (LEGACY_COURSE_ALIAS[id] && ACADEMY_COURSES.some((c) => c.courseId === LEGACY_COURSE_ALIAS[id])) {
+      return LEGACY_COURSE_ALIAS[id];
+    }
+    return null;
+  };
+
   // Selected Course State (restored from URL `?course=` or localStorage so reloads keep context)
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(() => {
     if (typeof window === "undefined") return null;
     try {
       const params = new URLSearchParams(window.location.search);
-      const urlCourse = params.get("course");
-      if (urlCourse && ACADEMY_COURSES.some((c) => c.courseId === urlCourse)) {
-        return urlCourse;
-      }
-      const saved = window.localStorage.getItem(SELECTED_COURSE_STORAGE_KEY);
-      if (saved && ACADEMY_COURSES.some((c) => c.courseId === saved)) {
-        return saved;
-      }
+      const urlCourse = resolveCourseId(params.get("course"));
+      if (urlCourse) return urlCourse;
+
+      const saved = resolveCourseId(window.localStorage.getItem(SELECTED_COURSE_STORAGE_KEY));
+      if (saved) return saved;
     } catch {
       // ignore
     }
@@ -137,10 +158,10 @@ export function LocoAcademySection({
     }
     if (selectedCourseId) return selectedCourseId;
     if (focusedCourseNumber !== null && focusedCourseNumber !== undefined) {
-      const targetCourseId = `course-${focusedCourseNumber}`;
-      if (ACADEMY_COURSES.some((c) => c.courseId === targetCourseId)) {
-        return targetCourseId;
-      }
+      const match = ACADEMY_COURSES.find(
+        (c) => c.courseNumber === focusedCourseNumber || c.courseId === `course-${focusedCourseNumber}`
+      );
+      if (match) return match.courseId;
     }
     return null;
   }, [activeLessonId, selectedCourseId, focusedCourseNumber]);

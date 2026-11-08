@@ -13,12 +13,20 @@ import {
 import {
   evaluateBuilderThenBlindRecallAttempt,
   evaluateCardsAndNamesDualAttempt,
+  evaluateChainRepairA03,
+  evaluateCustomLociP03,
+  evaluateFaceNameE01,
+  evaluateFloorplanRouteP02,
+  evaluateItalianMajorPhonemeN03,
   evaluateLociRouteAttempt,
   evaluateLongNumberChunksAttempt,
+  evaluateMemoryExperimentF01,
   evaluateMetricsAndTrialsAttempt,
   evaluateMissingLinkAttempt,
+  evaluateMnemonicBudgetS03,
   evaluateMultiCaseClassificationAttempt,
   evaluateNumericTransferAttempt,
+  evaluateOrderedCardsC03,
   evaluateOrderedWordsAttempt,
   evaluatePairsBlindRecallAttempt,
   evaluatePaoSceneCodecAttempt,
@@ -29,7 +37,7 @@ import {
   evaluateStructuredPlusRubricAttempt,
   evaluateUnorderedWordsAttempt,
   normalizeAnswerToken,
-} from "./loco-academy-engine-v2";
+} from "./loco-academy-engine-v5";
 
 interface AcademyLessonPlayerProps {
   lesson: EnrichedAcademyLesson;
@@ -138,6 +146,9 @@ export function AcademyLessonPlayer({
   const [icSelectedLociIds, setIcSelectedLociIds] = useState<string[]>([]);
   const [icBlindOrderIds, setIcBlindOrderIds] = useState<string[]>([]);
   const [icSpotCheckId, setIcSpotCheckId] = useState<string>("");
+  const [icProbeAnswers, setIcProbeAnswers] = useState<Record<number, string>>(
+    {}
+  );
 
   // 4. Builder Then Blind Recall (`builder_then_blind_recall`)
   const [icBuilderPhase, setIcBuilderPhase] = useState<"build" | "blind_recall">(
@@ -213,6 +224,7 @@ export function AcademyLessonPlayer({
   const [icDetailByPerson, setIcDetailByPerson] = useState<
     Record<string, string>
   >({});
+  const [icFaceRecalledName, setIcFaceRecalledName] = useState("");
 
   // 16. Source Fact Check Lab (`source_fact_check_lab`)
   const [icCardDecisions, setIcCardDecisions] = useState<
@@ -247,6 +259,7 @@ export function AcademyLessonPlayer({
     setIcSelectedLociIds([]);
     setIcBlindOrderIds([]);
     setIcSpotCheckId("");
+    setIcProbeAnswers({});
     setIcBuilderPhase("build");
     setIcBuiltScenes({});
     setIcRecalledByCue({});
@@ -280,6 +293,7 @@ export function AcademyLessonPlayer({
     setIcRecalledCards([]);
     setIcRoleByPerson({});
     setIcDetailByPerson({});
+    setIcFaceRecalledName("");
     setIcCardDecisions({});
     setIcFactCorrectionChoice("");
     setIcStructuredAnswers({});
@@ -448,15 +462,29 @@ export function AcademyLessonPlayer({
 
       switch (mission.widgetKind) {
         case "ordered_flash_recall": {
-          const spec = mission.orderedFlashSpec!;
-          evidence = evaluateOrderedWordsAttempt({
-            lessonId: lesson.id,
-            expectedWords: spec.targetWords,
-            submittedWords: icRecalledWords,
-            minOrderedPassCount: spec.minOrderedPassCount,
-            submittedBeforeReveal: icSubmittedBeforeReveal && icFlashHidden,
-            hintsUsed: icHintsRevealedCount,
-          });
+          if (lesson.id === "F01") {
+            evidence = evaluateMemoryExperimentF01({
+              submittedWords: icRecalledWords,
+              submittedBeforeReveal: icSubmittedBeforeReveal && icFlashHidden,
+              hintsUsed: icHintsRevealedCount,
+            });
+          } else if (lesson.id === "C03") {
+            evidence = evaluateOrderedCardsC03({
+              submittedCards: icRecalledWords,
+              submittedBeforeReveal: icSubmittedBeforeReveal && icFlashHidden,
+              hintsUsed: icHintsRevealedCount,
+            });
+          } else {
+            const spec = mission.orderedFlashSpec!;
+            evidence = evaluateOrderedWordsAttempt({
+              lessonId: lesson.id,
+              expectedWords: spec.targetWords,
+              submittedWords: icRecalledWords,
+              minOrderedPassCount: spec.minOrderedPassCount,
+              submittedBeforeReveal: icSubmittedBeforeReveal && icFlashHidden,
+              hintsUsed: icHintsRevealedCount,
+            });
+          }
           break;
         }
         case "unordered_flash_recall": {
@@ -472,15 +500,54 @@ export function AcademyLessonPlayer({
           break;
         }
         case "loci_route_and_blind_order": {
-          evidence = evaluateLociRouteAttempt({
-            lessonId: lesson.id,
-            selectedLocusIdsInOrder: icSelectedLociIds,
-            blindReconstructedOrderIds: icBlindOrderIds,
-            spotCheckSelectedId: icSpotCheckId || undefined,
-            submittedBeforeReveal:
-              icSubmittedBeforeReveal && icRoutePhase === "blind_recall",
-            hintsUsed: icHintsRevealedCount,
-          });
+          if (lesson.id === "P02") {
+            evidence = evaluateFloorplanRouteP02({
+              orderedLociIds: icSelectedLociIds,
+              blindRecalledNames: icBlindOrderIds,
+              submittedBeforeReveal:
+                icSubmittedBeforeReveal && icRoutePhase === "blind_recall",
+              hintsUsed: icHintsRevealedCount,
+            });
+          } else if (lesson.id === "P03") {
+            const probe3 =
+              icProbeAnswers[3] ||
+              icSpotCheckId ||
+              icBlindOrderIds[2] ||
+              icSelectedLociIds[2] ||
+              "";
+            const probe7 =
+              icProbeAnswers[7] ||
+              icBlindOrderIds[6] ||
+              icSelectedLociIds[6] ||
+              "";
+            const probe1 =
+              icProbeAnswers[1] ||
+              icBlindOrderIds[0] ||
+              icSelectedLociIds[0] ||
+              "";
+            evidence = evaluateCustomLociP03({
+              savedRouteLoci: icSelectedLociIds,
+              recalledLociInOrder: icBlindOrderIds,
+              probeAnswers: [
+                { probePosition: 3, answerLocus: probe3 },
+                { probePosition: 7, answerLocus: probe7 },
+                { probePosition: 1, answerLocus: probe1 },
+              ],
+              submittedBeforeReveal:
+                icSubmittedBeforeReveal && icRoutePhase === "blind_recall",
+              hintsUsed: icHintsRevealedCount,
+            });
+          } else {
+            evidence = evaluateLociRouteAttempt({
+              lessonId: lesson.id,
+              selectedLocusIdsInOrder: icSelectedLociIds,
+              blindReconstructedOrderIds: icBlindOrderIds,
+              spotCheckSelectedId: icSpotCheckId || undefined,
+              submittedBeforeReveal:
+                icSubmittedBeforeReveal && icRoutePhase === "blind_recall",
+              hintsUsed: icHintsRevealedCount,
+            });
+          }
           break;
         }
         case "builder_then_blind_recall": {
@@ -533,28 +600,76 @@ export function AcademyLessonPlayer({
           break;
         }
         case "missing_link_diagnosis": {
-          evidence = evaluateMissingLinkAttempt({
-            lessonId: lesson.id,
-            omittedWord: icOmittedWord,
-            brokenAfterWord: icBrokenAfterWord,
-            repairSentence: icRepairSentence,
-            reconstructedChain: icReconstructedChain,
-            submittedBeforeReveal: icSubmittedBeforeReveal && icChainHidden,
-            hintsUsed: icHintsRevealedCount,
-          });
+          if (lesson.id === "A03") {
+            const normBroken = icBrokenAfterWord.toLowerCase().trim();
+            const edgeIdx =
+              normBroken.includes("cactus") ||
+              normBroken === "2" ||
+              normBroken.includes("campana")
+                ? 2
+                : 0;
+            const fullChain =
+              icReconstructedChain.length > 0
+                ? icReconstructedChain
+                : icOmittedWord
+                ? ["gelato", "treno", "cactus", icOmittedWord]
+                : [];
+            evidence = evaluateChainRepairA03({
+              selectedWeakEdgeIndex: edgeIdx,
+              repairActionText: icRepairSentence,
+              recalledWords: fullChain,
+              submittedBeforeReveal: icSubmittedBeforeReveal && icChainHidden,
+              hintsUsed: icHintsRevealedCount,
+            });
+          } else {
+            evidence = evaluateMissingLinkAttempt({
+              lessonId: lesson.id,
+              omittedWord: icOmittedWord,
+              brokenAfterWord: icBrokenAfterWord,
+              repairSentence: icRepairSentence,
+              reconstructedChain: icReconstructedChain,
+              submittedBeforeReveal: icSubmittedBeforeReveal && icChainHidden,
+              hintsUsed: icHintsRevealedCount,
+            });
+          }
           break;
         }
         case "phonetic_word_for_numbers": {
-          evidence = evaluatePhoneticWordForNumbersAttempt({
-            lessonId: lesson.id,
-            wordByNumber: icWordByNumber,
-            recalledNumberBySlot:
-              icRecalledNumbersSlot.length > 0
-                ? icRecalledNumbersSlot
-                : undefined,
-            submittedBeforeReveal: icSubmittedBeforeReveal,
-            hintsUsed: icHintsRevealedCount,
-          });
+          if (lesson.id === "N03") {
+            const codeCoro =
+              encodeItalianWordToMajorDigits(icWordByNumber["74"] || "") ||
+              (icWordByNumber["74"]?.trim() === "74" ||
+              icWordByNumber["74"]?.toLowerCase().includes("coro")
+                ? "74"
+                : "") ||
+              icWordByNumber["coro"] ||
+              "";
+            const codeCera =
+              encodeItalianWordToMajorDigits(icWordByNumber["64"] || "") ||
+              (icWordByNumber["64"]?.trim() === "64" ||
+              icWordByNumber["64"]?.toLowerCase().includes("cera")
+                ? "64"
+                : "") ||
+              icWordByNumber["cera"] ||
+              "";
+            evidence = evaluateItalianMajorPhonemeN03({
+              codeCoro,
+              codeCera,
+              submittedBeforeReveal: icSubmittedBeforeReveal,
+              hintsUsed: icHintsRevealedCount,
+            });
+          } else {
+            evidence = evaluatePhoneticWordForNumbersAttempt({
+              lessonId: lesson.id,
+              wordByNumber: icWordByNumber,
+              recalledNumberBySlot:
+                icRecalledNumbersSlot.length > 0
+                  ? icRecalledNumbersSlot
+                  : undefined,
+              submittedBeforeReveal: icSubmittedBeforeReveal,
+              hintsUsed: icHintsRevealedCount,
+            });
+          }
           onRecordDirectionalMajorAttempt("forward", evidence.correct === true);
           break;
         }
@@ -599,13 +714,25 @@ export function AcademyLessonPlayer({
           break;
         }
         case "multi_case_classification": {
-          evidence = evaluateMultiCaseClassificationAttempt({
-            lessonId: lesson.id,
-            selectedCategoryByCaseId: icCategoryByCase,
-            selectedFollowUpOptionId: icFollowUpChoice || undefined,
-            submittedBeforeReveal: icSubmittedBeforeReveal,
-            hintsUsed: icHintsRevealedCount,
-          });
+          if (lesson.id === "S03") {
+            const allocatedIds = Object.entries(icCategoryByCase)
+              .filter(([_, cat]) => cat === "arbitrario")
+              .map(([id]) => id);
+            evidence = evaluateMnemonicBudgetS03({
+              allocatedItemIds: allocatedIds,
+              justificationText: icFollowUpChoice || undefined,
+              submittedBeforeReveal: icSubmittedBeforeReveal,
+              hintsUsed: icHintsRevealedCount,
+            });
+          } else {
+            evidence = evaluateMultiCaseClassificationAttempt({
+              lessonId: lesson.id,
+              selectedCategoryByCaseId: icCategoryByCase,
+              selectedFollowUpOptionId: icFollowUpChoice || undefined,
+              submittedBeforeReveal: icSubmittedBeforeReveal,
+              hintsUsed: icHintsRevealedCount,
+            });
+          }
           break;
         }
         case "numeric_transfer_lab": {
@@ -630,14 +757,28 @@ export function AcademyLessonPlayer({
           break;
         }
         case "cards_and_names_dual_lab": {
-          evidence = evaluateCardsAndNamesDualAttempt({
-            lessonId: lesson.id,
-            recalledCardsInOrder: icRecalledCards,
-            recalledRoleByPerson: icRoleByPerson,
-            recalledDetailByPerson: icDetailByPerson,
-            submittedBeforeReveal: icSubmittedBeforeReveal && icCardsHidden,
-            hintsUsed: icHintsRevealedCount,
-          });
+          if (lesson.id === "E01") {
+            const enteredName =
+              icFaceRecalledName ||
+              icRoleByPerson["Giorgia"] ||
+              icDetailByPerson["Giorgia"] ||
+              icWordDraft;
+            evidence = evaluateFaceNameE01({
+              recalledName: enteredName,
+              selectedCue: "orecchino triangolare",
+              submittedBeforeReveal: icSubmittedBeforeReveal && icCardsHidden,
+              hintsUsed: icHintsRevealedCount,
+            });
+          } else {
+            evidence = evaluateCardsAndNamesDualAttempt({
+              lessonId: lesson.id,
+              recalledCardsInOrder: icRecalledCards,
+              recalledRoleByPerson: icRoleByPerson,
+              recalledDetailByPerson: icDetailByPerson,
+              submittedBeforeReveal: icSubmittedBeforeReveal && icCardsHidden,
+              hintsUsed: icHintsRevealedCount,
+            });
+          }
           break;
         }
         case "source_fact_check_lab": {
@@ -1401,6 +1542,56 @@ export function AcademyLessonPlayer({
                             </div>
                           </div>
                         )}
+
+                        {mission.lociRouteSpec.randomAccessProbes &&
+                          mission.lociRouteSpec.randomAccessProbes.length > 0 && (
+                            <div className="space-y-3 rounded-[14px] border border-[#613BE0]/20 bg-[#D2C4F5]/10 p-3.5">
+                              <p className="text-xs font-bold text-[#613BE0]">
+                                Accesso casuale mirato (posizioni 3, 7, 1):
+                              </p>
+                              {mission.lociRouteSpec.randomAccessProbes.map(
+                                (probe, pIdx) => {
+                                  const posMatch = probe.prompt.match(/\d+/);
+                                  const pos = posMatch
+                                    ? parseInt(posMatch[0], 10)
+                                    : pIdx + 1;
+                                  const currentAnswer =
+                                    icProbeAnswers[pos] ?? "";
+                                  return (
+                                    <div
+                                      key={probe.prompt}
+                                      className="space-y-1.5"
+                                    >
+                                      <div className="text-xs font-semibold text-[#181818]">
+                                        {probe.prompt}
+                                      </div>
+                                      <div className="flex flex-wrap gap-1.5">
+                                        {candidates.map((cand) => (
+                                          <button
+                                            key={`${pos}-${cand.id}`}
+                                            type="button"
+                                            onClick={() =>
+                                              setIcProbeAnswers((prev) => ({
+                                                ...prev,
+                                                [pos]: cand.id,
+                                              }))
+                                            }
+                                            className={`rounded-full border px-2.5 py-1 text-xs font-semibold transition ${
+                                              currentAnswer === cand.id
+                                                ? "border-[#613BE0] bg-[#613BE0] text-white"
+                                                : "border-[#181818]/20 bg-white text-[#181818]"
+                                            }`}
+                                          >
+                                            {cand.label}
+                                          </button>
+                                        ))}
+                                      </div>
+                                    </div>
+                                  );
+                                }
+                              )}
+                            </div>
+                          )}
                       </div>
                     )}
                   </div>
@@ -2267,7 +2458,7 @@ export function AcademyLessonPlayer({
                 );
               })()}
 
-            {/* WIDGET 15: CARDS & NAMES DUAL LAB (M03) */}
+            {/* WIDGET 15: CARDS & NAMES DUAL LAB (M03 / E01) */}
             {mission.widgetKind === "cards_and_names_dual_lab" &&
               mission.cardsAndNamesSpec && (() => {
                 const orderedCards =
@@ -2280,18 +2471,22 @@ export function AcademyLessonPlayer({
                   <div className="space-y-4">
                     {!icCardsHidden ? (
                       <div className="space-y-3">
-                        <div className="rounded-[14px] bg-[#D2C4F5]/25 p-3 text-xs">
-                          <div className="font-bold text-[#613BE0]">
-                            1. Sequenza di {orderedCards.length} carte:
+                        {orderedCards.length > 0 && (
+                          <div className="rounded-[14px] bg-[#D2C4F5]/25 p-3 text-xs">
+                            <div className="font-bold text-[#613BE0]">
+                              1. Sequenza di {orderedCards.length} carte:
+                            </div>
+                            <div className="mt-1 font-bold text-[#181818]">
+                              {orderedCards.join(" → ")}
+                            </div>
                           </div>
-                          <div className="mt-1 font-bold text-[#181818]">
-                            {orderedCards.join(" → ")}
-                          </div>
-                        </div>
+                        )}
                         {profiles.length > 0 && (
                           <div className="rounded-[14px] bg-[#D2C4F5]/25 p-3 text-xs">
                             <div className="font-bold text-[#613BE0]">
-                              2. Tre profili (Nome — Ruolo — Dettaglio):
+                              {lesson.id === "E01"
+                                ? "Volto di fantasia (memorizza il nome nei primi 5 secondi):"
+                                : "Profili (Nome — Ruolo — Dettaglio):"}
                             </div>
                             {profiles.map((p) => (
                               <div key={p.person} className="mt-1">
@@ -2304,92 +2499,118 @@ export function AcademyLessonPlayer({
                         <button
                           type="button"
                           onClick={() => setIcCardsHidden(true)}
-                          className="w-full rounded-[15px] bg-[#613BE0] py-2.5 text-xs font-bold text-white"
+                          className="w-full rounded-[15px] bg-[#613BE0] py-2.5 text-xs font-bold text-white transition hover:bg-[#4B2FC4]"
                         >
-                          Nascondi carte e profili e avvia la prova →
+                          Nascondi stimoli e avvia la prova →
                         </button>
                       </div>
                     ) : (
                       <div className="space-y-3">
-                        <p className="text-xs font-bold text-[#613BE0]">
-                          1. Ricostruisci le {orderedCards.length} carte in ordine:
-                        </p>
-                        <div className="flex flex-wrap gap-1.5">
-                          {[...orderedCards]
-                            .sort((a, b) => a.localeCompare(b))
-                            .map((c) => {
-                              const used = icRecalledCards.includes(c);
-                              return (
-                                <button
-                                  key={c}
-                                  type="button"
-                                  disabled={used}
-                                  onClick={() =>
-                                    setIcRecalledCards((prev) => [...prev, c])
-                                  }
-                                  className={`rounded-full border px-3 py-1 text-xs font-bold ${
-                                    used
-                                      ? "opacity-30"
-                                      : "border-[#613BE0] bg-white"
-                                  }`}
-                                >
-                                  {c}
-                                </button>
-                              );
-                            })}
-                        </div>
-                        <div className="flex items-center justify-between text-xs font-bold">
-                          <span>{icRecalledCards.join(" → ") || "—"}</span>
-                          {icRecalledCards.length > 0 && (
-                            <button
-                              type="button"
-                              onClick={() => setIcRecalledCards([])}
-                              className="text-[#613BE0]"
-                            >
-                              Azzera
-                            </button>
-                          )}
-                        </div>
-
-                        {profiles.length > 0 && (
+                        {orderedCards.length > 0 && (
                           <>
-                            <p className="pt-2 text-xs font-bold text-[#613BE0]">
-                              2. Completa ruolo e dettaglio per ciascuna persona:
+                            <p className="text-xs font-bold text-[#613BE0]">
+                              1. Ricostruisci le {orderedCards.length} carte in ordine:
                             </p>
-                            {profiles.map((p) => (
-                              <div
-                                key={p.person}
-                                className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:items-center"
-                              >
-                                <span className="text-xs font-bold">{p.person}:</span>
-                                <input
-                                  type="text"
-                                  value={icRoleByPerson[p.person] ?? ""}
-                                  onChange={(e) =>
-                                    setIcRoleByPerson((prev) => ({
-                                      ...prev,
-                                      [p.person]: e.target.value,
-                                    }))
-                                  }
-                                  placeholder="Ruolo..."
-                                  className="rounded-[8px] border border-[#181818]/20 px-2.5 py-1.5 text-xs"
-                                />
-                                <input
-                                  type="text"
-                                  value={icDetailByPerson[p.person] ?? ""}
-                                  onChange={(e) =>
-                                    setIcDetailByPerson((prev) => ({
-                                      ...prev,
-                                      [p.person]: e.target.value,
-                                    }))
-                                  }
-                                  placeholder="Dettaglio..."
-                                  className="rounded-[8px] border border-[#181818]/20 px-2.5 py-1.5 text-xs"
-                                />
-                              </div>
-                            ))}
+                            <div className="flex flex-wrap gap-1.5">
+                              {[...orderedCards]
+                                .sort((a, b) => a.localeCompare(b))
+                                .map((c) => {
+                                  const used = icRecalledCards.includes(c);
+                                  return (
+                                    <button
+                                      key={c}
+                                      type="button"
+                                      disabled={used}
+                                      onClick={() =>
+                                        setIcRecalledCards((prev) => [...prev, c])
+                                      }
+                                      className={`rounded-full border px-3 py-1 text-xs font-bold ${
+                                        used
+                                          ? "opacity-30"
+                                          : "border-[#613BE0] bg-white"
+                                      }`}
+                                    >
+                                      {c}
+                                    </button>
+                                  );
+                                })}
+                            </div>
+                            <div className="flex items-center justify-between text-xs font-bold">
+                              <span>{icRecalledCards.join(" → ") || "—"}</span>
+                              {icRecalledCards.length > 0 && (
+                                <button
+                                  type="button"
+                                  onClick={() => setIcRecalledCards([])}
+                                  className="text-[#613BE0]"
+                                >
+                                  Azzera
+                                </button>
+                              )}
+                            </div>
                           </>
                         )}
+
+                        {profiles.length > 0 &&
+                          (lesson.id === "E01" ? (
+                            <div className="space-y-2 rounded-[14px] border border-[#613BE0]/20 bg-[#D2C4F5]/10 p-3.5">
+                              <p className="text-xs font-bold text-[#613BE0]">
+                                Recupero nome dal tratto neutro distintivo:
+                              </p>
+                              <p className="text-xs text-[#181818]">
+                                Qual è il nome della persona che indossava{" "}
+                                <strong>«{profiles[0].detail}»</strong>?
+                              </p>
+                              <input
+                                type="text"
+                                value={icFaceRecalledName}
+                                onChange={(e) =>
+                                  setIcFaceRecalledName(e.target.value)
+                                }
+                                placeholder="Digita il nome ricordato..."
+                                className="w-full rounded-[10px] border border-[#181818]/20 px-3 py-2 text-xs outline-none focus:border-[#613BE0]"
+                              />
+                            </div>
+                          ) : (
+                            <>
+                              <p className="pt-2 text-xs font-bold text-[#613BE0]">
+                                2. Completa ruolo e dettaglio per ciascuna persona:
+                              </p>
+                              {profiles.map((p) => (
+                                <div
+                                  key={p.person}
+                                  className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:items-center"
+                                >
+                                  <span className="text-xs font-bold">
+                                    {p.person}:
+                                  </span>
+                                  <input
+                                    type="text"
+                                    value={icRoleByPerson[p.person] ?? ""}
+                                    onChange={(e) =>
+                                      setIcRoleByPerson((prev) => ({
+                                        ...prev,
+                                        [p.person]: e.target.value,
+                                      }))
+                                    }
+                                    placeholder="Ruolo..."
+                                    className="rounded-[8px] border border-[#181818]/20 px-2.5 py-1.5 text-xs"
+                                  />
+                                  <input
+                                    type="text"
+                                    value={icDetailByPerson[p.person] ?? ""}
+                                    onChange={(e) =>
+                                      setIcDetailByPerson((prev) => ({
+                                        ...prev,
+                                        [p.person]: e.target.value,
+                                      }))
+                                    }
+                                    placeholder="Dettaglio..."
+                                    className="rounded-[8px] border border-[#181818]/20 px-2.5 py-1.5 text-xs"
+                                  />
+                                </div>
+                              ))}
+                            </>
+                          ))}
                       </div>
                     )}
                   </div>

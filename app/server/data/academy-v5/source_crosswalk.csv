@@ -1,0 +1,145 @@
+lesson_id,title,source_id,author,book,chapter_or_step
+F01,Lo sai davvero?,D:Ch2,Nelson Dellis,Remember It!,"Ch. 2 — Basics, See–Link–Go"
+F01,Lo sai davvero?,O:Step01,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 01 — How Good Is Your Memory?
+F01,Lo sai davvero?,L:Ch02,Lorayne & Lucas,The Memory Book,Ch. 2 — In the First Place: Association
+F02,Guarda dove conta,D:Ch3-1,Nelson Dellis,Remember It!,Ch. 3 — Paying Attention
+F02,Guarda dove conta,O:Step02,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 02 — Visualization and Observation
+F02,Guarda dove conta,Q:Ch02,Dominic O'Brien,Quantum Memory Power,Ch. 2 — Three Keys
+F03,Immagini che mordono,L:Ch02,Lorayne & Lucas,The Memory Book,Ch. 2 — In the First Place: Association
+F03,Immagini che mordono,O:Step09,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 09 — Imagination: the Third Key
+F03,Immagini che mordono,D:Ch2,Nelson Dellis,Remember It!,"Ch. 2 — Basics, See–Link–Go"
+F04,Il segreto è l'indizio,O:Step06,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 06 — Association: the First Key
+F04,Il segreto è l'indizio,Q:Ch05,Dominic O'Brien,Quantum Memory Power,Ch. 5 — Combining Linking and Journey
+F04,Il segreto è l'indizio,F:Ch05,Joshua Foer,Moonwalking with Einstein,Ch. 5 — The Memory Palace
+F05,"Impara il primo trucco, poi dimenticalo",D:Ch2,Nelson Dellis,Remember It!,"Ch. 2 — Basics, See–Link–Go"
+F05,"Impara il primo trucco, poi dimenticalo",Q:Ch01,Dominic O'Brien,Quantum Memory Power,Ch. 1 — Time for Mental Fitness
+F05,"Impara il primo trucco, poi dimenticalo",O:Step11,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 11 — Concentration
+A01,Non appoggiare: fai esplodere,L:Ch02,Lorayne & Lucas,The Memory Book,Ch. 2 — In the First Place: Association
+A01,Non appoggiare: fai esplodere,O:Step06,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 06 — Association: the First Key
+A01,Non appoggiare: fai esplodere,D:Ch2,Nelson Dellis,Remember It!,"Ch. 2 — Basics, See–Link–Go"
+A02,La catena che si racconta da sola,L:Ch03,Lorayne & Lucas,The Memory Book,Ch. 3 — The Link
+A02,La catena che si racconta da sola,O:Step07,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 07 — The Link Method
+A02,La catena che si racconta da sola,D:Ch4-Link,Nelson Dellis,Remember It!,Ch. 4 — Linking Method
+A03,Dove si spezza il film?,L:Ch03,Lorayne & Lucas,The Memory Book,Ch. 3 — The Link
+A03,Dove si spezza il film?,C:Ch02,Ramón Campayo,Maximize Your Memory,Ch. 2 — Supermemory
+A03,Dove si spezza il film?,D:Ch4-Link,Nelson Dellis,Remember It!,Ch. 4 — Linking Method
+A04,"Parole astratte, immagini concrete",L:Ch04,Lorayne & Lucas,The Memory Book,Ch. 4 — Substitute Words
+A04,"Parole astratte, immagini concrete",D:Ch6-Language,Nelson Dellis,Remember It!,Ch. 6 — Language
+A04,"Parole astratte, immagini concrete",O:Step19,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 19 — Foreign Language
+A05,Il tuo corpo è una mappa,O:Step05,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 05 — The Body System
+A05,Il tuo corpo è una mappa,D:Ch4-Peg,Nelson Dellis,Remember It!,Ch. 4 — Peg Method
+A06,"Tre strumenti, tre situazioni",O:Step07,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 07 — The Link Method
+A06,"Tre strumenti, tre situazioni",O:Step08,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 08 — Location: the Second Key
+A06,"Tre strumenti, tre situazioni",O:Step09,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 09 — Imagination: the Third Key
+A06,"Tre strumenti, tre situazioni",O:Step10,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 10 — The Journey Method
+A06,"Tre strumenti, tre situazioni",D:Ch4,Nelson Dellis,Remember It!,Ch. 4 — Lists
+A06,"Tre strumenti, tre situazioni",C:Ch02,Ramón Campayo,Maximize Your Memory,Ch. 2 — Supermemory
+P01,"Un punto, non un'area",O:Step08,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 08 — Location: the Second Key
+P01,"Un punto, non un'area",Q:Ch03,Dominic O'Brien,Quantum Memory Power,Ch. 3 — Journey Method
+P01,"Un punto, non un'area",D:Ch4-Journey,Nelson Dellis,Remember It!,Ch. 4 — Journey Method
+P02,"Dalla porta, gira sempre uguale",O:Step10,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 10 — The Journey Method
+P02,"Dalla porta, gira sempre uguale",Q:Ch03,Dominic O'Brien,Quantum Memory Power,Ch. 3 — Journey Method
+P02,"Dalla porta, gira sempre uguale",D:Ch4-Journey,Nelson Dellis,Remember It!,Ch. 4 — Journey Method
+P03,"Otto punti, una stanza",O:Step10,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 10 — The Journey Method
+P03,"Otto punti, una stanza",D:Ch4-Journey,Nelson Dellis,Remember It!,Ch. 4 — Journey Method
+P03,"Otto punti, una stanza",F:Ch05,Joshua Foer,Moonwalking with Einstein,Ch. 5 — The Memory Palace
+P04,Il limone entra in libreria,L:Ch02,Lorayne & Lucas,The Memory Book,Ch. 2 — In the First Place: Association
+P04,Il limone entra in libreria,O:Step10,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 10 — The Journey Method
+P04,Il limone entra in libreria,D:Ch4-Journey,Nelson Dellis,Remember It!,Ch. 4 — Journey Method
+P05,Vai direttamente al punto 5,O:Step10,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 10 — The Journey Method
+P05,Vai direttamente al punto 5,D:Ch4-Journey,Nelson Dellis,Remember It!,Ch. 4 — Journey Method
+P06,Dal corridoio alla seconda stanza,O:Step10,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 10 — The Journey Method
+P06,Dal corridoio alla seconda stanza,O:Step41,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 41 — The Roman Room Method
+P06,Dal corridoio alla seconda stanza,Q:Ch03,Dominic O'Brien,Quantum Memory Power,Ch. 3 — Journey Method
+P07,La stanza dei bug,D:Ch4-Journey,Nelson Dellis,Remember It!,Ch. 4 — Journey Method
+P07,La stanza dei bug,O:Step41,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 41 — The Roman Room Method
+P07,La stanza dei bug,C:Ch02,Ramón Campayo,Maximize Your Memory,Ch. 2 — Supermemory
+N01,Le cifre non hanno una faccia,O:Step12,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 12 — The Language of Numbers
+N01,Le cifre non hanno una faccia,O:Step13,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 13 — The Number-Rhyme System
+N01,Le cifre non hanno una faccia,L:Ch10,Lorayne & Lucas,The Memory Book,Ch. 10 — Long-Digit Numbers
+N02,Il dizionario segreto dei suoni,L:Ch10,Lorayne & Lucas,The Memory Book,Ch. 10 — Long-Digit Numbers
+N02,Il dizionario segreto dei suoni,O:Step12,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 12 — The Language of Numbers
+N02,Il dizionario segreto dei suoni,D:Ch5,Nelson Dellis,Remember It!,Ch. 5 — Numbers
+N03,Una lettera non è sempre un suono,L:Ch10,Lorayne & Lucas,The Memory Book,Ch. 10 — Long-Digit Numbers
+N03,Una lettera non è sempre un suono,O:Step12,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 12 — The Language of Numbers
+N04,Da 2 cifre a una cosa,L:Ch10,Lorayne & Lucas,The Memory Book,Ch. 10 — Long-Digit Numbers
+N04,Da 2 cifre a una cosa,O:Step12,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 12 — The Language of Numbers
+N04,Da 2 cifre a una cosa,D:Ch5,Nelson Dellis,Remember It!,Ch. 5 — Numbers
+N05,Trovare 00–99 senza impazzire,O:Step23,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 23 — Dominic System I
+N05,Trovare 00–99 senza impazzire,O:Step31,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 31 — Dominic System II
+N05,Trovare 00–99 senza impazzire,D:Ch5,Nelson Dellis,Remember It!,Ch. 5 — Numbers
+N06,La data che torna intera,O:Step36,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 36 — Historic Dates
+N06,La data che torna intera,D:Ch5,Nelson Dellis,Remember It!,Ch. 5 — Numbers
+N06,La data che torna intera,L:Ch15,Lorayne & Lucas,The Memory Book,Ch. 15 — Anniversaries and Historical Dates
+N07,Sistema Major o Dominic?,O:Step23,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 23 — Dominic System I
+N07,Sistema Major o Dominic?,O:Step31,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 31 — Dominic System II
+N07,Sistema Major o Dominic?,O:Step33,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 33 — Dominic System III
+N07,Sistema Major o Dominic?,Q:Ch08,Dominic O'Brien,Quantum Memory Power,Ch. 8 — Dominic System
+N07,Sistema Major o Dominic?,D:Ch5,Nelson Dellis,Remember It!,Ch. 5 — Numbers
+E01,Il nome nei primi cinque secondi,D:Ch3-Names,Nelson Dellis,Remember It!,Ch. 3 — Names and Faces
+E01,Il nome nei primi cinque secondi,L:Ch08,Lorayne & Lucas,The Memory Book,Ch. 8 — Names and Faces
+E01,Il nome nei primi cinque secondi,O:Step15,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 15 — Names and Faces
+E02,Cognomi e indizi senza stereotipi,L:Ch08,Lorayne & Lucas,The Memory Book,Ch. 8 — Names and Faces
+E02,Cognomi e indizi senza stereotipi,D:Ch3-Names,Nelson Dellis,Remember It!,Ch. 3 — Names and Faces
+E03,Una strada diventa una storia,D:Ch4-Directions,Nelson Dellis,Remember It!,Ch. 4 — Directions
+E03,Una strada diventa una storia,O:Step16,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 16 — Directions
+E03,Una strada diventa una storia,Q:Ch03,Dominic O'Brien,Quantum Memory Power,Ch. 3 — Journey Method
+E04,"Ricordati domani, non adesso",D:Ch3-Promises,Nelson Dellis,Remember It!,Ch. 3 — Remembering Future Tasks
+E04,"Ricordati domani, non adesso",L:Ch09,Lorayne & Lucas,The Memory Book,Ch. 9 — Absentmindedness
+E05,Imparare vocaboli senza magia,L:Ch07,Lorayne & Lucas,The Memory Book,Ch. 7 — Foreign and English Vocabulary
+E05,Imparare vocaboli senza magia,D:Ch6-Language,Nelson Dellis,Remember It!,Ch. 6 — Language
+E05,Imparare vocaboli senza magia,O:Step19,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 19 — Foreign Language
+E06,Parla senza imparare un copione,O:Step29,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 29 — Speeches and Presentations
+E06,Parla senza imparare un copione,Q:Ch09,Dominic O'Brien,Quantum Memory Power,Ch. 9 — Speeches
+E06,Parla senza imparare un copione,L:Ch06,Lorayne & Lucas,The Memory Book,Ch. 6 — Speeches
+S01,Una pagina non è una lista,C:Ch04,Ramón Campayo,Maximize Your Memory,Ch. 4 — General Study System (R.C.S.)
+S01,Una pagina non è una lista,D:Ch6-Text,Nelson Dellis,Remember It!,"Ch. 6 — Speeches, Quotes, Poems"
+S01,Una pagina non è una lista,F:Ch03,Joshua Foer,Moonwalking with Einstein,Ch. 3 — The Expert Expert
+S02,Trasforma il testo in domande,C:Ch04,Ramón Campayo,Maximize Your Memory,Ch. 4 — General Study System (R.C.S.)
+S02,Trasforma il testo in domande,D:Ch6-Text,Nelson Dellis,Remember It!,"Ch. 6 — Speeches, Quotes, Poems"
+S03,Il budget delle immagini,C:Ch04,Ramón Campayo,Maximize Your Memory,Ch. 4 — General Study System (R.C.S.)
+S03,Il budget delle immagini,Q:Ch05,Dominic O'Brien,Quantum Memory Power,Ch. 5 — Combining Linking and Journey
+S03,Il budget delle immagini,O:Step26,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 26 — Read Faster and Remember More
+S04,Dalle idee alla mappa mentale,C:Ch04,Ramón Campayo,Maximize Your Memory,Ch. 4 — General Study System (R.C.S.)
+S04,Dalle idee alla mappa mentale,O:Step28,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 28 — Mind Maps
+S04,Dalle idee alla mappa mentale,D:Ch6-Text,Nelson Dellis,Remember It!,"Ch. 6 — Speeches, Quotes, Poems"
+S05,"Dal concetto al palazzo, senza perderlo",C:Ch04,Ramón Campayo,Maximize Your Memory,Ch. 4 — General Study System (R.C.S.)
+S05,"Dal concetto al palazzo, senza perderlo",O:Step29,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 29 — Speeches and Presentations
+S05,"Dal concetto al palazzo, senza perderlo",D:Ch6-Text,Nelson Dellis,Remember It!,"Ch. 6 — Speeches, Quotes, Poems"
+S06,Ripassa senza autosuggestione,O:Step30,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 30 — Revision and Maximizing Recall
+S06,Ripassa senza autosuggestione,Q:Ch04,Dominic O'Brien,Quantum Memory Power,Ch. 4 — Revision and Review
+S06,Ripassa senza autosuggestione,D:Ch7,Nelson Dellis,Remember It!,Ch. 7 — Memory Maintenance
+C01,"Il mazzo è una lingua, non un disegno",L:Ch13,Lorayne & Lucas,The Memory Book,Ch. 13 — Playing Cards
+C01,"Il mazzo è una lingua, non un disegno",O:Step34,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 34 — Memorize a Deck
+C01,"Il mazzo è una lingua, non un disegno",D:Ch6-Cards,Nelson Dellis,Remember It!,Ch. 6 — Playing Cards
+C02,Dai un'immagine a una carta,L:Ch13,Lorayne & Lucas,The Memory Book,Ch. 13 — Playing Cards
+C02,Dai un'immagine a una carta,O:Step34,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 34 — Memorize a Deck
+C02,Dai un'immagine a una carta,D:Ch6-Cards,Nelson Dellis,Remember It!,Ch. 6 — Playing Cards
+C03,"Cinque carte, cinque eventi",O:Step34,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 34 — Memorize a Deck
+C03,"Cinque carte, cinque eventi",Q:Ch17,Dominic O'Brien,Quantum Memory Power,Ch. 17 — Card Memorization
+C03,"Cinque carte, cinque eventi",D:Ch6-Cards,Nelson Dellis,Remember It!,Ch. 6 — Playing Cards
+C05,La tua biblioteca da 52,L:Ch13,Lorayne & Lucas,The Memory Book,Ch. 13 — Playing Cards
+C05,La tua biblioteca da 52,O:Step34,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 34 — Memorize a Deck
+C05,La tua biblioteca da 52,D:Appendix,Nelson Dellis,Remember It!,"Appendix — Peg Lists, Number Systems"
+C04,Dodici carte in un palazzo,O:Step34,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 34 — Memorize a Deck
+C04,Dodici carte in un palazzo,Q:Ch17,Dominic O'Brien,Quantum Memory Power,Ch. 17 — Card Memorization
+X01,"PAO: tre ruoli, una scena",O:Step33,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 33 — Dominic System III
+X01,"PAO: tre ruoli, una scena",Q:Ch17,Dominic O'Brien,Quantum Memory Power,Ch. 17 — Card Memorization
+X01,"PAO: tre ruoli, una scena",D:Appendix-PAO,Nelson Dellis,Remember It!,Appendix — PAO Numbers and Cards
+X02,Binario a gruppi,O:Step44,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 44 — Binary Numbers
+X02,Binario a gruppi,Q:Ch18,Dominic O'Brien,Quantum Memory Power,Ch. 18 — Becoming a Mentathlete Competitor
+X03,Citazione esatta o idea corretta?,O:Step40,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 40 — Poetry
+X03,Citazione esatta o idea corretta?,L:Ch06,Lorayne & Lucas,The Memory Book,Ch. 6 — Speeches
+X03,Citazione esatta o idea corretta?,D:Ch6-Text,Nelson Dellis,Remember It!,"Ch. 6 — Speeches, Quotes, Poems"
+X04,"Capitali, elementi e coppie arbitrarie",O:Step18,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 18 — Countries and Capitals
+X04,"Capitali, elementi e coppie arbitrarie",O:Step19,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 19 — Foreign Language
+X04,"Capitali, elementi e coppie arbitrarie",O:Step21,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 21 — The Elements
+X04,"Capitali, elementi e coppie arbitrarie",D:Ch6-Capitals,Nelson Dellis,Remember It!,Ch. 6 — Countries and Capitals
+X04,"Capitali, elementi e coppie arbitrarie",L:Ch07,Lorayne & Lucas,The Memory Book,Ch. 7 — Foreign and English Vocabulary
+X05,Ortografia e parole difficili,O:Step17,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 17 — Spellings
+X05,Ortografia e parole difficili,L:Ch05,Lorayne & Lucas,The Memory Book,"Ch. 5 — Long Words, Appointments, Shopping Lists"
+X05,Ortografia e parole difficili,D:Ch6-Language,Nelson Dellis,Remember It!,Ch. 6 — Language
+X06,Che cosa misurano i campioni?,O:Step34,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 34 — Memorize a Deck
+X06,Che cosa misurano i campioni?,O:Step46,Dominic O'Brien,How to Develop a Brilliant Memory Week by Week,Step 46 — Multiple Decks
+X06,Che cosa misurano i campioni?,Q:Ch18,Dominic O'Brien,Quantum Memory Power,Ch. 18 — Becoming a Mentathlete Competitor
+X06,Che cosa misurano i campioni?,F:Ch11,Joshua Foer,Moonwalking with Einstein,Ch. 11 — The U.S. Memory Championship
